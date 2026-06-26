@@ -73,3 +73,16 @@ playlists:
       - "workout hype"
       - "hip hop gym"
     genres: [hip-hop, electronic]
+
+  - name: "⚡ Modo Confiança"
+    description: "Motivação e autoconfiança lá em cima. Renovada o ano todo."
+    public: false
+    size: 30
+    seasons: [always]
+    queries:
+      - "motivation anthems"
+      - "confidence boost"
+      - "empowerment pop"
+      - "motivacional brasil"
+    genres: [pop, rock]
+    artist_seeds: ["Imagine Dragons", "Sia", "Raul Seixas"]

@@ -1,0 +1,76 @@
+"""Leitura da config de playlists (config/playlists.yaml)."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from pathlib import Path
+
+import yaml
+
+from .curator import CurationSpec
+
+DEFAULT_CONFIG_PATH = Path("config/playlists.yaml")
+
+# Estações válidas + "always" (atualiza o ano todo).
+VALID_SEASONS = {"summer", "autumn", "winter", "spring", "always"}
+
+
+@dataclass
+class PlaylistDef:
+    name: str
+    description: str = ""
+    public: bool = False
+    seasons: list[str] = field(default_factory=lambda: ["always"])
+    spec: CurationSpec = field(default_factory=CurationSpec)
+
+    def runs_in_season(self, season: str) -> bool:
+        return "always" in self.seasons or season in self.seasons
+
+
+@dataclass
+class Config:
+    hemisphere: str
+    market: str
+    playlists: list[PlaylistDef]
+
+
+def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Config não encontrada em {path}. Veja o exemplo em config/playlists.yaml."
+        )
+
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    hemisphere = data.get("hemisphere", "southern")
+    market = data.get("market", "BR")
+
+    playlists: list[PlaylistDef] = []
+    for raw in data.get("playlists", []):
+        seasons = raw.get("seasons", ["always"])
+        invalid = [s for s in seasons if s not in VALID_SEASONS]
+        if invalid:
+            raise ValueError(
+                f"Playlist '{raw.get('name')}' tem estação inválida: {invalid}. "
+                f"Use uma de: {sorted(VALID_SEASONS)}"
+            )
+
+        spec = CurationSpec(
+            queries=raw.get("queries", []),
+            genres=raw.get("genres", []),
+            artist_seeds=raw.get("artist_seeds", []),
+            year_range=raw.get("year_range"),
+            market=raw.get("market", market),
+            size=int(raw.get("size", 30)),
+        )
+        playlists.append(
+            PlaylistDef(
+                name=raw["name"],
+                description=raw.get("description", ""),
+                public=bool(raw.get("public", False)),
+                seasons=seasons,
+                spec=spec,
+            )
+        )
+
+    return Config(hemisphere=hemisphere, market=market, playlists=playlists)

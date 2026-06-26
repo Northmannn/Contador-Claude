@@ -1,0 +1,18 @@
+# Credenciais e tokens — NUNCA commitar
+.env
+.cache
+.cache-*
+*.token
+token_info.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Sistema
+.DS_Store

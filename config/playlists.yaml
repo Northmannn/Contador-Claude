@@ -1,0 +1,75 @@
+# =====================================================================
+# Configuração das suas playlists.
+#
+# Cada playlist é montada por BUSCA na Spotify a partir das "queries",
+# "genres", "artist_seeds" e "year_range" que você definir aqui.
+# Edite à vontade — é aqui que mora a "vibe" de cada ocasião.
+#
+# Campos por playlist:
+#   name         (obrigatório) nome exato da playlist na sua conta
+#   description  texto que aparece na playlist
+#   public       true/false (padrão: false)
+#   size         quantas faixas (padrão: 30)
+#   seasons      quando atualizar: [always] ou combinações de
+#                summer / autumn / winter / spring
+#   queries      termos de busca livres ("treino", "café da manhã", etc.)
+#   genres       gêneros do Spotify (ex: acoustic, pop, sertanejo)
+#   artist_seeds artistas cujas top tracks entram na seleção
+#   year_range   filtro de ano, ex: "2010-2020"
+#   market       país (padrão: o global abaixo)
+# =====================================================================
+
+hemisphere: southern   # Brasil = southern (estações invertidas vs. EUA/Europa)
+market: BR
+
+playlists:
+  - name: "☀️ Verão na Praia"
+    description: "Energia alta pra dias quentes. Atualizada a cada verão."
+    public: false
+    size: 30
+    seasons: [summer]
+    queries:
+      - "summer beach vibes"
+      - "funk verão"
+      - "reggae brasil"
+    genres: [pop, reggae]
+
+  - name: "🍂 Outono Aconchegante"
+    description: "Trilha calma pra dias mais frescos. Atualizada a cada outono."
+    public: false
+    size: 30
+    seasons: [autumn]
+    queries:
+      - "indie folk acoustic"
+      - "mpb suave"
+    genres: [acoustic, folk]
+
+  - name: "❄️ Inverno Cozy"
+    description: "Pra ficar em casa no friozinho. Atualizada a cada inverno."
+    public: false
+    size: 30
+    seasons: [winter]
+    queries:
+      - "lofi chill"
+      - "jazz café"
+    genres: [jazz]
+
+  - name: "🌸 Primavera Animada"
+    description: "Leveza pra estação das flores. Atualizada a cada primavera."
+    public: false
+    size: 30
+    seasons: [spring]
+    queries:
+      - "feel good indie pop"
+      - "pop brasil animado"
+    genres: [pop, indie-pop]
+
+  - name: "🏋️ Treino da Semana"
+    description: "Pique pra malhar. Renovada o ano todo."
+    public: false
+    size: 40
+    seasons: [always]
+    queries:
+      - "workout hype"
+      - "hip hop gym"
+    genres: [hip-hop, electronic]

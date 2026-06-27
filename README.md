@@ -57,10 +57,17 @@ Isso abre o navegador pra você autorizar. No fim, ele imprime um
 
 ```bash
 python main.py list                  # mostra as playlists e quais entram nesta estação
+python main.py taste                 # mostra seus artistas/músicas mais ouvidos
+python main.py whoami                # diagnóstico: conta e permissões concedidas
+python main.py sync --only "🏋️ Treino da Semana"   # só uma playlist (recomendado)
 python main.py sync                  # atualiza as playlists da estação atual
-python main.py sync --force          # atualiza TODAS, ignorando a estação
-python main.py sync --only "🏋️ Treino da Semana"   # só uma playlist
+python main.py sync --daily          # atualiza as playlists diárias (daily: true)
+python main.py sync --force          # atualiza TODAS (cuidado: muitas chamadas de API)
 ```
+
+> ⚠️ A Spotify limita requisições **por app**. Prefira `--only` (uma por vez) e
+> evite gerar várias seguidas, pra não bater no rate limit (HTTP 429). Detalhes
+> e mais armadilhas da API estão em `AGENTS.md`.
 
 ## 6. Automatizar (GitHub Actions)
 

@@ -219,33 +219,52 @@ playlists:
       - "manhã boa vibe"
 
   # =====================================================================
-  # 🌙 HIPERFOCO NOTURNO — pro foco da madrugada. Mistura seu groove BR com
-  # faixas hipnóticas/instrumentais que seguram a atenção. Exclui o já-ouvido
-  # pra ser sempre uma surpresa. Ajuste a intensidade pelas queries.
+  # 🌙 HIPERFOCO NOTURNO — INTENSO e EUFÓRICO pra madrugada de foco.
+  # Em português, ritmo envolvente, gêneros naturalmente acima de ~100 BPM
+  # (axé, rock nacional pesado, pop/dance BR, pagode/forró animado).
+  # Sem rap e sem o lado melódico/MPB. Sempre com faixas novas (surpresa).
+  # OBS: a Spotify removeu o dado de BPM da API (audio features) p/ apps novos,
+  # então o alvo de >100 BPM é feito por GÊNERO/ARTISTA, não por medição exata.
   # =====================================================================
   - name: "🌙 Hiperfoco Noturno"
-    description: "Groove e batidas hipnóticas pra entrar no flow da madrugada. Sempre com faixas novas."
+    description: "Intenso e eufórico pra virar a madrugada no foco. Português, ritmo pra cima, acima de 100 BPM."
     public: false
     size: 40
     seasons: [always]
     mode: discovery
-    seed_from_taste: true   # parte do seu gosto...
-    exclude_heard: true     # ...mas sempre com músicas novas (surpresa)
-    match_genres: []        # usa todos os seus estilos como semente
-    # As queries puxam o lado mais hipnótico/instrumental, bom pra concentrar.
+    seed_from_taste: true   # usa seus artistas, mas só os energéticos (match abaixo)
+    exclude_heard: true     # sempre faixas novas (surpresa)
+    # Só semeia a partir dos seus gostos mais energéticos...
+    match_genres: [rock, "rock nacional", "brazilian rock", punk, "hardcore", "pop rock",
+                   axé, pagode, pop, dance, "forró", "piseiro", "samba rock"]
+    # ...e nunca dos gêneros calmos/melódicos nem rap.
+    exclude_genres: [mpb, "bossa nova", jazz, "samba jazz", "lo-fi", ambient, brega,
+                     "samba de raiz", rap, "hip hop", trap, "brazilian hip hop", drill]
     queries:
-      - "samba jazz instrumental"
-      - "bossa nova instrumental"
-      - "mpb instrumental"
-      - "brazilian groove"
-      - "deep house melódico"
-      - "afro house"
-      - "lo-fi beats"
-      - "instrumental para foco"
-    # Mestres do groove/instrumental brasileiro como reforço de semente.
+      - "axé"
+      - "rock nacional pesado"
+      - "pop rock brasileiro animado"
+      - "pagode animado"
+      - "forró animado"
+      - "hits pra dançar brasil"
+      - "rock nacional anos 2000"
+      - "agito brasil"
     artist_seeds:
-      - "Azymuth"
-      - "Hermeto Pascoal"
-      - "Marcos Valle"
-      - "Tim Maia"
-      - "Jorge Ben Jor"
+      # axé / festa eufórica (BPM alto)
+      - "Ivete Sangalo"
+      - "Chiclete com Banana"
+      - "Daniela Mercury"
+      - "Timbalada"
+      - "Léo Santana"
+      - "Bell Marques"
+      # rock nacional intenso
+      - "CPM 22"
+      - "Raimundos"
+      - "Charlie Brown Jr."
+      - "Capital Inicial"
+      - "Pitty"
+      - "NX Zero"
+      - "Detonautas"
+      # pop / dance em português
+      - "Pabllo Vittar"
+      - "Anitta"

@@ -291,3 +291,28 @@ playlists:
       - "pagode animado"
       - "sertanejo pra cantar"
       - "samba animado"
+
+  # =====================================================================
+  # 💛 NO MESMO CLIMA (DESCOBERTAS) — pega seus artistas mais ouvidos e
+  # entrega músicas NOVAS na mesma vibe/intensidade (faixas deles que você
+  # ainda não ouviu + mesmo gênero), EXCLUINDO tudo que você já escutou.
+  # OBS: "parecida" aqui = mesmos artistas/gêneros (a Spotify removeu o
+  # endpoint de recomendação/artistas relacionados pra apps novos).
+  # =====================================================================
+  - name: "💛 No Mesmo Clima — Descobertas"
+    description: "Seu gosto, músicas novas: mesma vibe e intensidade, sem repetir o que você já ouve."
+    public: false
+    size: 40
+    seasons: [always]
+    mode: discovery
+    seed_from_taste: true        # parte dos seus artistas mais ouvidos
+    include_top_tracks: false    # NÃO replica suas músicas — quer descoberta
+    exclude_heard: true          # remove tudo que você já escutou (só coisa nova)
+    hits_only: false             # inclui faixas menos óbvias dos seus artistas
+    match_genres: []             # todos os seus estilos...
+    exclude_genres: [rap, "hip hop", trap, "brazilian hip hop", drill]  # ...menos rap
+    queries:
+      - "pagode"
+      - "samba"
+      - "sertanejo"
+      - "pop rock nacional"

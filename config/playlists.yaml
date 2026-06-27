@@ -95,3 +95,107 @@ playlists:
       - "pagode romântico"
     # Reforço manual (opcional): edite com artistas que você curte.
     artist_seeds: []
+
+  # =====================================================================
+  # 🍷 DATE — clima agradável, longa e variada (agrada gregos e troianos)
+  # =====================================================================
+  - name: "🍷 Date — Clima Perfeito"
+    description: "Trilha agradável e variada pra encontros. Mix MPB, bossa, soul e pop."
+    public: false
+    size: 70
+    seasons: [always]
+    mode: search
+    queries:
+      - "bossa nova clássicos"
+      - "mpb romântico"
+      - "soul classics"
+      - "r&b slow jams"
+      - "indie chill love"
+      - "jazz vocal standards"
+      - "pop acústico romântico"
+      - "samba romântico"
+      - "lo-fi jazzy"
+    artist_seeds:
+      - "Tim Maia"
+      - "Marisa Monte"
+      - "Djavan"
+      - "João Gilberto"
+      - "Caetano Veloso"
+      - "Gilberto Gil"
+      - "Jorge Ben Jor"
+      - "Los Hermanos"
+      - "Vanessa da Mata"
+      - "Norah Jones"
+      - "Sade"
+      - "Frank Sinatra"
+      - "Stevie Wonder"
+      - "Bebel Gilberto"
+
+  # =====================================================================
+  # 🎤 KARAOKÊ BR — só músicas brasileiras, famosas de cantar, voz de barítono
+  # =====================================================================
+  - name: "🎤 Karaokê BR (voz de barítono)"
+    description: "Clássicos brasileiros pra cantar junto, escolhidos pra voz de barítono."
+    public: false
+    size: 50
+    seasons: [always]
+    # Mistura seu gosto (artistas BR mais ouvidos) com os clássicos famosos
+    # de karaokê. hits_only = só as músicas conhecidas, não faixas obscuras.
+    mode: discovery
+    seed_from_taste: true
+    exclude_heard: false   # karaokê = músicas que você (e todos) conhecem
+    hits_only: true
+    match_genres: [mpb, samba, pagode, "rock nacional", "brazilian rock", sertanejo, "axé", "samba rock"]
+    queries:
+      - "clássicos mpb para cantar"
+      - "rock nacional anos 80"
+      - "músicas para cantar junto brasil"
+    # Artistas brasileiros famosos de karaokê com pegada barítono/voz grave-média.
+    artist_seeds:
+      - "Roberto Carlos"
+      - "Raul Seixas"
+      - "Legião Urbana"
+      - "Cazuza"
+      - "Skank"
+      - "Engenheiros do Hawaii"
+      - "Jorge Aragão"
+      - "Zeca Pagodinho"
+      - "Belchior"
+      - "Gonzaguinha"
+      - "Lulu Santos"
+      - "Nando Reis"
+      - "Los Hermanos"
+      - "Chico Buarque"
+      - "Tim Maia"
+
+  # =====================================================================
+  # 🌅 BOM DIA — DIÁRIA às 5h: zera e põe 15 músicas novas pra motivar
+  # =====================================================================
+  - name: "🌅 Bom Dia, Motivação"
+    description: "15 músicas novas pra começar o dia com o pé direito. Renovada todo dia às 5h."
+    public: false
+    size: 15
+    seasons: [always]
+    daily: true            # entra no fluxo diário (sync --daily), não no sazonal
+    # Surpresa diária: semeia nos SEUS estilos, mas exclui o que você já ouviu
+    # (pra ser sempre algo novo) e tira funk/rap e parentes.
+    mode: discovery
+    seed_from_taste: true
+    exclude_heard: true
+    match_genres: []       # todos os seus estilos...
+    exclude_genres:        # ...menos estes:
+      - funk
+      - "funk carioca"
+      - "funk brasileiro"
+      - "funk mtg"
+      - "funk ostentação"
+      - rap
+      - trap
+      - "hip hop"
+      - "brazilian hip hop"
+      - drill
+    queries:
+      - "mpb animado"
+      - "samba alegre"
+      - "pop rock nacional"
+      - "manhã boa vibe"

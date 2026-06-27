@@ -21,6 +21,7 @@ class PlaylistDef:
     description: str = ""
     public: bool = False
     seasons: list[str] = field(default_factory=lambda: ["always"])
+    daily: bool = False  # atualiza no fluxo diário (sync --daily), não no sazonal
     spec: CurationSpec = field(default_factory=CurationSpec)
 
     def runs_in_season(self, season: str) -> bool:
@@ -66,6 +67,8 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             seed_from_taste=bool(raw.get("seed_from_taste", False)),
             exclude_heard=bool(raw.get("exclude_heard", False)),
             match_genres=raw.get("match_genres", []),
+            exclude_genres=raw.get("exclude_genres", []),
+            hits_only=bool(raw.get("hits_only", False)),
         )
         playlists.append(
             PlaylistDef(
@@ -73,6 +76,7 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
                 description=raw.get("description", ""),
                 public=bool(raw.get("public", False)),
                 seasons=seasons,
+                daily=bool(raw.get("daily", False)),
                 spec=spec,
             )
         )

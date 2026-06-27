@@ -85,18 +85,34 @@ def sync_playlist(sp: Spotify, pdef: PlaylistDef) -> list[Track]:
     return tracks
 
 
-def sync_all(sp: Spotify, config: Config, force: bool = False) -> dict[str, list[Track]]:
-    """Sincroniza as playlists da estação atual (ou todas, se ``force``).
+def _should_sync(pdef: PlaylistDef, scope: str, season: str) -> bool:
+    """Decide se a playlist entra neste fluxo.
+
+    scope:
+      - "season": playlists sazonais da estação atual (exclui as diárias)
+      - "daily":  só as marcadas como diárias
+      - "all":    todas (usado pelo --force)
+    """
+    if scope == "daily":
+        return pdef.daily
+    if scope == "all":
+        return True
+    # scope == "season"
+    return not pdef.daily and pdef.runs_in_season(season)
+
+
+def sync_all(sp: Spotify, config: Config, scope: str = "season") -> dict[str, list[Track]]:
+    """Sincroniza as playlists conforme o ``scope`` (season | daily | all).
 
     Retorna um dict {nome_da_playlist: faixas} apenas das que foram atualizadas.
     """
     season = current_season(config.hemisphere)
-    print(f"🗓️  Estação atual ({config.hemisphere}): {season_label(season)}\n")
+    print(f"🗓️  Estação atual ({config.hemisphere}): {season_label(season)} | escopo: {scope}\n")
 
     results: dict[str, list[Track]] = {}
     for pdef in config.playlists:
-        if not force and not pdef.runs_in_season(season):
-            print(f"⏭️  Pulando '{pdef.name}' (fora da estação)")
+        if not _should_sync(pdef, scope, season):
+            print(f"⏭️  Pulando '{pdef.name}'")
             continue
 
         tracks = sync_playlist(sp, pdef)
@@ -109,5 +125,5 @@ def sync_all(sp: Spotify, config: Config, force: bool = False) -> dict[str, list
         print()
 
     if not results:
-        print("Nenhuma playlist para atualizar nesta estação. Use --force pra rodar todas.")
+        print("Nenhuma playlist para atualizar neste escopo.")
     return results

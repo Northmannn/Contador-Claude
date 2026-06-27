@@ -58,7 +58,8 @@ def cmd_sync(args: argparse.Namespace) -> int:
         print(f"✅ '{match.name}': {len(tracks)} faixas atualizadas")
         return 0
 
-    sync_all(sp, config, force=args.force)
+    scope = "all" if args.force else "daily" if args.daily else "season"
+    sync_all(sp, config, scope=scope)
     return 0
 
 
@@ -83,6 +84,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_sync = sub.add_parser("sync", help="Atualiza as playlists")
     p_sync.add_argument("--force", action="store_true", help="Atualiza todas, ignora estação")
+    p_sync.add_argument("--daily", action="store_true", help="Atualiza só as playlists diárias")
     p_sync.add_argument("--only", metavar="NOME", help="Atualiza só esta playlist")
     p_sync.set_defaults(func=cmd_sync)
 

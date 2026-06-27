@@ -46,7 +46,9 @@ class CurationSpec:
     mode: str = "search"  # "search" | "discovery"
     seed_from_taste: bool = False  # usar seus artistas mais ouvidos como semente
     exclude_heard: bool = False  # remover faixas que você já escutou
-    match_genres: list[str] = field(default_factory=list)  # ex: ["samba", "pagode"]
+    match_genres: list[str] = field(default_factory=list)  # incluir só estes gêneros
+    exclude_genres: list[str] = field(default_factory=list)  # nunca semear estes gêneros
+    hits_only: bool = False  # só as faixas mais tocadas do artista (ideal p/ karaokê)
 
 
 def _track_from_item(item: dict) -> Track | None:
@@ -195,8 +197,18 @@ def _matches_genres(artist_genres: list[str], wanted: list[str]) -> bool:
     return any(w.lower() in blob for w in wanted)
 
 
-def _taste_seed_artists(sp: Spotify, match_genres: list[str], limit: int = 12) -> list[dict]:
-    """Seus artistas mais ouvidos que batem com os gêneros desejados."""
+def _taste_seed_artists(
+    sp: Spotify,
+    match_genres: list[str],
+    exclude_genres: list[str] | None = None,
+    limit: int = 12,
+) -> list[dict]:
+    """Seus artistas mais ouvidos que batem com os gêneros desejados.
+
+    ``match_genres`` vazio = aceita qualquer gênero. ``exclude_genres`` descarta
+    artistas desses gêneros (ex: tirar funk/rap da playlist matinal).
+    """
+    exclude_genres = exclude_genres or []
     by_id: dict[str, dict] = {}
     for time_range in ("short_term", "medium_term", "long_term"):
         try:
@@ -204,14 +216,26 @@ def _taste_seed_artists(sp: Spotify, match_genres: list[str], limit: int = 12) -
         except Exception:
             continue
         for art in resp.get("items", []):
-            if art["id"] not in by_id and _matches_genres(art.get("genres", []), match_genres):
-                by_id[art["id"]] = art
+            genres = art.get("genres", [])
+            if art["id"] in by_id:
+                continue
+            if not _matches_genres(genres, match_genres):
+                continue
+            if exclude_genres and _matches_genres(genres, exclude_genres):
+                continue
+            by_id[art["id"]] = art
 
     return list(by_id.values())[:limit]
 
 
-def _artist_catalog(sp: Spotify, artist_id: str, market: str) -> list[Track]:
-    """Faixas do artista: top tracks + faixas de alguns álbuns (cortes mais fundos)."""
+def _artist_catalog(
+    sp: Spotify, artist_id: str, market: str, hits_only: bool = False
+) -> list[Track]:
+    """Faixas do artista: top tracks + faixas de álbuns (cortes mais fundos).
+
+    Com ``hits_only=True``, traz apenas as mais tocadas (ideal pra karaokê,
+    onde você quer músicas conhecidas, não faixas obscuras).
+    """
     tracks: list[Track] = []
 
     try:
@@ -219,6 +243,9 @@ def _artist_catalog(sp: Spotify, artist_id: str, market: str) -> list[Track]:
         tracks.extend(_track_from_item(it) for it in top.get("tracks", []))
     except Exception:
         pass
+
+    if hits_only:
+        return [t for t in tracks if t]
 
     try:
         albums = sp.artist_albums(artist_id, album_type="album,single", limit=12)
@@ -239,11 +266,11 @@ def _curate_discovery(sp: Spotify, spec: CurationSpec) -> list[Track]:
     # 1) Sementes: seus artistas mais ouvidos do gênero (ou a lista da config).
     seed_artists: list[dict] = []
     if spec.seed_from_taste:
-        seed_artists = _taste_seed_artists(sp, spec.match_genres)
+        seed_artists = _taste_seed_artists(sp, spec.match_genres, spec.exclude_genres)
 
     if seed_artists:
         for art in seed_artists:
-            pool.extend(_artist_catalog(sp, art["id"], spec.market))
+            pool.extend(_artist_catalog(sp, art["id"], spec.market, spec.hits_only))
     # Sempre reforça com a lista manual de artistas (se houver).
     for name in spec.artist_seeds:
         pool.extend(_artist_top_tracks_by_name(sp, name, spec.market))

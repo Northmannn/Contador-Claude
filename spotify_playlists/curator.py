@@ -126,13 +126,28 @@ def _search_tracks(sp: Spotify, query: str, market: str, want: int) -> list[Trac
     return []
 
 
-def _artist_top_tracks_by_name(sp: Spotify, artist_name: str, market: str) -> list[Track]:
-    found = sp.search(q=artist_name, type="artist", limit=1)
-    items = found.get("artists", {}).get("items", [])
-    if not items:
-        return []
-    top = sp.artist_top_tracks(items[0]["id"], country=market)
-    return [t for t in (_track_from_item(it) for it in top.get("tracks", [])) if t]
+def _artist_top_tracks_by_name(
+    sp: Spotify, artist_name: str, market: str, want: int = 12
+) -> list[Track]:
+    """Faixas conhecidas de um artista pelo nome.
+
+    Tenta o endpoint oficial de top tracks (que dá 403 em apps no Development
+    Mode pós-migração de fev/2026) e, se falhar/vier vazio, cai na BUSCA por
+    nome — que continua funcionando — pra nunca quebrar nem voltar vazio.
+    """
+    try:
+        found = sp.search(q=artist_name, type="artist", limit=1)
+        items = found.get("artists", {}).get("items", [])
+        if items:
+            top = sp.artist_top_tracks(items[0]["id"], country=market)
+            tracks = [t for t in (_track_from_item(it) for it in top.get("tracks", [])) if t]
+            if tracks:
+                return tracks
+    except Exception:
+        pass
+
+    # Fallback resiliente: busca de faixas pelo nome do artista.
+    return _search_tracks(sp, artist_name, market, want)
 
 
 def _build_query(base: str, genres: list[str], year_range: str | None) -> str:
@@ -229,12 +244,19 @@ def _taste_seed_artists(
 
 
 def _artist_catalog(
-    sp: Spotify, artist_id: str, market: str, hits_only: bool = False
+    sp: Spotify,
+    artist_id: str,
+    artist_name: str,
+    market: str,
+    hits_only: bool = False,
+    want: int = 12,
 ) -> list[Track]:
-    """Faixas do artista: top tracks + faixas de álbuns (cortes mais fundos).
+    """Faixas do artista, resiliente ao Development Mode.
 
-    Com ``hits_only=True``, traz apenas as mais tocadas (ideal pra karaokê,
-    onde você quer músicas conhecidas, não faixas obscuras).
+    Tenta os endpoints oficiais (top tracks + álbuns), que em apps no
+    Development Mode pós-migração de fev/2026 podem dar 403. Se vierem
+    poucas/nenhuma faixa, completa com BUSCA pelo nome do artista (que
+    funciona). Com ``hits_only=True`` (karaokê), pula os álbuns.
     """
     tracks: list[Track] = []
 
@@ -244,20 +266,25 @@ def _artist_catalog(
     except Exception:
         pass
 
-    if hits_only:
-        return [t for t in tracks if t]
+    if not hits_only:
+        try:
+            albums = sp.artist_albums(artist_id, album_type="album,single", limit=12)
+            album_ids = [a["id"] for a in albums.get("items", [])]
+            random.shuffle(album_ids)
+            for album_id in album_ids[:5]:
+                at = sp.album_tracks(album_id, limit=30)
+                tracks.extend(_track_from_item(it) for it in at.get("items", []))
+        except Exception:
+            pass
 
-    try:
-        albums = sp.artist_albums(artist_id, album_type="album,single", limit=12)
-        album_ids = [a["id"] for a in albums.get("items", [])]
-        random.shuffle(album_ids)
-        for album_id in album_ids[:5]:
-            at = sp.album_tracks(album_id, limit=30)
-            tracks.extend(_track_from_item(it) for it in at.get("items", []))
-    except Exception:
-        pass
+    tracks = [t for t in tracks if t]
 
-    return [t for t in tracks if t]
+    # Fallback/reforço: se o catálogo oficial veio fraco (403 em dev mode),
+    # busca as faixas do artista pelo nome.
+    if len(tracks) < want and artist_name:
+        tracks.extend(_search_tracks(sp, artist_name, market, want))
+
+    return tracks
 
 
 def _curate_discovery(sp: Spotify, spec: CurationSpec) -> list[Track]:
@@ -270,7 +297,11 @@ def _curate_discovery(sp: Spotify, spec: CurationSpec) -> list[Track]:
 
     if seed_artists:
         for art in seed_artists:
-            pool.extend(_artist_catalog(sp, art["id"], spec.market, spec.hits_only))
+            pool.extend(
+                _artist_catalog(
+                    sp, art["id"], art.get("name", ""), spec.market, spec.hits_only
+                )
+            )
     # Sempre reforça com a lista manual de artistas (se houver).
     for name in spec.artist_seeds:
         pool.extend(_artist_top_tracks_by_name(sp, name, spec.market))

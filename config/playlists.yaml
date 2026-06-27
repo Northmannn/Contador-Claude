@@ -74,15 +74,23 @@ playlists:
       - "hip hop gym"
     genres: [hip-hop, electronic]
 
-  - name: "⚡ Modo Confiança"
-    description: "Motivação e autoconfiança lá em cima. Renovada o ano todo."
+  - name: "🥁 Samba & Pagode — Descobertas"
+    description: "Samba e pagode na sua vibe, com músicas novas pra você. Renovada o ano todo."
     public: false
     size: 30
     seasons: [always]
+    # Modo descoberta: lê seus artistas mais ouvidos de samba/pagode,
+    # puxa faixas parecidas no ritmo e EXCLUI o que você já escutou.
+    mode: discovery
+    seed_from_taste: true
+    exclude_heard: true
+    match_genres: [samba, pagode, "partido alto", "samba de raiz", "samba-enredo", "samba rock"]
+    # Busca na mesma cena (caso falte semente do seu gosto, ou pra ampliar).
     queries:
-      - "motivation anthems"
-      - "confidence boost"
-      - "empowerment pop"
-      - "motivacional brasil"
-    genres: [pop, rock]
-    artist_seeds: ["Imagine Dragons", "Sia", "Raul Seixas"]
+      - "pagode"
+      - "samba"
+      - "pagode anos 90"
+      - "samba de raiz"
+    genres: [samba, pagode]
+    # Reforço manual (opcional): edite com artistas que você curte.
+    artist_seeds: []

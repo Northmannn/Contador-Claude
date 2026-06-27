@@ -16,12 +16,15 @@ from dotenv import load_dotenv
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 
-# Escopos mínimos necessários para gerenciar playlists e enviar capa.
+# Escopos necessários para gerenciar playlists, enviar capa e LER seu gosto
+# (artistas/músicas mais ouvidos e curtidas) para o modo descoberta.
 SCOPES = (
     "playlist-modify-public "
     "playlist-modify-private "
     "playlist-read-private "
-    "ugc-image-upload"
+    "ugc-image-upload "
+    "user-top-read "
+    "user-library-read"
 )
 
 

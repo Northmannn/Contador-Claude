@@ -62,6 +62,10 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             year_range=raw.get("year_range"),
             market=raw.get("market", market),
             size=int(raw.get("size", 30)),
+            mode=raw.get("mode", "search"),
+            seed_from_taste=bool(raw.get("seed_from_taste", False)),
+            exclude_heard=bool(raw.get("exclude_heard", False)),
+            match_genres=raw.get("match_genres", []),
         )
         playlists.append(
             PlaylistDef(

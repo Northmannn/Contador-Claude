@@ -50,6 +50,7 @@ def _oauth() -> SpotifyOAuth:
         scope=SCOPES,
         cache_path=".cache",
         open_browser=True,
+        show_dialog=True,  # força a tela de consentimento p/ garantir todos os escopos
     )
 
 
@@ -68,6 +69,41 @@ def get_client() -> Spotify:
         return Spotify(auth=token_info["access_token"])
 
     return Spotify(auth_manager=oauth)
+
+
+def describe_auth() -> None:
+    """Mostra usuário e escopos concedidos, SEM expor tokens. Diagnóstico."""
+    oauth = _oauth()
+    token_info = oauth.get_cached_token()
+    if not token_info:
+        print("Sem token em cache. Rode 'python main.py login' primeiro.")
+        return
+
+    sp = Spotify(auth=token_info["access_token"])
+    me = sp.me()
+    print(f"Usuário:  {me.get('display_name')}  (id: {me.get('id')})")
+    print(f"Conta:    {me.get('product')}  | país: {me.get('country')}")
+
+    granted = set((token_info.get("scope") or "").split())
+    print("\nEscopos concedidos:")
+    for scope in sorted(granted) or ["(nenhum)"]:
+        print(f"  • {scope}")
+
+    needed = {
+        "playlist-modify-public",
+        "playlist-modify-private",
+        "playlist-read-private",
+        "user-top-read",
+        "user-library-read",
+    }
+    missing = sorted(needed - granted)
+    if missing:
+        print("\n⚠️  FALTAM escopos:", ", ".join(missing))
+        print("    → Apague o .cache e rode 'python main.py login' de novo.")
+    else:
+        print("\n✅ Todos os escopos necessários foram concedidos.")
+        if me.get("product") != "premium":
+            print("ℹ️  Conta não-premium — criar/editar playlist ainda funciona.")
 
 
 def login_and_print_refresh_token() -> str:

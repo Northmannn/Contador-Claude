@@ -14,7 +14,11 @@ from __future__ import annotations
 import argparse
 import sys
 
-from spotify_playlists.auth import get_client, login_and_print_refresh_token
+from spotify_playlists.auth import (
+    describe_auth,
+    get_client,
+    login_and_print_refresh_token,
+)
 from spotify_playlists.config import load_config
 from spotify_playlists.manager import sync_all, sync_playlist
 from spotify_playlists.seasons import current_season, season_label
@@ -22,6 +26,11 @@ from spotify_playlists.seasons import current_season, season_label
 
 def cmd_login(_args: argparse.Namespace) -> int:
     login_and_print_refresh_token()
+    return 0
+
+
+def cmd_whoami(_args: argparse.Namespace) -> int:
+    describe_auth()
     return 0
 
 
@@ -68,6 +77,9 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("list", help="Lista as playlists configuradas").set_defaults(
         func=cmd_list
     )
+    sub.add_parser(
+        "whoami", help="Mostra usuário e escopos concedidos (diagnóstico)"
+    ).set_defaults(func=cmd_whoami)
 
     p_sync = sub.add_parser("sync", help="Atualiza as playlists")
     p_sync.add_argument("--force", action="store_true", help="Atualiza todas, ignora estação")

@@ -25,6 +25,32 @@ def _find_playlist_id(sp: Spotify, name: str) -> str | None:
             return None
 
 
+def _create_playlist(sp: Spotify, pdef: PlaylistDef) -> dict:
+    """Cria a playlist do usuário logado via endpoint novo POST /me/playlists.
+
+    O método antigo ``user_playlist_create()`` bate em
+    ``POST /users/{id}/playlists``, removido pela migração da Web API de
+    fevereiro/2026 (passou a retornar 403). Usamos o substituto
+    ``current_user_playlist_create()``; em spotipy antigo que não o tenha,
+    caímos direto no endpoint novo.
+    """
+    try:
+        return sp.current_user_playlist_create(
+            name=pdef.name,
+            public=pdef.public,
+            description=pdef.description,
+        )
+    except AttributeError:
+        return sp._post(
+            "me/playlists",
+            payload={
+                "name": pdef.name,
+                "public": pdef.public,
+                "description": pdef.description,
+            },
+        )
+
+
 def _ensure_playlist(sp: Spotify, pdef: PlaylistDef) -> str:
     """Devolve o id da playlist, criando-a se ainda não existir."""
     existing = _find_playlist_id(sp, pdef.name)
@@ -34,12 +60,7 @@ def _ensure_playlist(sp: Spotify, pdef: PlaylistDef) -> str:
         )
         return existing
 
-    created = sp.user_playlist_create(
-        user=sp.me()["id"],
-        name=pdef.name,
-        public=pdef.public,
-        description=pdef.description,
-    )
+    created = _create_playlist(sp, pdef)
     return created["id"]
 
 

@@ -14,6 +14,8 @@ from __future__ import annotations
 import argparse
 import sys
 
+from spotipy.exceptions import SpotifyException
+
 from spotify_playlists.auth import (
     describe_auth,
     get_client,
@@ -22,6 +24,25 @@ from spotify_playlists.auth import (
 from spotify_playlists.config import load_config
 from spotify_playlists.manager import describe_taste, sync_all, sync_playlist
 from spotify_playlists.seasons import current_season, season_label
+
+
+def _handle_rate_limit(exc: SpotifyException) -> int:
+    """Mensagem amigável quando bate no rate limit (429) da Spotify."""
+    retry = None
+    if getattr(exc, "headers", None):
+        retry = exc.headers.get("Retry-After")
+    msg = "\n⛔ Rate limit da Spotify (HTTP 429): muitas requisições em pouco tempo."
+    if retry and str(retry).isdigit():
+        horas = int(retry) / 3600
+        msg += f"\n   A Spotify pede pra esperar ~{int(retry)}s (~{horas:.1f}h)."
+    msg += (
+        "\n   Opções:\n"
+        "   1) Esperar o tempo acima e tentar de novo (de preferência uma playlist por vez).\n"
+        "   2) Usar um app NOVO (outro Client ID/Secret tem cota própria): crie no dashboard,\n"
+        "      troque no .env, apague o .cache e rode 'python main.py login'."
+    )
+    print(msg, file=sys.stderr)
+    return 1
 
 
 def cmd_login(_args: argparse.Namespace) -> int:
@@ -52,20 +73,25 @@ def cmd_list(args: argparse.Namespace) -> int:
 
 def cmd_sync(args: argparse.Namespace) -> int:
     config = load_config(args.config)
-    sp = get_client()
+    try:
+        sp = get_client()
 
-    if args.only:
-        match = next((p for p in config.playlists if p.name == args.only), None)
-        if not match:
-            print(f"Playlist '{args.only}' não está na config.", file=sys.stderr)
-            return 1
-        tracks = sync_playlist(sp, match)
-        print(f"✅ '{match.name}': {len(tracks)} faixas atualizadas")
+        if args.only:
+            match = next((p for p in config.playlists if p.name == args.only), None)
+            if not match:
+                print(f"Playlist '{args.only}' não está na config.", file=sys.stderr)
+                return 1
+            tracks = sync_playlist(sp, match)
+            print(f"✅ '{match.name}': {len(tracks)} faixas atualizadas")
+            return 0
+
+        scope = "all" if args.force else "daily" if args.daily else "season"
+        sync_all(sp, config, scope=scope)
         return 0
-
-    scope = "all" if args.force else "daily" if args.daily else "season"
-    sync_all(sp, config, scope=scope)
-    return 0
+    except SpotifyException as exc:
+        if exc.http_status == 429:
+            return _handle_rate_limit(exc)
+        raise
 
 
 def build_parser() -> argparse.ArgumentParser:

@@ -63,12 +63,15 @@ def get_client() -> Spotify:
     load_dotenv()
     oauth = _oauth()
 
+    # retries=0: sem isso, o spotipy "dorme" o tempo do Retry-After ao bater no
+    # rate limit (429) — que pode ser HORAS. Preferimos falhar na hora com uma
+    # mensagem clara (tratada em main.py) a deixar o terminal travado.
     refresh_token = os.environ.get("SPOTIFY_REFRESH_TOKEN")
     if refresh_token:
         token_info = oauth.refresh_access_token(refresh_token)
-        return Spotify(auth=token_info["access_token"])
+        return Spotify(auth=token_info["access_token"], retries=0)
 
-    return Spotify(auth_manager=oauth)
+    return Spotify(auth_manager=oauth, retries=0)
 
 
 def describe_auth() -> None:

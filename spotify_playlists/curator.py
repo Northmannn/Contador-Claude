@@ -19,6 +19,12 @@ import random
 from dataclasses import dataclass, field
 
 from spotipy import Spotify
+from spotipy.exceptions import SpotifyException
+
+# Endpoints que o app descobre estarem bloqueados (403) NESTE processo.
+# Depois do 1º 403, paramos de chamá-los — economiza um monte de requisição
+# (e evita estourar o rate limit) já que em Development Mode eles sempre negam.
+_BLOCKED: set[str] = set()
 
 
 @dataclass
@@ -136,16 +142,20 @@ def _artist_top_tracks_by_name(
     Mode pós-migração de fev/2026) e, se falhar/vier vazio, cai na BUSCA por
     nome — que continua funcionando — pra nunca quebrar nem voltar vazio.
     """
-    try:
-        found = sp.search(q=artist_name, type="artist", limit=1)
-        items = found.get("artists", {}).get("items", [])
-        if items:
-            top = sp.artist_top_tracks(items[0]["id"], country=market)
-            tracks = [t for t in (_track_from_item(it) for it in top.get("tracks", [])) if t]
-            if tracks:
-                return tracks
-    except Exception:
-        pass
+    if "artist_top_tracks" not in _BLOCKED:
+        try:
+            found = sp.search(q=artist_name, type="artist", limit=1)
+            items = found.get("artists", {}).get("items", [])
+            if items:
+                top = sp.artist_top_tracks(items[0]["id"], country=market)
+                tracks = [t for t in (_track_from_item(it) for it in top.get("tracks", [])) if t]
+                if tracks:
+                    return tracks
+        except SpotifyException as exc:
+            if exc.http_status == 403:
+                _BLOCKED.add("artist_top_tracks")  # não tenta mais neste processo
+        except Exception:
+            pass
 
     # Fallback resiliente: busca de faixas pelo nome do artista.
     return _search_tracks(sp, artist_name, market, want)
@@ -191,14 +201,17 @@ def _heard_uris(sp: Spotify) -> set[str]:
             continue
         uris.update(it["uri"] for it in resp.get("items", []) if it.get("uri"))
 
-    # Músicas curtidas (paginado).
+    # Músicas curtidas (paginado, com teto de páginas pra não estourar o
+    # rate limit em quem tem milhares de curtidas — 6 x 50 = 300 mais recentes).
     try:
         page = sp.current_user_saved_tracks(limit=50)
-        while page:
+        fetched = 0
+        while page and fetched < 6:
             for item in page.get("items", []):
                 track = item.get("track") or {}
                 if track.get("uri"):
                     uris.add(track["uri"])
+            fetched += 1
             page = sp.next(page) if page.get("next") else None
     except Exception:
         pass
@@ -273,13 +286,17 @@ def _artist_catalog(
     """
     tracks: list[Track] = []
 
-    try:
-        top = sp.artist_top_tracks(artist_id, country=market)
-        tracks.extend(_track_from_item(it) for it in top.get("tracks", []))
-    except Exception:
-        pass
+    if "artist_top_tracks" not in _BLOCKED:
+        try:
+            top = sp.artist_top_tracks(artist_id, country=market)
+            tracks.extend(_track_from_item(it) for it in top.get("tracks", []))
+        except SpotifyException as exc:
+            if exc.http_status == 403:
+                _BLOCKED.add("artist_top_tracks")
+        except Exception:
+            pass
 
-    if not hits_only:
+    if not hits_only and "artist_albums" not in _BLOCKED:
         try:
             albums = sp.artist_albums(artist_id, album_type="album,single", limit=12)
             album_ids = [a["id"] for a in albums.get("items", [])]
@@ -287,6 +304,9 @@ def _artist_catalog(
             for album_id in album_ids[:5]:
                 at = sp.album_tracks(album_id, limit=30)
                 tracks.extend(_track_from_item(it) for it in at.get("items", []))
+        except SpotifyException as exc:
+            if exc.http_status == 403:
+                _BLOCKED.add("artist_albums")
         except Exception:
             pass
 

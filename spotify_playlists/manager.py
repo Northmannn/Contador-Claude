@@ -85,6 +85,38 @@ def sync_playlist(sp: Spotify, pdef: PlaylistDef) -> list[Track]:
     return tracks
 
 
+def describe_taste(sp: Spotify, top_n: int = 20) -> None:
+    """Imprime seus artistas e músicas mais ouvidos em 3 janelas de tempo.
+
+    Use pra me mostrar (copiando o resultado) o seu gosto real, e aí eu curo
+    as playlists com precisão em vez de chutar.
+    """
+    ranges = [
+        ("long_term", "ÚLTIMOS ANOS (gosto consolidado)"),
+        ("medium_term", "últimos ~6 meses"),
+        ("short_term", "últimas ~4 semanas"),
+    ]
+    for time_range, label in ranges:
+        print(f"\n========== {label} ==========")
+        try:
+            arts = sp.current_user_top_artists(limit=top_n, time_range=time_range)
+            print("Artistas mais ouvidos:")
+            for i, a in enumerate(arts.get("items", []), 1):
+                genres = ", ".join(a.get("genres", [])[:3]) or "—"
+                print(f"  {i:2}. {a['name']}  [{genres}]")
+        except Exception as exc:
+            print(f"  (não consegui ler os artistas: {exc})")
+
+        try:
+            trs = sp.current_user_top_tracks(limit=top_n, time_range=time_range)
+            print("Músicas mais ouvidas:")
+            for i, t in enumerate(trs.get("items", []), 1):
+                who = ", ".join(x["name"] for x in t.get("artists", []))
+                print(f"  {i:2}. {t['name']} — {who}")
+        except Exception as exc:
+            print(f"  (não consegui ler as músicas: {exc})")
+
+
 def _should_sync(pdef: PlaylistDef, scope: str, season: str) -> bool:
     """Decide se a playlist entra neste fluxo.
 

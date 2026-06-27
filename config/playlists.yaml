@@ -268,3 +268,26 @@ playlists:
       # pop / dance em português
       - "Pabllo Vittar"
       - "Anitta"
+
+  # =====================================================================
+  # 💛 ACONCHEGO ANIMADO — feita do SEU histórico real: inclui suas músicas
+  # mais ouvidas (letras que você já ama = acolhimento), animada, sem rap.
+  # Mantém o que você já escuta (NÃO exclui ouvidas) pra ser familiar.
+  # =====================================================================
+  - name: "💛 Aconchego Animado"
+    description: "Suas mais ouvidas + artistas que você ama. Animada e com letras que te acolhem."
+    public: false
+    size: 45
+    seasons: [always]
+    mode: discovery
+    seed_from_taste: true       # seus artistas mais ouvidos (últimos anos + recentes)
+    include_top_tracks: true    # e suas PRÓPRIAS músicas mais tocadas
+    exclude_heard: false        # mantém o familiar/acolhedor (não tira o conhecido)
+    hits_only: true             # as músicas marcantes dos seus artistas
+    match_genres: []            # todos os seus estilos...
+    exclude_genres: [rap, "hip hop", trap, "brazilian hip hop", drill]  # ...menos rap
+    # Reforço caso falte material (gêneros animados e cheios de letra do seu perfil).
+    queries:
+      - "pagode animado"
+      - "sertanejo pra cantar"
+      - "samba animado"

@@ -49,6 +49,7 @@ class CurationSpec:
     match_genres: list[str] = field(default_factory=list)  # incluir só estes gêneros
     exclude_genres: list[str] = field(default_factory=list)  # nunca semear estes gêneros
     hits_only: bool = False  # só as faixas mais tocadas do artista (ideal p/ karaokê)
+    include_top_tracks: bool = False  # incluir SUAS músicas mais ouvidas (acolhimento)
 
 
 def _track_from_item(item: dict) -> Track | None:
@@ -205,6 +206,18 @@ def _heard_uris(sp: Spotify) -> set[str]:
     return uris
 
 
+def _user_top_tracks(sp: Spotify) -> list[Track]:
+    """Suas faixas mais ouvidas (vários anos + recentes) — o que você de fato curte."""
+    tracks: list[Track] = []
+    for time_range in ("long_term", "medium_term", "short_term"):
+        try:
+            resp = sp.current_user_top_tracks(limit=50, time_range=time_range)
+        except Exception:
+            continue
+        tracks.extend(t for t in (_track_from_item(it) for it in resp.get("items", [])) if t)
+    return tracks
+
+
 def _matches_genres(artist_genres: list[str], wanted: list[str]) -> bool:
     if not wanted:
         return True
@@ -289,6 +302,10 @@ def _artist_catalog(
 
 def _curate_discovery(sp: Spotify, spec: CurationSpec) -> list[Track]:
     pool: list[Track] = []
+
+    # 0) Suas próprias músicas mais ouvidas (acolhimento: letras que você já ama).
+    if spec.include_top_tracks:
+        pool.extend(_user_top_tracks(sp))
 
     # 1) Sementes: seus artistas mais ouvidos do gênero (ou a lista da config).
     seed_artists: list[dict] = []

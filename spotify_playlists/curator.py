@@ -67,32 +67,60 @@ def _dedupe(tracks: list[Track]) -> list[Track]:
 # --------------------------------------------------------------------------- #
 # Modo SEARCH (o de sempre)
 # --------------------------------------------------------------------------- #
-def _search_tracks(sp: Spotify, query: str, market: str, limit: int) -> list[Track]:
-    """Busca faixas de forma resiliente.
+# Teto de resultados por busca após a migração da Web API (fev/2026): era 50.
+SEARCH_MAX_LIMIT = 10
 
-    Filtros como ``genre:"..."`` são instáveis na busca de faixas (sobretudo
-    para gêneros brasileiros) e podem retornar HTTP 400. Então tentamos a query
-    completa e, se falhar, vamos simplificando até sobrar só o texto base —
-    nunca deixamos uma query ruim derrubar a curadoria inteira.
+
+def _search_page(sp: Spotify, q: str, market: str, offset: int) -> list[Track]:
+    """Uma página de busca (até 10 itens). Retorna [] em qualquer erro."""
+    try:
+        resp = sp.search(
+            q=q, type="track", market=market, limit=SEARCH_MAX_LIMIT, offset=offset
+        )
+    except Exception:
+        return []
+    items = resp.get("tracks", {}).get("items", [])
+    return [t for t in (_track_from_item(it) for it in items) if t]
+
+
+def _search_tracks(sp: Spotify, query: str, market: str, want: int) -> list[Track]:
+    """Busca até ``want`` faixas, paginando de 10 em 10.
+
+    Desde a migração de fev/2026 a busca aceita no máximo ``limit=10``, então
+    paginamos via ``offset`` pra juntar mais resultados. Filtros ``genre:`` /
+    ``year:`` são instáveis na busca de faixas; se a query completa não trouxer
+    nada, caímos pro texto puro — nunca deixamos uma query ruim zerar tudo.
     """
-    limit = max(1, min(limit, 50))  # teto da API
     base = query.split(" genre:")[0].split(" year:")[0].strip()
+    candidates = [query] + ([base] if base and base != query else [])
+    need = max(1, -(-want // SEARCH_MAX_LIMIT))  # nº de páginas pra encher
 
-    attempts = [
-        (query, random.randint(0, 2) * limit),  # variedade entre runs
-        (query, 0),  # mesma query, sem offset
-    ]
-    if base and base != query:
-        attempts.append((base, 0))  # último recurso: só o texto puro
+    for q in candidates:
+        # Visita páginas aleatórias primeiro (variedade entre runs) e depois as
+        # páginas iniciais (garante encher mesmo se as aleatórias caírem no fim
+        # do catálogo, que retorna vazio).
+        start = random.randint(0, 5)
+        page_order = list(range(start, start + need + 1)) + list(range(need + 1))
 
-    for q, offset in attempts:
-        try:
-            resp = sp.search(q=q, type="track", market=market, limit=limit, offset=offset)
-        except Exception:
-            continue
-        items = resp.get("tracks", {}).get("items", [])
-        if items:
-            return [t for t in (_track_from_item(it) for it in items) if t]
+        collected: list[Track] = []
+        seen: set[str] = set()
+        done_pages: set[int] = set()
+        for page_idx in page_order:
+            if len(collected) >= want:
+                break
+            if page_idx in done_pages:
+                continue
+            done_pages.add(page_idx)
+            offset = page_idx * SEARCH_MAX_LIMIT
+            if offset > 950:  # teto de offset da Web API
+                continue
+            for t in _search_page(sp, q, market, offset):
+                if t.uri not in seen:
+                    seen.add(t.uri)
+                    collected.append(t)
+
+        if collected:
+            return collected[:want]
     return []
 
 

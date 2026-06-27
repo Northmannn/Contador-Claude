@@ -97,39 +97,57 @@ playlists:
     artist_seeds: []
 
   # =====================================================================
-  # 🍷 DATE — clima agradável, longa e variada (agrada gregos e troianos)
+  # 🍷 DATE — "voltando do bar cantando no carro": brasileira, divertida,
+  # contagiante e multigênero (pagode, samba, rock, MPB, sertanejo, funk leve)
+  # pra agradar a maioria das pessoas em alguma parte da playlist.
   # =====================================================================
   - name: "🍷 Date — Clima Perfeito"
-    description: "Trilha agradável e variada pra encontros. Mix MPB, bossa, soul e pop."
+    description: "Brasileiras divertidas pra cantar junto no carro. Pagode, samba, rock, MPB, sertanejo e mais."
     public: false
-    size: 70
+    size: 80
     seasons: [always]
     mode: search
     queries:
-      - "bossa nova clássicos"
-      - "mpb romântico"
-      - "soul classics"
-      - "r&b slow jams"
-      - "indie chill love"
-      - "jazz vocal standards"
-      - "pop acústico romântico"
-      - "samba romântico"
-      - "lo-fi jazzy"
+      - "pagode pra cantar"
+      - "samba animado"
+      - "rock nacional clássicos"
+      - "mpb animada"
+      - "sertanejo pra cantar"
+      - "axé hits"
+      - "funk pop brasil"
+      - "pra cantar no carro"
+      - "hits brasil festa"
     artist_seeds:
-      - "Tim Maia"
-      - "Marisa Monte"
-      - "Djavan"
-      - "João Gilberto"
-      - "Caetano Veloso"
-      - "Gilberto Gil"
+      # pagode / samba
+      - "Sorriso Maroto"
+      - "Thiaguinho"
+      - "Péricles"
+      - "Grupo Revelação"
+      - "Exaltasamba"
+      - "Zeca Pagodinho"
+      - "Jorge Aragão"
+      # rock nacional
+      - "Skank"
+      - "Jota Quest"
+      - "Charlie Brown Jr."
+      - "Capital Inicial"
+      - "Os Paralamas do Sucesso"
+      - "Legião Urbana"
+      - "Raul Seixas"
+      # mpb / pop
       - "Jorge Ben Jor"
       - "Los Hermanos"
       - "Vanessa da Mata"
-      - "Norah Jones"
-      - "Sade"
-      - "Frank Sinatra"
-      - "Stevie Wonder"
-      - "Bebel Gilberto"
+      - "Tim Maia"
+      # sertanejo
+      - "Jorge & Mateus"
+      - "Henrique & Juliano"
+      - "Bruno & Marrone"
+      # axé / festa
+      - "Ivete Sangalo"
+      # funk / pop leve
+      - "Anitta"
+      - "Ludmilla"
 
   # =====================================================================
   # 🎤 KARAOKÊ BR — só músicas brasileiras, famosas de cantar, voz de barítono

@@ -68,15 +68,32 @@ def _dedupe(tracks: list[Track]) -> list[Track]:
 # Modo SEARCH (o de sempre)
 # --------------------------------------------------------------------------- #
 def _search_tracks(sp: Spotify, query: str, market: str, limit: int) -> list[Track]:
-    """Busca faixas, variando o offset pra trazer resultados diferentes a cada run."""
+    """Busca faixas de forma resiliente.
+
+    Filtros como ``genre:"..."`` são instáveis na busca de faixas (sobretudo
+    para gêneros brasileiros) e podem retornar HTTP 400. Então tentamos a query
+    completa e, se falhar, vamos simplificando até sobrar só o texto base —
+    nunca deixamos uma query ruim derrubar a curadoria inteira.
+    """
     limit = max(1, min(limit, 50))  # teto da API
-    offset = random.randint(0, 5) * limit
-    try:
-        resp = sp.search(q=query, type="track", market=market, limit=limit, offset=offset)
-    except Exception:  # offset alto pode estourar; tenta sem offset
-        resp = sp.search(q=query, type="track", market=market, limit=limit)
-    items = resp.get("tracks", {}).get("items", [])
-    return [t for t in (_track_from_item(it) for it in items) if t]
+    base = query.split(" genre:")[0].split(" year:")[0].strip()
+
+    attempts = [
+        (query, random.randint(0, 2) * limit),  # variedade entre runs
+        (query, 0),  # mesma query, sem offset
+    ]
+    if base and base != query:
+        attempts.append((base, 0))  # último recurso: só o texto puro
+
+    for q, offset in attempts:
+        try:
+            resp = sp.search(q=q, type="track", market=market, limit=limit, offset=offset)
+        except Exception:
+            continue
+        items = resp.get("tracks", {}).get("items", [])
+        if items:
+            return [t for t in (_track_from_item(it) for it in items) if t]
+    return []
 
 
 def _artist_top_tracks_by_name(sp: Spotify, artist_name: str, market: str) -> list[Track]:

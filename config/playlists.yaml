@@ -86,11 +86,12 @@ playlists:
     exclude_heard: true
     match_genres: [samba, pagode, "partido alto", "samba de raiz", "samba-enredo", "samba rock"]
     # Busca na mesma cena (caso falte semente do seu gosto, ou pra ampliar).
+    # Texto puro funciona melhor que filtro de gênero para samba/pagode.
     queries:
       - "pagode"
       - "samba"
       - "pagode anos 90"
       - "samba de raiz"
-    genres: [samba, pagode]
+      - "pagode romântico"
     # Reforço manual (opcional): edite com artistas que você curte.
     artist_seeds: []

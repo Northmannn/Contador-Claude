@@ -217,3 +217,35 @@ playlists:
       - "samba alegre"
       - "pop rock nacional"
       - "manhã boa vibe"
+
+  # =====================================================================
+  # 🌙 HIPERFOCO NOTURNO — pro foco da madrugada. Mistura seu groove BR com
+  # faixas hipnóticas/instrumentais que seguram a atenção. Exclui o já-ouvido
+  # pra ser sempre uma surpresa. Ajuste a intensidade pelas queries.
+  # =====================================================================
+  - name: "🌙 Hiperfoco Noturno"
+    description: "Groove e batidas hipnóticas pra entrar no flow da madrugada. Sempre com faixas novas."
+    public: false
+    size: 40
+    seasons: [always]
+    mode: discovery
+    seed_from_taste: true   # parte do seu gosto...
+    exclude_heard: true     # ...mas sempre com músicas novas (surpresa)
+    match_genres: []        # usa todos os seus estilos como semente
+    # As queries puxam o lado mais hipnótico/instrumental, bom pra concentrar.
+    queries:
+      - "samba jazz instrumental"
+      - "bossa nova instrumental"
+      - "mpb instrumental"
+      - "brazilian groove"
+      - "deep house melódico"
+      - "afro house"
+      - "lo-fi beats"
+      - "instrumental para foco"
+    # Mestres do groove/instrumental brasileiro como reforço de semente.
+    artist_seeds:
+      - "Azymuth"
+      - "Hermeto Pascoal"
+      - "Marcos Valle"
+      - "Tim Maia"
+      - "Jorge Ben Jor"

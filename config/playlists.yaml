@@ -316,3 +316,40 @@ playlists:
       - "samba"
       - "sertanejo"
       - "pop rock nacional"
+
+  # =====================================================================
+  # 🚀 ONDA ALTA — trilha FIXA em arco pra dias de energia lá em cima.
+  # Começa na Chinesa 2, surfa o mandelão/automotivo, explode no pico
+  # (phonk/EDM/Carnaval) e aterrissa em euforia boa no pagode (sua casa).
+  # A ordem é a trilha — o campo 'tracks' preserva a sequência exata.
+  # =====================================================================
+  - name: "🚀 Onda Alta"
+    description: "Da Chinesa 2 ao pagode: mandelão, phonk e Carnaval numa onda só, com pouso suave. Trilha em ordem."
+    public: false
+    size: 20
+    seasons: [always]
+    tracks:
+      # ABERTURA — a âncora e a irmã dela
+      - "Chinesa 2 MC HK DA 7 DJ HB Smith"
+      - "Chinesa MC HK DA 7 DJ HB Smith"
+      # ONDA — mandelão/automotivo/montagem, loop hipnótico
+      - "Automotivo Bibi Fogosa Bibi Babydoll DJ Brunin XM"
+      - "MONTAGEM PR FUNK S3BZS"
+      - "MONTAGEM TOMADA MXZI"
+      - "YUM YUM LXNGVX MC GW"
+      - "Baile do Bruxo Tropa do Bruxo DJ Ws da Igrejinha"
+      - "Posso Até Não Te Dar Flores DJ Japa NK MC Ryan SP"
+      # PICO — explosão phonk/EDM e Carnaval
+      - "Passo Bem Solto ATLXS"
+      - "Vois sur ton chemin BENNETT DJ Holanda montagem coral"
+      - "Murder In My Mind Kordhell"
+      - "Rumble Skrillex Fred again Flowdan"
+      - "Losing It FISHER"
+      - "Tokyo Drift KVSH"
+      - "Jetski PEDRO SAMPAIO Melody"
+      - "Macetando Ivete Sangalo Ludmilla"
+      - "Perna Bamba Parangolé Léo Santana"
+      # POUSO — desce da onda sem apagar a chama
+      - "Zona de Perigo Léo Santana"
+      - "Miçanga Alok BaianaSystem"
+      - "P do Pecado Grupo Menos é Mais Simone Mendes"

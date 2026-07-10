@@ -4,6 +4,7 @@
 .cache-*
 *.token
 token_info.json
+refresh_token.txt
 
 # Python
 __pycache__/

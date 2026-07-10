@@ -66,7 +66,10 @@ def get_client() -> Spotify:
     # retries=0: sem isso, o spotipy "dorme" o tempo do Retry-After ao bater no
     # rate limit (429) — que pode ser HORAS. Preferimos falhar na hora com uma
     # mensagem clara (tratada em main.py) a deixar o terminal travado.
-    refresh_token = os.environ.get("SPOTIFY_REFRESH_TOKEN")
+    # .strip()/join: remove espaços e QUEBRAS DE LINHA acidentais do secret
+    # (copiar do PowerShell costuma inserir quebras no meio do token).
+    refresh_token = os.environ.get("SPOTIFY_REFRESH_TOKEN", "")
+    refresh_token = "".join(refresh_token.split())
     if refresh_token:
         token_info = oauth.refresh_access_token(refresh_token)
         return Spotify(auth=token_info["access_token"], retries=0)
@@ -114,11 +117,16 @@ def login_and_print_refresh_token() -> str:
     oauth = _oauth()
     token_info = oauth.get_access_token(as_dict=True)
     refresh_token = token_info["refresh_token"]
+
+    # Salva num arquivo de texto pra copiar SEM quebras de linha do terminal
+    # (copiar token comprido do PowerShell costuma corrompê-lo).
+    with open("refresh_token.txt", "w", encoding="utf-8") as fh:
+        fh.write(refresh_token)
+
     print("\n✅ Login concluído!\n")
-    print("Guarde este REFRESH TOKEN como secret no GitHub (SPOTIFY_REFRESH_TOKEN):\n")
-    print(refresh_token)
-    print(
-        "\nDica: ele também foi salvo em .cache (que está no .gitignore — "
-        "nunca commite esse arquivo)."
-    )
+    print("Seu REFRESH TOKEN foi salvo no arquivo:  refresh_token.txt")
+    print("Abra com:  notepad refresh_token.txt")
+    print("Copie TODO o conteúdo e cole no secret SPOTIFY_REFRESH_TOKEN do GitHub.")
+    print("(NÃO copie do terminal — a quebra de linha corrompe o token.)")
+    print("⚠️  Esse arquivo é secreto e já está no .gitignore. Apague depois de usar.")
     return refresh_token

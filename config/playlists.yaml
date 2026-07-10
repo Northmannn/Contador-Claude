@@ -329,9 +329,10 @@ playlists:
     size: 20
     seasons: [always]
     tracks:
-      # ABERTURA — a âncora e a irmã dela
+      # ABERTURA — trinca do MC HK DA 7
       - "Chinesa 2 MC HK DA 7 DJ HB Smith"
       - "Chinesa MC HK DA 7 DJ HB Smith"
+      - "Igual Mirella MC HK DA 7 DJ Pejota"
       # ONDA — mandelão/automotivo/montagem, loop hipnótico
       - "Automotivo Bibi Fogosa Bibi Babydoll DJ Brunin XM"
       - "MONTAGEM PR FUNK S3BZS"

@@ -70,6 +70,7 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             exclude_genres=raw.get("exclude_genres", []),
             hits_only=bool(raw.get("hits_only", False)),
             include_top_tracks=bool(raw.get("include_top_tracks", False)),
+            fixed_tracks=raw.get("tracks", []),
         )
         playlists.append(
             PlaylistDef(

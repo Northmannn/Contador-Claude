@@ -56,6 +56,7 @@ class CurationSpec:
     exclude_genres: list[str] = field(default_factory=list)  # nunca semear estes gêneros
     hits_only: bool = False  # só as faixas mais tocadas do artista (ideal p/ karaokê)
     include_top_tracks: bool = False  # incluir SUAS músicas mais ouvidas (acolhimento)
+    fixed_tracks: list[str] = field(default_factory=list)  # trilha exata, em ordem
 
 
 def _track_from_item(item: dict) -> Track | None:
@@ -361,9 +362,32 @@ def _curate_discovery(sp: Spotify, spec: CurationSpec) -> list[Track]:
     return unique[: spec.size]
 
 
+def _curate_fixed(sp: Spotify, spec: CurationSpec) -> list[Track]:
+    """Playlist de trilha: resolve cada entrada de ``fixed_tracks`` NA ORDEM.
+
+    Cada entrada é um texto de busca tipo "Título Artista". Pegamos o primeiro
+    resultado; se não achar, a faixa é pulada (avisamos no console) — a ordem
+    das demais é preservada, nunca embaralhada.
+    """
+    tracks: list[Track] = []
+    seen: set[str] = set()
+    for query in spec.fixed_tracks:
+        found = _search_page(sp, query, spec.market, offset=0)
+        if not found:
+            print(f"   ⚠️ não achei: {query!r} — pulando")
+            continue
+        t = found[0]
+        if t.uri not in seen:
+            seen.add(t.uri)
+            tracks.append(t)
+    return tracks
+
+
 # --------------------------------------------------------------------------- #
 def curate(sp: Spotify, spec: CurationSpec) -> list[Track]:
     """Monta a lista final de faixas, escolhendo o modo conforme a config."""
+    if spec.fixed_tracks:
+        return _curate_fixed(sp, spec)
     if spec.mode == "discovery":
         return _curate_discovery(sp, spec)
     return _curate_search(sp, spec)

@@ -1,12 +1,13 @@
 name: Playlist matinal (diária)
 
-# Roda todo dia às 05:00 de Brasília (08:00 UTC; o Brasil é UTC-3 o ano todo).
-# Atualiza apenas as playlists marcadas com "daily: true" no config — hoje, a
-# "🌅 Bom Dia, Motivação": zera e repõe 15 músicas novas pra surpreender.
-# Obs.: o agendamento do GitHub pode atrasar alguns minutos em horário de pico.
+# Alvo: playlist pronta ~05:00 de Brasília. O cron do GitHub atrasa 1-3h em
+# horários de pico (medido nos runs reais), então agendamos às 06:23 UTC
+# (03:23 BRT), em minuto "quebrado" fora do pico — com o atraso típico, a
+# atualização chega entre ~04:50 e ~06:30 BRT.
+# Atualiza apenas as playlists marcadas com "daily: true" no config.
 on:
   schedule:
-    - cron: "0 8 * * *"
+    - cron: "23 6 * * *"
   workflow_dispatch:
 
 jobs:

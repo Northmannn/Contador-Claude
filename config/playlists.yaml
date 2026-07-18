@@ -354,3 +354,48 @@ playlists:
       - "Zona de Perigo Léo Santana"
       - "Miçanga Alok BaianaSystem"
       - "P do Pecado Grupo Menos é Mais Simone Mendes"
+
+  # =====================================================================
+  # 🪗 FORRÓ DAS BOAS — clássicos do pé de serra + hits do universitário.
+  # Curada na mão: começa na raiz (Luiz Gonzaga & cia), sobe pro forró
+  # universitário/pop (Falamansa, Aviões, Wesley Safadão...). Trilha em ordem.
+  # =====================================================================
+  - name: "🪗 Forró das Boas"
+    description: "As melhores do forró: do pé de serra ao universitário. Clássicos + hits pra arrastar pé."
+    public: false
+    size: 30
+    seasons: [always]
+    tracks:
+      # RAIZ — pé de serra, os mestres
+      - "Asa Branca Luiz Gonzaga"
+      - "Xote das Meninas Luiz Gonzaga"
+      - "Qui Nem Jiló Luiz Gonzaga"
+      - "Feira de Mangaio Sivuca"
+      - "Forró no Escuro Trio Nordestino"
+      - "Danado de Bom Dominguinhos"
+      - "De Volta pro Aconchego Dominguinhos"
+      - "Pagode Russo Jackson do Pandeiro"
+      - "A Vida do Viajante Luiz Gonzaga"
+      - "Vem Morena Falamansa"
+      # PONTE — forró romântico/moderno que todo mundo canta
+      - "Xote dos Milagres Falamansa"
+      - "Avião Falamansa"
+      - "Anunciação Alceu Valença"
+      - "Morena Tropicana Alceu Valença"
+      - "Eu Só Quero Um Xodó Dominguinhos Gilberto Gil"
+      - "Esperando na Janela Gilberto Gil"
+      - "Voando pro Pará Fagner Joanna"
+      # UNIVERSITÁRIO — os hits que estouraram nas festas
+      - "Balancinho Aviões do Forró"
+      - "Chora Não Aviões do Forró"
+      - "Você Não Vale Nada Calcinha Preta"
+      - "Cerveja Calcinha Preta"
+      - "Eu Tenho a Senha Rastapé"
+      - "Casinha Bem Pequenina Elba Ramalho"
+      - "Camaro Amarelo Munhoz e Mariano"
+      - "Ta Perdoado Wesley Safadão Garota Safada"
+      - "Racha Cuca Wesley Safadão"
+      - "Meu Coração Deu Pt Wesley Safadão"
+      - "Coração Machucado Aviões do Forró"
+      - "Nossa Música Forró Aviões do Forró"
+      - "Amor de Verdade Rastapé"

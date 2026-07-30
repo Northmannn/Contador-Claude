@@ -22,7 +22,12 @@ from spotify_playlists.auth import (
     login_and_print_refresh_token,
 )
 from spotify_playlists.config import load_config
-from spotify_playlists.manager import describe_taste, sync_all, sync_playlist
+from spotify_playlists.manager import (
+    describe_feedback,
+    describe_taste,
+    sync_all,
+    sync_playlist,
+)
 from spotify_playlists.seasons import current_season, season_label
 
 
@@ -57,6 +62,11 @@ def cmd_whoami(_args: argparse.Namespace) -> int:
 
 def cmd_taste(_args: argparse.Namespace) -> int:
     describe_taste(get_client())
+    return 0
+
+
+def cmd_feedback(_args: argparse.Namespace) -> int:
+    describe_feedback()
     return 0
 
 
@@ -115,6 +125,9 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser(
         "taste", help="Mostra seus artistas e músicas mais ouvidos"
     ).set_defaults(func=cmd_taste)
+    sub.add_parser(
+        "feedback", help="Mostra o que aprendi do que você removeu das playlists"
+    ).set_defaults(func=cmd_feedback)
 
     p_sync = sub.add_parser("sync", help="Atualiza as playlists")
     p_sync.add_argument("--force", action="store_true", help="Atualiza todas, ignora estação")

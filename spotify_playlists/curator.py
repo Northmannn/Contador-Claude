@@ -16,7 +16,7 @@ mesma cena via busca, e tiramos tudo que já está nas suas top tracks / curtida
 from __future__ import annotations
 
 import random
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 from spotipy import Spotify
 from spotipy.exceptions import SpotifyException
@@ -58,6 +58,13 @@ class CurationSpec:
     include_top_tracks: bool = False  # incluir SUAS músicas mais ouvidas (acolhimento)
     fixed_tracks: list[str] = field(default_factory=list)  # trilha exata, em ordem
 
+    # --- variedade e aprendizado ---
+    exclude_artists: list[str] = field(default_factory=list)  # nunca incluir estes artistas
+    max_per_artist: int = 0  # nº máx. de faixas do mesmo artista (0 = sem limite)
+    new_tracks: int = 0  # nº de faixas NOVAS (desconhecidas) na mistura conhecida
+    sing_along: bool = False  # modo "cantar junto": maioria conhecida + poucas novas
+    learn_removals: bool = False  # aprende com o que você tira da playlist (vira "não gosto")
+
 
 def _track_from_item(item: dict) -> Track | None:
     if not item or not item.get("uri"):
@@ -72,6 +79,42 @@ def _track_from_item(item: dict) -> Track | None:
 def _dedupe(tracks: list[Track]) -> list[Track]:
     seen: set[str] = set()
     return [t for t in tracks if t and not (t.uri in seen or seen.add(t.uri))]
+
+
+def _artist_key(track: Track) -> str:
+    """Chave do artista principal (pra limitar repetição e contar dislikes)."""
+    return track.artists.split(",")[0].strip().lower() if track.artists else ""
+
+
+def _excluded_by_artist(track: Track, exclude_artists: list[str]) -> bool:
+    if not exclude_artists:
+        return False
+    blob = track.artists.lower()
+    return any(a.strip().lower() in blob for a in exclude_artists if a.strip())
+
+
+def _cap_per_artist(tracks: list[Track], max_per_artist: int) -> list[Track]:
+    """Mantém no máximo ``max_per_artist`` faixas de cada artista (0 = sem limite)."""
+    if not max_per_artist or max_per_artist < 1:
+        return tracks
+    counts: dict[str, int] = {}
+    out: list[Track] = []
+    for t in tracks:
+        key = _artist_key(t)
+        if counts.get(key, 0) >= max_per_artist:
+            continue
+        counts[key] = counts.get(key, 0) + 1
+        out.append(t)
+    return out
+
+
+def _drop(tracks: list[Track], disliked_uris, exclude_artists: list[str]) -> list[Track]:
+    """Remove faixas que você já marcou como 'não gosto' e os artistas vetados."""
+    return [
+        t
+        for t in tracks
+        if t.uri not in disliked_uris and not _excluded_by_artist(t, exclude_artists)
+    ]
 
 
 # --------------------------------------------------------------------------- #
@@ -171,7 +214,9 @@ def _build_query(base: str, genres: list[str], year_range: str | None) -> str:
     return " ".join(parts).strip()
 
 
-def _curate_search(sp: Spotify, spec: CurationSpec) -> list[Track]:
+def _curate_search(
+    sp: Spotify, spec: CurationSpec, disliked_uris=frozenset()
+) -> list[Track]:
     pool: list[Track] = []
     per_query = max(10, spec.size)
 
@@ -183,8 +228,9 @@ def _curate_search(sp: Spotify, spec: CurationSpec) -> list[Track]:
     for artist in spec.artist_seeds:
         pool.extend(_artist_top_tracks_by_name(sp, artist, spec.market))
 
-    unique = _dedupe(pool)
+    unique = _drop(_dedupe(pool), disliked_uris, spec.exclude_artists)
     random.shuffle(unique)
+    unique = _cap_per_artist(unique, spec.max_per_artist)
     return unique[: spec.size]
 
 
@@ -229,6 +275,24 @@ def _user_top_tracks(sp: Spotify) -> list[Track]:
         except Exception:
             continue
         tracks.extend(t for t in (_track_from_item(it) for it in resp.get("items", [])) if t)
+    return tracks
+
+
+def _saved_tracks(sp: Spotify, max_pages: int = 6) -> list[Track]:
+    """Suas músicas curtidas (as ~300 mais recentes) — coisas que você conhece."""
+    tracks: list[Track] = []
+    try:
+        page = sp.current_user_saved_tracks(limit=50)
+        fetched = 0
+        while page and fetched < max_pages:
+            for item in page.get("items", []):
+                t = _track_from_item(item.get("track") or {})
+                if t:
+                    tracks.append(t)
+            fetched += 1
+            page = sp.next(page) if page.get("next") else None
+    except Exception:
+        pass
     return tracks
 
 
@@ -321,7 +385,9 @@ def _artist_catalog(
     return tracks
 
 
-def _curate_discovery(sp: Spotify, spec: CurationSpec) -> list[Track]:
+def _curate_discovery(
+    sp: Spotify, spec: CurationSpec, disliked_uris=frozenset()
+) -> list[Track]:
     pool: list[Track] = []
 
     # 0) Suas próprias músicas mais ouvidas (acolhimento: letras que você já ama).
@@ -358,8 +424,72 @@ def _curate_discovery(sp: Spotify, spec: CurationSpec) -> list[Track]:
         heard = _heard_uris(sp)
         unique = [t for t in unique if t.uri not in heard]
 
+    # 4) Tira "não gosto" (removidas por você) e artistas vetados; limita repetição.
+    unique = _drop(unique, disliked_uris, spec.exclude_artists)
     random.shuffle(unique)
+    unique = _cap_per_artist(unique, spec.max_per_artist)
     return unique[: spec.size]
+
+
+def _curate_sing_along(
+    sp: Spotify, spec: CurationSpec, disliked_uris=frozenset()
+) -> list[Track]:
+    """Modo "cantar junto": maioria de músicas que você CONHECE (top tracks +
+    curtidas) + umas poucas NOVAS (``new_tracks``) pra você ir conhecendo aos
+    poucos. Sem repetir artista e sem os que você já vetou/removeu.
+    """
+    # Conhecidas: o que você mais ouve + curtidas (dá pra cantar de cabeça).
+    known = _drop(
+        _dedupe(_user_top_tracks(sp) + _saved_tracks(sp)),
+        disliked_uris,
+        spec.exclude_artists,
+    )
+    random.shuffle(known)
+
+    # Novas: descobertas no seu gosto (o cap por artista é aplicado no fim, aqui não).
+    disc = replace(
+        spec,
+        exclude_heard=True,
+        include_top_tracks=False,
+        sing_along=False,
+        max_per_artist=0,
+        size=max(spec.size * 4, 40),
+    )
+    new_list = _curate_discovery(sp, disc, disliked_uris)
+
+    chosen: list[Track] = []
+    chosen_uris: set[str] = set()
+    counts: dict[str, int] = {}
+
+    def add(track: Track) -> bool:
+        if len(chosen) >= spec.size or track.uri in chosen_uris:
+            return False
+        key = _artist_key(track)
+        if spec.max_per_artist and counts.get(key, 0) >= spec.max_per_artist:
+            return False
+        chosen.append(track)
+        chosen_uris.add(track.uri)
+        counts[key] = counts.get(key, 0) + 1
+        return True
+
+    # 1) até ``new_tracks`` novas  2) completa com conhecidas  3) sobra? mais novas.
+    added_new = 0
+    for t in new_list:
+        if added_new >= max(0, spec.new_tracks):
+            break
+        if add(t):
+            added_new += 1
+    for t in known:
+        if len(chosen) >= spec.size:
+            break
+        add(t)
+    for t in new_list:
+        if len(chosen) >= spec.size:
+            break
+        add(t)
+
+    random.shuffle(chosen)
+    return chosen[: spec.size]
 
 
 def _curate_fixed(sp: Spotify, spec: CurationSpec) -> list[Track]:
@@ -384,10 +514,17 @@ def _curate_fixed(sp: Spotify, spec: CurationSpec) -> list[Track]:
 
 
 # --------------------------------------------------------------------------- #
-def curate(sp: Spotify, spec: CurationSpec) -> list[Track]:
-    """Monta a lista final de faixas, escolhendo o modo conforme a config."""
+def curate(sp: Spotify, spec: CurationSpec, disliked_uris=frozenset()) -> list[Track]:
+    """Monta a lista final de faixas, escolhendo o modo conforme a config.
+
+    ``disliked_uris`` são faixas que você tirou de playlists antes (aprendidas
+    pelo manager) — nunca voltam. Trilhas fixas (curadas a dedo) ignoram esse
+    filtro, porque foram você/eu que escolhemos explicitamente.
+    """
     if spec.fixed_tracks:
         return _curate_fixed(sp, spec)
+    if spec.sing_along:
+        return _curate_sing_along(sp, spec, disliked_uris)
     if spec.mode == "discovery":
-        return _curate_discovery(sp, spec)
-    return _curate_search(sp, spec)
+        return _curate_discovery(sp, spec, disliked_uris)
+    return _curate_search(sp, spec, disliked_uris)

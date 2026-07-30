@@ -187,21 +187,25 @@ playlists:
       - "Tim Maia"
 
   # =====================================================================
-  # 🌅 BOM DIA — DIÁRIA às 5h: zera e põe 15 músicas novas pra motivar
+  # 🌅 BOM DIA — DIÁRIA às 5h: pra CANTAR junto no caminho.
+  # Modo "sing_along": maioria de músicas que você CONHECE (suas mais ouvidas +
+  # curtidas) + 2 novas por dia pra ir conhecendo aos poucos. Sem repetir
+  # artista, sem os que você vetou, e APRENDE com o que você remove.
   # =====================================================================
   - name: "🌅 Bom Dia, Motivação"
-    description: "15 músicas novas pra começar o dia com o pé direito. Renovada todo dia às 5h."
+    description: "Pra cantar no caminho: suas conhecidas + 2 novas por dia. Aprende com o que você tira."
     public: false
     size: 15
     seasons: [always]
     daily: true            # entra no fluxo diário (sync --daily), não no sazonal
-    # Surpresa diária: semeia nos SEUS estilos, mas exclui o que você já ouviu
-    # (pra ser sempre algo novo) e tira funk/rap e parentes.
+    sing_along: true       # maioria conhecida (dá pra cantar de cabeça)
+    new_tracks: 2          # começa com 2 novas por dia; aumento aos poucos
+    max_per_artist: 1      # NUNCA repete o mesmo artista (chega de Jota Quest em dobro)
+    learn_removals: true   # você remove o que não curte → eu aprendo e nunca repito
+    seed_from_taste: true  # as 2 novas seguem o seu gosto
     mode: discovery
-    seed_from_taste: true
-    exclude_heard: true
     match_genres: []       # todos os seus estilos...
-    exclude_genres:        # ...menos estes:
+    exclude_genres:        # ...menos funk/rap e parentes:
       - funk
       - "funk carioca"
       - "funk brasileiro"
@@ -212,6 +216,8 @@ playlists:
       - "hip hop"
       - "brazilian hip hop"
       - drill
+    exclude_artists:       # artistas que você não curte (é só me avisar mais nomes):
+      - "Legião Urbana"
     queries:
       - "mpb animado"
       - "samba alegre"

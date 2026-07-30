@@ -2,11 +2,108 @@
 
 from __future__ import annotations
 
+import json
+import os
+import re
+
 from spotipy import Spotify
 
 from .config import Config, PlaylistDef
 from .curator import Track, curate
 from .seasons import current_season, season_label
+
+# --------------------------------------------------------------------------- #
+# Aprendizado: "não gosto" a partir do que você TIRA das playlists
+# --------------------------------------------------------------------------- #
+# Guardamos em data/ (commitado pelo workflow) o que você removeu, pra nunca
+# repetir e pra medir seu gosto (quais artistas você mais descarta).
+DATA_DIR = "data"
+
+
+def _slug(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-") or "playlist"
+
+
+def _load_feedback(base: str) -> dict:
+    try:
+        with open(os.path.join(base, "feedback.json"), encoding="utf-8") as fh:
+            data = json.load(fh)
+    except (FileNotFoundError, ValueError):
+        data = {}
+    data.setdefault("disliked_uris", [])
+    data.setdefault("disliked_artists", {})  # {artista: quantas vezes você removeu}
+    return data
+
+
+def _save_feedback(base: str, data: dict) -> None:
+    os.makedirs(base, exist_ok=True)
+    with open(os.path.join(base, "feedback.json"), "w", encoding="utf-8") as fh:
+        json.dump(data, fh, ensure_ascii=False, indent=2)
+
+
+def _load_generated(base: str, name: str) -> list[dict]:
+    try:
+        path = os.path.join(base, "state", f"{_slug(name)}.json")
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh).get("generated", [])
+    except (FileNotFoundError, ValueError):
+        return []
+
+
+def _save_generated(base: str, name: str, tracks: list[Track]) -> None:
+    os.makedirs(os.path.join(base, "state"), exist_ok=True)
+    path = os.path.join(base, "state", f"{_slug(name)}.json")
+    payload = {
+        "generated": [
+            {"uri": t.uri, "name": t.name, "artists": t.artists} for t in tracks
+        ]
+    }
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+
+
+def _current_playlist_uris(sp: Spotify, playlist_id: str) -> set[str] | None:
+    """URIs que estão AGORA na playlist. Devolve None se não conseguir ler."""
+    uris: set[str] = set()
+    try:
+        page = sp.playlist_items(
+            playlist_id, limit=100, fields="items(track(uri)),next"
+        )
+        while page:
+            for item in page.get("items", []):
+                track = item.get("track") or {}
+                if track.get("uri"):
+                    uris.add(track["uri"])
+            page = sp.next(page) if page.get("next") else None
+    except Exception:
+        return None
+    return uris
+
+
+def _learn_from_removals(sp: Spotify, pdef: PlaylistDef, feedback: dict, base: str) -> int:
+    """Compara o que a gente gerou da última vez com o que sobrou na playlist.
+    O que sumiu = você removeu = vira 'não gosto'. Retorna quantas aprendeu.
+    """
+    playlist_id = _find_playlist_id(sp, pdef.name)
+    if not playlist_id:
+        return 0
+    current = _current_playlist_uris(sp, playlist_id)
+    last = _load_generated(base, pdef.name)
+    if current is None or not last:
+        return 0
+
+    disliked = set(feedback["disliked_uris"])
+    removed = [t for t in last if t["uri"] not in current]
+    for t in removed:
+        if t["uri"] not in disliked:
+            feedback["disliked_uris"].append(t["uri"])
+            disliked.add(t["uri"])
+        artist = (t.get("artists", "").split(",")[0].strip().lower())
+        if artist:
+            feedback["disliked_artists"][artist] = (
+                feedback["disliked_artists"].get(artist, 0) + 1
+            )
+    return len(removed)
 
 
 def _find_playlist_id(sp: Spotify, name: str) -> str | None:
@@ -77,11 +174,28 @@ def _replace_tracks(sp: Spotify, playlist_id: str, tracks: list[Track]) -> None:
         sp.playlist_add_items(playlist_id, uris[i : i + 100])
 
 
-def sync_playlist(sp: Spotify, pdef: PlaylistDef) -> list[Track]:
-    """Cura e grava uma playlist. Retorna as faixas escolhidas."""
-    tracks = curate(sp, pdef.spec)
+def sync_playlist(sp: Spotify, pdef: PlaylistDef, data_dir: str = DATA_DIR) -> list[Track]:
+    """Cura e grava uma playlist. Retorna as faixas escolhidas.
+
+    Se a playlist tem ``learn_removals``, antes de renovar ela LÊ o que você
+    tirou (comparando com o que geramos da última vez) e guarda como 'não
+    gosto' — pra nunca mais repetir e pra medir seu gosto por artista.
+    """
+    feedback = _load_feedback(data_dir)
+
+    if pdef.spec.learn_removals:
+        learned = _learn_from_removals(sp, pdef, feedback, data_dir)
+        if learned:
+            print(f"   🧠 Aprendi: você removeu {learned} música(s) — não repito mais.")
+
+    disliked = set(feedback["disliked_uris"])
+    tracks = curate(sp, pdef.spec, disliked_uris=disliked)
     playlist_id = _ensure_playlist(sp, pdef)
     _replace_tracks(sp, playlist_id, tracks)
+
+    if pdef.spec.learn_removals:
+        _save_generated(data_dir, pdef.name, tracks)
+    _save_feedback(data_dir, feedback)
     return tracks
 
 
@@ -115,6 +229,21 @@ def describe_taste(sp: Spotify, top_n: int = 20) -> None:
                 print(f"  {i:2}. {t['name']} — {who}")
         except Exception as exc:
             print(f"  (não consegui ler as músicas: {exc})")
+
+
+def describe_feedback(data_dir: str = DATA_DIR) -> None:
+    """Mostra o que aprendi do que você removeu — seu gosto medido na prática."""
+    feedback = _load_feedback(data_dir)
+    total = len(feedback["disliked_uris"])
+    artists = feedback["disliked_artists"]
+    print(f"\n🧠 Aprendizado até agora: {total} música(s) que você removeu.\n")
+    if not artists:
+        print("Ainda não removi nada. Vá tirando das playlists o que não curtir —")
+        print("eu leio, aprendo e nunca mais repito. 😉")
+        return
+    print("Artistas que você mais descartou (quanto maior, menos você curte):")
+    for artist, count in sorted(artists.items(), key=lambda kv: -kv[1]):
+        print(f"  {count:>3}×  {artist.title()}")
 
 
 def _should_sync(pdef: PlaylistDef, scope: str, season: str) -> bool:

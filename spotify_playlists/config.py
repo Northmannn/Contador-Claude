@@ -71,6 +71,11 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             hits_only=bool(raw.get("hits_only", False)),
             include_top_tracks=bool(raw.get("include_top_tracks", False)),
             fixed_tracks=raw.get("tracks", []),
+            exclude_artists=raw.get("exclude_artists", []),
+            max_per_artist=int(raw.get("max_per_artist", 0)),
+            new_tracks=int(raw.get("new_tracks", 0)),
+            sing_along=bool(raw.get("sing_along", False)),
+            learn_removals=bool(raw.get("learn_removals", False)),
         )
         playlists.append(
             PlaylistDef(

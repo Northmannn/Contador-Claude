@@ -1,4 +1,36 @@
 {
-  "disliked_uris": [],
-  "disliked_artists": {}
+  "disliked_uris": [
+    "spotify:track:0G21yYKMZoHa30cYVi1iA8",
+    "spotify:track:3Oi1rRW0QdWsE7SGATTE2z",
+    "spotify:track:0QBDsZH9PDnKVQBxEcefku",
+    "spotify:track:3w3y8KPTfNeOKPiqUTakBh",
+    "spotify:track:2NJKLsnSbqeMNu6x1jpVZ6",
+    "spotify:track:4bXwQ9ZcMjoN28b4J9bykr",
+    "spotify:track:0vXKKHxzwndf65d8E10oND",
+    "spotify:track:1oXFfHuBuasMQ9lnPSRvGU",
+    "spotify:track:6Bjodqpu1TWVoRFFQ5DtNa",
+    "spotify:track:5oykT9AM5mB3bFE3gIVp75",
+    "spotify:track:7pHyUiln9FoECzHK6bAFYl",
+    "spotify:track:7xmAI8DoydDiXSnVaknxh7",
+    "spotify:track:1goUT7yXysKORNNkcxtpxk",
+    "spotify:track:1ZGj8KAuj4D81LnwH5FQYy",
+    "spotify:track:5GejbM2Nt1xpnqukq6dnzv"
+  ],
+  "disliked_artists": {
+    "guns n' roses": 1,
+    "os travessos": 1,
+    "michael jackson": 1,
+    "bruno mars": 1,
+    "claudia leitte": 1,
+    "thiaguinho": 1,
+    "matheus & kauan": 1,
+    "exaltasamba": 1,
+    "vitinho": 1,
+    "country gospel": 1,
+    "banda eva": 1,
+    "matanza": 1,
+    "paulinho moska": 1,
+    "boyce avenue": 1,
+    "grupo revelação": 1
+  }
 }

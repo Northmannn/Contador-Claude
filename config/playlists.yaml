@@ -405,3 +405,43 @@ playlists:
       - "Coração Machucado Aviões do Forró"
       - "Nossa Música Forró Aviões do Forró"
       - "Amor de Verdade Rastapé"
+
+  # =====================================================================
+  # 🔥 SEGUNDA PROIBIDA — trilha quente pra date. Sobe do mandelão
+  # hipnótico (Chinesa 1 & 2) pros clássicos da putaria (Catra, Valesca,
+  # Tati) e sensualão dançante. Privada. Faixas verificadas na web.
+  # =====================================================================
+  - name: "🔥 Segunda Proibida"
+    description: "Putaria consciente pra um date de 23h: mandelão, proibidão e sensualão. Impacto do começo ao fim."
+    public: false
+    size: 24
+    seasons: [always]
+    tracks:
+      # ABERTURA — mandelão hipnótico, impacto imediato
+      - "Chinesa 2 MC HK DA 7 DJ HB Smith"
+      - "Chinesa MC HK DA 7 DJ HB Smith"
+      - "Igual Mirella MC HK DA 7 DJ Pejota"
+      - "Automotivo Bibi Fogosa Bibi Babydoll DJ Brunin XM"
+      # ONDA — putaria pesada atual
+      - "Vou Raspar Seu Bigodin"
+      - "Puta É Só um Detalhe"
+      - "Senta e Cala a Boca"
+      - "Posso Até Não Te Dar Flores MC Ryan SP"
+      - "Baile do Bruxo Tropa do Bruxo"
+      - "MONTAGEM TOMADA MXZI"
+      # CLÁSSICOS DA PUTARIA — nostalgia quente
+      - "Vai Começar a Putaria Mr Catra"
+      - "Posturado e Calmo Mr Catra"
+      - "Cobertor Anitta Mr Catra"
+      - "Beijinho no Ombro Valesca Popozuda"
+      - "Boladona Tati Quebra Barraco"
+      - "Sou Feia Mas Tô na Moda Tati Quebra Barraco"
+      - "Injeção Deize Tigrona"
+      # SENSUALÃO DANÇANTE — pra dançar colado
+      - "Olha a Explosão Kevinho"
+      - "Papum Kevinho"
+      - "Dança Sensual MC Koringa"
+      - "Toda Gostosa Mc Leozinho"
+      - "Envolver Anitta"
+      - "Rave de Favela MC Lan"
+      - "Ta OK Dennis Kevin O Chris"

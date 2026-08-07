@@ -445,3 +445,48 @@ playlists:
       - "Envolver Anitta"
       - "Rave de Favela MC Lan"
       - "Ta OK Dennis Kevin O Chris"
+
+  # =====================================================================
+  # 🍸 SEGUNDA INTENÇÃO — trilha de clima pra date em casa. Sensual por
+  # SUBTEXTO (nada explícito), groove 95-125 BPM sempre (nada lento/piegas),
+  # alegre e moderna. 4 fases invisíveis: conversa → clima → transição →
+  # manter. Faixas e BPM verificados na web. Privada.
+  # =====================================================================
+  - name: "🍸 Segunda Intenção"
+    description: "Groove sensual sem ser óbvio: da conversa ao resto da noite, sem ninguém perceber a playlist trabalhando."
+    public: false
+    size: 28
+    seasons: [always]
+    tracks:
+      # FASE 1 — CONVERSA (quebra-gelo groovado, alegre e cool)
+      - "Despacha Melly"
+      - "Love Me JeJe Tems"
+      - "Be Honest Jorja Smith Burna Boy"
+      - "Essence Wizkid Tems"
+      - "Maldivas Ludmilla"
+      - "Por Supuesto Marina Sena"
+      - "Skate Bruno Mars Anderson Paak Silk Sonic"
+      # FASE 2 — CLIMA (o baixo engorda, temperatura sobe)
+      - "Calm Down Rema"
+      - "Numa Ilha Marina Sena"
+      - "Lovezinho Treyce"
+      - "Gueto IZA"
+      - "Kiss Me More Doja Cat SZA"
+      - "Ai Preto L7NNON DJ Biel do Furduncinho"
+      - "Water Tyla"
+      # FASE 3 — TRANSIÇÃO (auge do subtexto, quente e hipnótica)
+      - "Gata Anitta Chencho Corleone"
+      - "CLASSY 101 Feid Young Miko"
+      - "Under The Influence Chris Brown"
+      - "Baby Is It a Crime Rema"
+      - "Ta OK Dennis MC Kevin o Chris"
+      - "Pina Colada Ludmilla Ryan Castro"
+      - "Zona de Perigo Léo Santana"
+      - "Macetando Ivete Sangalo Ludmilla"
+      # FASE 4 — MANTER (batida constante, ninguém precisa mexer no som)
+      - "Leilão Gloria Groove"
+      - "10% KAYTRANADA Kali Uchis"
+      - "After Hours Kehlani"
+      - "Brisa Maz Antdot"
+      - "Mwaki Zerb Sofiya Nzau"
+      - "With You Davido Omah Lay"

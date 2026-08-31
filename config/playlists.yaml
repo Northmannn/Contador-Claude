@@ -490,3 +490,47 @@ playlists:
       - "Brisa Maz Antdot"
       - "Mwaki Zerb Sofiya Nzau"
       - "With You Davido Omah Lay"
+
+  # =====================================================================
+  # 🚀 INAUGURAÇÃO — MOTIVAÇÃO MÁXIMA — dia importante, precisa vir do SEU
+  # gosto real (não é curadoria manual). Puxa seus artistas/músicas mais
+  # ouvidas nos estilos energéticos, prioriza hits conhecidos (confiança
+  # na hora H) e reforça com hinos de vitória/superação.
+  # =====================================================================
+  - name: "🚀 Inauguração — Motivação Máxima"
+    description: "Do seu gosto real: energia máxima pra chegar incrível no seu grande dia."
+    public: false
+    size: 30
+    seasons: [always]
+    mode: discovery
+    seed_from_taste: true       # seus artistas mais ouvidos...
+    include_top_tracks: true    # ...e suas PRÓPRIAS músicas mais tocadas (confiança máxima)
+    hits_only: true             # só os hits conhecidos, nada obscuro — hoje não é dia de arriscar
+    exclude_heard: false        # quer o familiar, não descoberta
+    max_per_artist: 2           # variedade, sem menosprezar seus favoritos
+    match_genres:                # só os lados ENERGÉTICOS do seu gosto:
+      - rock
+      - "rock nacional"
+      - "brazilian rock"
+      - "pop rock"
+      - punk
+      - axé
+      - pagode
+      - "samba rock"
+      - pop
+      - dance
+    exclude_genres:              # tira o que puxa pra baixo ou pra calmo:
+      - "bossa nova"
+      - "samba de raiz"
+      - jazz
+      - "lo-fi"
+      - ambient
+      - sertanejo sofrência
+      - rap
+      - trap
+    # Reforço: hinos de vitória/superação, pra garantir o clima do dia.
+    queries:
+      - "hino de vitória motivacional"
+      - "música pra vencer"
+      - "superação conquista"
+      - "rock motivacional"

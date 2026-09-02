@@ -150,9 +150,18 @@ def _looks_portuguese(text: str) -> bool:
     return bool(words & _PT_WORDS)
 
 
-def _passes_language(track: Track, saved_uris: set[str], spec: CurationSpec) -> bool:
-    """Regra do idioma: português sempre; estrangeira só se já for curtida."""
+def _passes_language(
+    track: Track, saved_uris: set[str], spec: CurationSpec, allow_by_list: bool = False
+) -> bool:
+    """Regra do idioma: português sempre; estrangeira só se já for curtida.
+
+    ``allow_by_list=True`` (acervo conhecido): artista que está explicitamente na
+    lista de permitidos passa mesmo em outro idioma — ex.: Michael Bublé, cantor
+    favorito do usuário. Pra faixas NOVAS a exceção não vale (nova em inglês, não).
+    """
     if not spec.portuguese_only:
+        return True
+    if allow_by_list and spec.match_artists and _name_matches(track.artists, spec.match_artists):
         return True
     genres = _genres_of(track)
     if genres:
@@ -625,7 +634,10 @@ def _curate_sing_along(
         f"   🎼 gêneros conhecidos em {with_genre}/{len(known)} faixas do acervo"
         + ("  (GET /artists bloqueado — usando heurísticas)" if "artists" in _BLOCKED else "")
     )
-    known = [t for t in known if _passes_genres(t, spec) and _passes_language(t, saved_uris, spec)]
+    known = [
+        t for t in known
+        if _passes_genres(t, spec) and _passes_language(t, saved_uris, spec, allow_by_list=True)
+    ]
     random.shuffle(known)
 
     # Novas: descobertas no seu gosto (o cap por artista é aplicado no fim, aqui não).

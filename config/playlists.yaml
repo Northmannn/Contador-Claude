@@ -262,6 +262,10 @@ playlists:
       - "Reginaldo Rossi"
       - "Gabriel Leone"
       - "Melly"
+      # internacionais que você curte (as que você já ouve entram mesmo em inglês;
+      # nova em inglês continua bloqueada)
+      - "Michael Bublé"
+      - "Boyce Avenue"
     # Veto por palavra no título/artista (versões que não são pra manhã):
     exclude_keywords: [slowed, "sped up", "speed up", remix, montagem, automotivo,
                        phonk, mtg, funk, bruxaria, "mandelão", putaria, "proibidão",

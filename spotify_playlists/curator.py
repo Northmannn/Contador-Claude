@@ -196,11 +196,18 @@ def _artist_key(track: Track) -> str:
     return track.artists.split(",")[0].strip().lower() if track.artists else ""
 
 
+def _name_matches(name_blob: str, patterns: list[str]) -> bool:
+    """Casa nome de artista por PALAVRA INTEIRA ('Belo' não casa 'Rabelo')."""
+    blob = (name_blob or "").lower()
+    for pat in patterns or []:
+        pat = pat.strip().lower()
+        if pat and re.search(r"(?<!\w)" + re.escape(pat) + r"(?!\w)", blob):
+            return True
+    return False
+
+
 def _excluded_by_artist(track: Track, exclude_artists: list[str]) -> bool:
-    if not exclude_artists:
-        return False
-    blob = track.artists.lower()
-    return any(a.strip().lower() in blob for a in exclude_artists if a.strip())
+    return _name_matches(track.artists, exclude_artists)
 
 
 def _cap_per_artist(tracks: list[Track], max_per_artist: int) -> list[Track]:
@@ -229,8 +236,7 @@ def _artist_allowed(track: Track, match_artists: list[str]) -> bool:
     """Lista de permitidos por nome (vazia = todos permitidos)."""
     if not match_artists:
         return True
-    blob = track.artists.lower()
-    return any(a.strip().lower() in blob for a in match_artists if a.strip())
+    return _name_matches(track.artists, match_artists)
 
 
 def _drop(
@@ -475,10 +481,10 @@ def _taste_seed_artists(
         for art in resp.get("items", []):
             if art["id"] in by_id:
                 continue
-            name = (art.get("name") or "").lower()
-            if exclude_artists and any(x in name for x in exclude_artists):
+            name = art.get("name") or ""
+            if exclude_artists and _name_matches(name, exclude_artists):
                 continue
-            if match_artists and not any(x in name for x in match_artists):
+            if match_artists and not _name_matches(name, match_artists):
                 continue
             genres = art.get("genres", []) or []
             if genres:

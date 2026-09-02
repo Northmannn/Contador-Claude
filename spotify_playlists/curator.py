@@ -415,14 +415,22 @@ def _taste_seed_artists(
     sp: Spotify,
     match_genres: list[str],
     exclude_genres: list[str] | None = None,
+    exclude_artists: list[str] | None = None,
     limit: int = 12,
 ) -> list[dict]:
     """Seus artistas mais ouvidos que batem com os gêneros desejados.
 
     ``match_genres`` vazio = aceita qualquer gênero. ``exclude_genres`` descarta
     artistas desses gêneros (ex: tirar funk/rap da playlist matinal).
+
+    Pós-migração (2026) a API devolve a maioria dos artistas SEM ``genres``.
+    Artista sem tag não é barrado por gênero (senão nenhum dos seus artistas
+    vira semente e as "novas" viram busca genérica = artistas aleatórios);
+    pra ele valem só os vetos por NOME (``exclude_artists`` e "MC/DJ" = funk).
     """
     exclude_genres = exclude_genres or []
+    exclude_artists = [a.strip().lower() for a in (exclude_artists or []) if a.strip()]
+    excludes_funk = any("funk" in g.lower() for g in exclude_genres)
     by_id: dict[str, dict] = {}
     for time_range in ("short_term", "medium_term", "long_term"):
         try:
@@ -431,12 +439,18 @@ def _taste_seed_artists(
             continue
         _remember_genres(resp.get("items", []))
         for art in resp.get("items", []):
-            genres = art.get("genres", [])
             if art["id"] in by_id:
                 continue
-            if not _matches_genres(genres, match_genres):
+            name = (art.get("name") or "").lower()
+            if exclude_artists and any(x in name for x in exclude_artists):
                 continue
-            if exclude_genres and _matches_genres(genres, exclude_genres):
+            genres = art.get("genres", []) or []
+            if genres:
+                if not _matches_genres(genres, match_genres):
+                    continue
+                if exclude_genres and _matches_genres(genres, exclude_genres):
+                    continue
+            elif excludes_funk and _FUNK_NAME_RE.search(art.get("name") or ""):
                 continue
             by_id[art["id"]] = art
 
@@ -506,7 +520,9 @@ def _curate_discovery(
     # 1) Sementes: seus artistas mais ouvidos do gênero (ou a lista da config).
     seed_artists: list[dict] = []
     if spec.seed_from_taste:
-        seed_artists = _taste_seed_artists(sp, spec.match_genres, spec.exclude_genres)
+        seed_artists = _taste_seed_artists(
+            sp, spec.match_genres, spec.exclude_genres, spec.exclude_artists
+        )
 
     if seed_artists:
         for art in seed_artists:

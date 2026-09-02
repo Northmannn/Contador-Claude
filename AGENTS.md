@@ -91,6 +91,23 @@ suposições antigas. O que JÁ pegamos aqui:
 7. **Development Mode / allowlist:** a conta que autentica precisa estar em
    Settings > User Management do app (limite ~5 usuários) e o dono precisa de
    Premium. Não era a causa dos 403 acima, mas é exigido pro app funcionar.
+8. **Itens de playlist mudaram de formato (set/2026, confirmado por diagnóstico):**
+   cada entrada de `playlist_items` traz a faixa na chave **`item`**; a antiga
+   `track` virou um **booleano** (`"track": true`). `GET /playlists/{id}/tracks`
+   dá **403** (use `/items`, que é o que o spotipy 2.26 já chama) e o objeto
+   de playlist não tem mais `tracks.total` (tem `items`). Ler `entry["track"]`
+   devolve nada → o detector de remoções marcava 15/15 como "removidas" todo
+   dia (525 falsos "não gosto"). Corrigido em `manager._current_playlist_uris`
+   (lê `item` e `track`, mais `linked_from`) + guarda: se ≥80% "sumiram", é
+   erro de leitura, não aprende. `python main.py diagnose "<playlist>"` (ou o
+   workflow *Diagnóstico*) imprime o item cru pra checar de novo se mudar.
+9. **Gêneros de artista não vêm mais:** `GET /artists` (lote) dá **403** e os
+   artistas de `current_user_top_artists` chegam com `genres: []`. Qualquer
+   filtro por gênero é cego. Regra no curator: artista **sem tag não é barrado
+   por gênero** (senão nenhum artista do usuário vira semente e as "novas"
+   caem em busca genérica = artistas aleatórios); o que segura é veto por
+   **nome** (`exclude_artists`) e a heurística "MC …"/"DJ …" = funk. Idioma
+   (`portuguese_only`) usa heurística de texto + exceção pras curtidas.
 
 ## 6. Rate limit (IMPORTANTE)
 

@@ -216,8 +216,31 @@ playlists:
                      funk, "funk carioca", "funk brasileiro", "funk mtg", "funk ostentação",
                      rap, trap, "hip hop", "brazilian hip hop", drill,
                      "bossa nova", "lo-fi", ambient, jazz]
-    exclude_artists:       # artistas vetados (é só me passar mais nomes):
+    # A API (2026) não devolve mais gênero dos artistas, então o "sem rock" da
+    # manhã é garantido por NOME. Lista viva: me passe nomes pra tirar/voltar.
+    exclude_artists:
       - "Legião Urbana"
+      # rock / metal / punk (fora de manhã, por regra sua)
+      - "Matanza"
+      - "Tenacious D"
+      - "Dazaranha"
+      - "Raimundos"
+      - "Capital Inicial"
+      - "Charlie Brown Jr"
+      - "Guns N' Roses"
+      - "Detonautas"
+      - "CPM 22"
+      - "Skank"
+      - "Jota Quest"
+      - "Engenheiros do Hawaii"
+      - "Titãs"
+      - "Os Paralamas do Sucesso"
+      - "Barão Vermelho"
+      - "Metallica"
+      - "Iron Maiden"
+      - "AC/DC"
+      - "Sepultura"
+      - "System of a Down"
     queries:               # reforço pras novas (só se faltar material do seu gosto):
       - "sertanejo animado"
       - "pagode animado"

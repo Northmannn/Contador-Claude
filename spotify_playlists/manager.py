@@ -63,17 +63,28 @@ def _save_generated(base: str, name: str, tracks: list[Track]) -> None:
 
 
 def _current_playlist_uris(sp: Spotify, playlist_id: str) -> set[str] | None:
-    """URIs que estão AGORA na playlist. Devolve None se não conseguir ler."""
+    """URIs que estão AGORA na playlist. Devolve None se não conseguir ler.
+
+    Pós-migração da Web API (fev/2026) cada entrada traz a faixa na chave
+    ``item`` — a antiga ``track`` virou um booleano — e ``GET /playlists/{id}/tracks``
+    passou a dar 403. Lemos os dois formatos e também o ``linked_from``
+    (relinking por mercado), pra comparar com o que gravamos sem falso positivo.
+    """
     uris: set[str] = set()
     try:
-        page = sp.playlist_items(
-            playlist_id, limit=100, fields="items(track(uri)),next"
-        )
+        page = sp.playlist_items(playlist_id, limit=100)
         while page:
-            for item in page.get("items", []):
-                track = item.get("track") or {}
-                if track.get("uri"):
-                    uris.add(track["uri"])
+            for entry in page.get("items", []):
+                obj = entry.get("item")
+                if not isinstance(obj, dict):
+                    obj = entry.get("track")
+                if not isinstance(obj, dict):
+                    continue
+                if obj.get("uri"):
+                    uris.add(obj["uri"])
+                linked = (obj.get("linked_from") or {}).get("uri")
+                if linked:
+                    uris.add(linked)
             page = sp.next(page) if page.get("next") else None
     except Exception:
         return None

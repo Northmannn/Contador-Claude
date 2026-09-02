@@ -158,11 +158,25 @@ def _passes_language(track: Track, saved_uris: set[str], spec: CurationSpec) -> 
     return _looks_portuguese(f"{track.name} {track.artists}") or track.uri in saved_uris
 
 
+_FUNK_NAME_RE = re.compile(r"(^|[\s,/&(])(mc|mcs|dj)\b\.?", re.IGNORECASE)
+
+
+def _looks_funk(track: Track) -> bool:
+    """Heurística pelo nome: 'MC Fulano' / 'DJ Beltrano' = funk/eletrônico."""
+    return bool(_FUNK_NAME_RE.search(track.artists or ""))
+
+
 def _passes_genres(track: Track, spec: CurationSpec) -> bool:
-    """Aplica exclude/match de gêneros a UMA faixa (gênero desconhecido não barra)."""
+    """Aplica exclude/match de gêneros a UMA faixa.
+
+    Gênero desconhecido (a API devolve muitos artistas sem tag) não barra —
+    exceto o que dá pra reconhecer pelo nome: se a config exclui funk e o
+    artista é "MC …"/"DJ …", fica de fora.
+    """
     genres = _genres_of(track)
     if not genres:
-        return True
+        excludes_funk = any("funk" in g.lower() for g in spec.exclude_genres)
+        return not (excludes_funk and _looks_funk(track))
     if spec.exclude_genres and _matches_genres(genres, spec.exclude_genres):
         return False
     if spec.match_genres and not _matches_genres(genres, spec.match_genres):
@@ -542,6 +556,11 @@ def _curate_sing_along(
     # Regras de idioma e de gênero valem pro acervo conhecido também
     # (senão entra rock/inglês que você ouve mas não quer de manhã).
     _artist_genres_for(sp, known)
+    with_genre = sum(1 for t in known if _genres_of(t))
+    print(
+        f"   🎼 gêneros conhecidos em {with_genre}/{len(known)} faixas do acervo"
+        + ("  (GET /artists bloqueado — usando heurísticas)" if "artists" in _BLOCKED else "")
+    )
     known = [t for t in known if _passes_genres(t, spec) and _passes_language(t, saved_uris, spec)]
     random.shuffle(known)
 

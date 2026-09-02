@@ -176,6 +176,14 @@ def _passes_language(
     return _looks_portuguese(track.name, track.artists) or track.uri in saved_uris
 
 
+_FUNK_NAME_RE = re.compile(r"(^|[\s,/&(])(mc|mcs|dj)\b\.?", re.IGNORECASE)
+
+
+def _looks_funk(track: Track) -> bool:
+    """Heurística pelo nome: 'MC Fulano' / 'DJ Beltrano' = funk/eletrônico."""
+    return bool(_FUNK_NAME_RE.search(track.artists or ""))
+
+
 def _passes_genres(track: Track, spec: CurationSpec) -> bool:
     """Aplica exclude/match de gêneros a UMA faixa.
 

@@ -216,35 +216,79 @@ playlists:
                      funk, "funk carioca", "funk brasileiro", "funk mtg", "funk ostentação",
                      rap, trap, "hip hop", "brazilian hip hop", drill,
                      "bossa nova", "lo-fi", ambient, jazz]
-    # A API (2026) não devolve mais gênero dos artistas, então o "sem rock" da
-    # manhã é garantido por NOME. Lista viva: me passe nomes pra tirar/voltar.
+    # A API (2026) não devolve mais gênero dos artistas, então a regra "de manhã
+    # só melódico" é garantida por LISTA DE PERMITIDOS — montada dos SEUS artistas
+    # reais (python main.py taste). Só entram músicas destes; as 3 novas também
+    # vêm só deles. Lista viva: me passe nomes pra entrar/sair.
+    match_artists:
+      # pagode / samba (seu núcleo)
+      - "Só Pra Contrariar"
+      - "Grupo Menos É Mais"
+      - "Péricles"
+      - "Thiaguinho"
+      - "Sorriso Maroto"
+      - "Ferrugem"
+      - "Vitinho"
+      - "Dilsinho"
+      - "Alexandre Pires"
+      - "Os Travessos"
+      - "Zeca Pagodinho"
+      - "Pixote"
+      - "Vou Zuar"
+      - "Belo"
+      - "Xande de Pilares"
+      - "Fundo de Quintal"
+      - "Arlindinho"
+      - "Katinguelê"
+      - "Soweto"
+      - "Dudu Nobre"
+      - "Casuarina"
+      - "Exaltasamba"
+      # sertanejo / duplas (terça maior e menor de fábrica — ideal p/ segunda voz)
+      - "Zezé Di Camargo"
+      - "Chico Rey"
+      - "Matheus & Kauan"
+      - "Jorge & Mateus"
+      - "Marcos & Belutti"
+      - "Bruno & Barretto"
+      - "Wesley Safadão"
+      # MPB / samba-pop melódico
+      - "Seu Jorge"
+      - "Armandinho"
+      - "Chay Suede"
+      - "ANAVITÓRIA"
+      - "Alcione"
+      - "Adoniran Barbosa"
+      - "Reginaldo Rossi"
+      - "Gabriel Leone"
+      - "Melly"
+    # Veto por palavra no título/artista (versões que não são pra manhã):
+    exclude_keywords: [slowed, "sped up", "speed up", remix, montagem, automotivo,
+                       phonk, mtg, funk, bruxaria, "mandelão", putaria, "proibidão",
+                       nightcore, "8d"]
+    # Veto por nome (redundante com a lista acima, mas fica como cinto e suspensório):
     exclude_artists:
       - "Legião Urbana"
-      # rock / metal / punk (fora de manhã, por regra sua)
       - "Matanza"
-      - "Tenacious D"
-      - "Dazaranha"
       - "Raimundos"
-      - "Capital Inicial"
-      - "Charlie Brown Jr"
-      - "Guns N' Roses"
-      - "Detonautas"
-      - "CPM 22"
+      - "Velhas Virgens"
       - "Skank"
       - "Jota Quest"
       - "Engenheiros do Hawaii"
-      - "Titãs"
-      - "Os Paralamas do Sucesso"
-      - "Barão Vermelho"
-      - "Metallica"
-      - "Iron Maiden"
-      - "AC/DC"
-      - "Sepultura"
-      - "System of a Down"
-    queries:               # reforço pras novas (só se faltar material do seu gosto):
-      - "sertanejo animado"
-      - "pagode animado"
-      - "samba alegre"
+      - "Ultraje a Rigor"
+      - "Pedra Leticia"
+      - "Mamonas Assassinas"
+      - "Capital Inicial"
+      - "Charlie Brown Jr"
+      - "Tenacious D"
+      - "Green Day"
+      - "Guns N' Roses"
+      - "Dazaranha"
+      - "Mr. Catra"
+      - "DENNIS"
+      - "Nego do Borel"
+      - "ATLXS"
+    # SEM 'queries' de propósito: busca genérica = artistas aleatórios de manhã.
 
   # =====================================================================
   # 🌙 HIPERFOCO NOTURNO — INTENSO e EUFÓRICO pra madrugada de foco.

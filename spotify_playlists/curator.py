@@ -67,6 +67,8 @@ class CurationSpec:
     sing_along: bool = False  # modo "cantar junto": maioria conhecida + poucas novas
     learn_removals: bool = False  # aprende com o que você tira da playlist (vira "não gosto")
     portuguese_only: bool = False  # só português; inglês apenas se já estiver nas curtidas
+    match_artists: list[str] = field(default_factory=list)  # LISTA DE PERMITIDOS (por nome)
+    exclude_keywords: list[str] = field(default_factory=list)  # veta por palavra no título/artista
 
 
 def _track_from_item(item: dict) -> Track | None:
@@ -216,13 +218,43 @@ def _cap_per_artist(tracks: list[Track], max_per_artist: int) -> list[Track]:
     return out
 
 
-def _drop(tracks: list[Track], disliked_uris, exclude_artists: list[str]) -> list[Track]:
-    """Remove faixas que você já marcou como 'não gosto' e os artistas vetados."""
+def _has_keyword(track: Track, keywords: list[str]) -> bool:
+    if not keywords:
+        return False
+    blob = f"{track.name} {track.artists}".lower()
+    return any(k.strip().lower() in blob for k in keywords if k.strip())
+
+
+def _artist_allowed(track: Track, match_artists: list[str]) -> bool:
+    """Lista de permitidos por nome (vazia = todos permitidos)."""
+    if not match_artists:
+        return True
+    blob = track.artists.lower()
+    return any(a.strip().lower() in blob for a in match_artists if a.strip())
+
+
+def _drop(
+    tracks: list[Track],
+    disliked_uris,
+    exclude_artists: list[str],
+    exclude_keywords: list[str] | None = None,
+) -> list[Track]:
+    """Remove 'não gosto', artistas vetados e títulos com palavras vetadas."""
     return [
         t
         for t in tracks
-        if t.uri not in disliked_uris and not _excluded_by_artist(t, exclude_artists)
+        if t.uri not in disliked_uris
+        and not _excluded_by_artist(t, exclude_artists)
+        and not _has_keyword(t, exclude_keywords or [])
     ]
+
+
+_TITLE_NOISE = re.compile(r"\s*[-–(\[].*$")
+
+
+def _norm_title(name: str) -> str:
+    """'Pupila - Ao Vivo' e 'Pupila (feat. X)' viram 'pupila' (não repetir versões)."""
+    return _TITLE_NOISE.sub("", name or "").strip().lower()
 
 
 # --------------------------------------------------------------------------- #
@@ -336,7 +368,7 @@ def _curate_search(
     for artist in spec.artist_seeds:
         pool.extend(_artist_top_tracks_by_name(sp, artist, spec.market))
 
-    unique = _drop(_dedupe(pool), disliked_uris, spec.exclude_artists)
+    unique = _drop(_dedupe(pool), disliked_uris, spec.exclude_artists, spec.exclude_keywords)
     random.shuffle(unique)
     unique = _cap_per_artist(unique, spec.max_per_artist)
     return unique[: spec.size]
@@ -416,6 +448,7 @@ def _taste_seed_artists(
     match_genres: list[str],
     exclude_genres: list[str] | None = None,
     exclude_artists: list[str] | None = None,
+    match_artists: list[str] | None = None,
     limit: int = 12,
 ) -> list[dict]:
     """Seus artistas mais ouvidos que batem com os gêneros desejados.
@@ -430,6 +463,7 @@ def _taste_seed_artists(
     """
     exclude_genres = exclude_genres or []
     exclude_artists = [a.strip().lower() for a in (exclude_artists or []) if a.strip()]
+    match_artists = [a.strip().lower() for a in (match_artists or []) if a.strip()]
     excludes_funk = any("funk" in g.lower() for g in exclude_genres)
     by_id: dict[str, dict] = {}
     for time_range in ("short_term", "medium_term", "long_term"):
@@ -443,6 +477,8 @@ def _taste_seed_artists(
                 continue
             name = (art.get("name") or "").lower()
             if exclude_artists and any(x in name for x in exclude_artists):
+                continue
+            if match_artists and not any(x in name for x in match_artists):
                 continue
             genres = art.get("genres", []) or []
             if genres:
@@ -521,7 +557,7 @@ def _curate_discovery(
     seed_artists: list[dict] = []
     if spec.seed_from_taste:
         seed_artists = _taste_seed_artists(
-            sp, spec.match_genres, spec.exclude_genres, spec.exclude_artists
+            sp, spec.match_genres, spec.exclude_genres, spec.exclude_artists, spec.match_artists
         )
 
     if seed_artists:
@@ -549,8 +585,10 @@ def _curate_discovery(
         heard = _heard_uris(sp)
         unique = [t for t in unique if t.uri not in heard]
 
-    # 4) Tira "não gosto" (removidas por você) e artistas vetados; limita repetição.
-    unique = _drop(unique, disliked_uris, spec.exclude_artists)
+    # 4) Tira "não gosto" (removidas por você), vetos por nome/palavra e, se
+    #    houver lista de permitidos, só ela; limita repetição de artista.
+    unique = _drop(unique, disliked_uris, spec.exclude_artists, spec.exclude_keywords)
+    unique = [t for t in unique if _artist_allowed(t, spec.match_artists)]
     random.shuffle(unique)
     unique = _cap_per_artist(unique, spec.max_per_artist)
     return unique[: spec.size]
@@ -567,8 +605,12 @@ def _curate_sing_along(
     saved = _saved_tracks(sp)
     saved_uris = {t.uri for t in saved}
     known = _drop(
-        _dedupe(_user_top_tracks(sp) + saved), disliked_uris, spec.exclude_artists
+        _dedupe(_user_top_tracks(sp) + saved),
+        disliked_uris,
+        spec.exclude_artists,
+        spec.exclude_keywords,
     )
+    known = [t for t in known if _artist_allowed(t, spec.match_artists)]
     # Regras de idioma e de gênero valem pro acervo conhecido também
     # (senão entra rock/inglês que você ouve mas não quer de manhã).
     _artist_genres_for(sp, known)
@@ -599,16 +641,21 @@ def _curate_sing_along(
 
     chosen: list[Track] = []
     chosen_uris: set[str] = set()
+    chosen_titles: set[str] = set()
     counts: dict[str, int] = {}
 
     def add(track: Track) -> bool:
         if len(chosen) >= spec.size or track.uri in chosen_uris:
+            return False
+        title = _norm_title(track.name)
+        if title and title in chosen_titles:  # mesma música em outra versão
             return False
         key = _artist_key(track)
         if spec.max_per_artist and counts.get(key, 0) >= spec.max_per_artist:
             return False
         chosen.append(track)
         chosen_uris.add(track.uri)
+        chosen_titles.add(title)
         counts[key] = counts.get(key, 0) + 1
         return True
 

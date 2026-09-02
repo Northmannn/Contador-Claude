@@ -78,6 +78,7 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             learn_removals=bool(raw.get("learn_removals", False)),
             portuguese_only=bool(raw.get("portuguese_only", False)),
             match_artists=raw.get("match_artists", []),
+            foreign_artists=raw.get("foreign_artists", []),
             exclude_keywords=raw.get("exclude_keywords", []),
         )
         playlists.append(

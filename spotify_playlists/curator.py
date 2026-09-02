@@ -68,6 +68,7 @@ class CurationSpec:
     learn_removals: bool = False  # aprende com o que você tira da playlist (vira "não gosto")
     portuguese_only: bool = False  # só português; inglês apenas se já estiver nas curtidas
     match_artists: list[str] = field(default_factory=list)  # LISTA DE PERMITIDOS (por nome)
+    foreign_artists: list[str] = field(default_factory=list)  # estrangeiros: só do acervo conhecido
     exclude_keywords: list[str] = field(default_factory=list)  # veta por palavra no título/artista
 
 
@@ -142,11 +143,13 @@ def _is_brazilian(genres: list[str]) -> bool:
     return any(k in blob for k in _BR_GENRE_KEYS)
 
 
-def _looks_portuguese(text: str) -> bool:
-    low = text.lower()
-    if any(m in low for m in _PT_MARKERS):
+def _looks_portuguese(title: str, artists: str = "") -> bool:
+    """Acento conta só no TÍTULO (senão 'Bublé' faz 'Feeling Good' virar PT);
+    palavras comuns contam no título + artista ('Grupo Menos É Mais')."""
+    low_title = (title or "").lower()
+    if any(m in low_title for m in _PT_MARKERS):
         return True
-    words = set(re.findall(r"[a-zà-ú]+", low))
+    words = set(re.findall(r"[a-zà-ú]+", f"{low_title} {(artists or '').lower()}"))
     return bool(words & _PT_WORDS)
 
 
@@ -155,26 +158,22 @@ def _passes_language(
 ) -> bool:
     """Regra do idioma: português sempre; estrangeira só se já for curtida.
 
-    ``allow_by_list=True`` (acervo conhecido): artista que está explicitamente na
-    lista de permitidos passa mesmo em outro idioma — ex.: Michael Bublé, cantor
-    favorito do usuário. Pra faixas NOVAS a exceção não vale (nova em inglês, não).
+    - ``foreign_artists`` (ex.: Michael Bublé, Boyce Avenue): entram só no acervo
+      conhecido (``allow_by_list=True``); como faixa NOVA, nunca.
+    - artista brasileiro da lista de permitidos passa direto (foi curado por nome,
+      não depende de acento no título).
+    - resto: gênero (se houver), heurística de texto, ou já estar nas curtidas.
     """
     if not spec.portuguese_only:
         return True
-    if allow_by_list and spec.match_artists and _name_matches(track.artists, spec.match_artists):
+    if spec.foreign_artists and _name_matches(track.artists, spec.foreign_artists):
+        return allow_by_list
+    if spec.match_artists and _name_matches(track.artists, spec.match_artists):
         return True
     genres = _genres_of(track)
     if genres:
         return _is_brazilian(genres) or track.uri in saved_uris
-    return _looks_portuguese(f"{track.name} {track.artists}") or track.uri in saved_uris
-
-
-_FUNK_NAME_RE = re.compile(r"(^|[\s,/&(])(mc|mcs|dj)\b\.?", re.IGNORECASE)
-
-
-def _looks_funk(track: Track) -> bool:
-    """Heurística pelo nome: 'MC Fulano' / 'DJ Beltrano' = funk/eletrônico."""
-    return bool(_FUNK_NAME_RE.search(track.artists or ""))
+    return _looks_portuguese(track.name, track.artists) or track.uri in saved_uris
 
 
 def _passes_genres(track: Track, spec: CurationSpec) -> bool:

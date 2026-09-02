@@ -266,6 +266,8 @@ playlists:
       # nova em inglês continua bloqueada)
       - "Michael Bublé"
       - "Boyce Avenue"
+    # Estrangeiros da lista: só o que você JÁ ouve/curte; nova em inglês, nunca.
+    foreign_artists: ["Michael Bublé", "Boyce Avenue"]
     # Veto por palavra no título/artista (versões que não são pra manhã):
     exclude_keywords: [slowed, "sped up", "speed up", remix, montagem, automotivo,
                        phonk, mtg, funk, bruxaria, "mandelão", putaria, "proibidão",

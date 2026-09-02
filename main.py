@@ -23,6 +23,7 @@ from spotify_playlists.auth import (
 )
 from spotify_playlists.config import load_config
 from spotify_playlists.manager import (
+    describe_diagnosis,
     describe_feedback,
     describe_taste,
     sync_all,
@@ -67,6 +68,11 @@ def cmd_taste(_args: argparse.Namespace) -> int:
 
 def cmd_feedback(_args: argparse.Namespace) -> int:
     describe_feedback()
+    return 0
+
+
+def cmd_diagnose(args: argparse.Namespace) -> int:
+    describe_diagnosis(get_client(), args.playlist)
     return 0
 
 
@@ -128,6 +134,9 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser(
         "feedback", help="Mostra o que aprendi do que você removeu das playlists"
     ).set_defaults(func=cmd_feedback)
+    p_diag = sub.add_parser("diagnose", help="Diagnostica o detector de remoções de uma playlist")
+    p_diag.add_argument("playlist", help="Nome exato da playlist")
+    p_diag.set_defaults(func=cmd_diagnose)
 
     p_sync = sub.add_parser("sync", help="Atualiza as playlists")
     p_sync.add_argument("--force", action="store_true", help="Atualiza todas, ignora estação")

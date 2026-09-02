@@ -231,6 +231,64 @@ def describe_taste(sp: Spotify, top_n: int = 20) -> None:
             print(f"  (não consegui ler as músicas: {exc})")
 
 
+def describe_diagnosis(sp: Spotify, name: str, data_dir: str = DATA_DIR) -> None:
+    """Diagnóstico do detector de remoções: compara o que gravamos com o que a
+    API devolve ao ler a playlist. Não altera nada."""
+    me = sp.me()["id"]
+    print(f"\n🔎 Diagnóstico de '{name}' (usuário {me})\n")
+
+    # 1) Todas as playlists com esse nome (duplicatas?)
+    found = []
+    offset = 0
+    while True:
+        page = sp.current_user_playlists(limit=50, offset=offset)
+        for pl in page.get("items", []):
+            if pl and pl["name"] == name:
+                found.append(pl)
+        if page.get("next"):
+            offset += 50
+        else:
+            break
+    print(f"Playlists com esse nome exato: {len(found)}")
+    for pl in found:
+        print(f"  - id={pl['id']} dono={pl['owner']['id']} total={pl.get('tracks', {}).get('total')}")
+
+    pid = _find_playlist_id(sp, name)
+    print(f"\n_find_playlist_id escolheu: {pid}")
+    if not pid:
+        return
+
+    # 2) Leitura crua (sem filtro 'fields') vs. leitura do detector
+    raw = sp.playlist_items(pid, limit=100)
+    items = raw.get("items", [])
+    print(f"Leitura CRUA: {len(items)} itens (total={raw.get('total')})")
+    for it in items[:5]:
+        tr = it.get("track") or {}
+        lf = (tr.get("linked_from") or {}).get("uri")
+        print(f"  • {tr.get('uri')}  linked_from={lf}  ({tr.get('name')})")
+
+    current = _current_playlist_uris(sp, pid)
+    print(f"\nLeitura do DETECTOR (_current_playlist_uris): "
+          f"{'None (erro)' if current is None else f'{len(current)} uris'}")
+    if current:
+        for u in list(current)[:5]:
+            print(f"  • {u}")
+
+    # 3) Estado gravado da última geração
+    last = _load_generated(data_dir, name)
+    last_uris = {t["uri"] for t in last}
+    print(f"\nEstado gravado (última geração): {len(last)} uris")
+    for t in last[:5]:
+        print(f"  • {t['uri']}  ({t['name']})")
+    if current is not None:
+        inter = last_uris & current
+        print(f"\nInterseção gravado ∩ lido: {len(inter)} de {len(last_uris)}")
+        raw_uris = {(it.get('track') or {}).get('uri') for it in items}
+        print(f"Interseção gravado ∩ leitura crua: {len(last_uris & raw_uris)}")
+        linked = {((it.get('track') or {}).get('linked_from') or {}).get('uri') for it in items}
+        print(f"Interseção gravado ∩ linked_from da leitura crua: {len(last_uris & linked)}")
+
+
 def describe_feedback(data_dir: str = DATA_DIR) -> None:
     """Mostra o que aprendi do que você removeu — seu gosto medido na prática."""
     feedback = _load_feedback(data_dir)

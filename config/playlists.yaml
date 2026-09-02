@@ -187,42 +187,41 @@ playlists:
       - "Tim Maia"
 
   # =====================================================================
-  # 🌅 BOM DIA — DIÁRIA às 5h: pra CANTAR junto no caminho.
-  # Modo "sing_along": maioria de músicas que você CONHECE (suas mais ouvidas +
-  # curtidas) + 2 novas por dia pra ir conhecendo aos poucos. Sem repetir
-  # artista, sem os que você vetou, e APRENDE com o que você remove.
+  # 🌅 BOM DIA — DIÁRIA às 5h: pra treinar SEGUNDA VOZ no carro.
+  # Regras v2 (definidas com o usuário): melódica e contagiante (sertanejo,
+  # pagode, samba, MPB, axé...), só português (inglês só se já for curtida),
+  # maioria conhecida + 3 novas do próprio gosto, sem repetir artista, sem
+  # rock/metal/funk/rap/melancolia, e aprende com o que ele remove.
   # =====================================================================
   - name: "🌅 Bom Dia, Motivação"
-    description: "Pra cantar no caminho: suas conhecidas + 2 novas por dia. Aprende com o que você tira."
+    description: "Pra treinar segunda voz no carro: melódica, contagiante, em português. Conhecidas + 3 novas por dia."
     public: false
     size: 15
     seasons: [always]
     daily: true            # entra no fluxo diário (sync --daily), não no sazonal
-    sing_along: true       # maioria conhecida (dá pra cantar de cabeça)
-    new_tracks: 2          # começa com 2 novas por dia; aumento aos poucos
-    max_per_artist: 1      # NUNCA repete o mesmo artista (chega de Jota Quest em dobro)
-    learn_removals: true   # você remove o que não curte → eu aprendo e nunca repito
-    seed_from_taste: true  # as 2 novas seguem o seu gosto
+    # ---- REGRAS (definidas com você) ----
+    sing_along: true       # maioria de músicas que você conhece (top tracks + curtidas)
+    new_tracks: 3          # pelo menos 3 novas por dia, sempre dentro do seu escopo
+    max_per_artist: 1      # nunca repete artista
+    portuguese_only: true  # só português; inglês apenas se JÁ estiver nas curtidas
+    learn_removals: true   # o que você tira vira "não gosto" (com guarda anti-bug)
+    seed_from_taste: true  # as novas saem dos SEUS artistas (não de gente aleatória)
     mode: discovery
-    match_genres: []       # todos os seus estilos...
-    exclude_genres:        # ...menos funk/rap e parentes:
-      - funk
-      - "funk carioca"
-      - "funk brasileiro"
-      - "funk mtg"
-      - "funk ostentação"
-      - rap
-      - trap
-      - "hip hop"
-      - "brazilian hip hop"
-      - drill
-    exclude_artists:       # artistas que você não curte (é só me avisar mais nomes):
+    # Melódico e contagiante — o que funciona pra segunda voz (terças):
+    match_genres: [sertanejo, pagode, samba, mpb, "axé", axe, arrocha, "forró", forro,
+                   "brazilian", nacional, "pop brasileiro", "samba rock", "brega"]
+    # Fora de manhã: nada pesado, nada melancólico, nada funk/rap
+    exclude_genres: ["rock nacional", "brazilian rock", "hard rock", "classic rock",
+                     "alternative rock", metal, thrash, punk, hardcore, grunge,
+                     funk, "funk carioca", "funk brasileiro", "funk mtg", "funk ostentação",
+                     rap, trap, "hip hop", "brazilian hip hop", drill,
+                     "bossa nova", "lo-fi", ambient, jazz]
+    exclude_artists:       # artistas vetados (é só me passar mais nomes):
       - "Legião Urbana"
-    queries:
-      - "mpb animado"
+    queries:               # reforço pras novas (só se faltar material do seu gosto):
+      - "sertanejo animado"
+      - "pagode animado"
       - "samba alegre"
-      - "pop rock nacional"
-      - "manhã boa vibe"
 
   # =====================================================================
   # 🌙 HIPERFOCO NOTURNO — INTENSO e EUFÓRICO pra madrugada de foco.

@@ -94,6 +94,16 @@ def _learn_from_removals(sp: Spotify, pdef: PlaylistDef, feedback: dict, base: s
 
     disliked = set(feedback["disliked_uris"])
     removed = [t for t in last if t["uri"] not in current]
+
+    # Guarda anti-falso-positivo: ninguém apaga a playlist inteira todo dia.
+    # Se "sumiu" quase tudo, é leitura ruim (ex.: relinking de URI), não gosto.
+    if len(last) >= 3 and len(removed) >= max(3, int(0.8 * len(last))):
+        print(
+            f"   ⚠️ {len(removed)} de {len(last)} 'sumiram' — parece erro de leitura, "
+            "NÃO vou tratar como 'não gosto'."
+        )
+        return 0
+
     for t in removed:
         if t["uri"] not in disliked:
             feedback["disliked_uris"].append(t["uri"])
@@ -266,6 +276,24 @@ def describe_diagnosis(sp: Spotify, name: str, data_dir: str = DATA_DIR) -> None
         tr = it.get("track") or {}
         lf = (tr.get("linked_from") or {}).get("uri")
         print(f"  • {tr.get('uri')}  linked_from={lf}  ({tr.get('name')})")
+    if items:
+        print("\nITEM CRU [0] (chaves):", sorted(items[0].keys()))
+        print("ITEM CRU [0] (json):", json.dumps(items[0], ensure_ascii=False)[:900])
+
+    # 2b) Endpoints alternativos pós-migração
+    for path in (f"playlists/{pid}/items", f"playlists/{pid}/tracks"):
+        try:
+            alt = sp._get(path, limit=3)
+            first = (alt.get("items") or [{}])[0]
+            print(f"\nGET {path}: {len(alt.get('items', []))} itens; chaves[0]={sorted(first.keys())}")
+            print("   json[0]:", json.dumps(first, ensure_ascii=False)[:600])
+        except Exception as exc:
+            print(f"\nGET {path}: ERRO {exc}")
+    try:
+        full = sp.playlist(pid)
+        print("\nplaylist() chaves:", sorted(full.keys()))
+    except Exception as exc:
+        print(f"\nplaylist(): ERRO {exc}")
 
     current = _current_playlist_uris(sp, pid)
     print(f"\nLeitura do DETECTOR (_current_playlist_uris): "

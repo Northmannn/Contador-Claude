@@ -16,6 +16,7 @@ mesma cena via busca, e tiramos tudo que já está nas suas top tracks / curtida
 from __future__ import annotations
 
 import random
+import re
 from dataclasses import dataclass, field, replace
 
 from spotipy import Spotify
@@ -32,6 +33,7 @@ class Track:
     uri: str
     name: str
     artists: str
+    artist_ids: list[str] = field(default_factory=list)  # p/ consultar gêneros em lote
 
     def __str__(self) -> str:  # pragma: no cover - só exibição
         return f"{self.name} — {self.artists}"
@@ -64,16 +66,108 @@ class CurationSpec:
     new_tracks: int = 0  # nº de faixas NOVAS (desconhecidas) na mistura conhecida
     sing_along: bool = False  # modo "cantar junto": maioria conhecida + poucas novas
     learn_removals: bool = False  # aprende com o que você tira da playlist (vira "não gosto")
+    portuguese_only: bool = False  # só português; inglês apenas se já estiver nas curtidas
 
 
 def _track_from_item(item: dict) -> Track | None:
     if not item or not item.get("uri"):
         return None
+    artists = item.get("artists", []) or []
     return Track(
         uri=item["uri"],
         name=item["name"],
-        artists=", ".join(a["name"] for a in item.get("artists", [])),
+        artists=", ".join(a["name"] for a in artists),
+        artist_ids=[a["id"] for a in artists if a.get("id")],
     )
+
+
+# --------------------------------------------------------------------------- #
+# Idioma e gênero por artista (pra regra "só português" e "só melódico")
+# --------------------------------------------------------------------------- #
+_GENRE_CACHE: dict[str, list[str]] = {}  # artist_id -> genres (por processo)
+
+_BR_GENRE_KEYS = (
+    "brazil", "brasil", "sertanej", "pagode", "samba", "mpb", "axé", "axe",
+    "forró", "forro", "arrocha", "piseiro", "bossa", "nacional", "carioca",
+    "paulista", "baian", "gaúch", "gauch", "mineir", "nordestin", "lambada",
+    "brega", "mandel", "mtg", "tropicalia", "tropicália",
+)
+_PT_MARKERS = ("ç", "ã", "õ", "á", "é", "í", "ó", "ú", "â", "ê", "ô")
+_PT_WORDS = {
+    "de", "do", "da", "que", "não", "nao", "você", "voce", "meu", "minha", "amor",
+    "coração", "pra", "com", "eu", "sem", "tudo", "mais", "quero", "vem", "seu",
+    "sua", "nós", "bem", "noite", "vida", "saudade", "fica", "deixa", "ainda",
+}
+
+
+def _remember_genres(artists: list[dict]) -> None:
+    for a in artists or []:
+        if a and a.get("id"):
+            _GENRE_CACHE.setdefault(a["id"], a.get("genres", []) or [])
+
+
+def _artist_genres_for(sp: Spotify, tracks: list[Track]) -> dict[str, list[str]]:
+    """Gêneros do artista principal de cada faixa, em lotes de 50 (GET /artists).
+
+    Cache por processo; se o endpoint der 403 (Development Mode), marca em
+    ``_BLOCKED`` e segue só com o que já se sabe (top artists).
+    """
+    ids: list[str] = []
+    for t in tracks:
+        if t.artist_ids and t.artist_ids[0] not in _GENRE_CACHE:
+            ids.append(t.artist_ids[0])
+    ids = list(dict.fromkeys(ids))
+    if ids and "artists" not in _BLOCKED:
+        for i in range(0, len(ids), 50):
+            try:
+                resp = sp.artists(ids[i : i + 50])
+                _remember_genres(resp.get("artists", []) or [])
+            except SpotifyException as exc:
+                if exc.http_status == 403:
+                    _BLOCKED.add("artists")
+                break
+            except Exception:
+                break
+    return _GENRE_CACHE
+
+
+def _genres_of(track: Track) -> list[str]:
+    return _GENRE_CACHE.get(track.artist_ids[0], []) if track.artist_ids else []
+
+
+def _is_brazilian(genres: list[str]) -> bool:
+    blob = " ".join(genres).lower()
+    return any(k in blob for k in _BR_GENRE_KEYS)
+
+
+def _looks_portuguese(text: str) -> bool:
+    low = text.lower()
+    if any(m in low for m in _PT_MARKERS):
+        return True
+    words = set(re.findall(r"[a-zà-ú]+", low))
+    return bool(words & _PT_WORDS)
+
+
+def _passes_language(track: Track, saved_uris: set[str], spec: CurationSpec) -> bool:
+    """Regra do idioma: português sempre; estrangeira só se já for curtida."""
+    if not spec.portuguese_only:
+        return True
+    genres = _genres_of(track)
+    if genres:
+        return _is_brazilian(genres) or track.uri in saved_uris
+    return _looks_portuguese(f"{track.name} {track.artists}") or track.uri in saved_uris
+
+
+def _passes_genres(track: Track, spec: CurationSpec) -> bool:
+    """Aplica exclude/match de gêneros a UMA faixa (gênero desconhecido não barra)."""
+    genres = _genres_of(track)
+    if not genres:
+        return True
+    if spec.exclude_genres and _matches_genres(genres, spec.exclude_genres):
+        return False
+    if spec.match_genres and not _matches_genres(genres, spec.match_genres):
+        return False
+    return True
 
 
 def _dedupe(tracks: list[Track]) -> list[Track]:
@@ -321,6 +415,7 @@ def _taste_seed_artists(
             resp = sp.current_user_top_artists(limit=20, time_range=time_range)
         except Exception:
             continue
+        _remember_genres(resp.get("items", []))
         for art in resp.get("items", []):
             genres = art.get("genres", [])
             if art["id"] in by_id:
@@ -439,11 +534,15 @@ def _curate_sing_along(
     poucos. Sem repetir artista e sem os que você já vetou/removeu.
     """
     # Conhecidas: o que você mais ouve + curtidas (dá pra cantar de cabeça).
+    saved = _saved_tracks(sp)
+    saved_uris = {t.uri for t in saved}
     known = _drop(
-        _dedupe(_user_top_tracks(sp) + _saved_tracks(sp)),
-        disliked_uris,
-        spec.exclude_artists,
+        _dedupe(_user_top_tracks(sp) + saved), disliked_uris, spec.exclude_artists
     )
+    # Regras de idioma e de gênero valem pro acervo conhecido também
+    # (senão entra rock/inglês que você ouve mas não quer de manhã).
+    _artist_genres_for(sp, known)
+    known = [t for t in known if _passes_genres(t, spec) and _passes_language(t, saved_uris, spec)]
     random.shuffle(known)
 
     # Novas: descobertas no seu gosto (o cap por artista é aplicado no fim, aqui não).
@@ -456,6 +555,12 @@ def _curate_sing_along(
         size=max(spec.size * 4, 40),
     )
     new_list = _curate_discovery(sp, disc, disliked_uris)
+    _artist_genres_for(sp, new_list)
+    # Nova NUNCA é estrangeira (a exceção do inglês só vale pras curtidas).
+    new_list = [
+        t for t in new_list
+        if t.uri not in saved_uris and _passes_genres(t, spec) and _passes_language(t, set(), spec)
+    ]
 
     chosen: list[Track] = []
     chosen_uris: set[str] = set()

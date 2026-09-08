@@ -1,49 +1,19 @@
 {
   "generated": [
     {
-      "uri": "spotify:track:09NEs5vKA27eWZbQBoTxJW",
-      "name": "Talvez - Ao Vivo",
-      "artists": "Xande de Pilares, Alexandre Pires"
-    },
-    {
-      "uri": "spotify:track:6LQQGxRzNLsWQtwgLe5fAm",
-      "name": "Insegurança - Ao Vivo",
-      "artists": "Pixote"
-    },
-    {
-      "uri": "spotify:track:2UvCzEf2vOg6nw5pzEc3Vi",
-      "name": "O Calhambeque",
-      "artists": "Gabriel Leone"
-    },
-    {
-      "uri": "spotify:track:5xEfTvJm1WvxaSEo4XSbEs",
-      "name": "You've Got a Friend in Me",
-      "artists": "Michael Bublé"
-    },
-    {
       "uri": "spotify:track:2wl1UWNjMuklWFhqpWpPSk",
       "name": "Pupila",
       "artists": "Péricles"
     },
     {
-      "uri": "spotify:track:2kbxK6YN1SkruIuSrLMzIb",
-      "name": "Rejeita",
-      "artists": "Wesley Safadão, Natanzinho Lima"
+      "uri": "spotify:track:1XKbgEelWqRkilDM0PrTVz",
+      "name": "Chopp garotinho",
+      "artists": "Ferrugem"
     },
     {
-      "uri": "spotify:track:00RDjaQIvMeAv30xYz186Y",
-      "name": "Inaraí - Ao Vivo",
-      "artists": "Alexandre Pires"
-    },
-    {
-      "uri": "spotify:track:5Ut3sBsJwB1KFEkqnUlq3D",
-      "name": "Se Prepare Pra Sofrer - Ao Vivo",
-      "artists": "Só Pra Contrariar"
-    },
-    {
-      "uri": "spotify:track:0xh44uzIdE4FcX8ZdUTTQ8",
-      "name": "Felicidade - Ao Vivo",
-      "artists": "Thiaguinho"
+      "uri": "spotify:track:565YV6boEnxYWgg0T8oZxK",
+      "name": "Pura Adrenalina - Ao Vivo",
+      "artists": "Belo"
     },
     {
       "uri": "spotify:track:2is1yyh4NWQUzSDlEFZgUj",
@@ -51,29 +21,59 @@
       "artists": "Chay Suede"
     },
     {
-      "uri": "spotify:track:7yLQVtQsh68PPFrq93GuJl",
-      "name": "Palavras de Amigo - Ao Vivo",
-      "artists": "Rodriguinho, Thiaguinho"
+      "uri": "spotify:track:6lc4zG8U6yaP96JJ9n4LSi",
+      "name": "Amanhã (Mañana) - Live",
+      "artists": "Roberta Miranda, Reginaldo Rossi"
     },
     {
-      "uri": "spotify:track:6GglEvEfa8bRE74QS8XQuF",
-      "name": "Volta Pra Mim - Ao Vivo",
-      "artists": "Chico Rey & Paraná"
+      "uri": "spotify:track:0m3hiKjI2QGSKxvG732Ekq",
+      "name": "Tiro Ao Álvaro",
+      "artists": "Elis Regina, Adoniran Barbosa"
     },
     {
-      "uri": "spotify:track:5bsv4q7R48KWHf1qyWPfi3",
-      "name": "Meu Jeito de Ser - Ao Vivo",
-      "artists": "Gigantes do Samba, Raça Negra, Só Pra Contrariar"
+      "uri": "spotify:track:0r6cDEfBNDm4PmgCismo1G",
+      "name": "Vou Querer De Novo - Ao Vivo",
+      "artists": "Thiaguinho"
     },
     {
-      "uri": "spotify:track:0LCmcvoMVhUpeGSuHQVpnm",
-      "name": "Desse Jeito é Ruim pra Mim - Ao Vivo",
-      "artists": "Belo"
+      "uri": "spotify:track:5qpHJzOUFE2VZXFOs0x15l",
+      "name": "Onde Você Mora / Fim de Tarde / Pensando em Você - Ao Vivo",
+      "artists": "Vitinho"
     },
     {
-      "uri": "spotify:track:06WkQibI8OhOLjDxIRKu5B",
-      "name": "Ainda Gosto de Você / Já Era - Ao Vivo",
-      "artists": "Sorriso Maroto, LUDMILLA, Belo"
+      "uri": "spotify:track:2YCx4I27GMSixz9IEwGqGP",
+      "name": "Sinto Sua Falta / Insegurança / Eu Nunca Amei Assim",
+      "artists": "Vou Zuar, Ferrugem"
+    },
+    {
+      "uri": "spotify:track:00RDjaQIvMeAv30xYz186Y",
+      "name": "Inaraí - Ao Vivo",
+      "artists": "Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:3R0fWjRyx1GN4rFDirZZlC",
+      "name": "Depois do Prazer",
+      "artists": "Só Pra Contrariar"
+    },
+    {
+      "uri": "spotify:track:5xyVTYGlRwh4XQT8RNJAsy",
+      "name": "Vem Meu Amor",
+      "artists": "ANAVITÓRIA"
+    },
+    {
+      "uri": "spotify:track:1nKuB0sSC6bcnpfbYCH65B",
+      "name": "Só Pra Contrariar / O Irene",
+      "artists": "Grupo Fundo De Quintal"
+    },
+    {
+      "uri": "spotify:track:54rB86hN9T31HJ8ScVNcxP",
+      "name": "Talvez - Ao Vivo",
+      "artists": "Xande de Pilares, Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:73lNYSvcytOTJoL7xHFFPn",
+      "name": "É Proibido Fumar",
+      "artists": "Gabriel Leone"
     }
   ]
 }

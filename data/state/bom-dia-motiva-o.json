@@ -1,24 +1,29 @@
 {
   "generated": [
     {
-      "uri": "spotify:track:7LQ1ZZlbxJN0HePXKEyy0R",
-      "name": "Me Perdoa - Ao Vivo",
+      "uri": "spotify:track:06WkQibI8OhOLjDxIRKu5B",
+      "name": "Ainda Gosto de Você / Já Era - Ao Vivo",
+      "artists": "Sorriso Maroto, LUDMILLA, Belo"
+    },
+    {
+      "uri": "spotify:track:01ofb1BNbQV66YpH98Bk4x",
+      "name": "Gatinha Manhosa",
+      "artists": "Chay Suede"
+    },
+    {
+      "uri": "spotify:track:41qCoFKsI1zZDMQxJPvczk",
+      "name": "Ao Som do SPC - Ao Vivo",
       "artists": "Só Pra Contrariar"
     },
     {
-      "uri": "spotify:track:2Y3uiDX6gAf9urjUfTmJex",
-      "name": "Código Cama - Ao Vivo",
-      "artists": "Wesley Safadão"
-    },
-    {
-      "uri": "spotify:track:3Xvl9CwWglXH5ASQFr5izB",
-      "name": "Viver Sem Ti",
-      "artists": "Exaltasamba, Mariana Rios"
-    },
-    {
-      "uri": "spotify:track:2sC9NcBWmZX2gt3gM0ZEmo",
-      "name": "Pela Vida Inteira / Vergonha Na Cara - Ao Vivo",
+      "uri": "spotify:track:5M8rc7DOM5MW1F8eP0OX9a",
+      "name": "Caraca, Muleke!",
       "artists": "Thiaguinho"
+    },
+    {
+      "uri": "spotify:track:6BiA3pX9A2ytJBRO3q1kUQ",
+      "name": "Vai Que Cola - Ao Vivo",
+      "artists": "Vitinho, Di Propósito"
     },
     {
       "uri": "spotify:track:4muZ1PUxmss4cVmYnpLrvs",
@@ -26,14 +31,9 @@
       "artists": "Dilsinho"
     },
     {
-      "uri": "spotify:track:1RO9OQccNR5PZi6dL12hcf",
-      "name": "Ainda Me Iludo",
-      "artists": "Péricles"
-    },
-    {
-      "uri": "spotify:track:4PnEGuadJd0PKDO7GDXBqH",
-      "name": "Perdas e Danos - Ao Vivo",
-      "artists": "Sorriso Maroto, Ferrugem, Grupo Benzadeus"
+      "uri": "spotify:track:3owdDSzMHdlNTva7lIX30M",
+      "name": "Fazer Amor é Diferente de Amar - Ao Vivo",
+      "artists": "Natanzinho Lima, Wesley Safadão"
     },
     {
       "uri": "spotify:track:7Gk5OrMYaMRtT2JmgJVAfk",
@@ -41,39 +41,39 @@
       "artists": "ANAVITÓRIA, Vitor Kley"
     },
     {
-      "uri": "spotify:track:2UPFQMaONjH3m89lkLABq7",
-      "name": "Minha Fama De Mau",
-      "artists": "Chay Suede"
+      "uri": "spotify:track:4aWvRjHweMAoB1RzUcXUUu",
+      "name": "Farol Das Estrelas",
+      "artists": "Soweto"
     },
     {
-      "uri": "spotify:track:1QfJI9XfRWCLDjNyjxBwqW",
-      "name": "Nunca Vi Você Tão Triste",
-      "artists": "Zeca Pagodinho"
+      "uri": "spotify:track:63q5Qb9ERTpapEmARxKBE6",
+      "name": "Pega o Guanabara - Ao Vivo",
+      "artists": "Wesley Safadão, Alanzim Coreano"
     },
     {
-      "uri": "spotify:track:5LBMUgKmkheyVJa1Zn6Qoz",
-      "name": "Domingo - Ao Vivo",
-      "artists": "Alexandre Pires"
+      "uri": "spotify:track:6B7ot6Wlqf7zt3FCkYl2FJ",
+      "name": "Pela Última Vez - Ao Vivo",
+      "artists": "Grupo Menos É Mais, NATTAN"
     },
     {
-      "uri": "spotify:track:6Bjodqpu1TWVoRFFQ5DtNa",
-      "name": "Não Me Vejo Sem Você - Ao Vivo",
-      "artists": "Vitinho"
+      "uri": "spotify:track:3VAmXdzSNXU0tLJJGhdb3e",
+      "name": "Já Deu Pra Notar / Melhor Eu Ir - Ao Vivo",
+      "artists": "Rodriguinho, Gaab, Mr. Dan, Ferrugem"
     },
     {
-      "uri": "spotify:track:09NEs5vKA27eWZbQBoTxJW",
-      "name": "Talvez - Ao Vivo",
-      "artists": "Xande de Pilares, Alexandre Pires"
-    },
-    {
-      "uri": "spotify:track:0NMVRsqVoYEa7g6VZWcJg7",
-      "name": "Reinventar",
+      "uri": "spotify:track:0LCmcvoMVhUpeGSuHQVpnm",
+      "name": "Desse Jeito é Ruim pra Mim - Ao Vivo",
       "artists": "Belo"
     },
     {
-      "uri": "spotify:track:2UvCzEf2vOg6nw5pzEc3Vi",
-      "name": "O Calhambeque",
-      "artists": "Gabriel Leone"
+      "uri": "spotify:track:5C0wi5U4l0YUv7yIKe2TEe",
+      "name": "O Nosso Santo Bateu - Live",
+      "artists": "Matheus & Kauan"
+    },
+    {
+      "uri": "spotify:track:4TjaDr4QlsfNYiRu3agmry",
+      "name": "Quando é Amor / Amor Verdadeiro / Minha Metade (Take Me Now) - Ao Vivo",
+      "artists": "Alexandre Pires"
     }
   ]
 }

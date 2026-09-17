@@ -1,59 +1,9 @@
 {
   "generated": [
     {
-      "uri": "spotify:track:3UHKTBxEAf8tcKfKG2jKCS",
-      "name": "Depois do Prazer / Essa Tal Liberdade / Encerramento - Ao Vivo",
-      "artists": "Só Pra Contrariar"
-    },
-    {
-      "uri": "spotify:track:0ONoYJqSkvUFp2wmNvH2kW",
-      "name": "Dependente Do Amor",
-      "artists": "Zeca Pagodinho, Xande de Pilares"
-    },
-    {
-      "uri": "spotify:track:0r6cDEfBNDm4PmgCismo1G",
-      "name": "Vou Querer De Novo - Ao Vivo",
-      "artists": "Thiaguinho"
-    },
-    {
-      "uri": "spotify:track:24nnH0sODD5P2eq5agxJmv",
-      "name": "Sá Marina - Ao Vivo",
-      "artists": "Alexandre Pires"
-    },
-    {
-      "uri": "spotify:track:70aw66QgQEcPcM6mqqAKx8",
-      "name": "Pra Sempre",
-      "artists": "Chay Suede"
-    },
-    {
-      "uri": "spotify:track:4FytmtwjnW4GdycPb4TwF0",
-      "name": "Perfect",
-      "artists": "Boyce Avenue"
-    },
-    {
-      "uri": "spotify:track:54rB86hN9T31HJ8ScVNcxP",
-      "name": "Talvez - Ao Vivo",
-      "artists": "Xande de Pilares, Alexandre Pires"
-    },
-    {
-      "uri": "spotify:track:3Oi1rRW0QdWsE7SGATTE2z",
-      "name": "Tô te filmando (Sorria)",
-      "artists": "Os Travessos"
-    },
-    {
-      "uri": "spotify:track:6WnwnMSRkihOPbuC7TN3BR",
-      "name": "Amor Falsificado",
-      "artists": "Grupo Menos É Mais, Marília Mendonça"
-    },
-    {
-      "uri": "spotify:track:0bE9HzpDqguoiYOPuoPyeQ",
-      "name": "Graveto - Ao Vivo",
-      "artists": "Péricles"
-    },
-    {
-      "uri": "spotify:track:0GSkoU7eaY0VvEPKdcAtHQ",
-      "name": "Forrobodó - Ao Vivo",
-      "artists": "Wesley Safadão, Xand Avião, Zé Vaqueiro"
+      "uri": "spotify:track:7Gk5OrMYaMRtT2JmgJVAfk",
+      "name": "Pupila",
+      "artists": "ANAVITÓRIA, Vitor Kley"
     },
     {
       "uri": "spotify:track:5k42zoTGT3LsQQ5wiS9jJn",
@@ -61,19 +11,69 @@
       "artists": "Di Propósito, Grupo Menos É Mais"
     },
     {
-      "uri": "spotify:track:6YxjDb6r7avB44QlJLDuM7",
-      "name": "Eu sou feliz assim - Ao vivo",
-      "artists": "Ferrugem"
+      "uri": "spotify:track:06WkQibI8OhOLjDxIRKu5B",
+      "name": "Ainda Gosto de Você / Já Era - Ao Vivo",
+      "artists": "Sorriso Maroto, LUDMILLA, Belo"
     },
     {
-      "uri": "spotify:track:4GbEcznuSiPW8HeWubVrVt",
-      "name": "Bebe e Vem Me Procurar / Quem Ama Sente Saudade (Ao Vivo)",
-      "artists": "Turma do Pagode, Grupo Menos É Mais"
+      "uri": "spotify:track:56bWd9eEu5xsIWETPBIA8k",
+      "name": "Inaraí",
+      "artists": "Katinguelê"
     },
     {
-      "uri": "spotify:track:1Cn42z1q8r9hGECUFHBzQo",
-      "name": "Futuro Prometido",
-      "artists": "Sorriso Maroto"
+      "uri": "spotify:track:3VAmXdzSNXU0tLJJGhdb3e",
+      "name": "Já Deu Pra Notar / Melhor Eu Ir - Ao Vivo",
+      "artists": "Rodriguinho, Gaab, Mr. Dan, Ferrugem"
+    },
+    {
+      "uri": "spotify:track:6WnwnMSRkihOPbuC7TN3BR",
+      "name": "Amor Falsificado",
+      "artists": "Grupo Menos É Mais, Marília Mendonça"
+    },
+    {
+      "uri": "spotify:track:54rB86hN9T31HJ8ScVNcxP",
+      "name": "Talvez - Ao Vivo",
+      "artists": "Xande de Pilares, Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:73lNYSvcytOTJoL7xHFFPn",
+      "name": "É Proibido Fumar",
+      "artists": "Gabriel Leone"
+    },
+    {
+      "uri": "spotify:track:0Wh7ZGEk2xvWOpBWwDoyg5",
+      "name": "Em Suas Mãos - Ao Vivo",
+      "artists": "Vitinho"
+    },
+    {
+      "uri": "spotify:track:0Fhm0Eo9N3mrRl8iimUioa",
+      "name": "Energia Surreal - Ao Vivo",
+      "artists": "Sandra Sá, Thiaguinho"
+    },
+    {
+      "uri": "spotify:track:01ofb1BNbQV66YpH98Bk4x",
+      "name": "Gatinha Manhosa",
+      "artists": "Chay Suede"
+    },
+    {
+      "uri": "spotify:track:6xkG8KenqmA6FEgD4PnlgS",
+      "name": "Que Se Chama Amor - Ao Vivo",
+      "artists": "Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:1xYu3Kh0SpQAFcOstFA0Bg",
+      "name": "Se Você Chorar - Ao Vivo",
+      "artists": "Só Pra Contrariar"
+    },
+    {
+      "uri": "spotify:track:5LlvjBngx8DvuApwPdYUbF",
+      "name": "Buquê De Flores - Ao Vivo",
+      "artists": "Thiaguinho"
+    },
+    {
+      "uri": "spotify:track:565YV6boEnxYWgg0T8oZxK",
+      "name": "Pura Adrenalina - Ao Vivo",
+      "artists": "Belo"
     }
   ]
 }

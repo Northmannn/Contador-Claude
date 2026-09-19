@@ -1,4 +1,8 @@
 {
-  "disliked_uris": [],
-  "disliked_artists": {}
+  "disliked_uris": [
+    "spotify:track:5C0wi5U4l0YUv7yIKe2TEe"
+  ],
+  "disliked_artists": {
+    "matheus & kauan": 1
+  }
 }

@@ -1,49 +1,9 @@
 {
   "generated": [
     {
-      "uri": "spotify:track:5kunnyRXn1uwU3h1H2MYpI",
-      "name": "Disritmia",
-      "artists": "Casuarina"
-    },
-    {
-      "uri": "spotify:track:79wBgk9x9vmPFQ302D9oqJ",
-      "name": "Ainda Que Você Me Esqueça",
-      "artists": "Chay Suede"
-    },
-    {
-      "uri": "spotify:track:4RGRfGjhTxsCkLaHFF90Bq",
-      "name": "Você Me Vira A Cabeça (Me Tira Do Sério)",
-      "artists": "Alcione"
-    },
-    {
-      "uri": "spotify:track:0q4LdI9HwkB6SvRhHJFw00",
-      "name": "Fatalmente / Separação / Temporal - Ao Vivo",
-      "artists": "Grupo Menos É Mais"
-    },
-    {
-      "uri": "spotify:track:6Bjodqpu1TWVoRFFQ5DtNa",
-      "name": "Não Me Vejo Sem Você - Ao Vivo",
-      "artists": "Vitinho"
-    },
-    {
-      "uri": "spotify:track:2sDuQhz9xvPPGysQoFAEAf",
-      "name": "Amor Verdadeiro / Quando é Amor - Ao Vivo",
-      "artists": "Só Pra Contrariar"
-    },
-    {
-      "uri": "spotify:track:2YCx4I27GMSixz9IEwGqGP",
-      "name": "Sinto Sua Falta / Insegurança / Eu Nunca Amei Assim",
-      "artists": "Vou Zuar, Ferrugem"
-    },
-    {
-      "uri": "spotify:track:5DaO2si8SPAXSXzkp7YCtq",
-      "name": "Juras de Amor (Pode Chorar) - Ao Vivo",
-      "artists": "Wesley Safadão"
-    },
-    {
-      "uri": "spotify:track:7o8mnlsmeJtCtOet7O0r0b",
-      "name": "Dessa Vez Eu Me Rendo - Ao Vivo",
-      "artists": "Alexandre Pires"
+      "uri": "spotify:track:0NMVRsqVoYEa7g6VZWcJg7",
+      "name": "Reinventar",
+      "artists": "Belo"
     },
     {
       "uri": "spotify:track:5C0wi5U4l0YUv7yIKe2TEe",
@@ -51,29 +11,119 @@
       "artists": "Matheus & Kauan"
     },
     {
-      "uri": "spotify:track:7wgYqjzA3qJLpyz89IlVPA",
-      "name": "That's Life",
+      "uri": "spotify:track:53KcYninBgEa4yH0cDSgA1",
+      "name": "O Grande Amor da Minha Vida (Convite de Casamento) / Ela É Demais / Você Vai Ver / Dormi Na Praça / Evidências",
+      "artists": "Grupo Menos É Mais"
+    },
+    {
+      "uri": "spotify:track:0b1J3OgNHyfSOmnQh9SqTX",
+      "name": "Linda Voz (Olá)",
+      "artists": "Péricles, Lucas Morato"
+    },
+    {
+      "uri": "spotify:track:2is1yyh4NWQUzSDlEFZgUj",
+      "name": "Sentado À Beira Do Caminho",
+      "artists": "Chay Suede"
+    },
+    {
+      "uri": "spotify:track:6lc4zG8U6yaP96JJ9n4LSi",
+      "name": "Amanhã (Mañana) - Live",
+      "artists": "Roberta Miranda, Reginaldo Rossi"
+    },
+    {
+      "uri": "spotify:track:56bWd9eEu5xsIWETPBIA8k",
+      "name": "Inaraí",
+      "artists": "Katinguelê"
+    },
+    {
+      "uri": "spotify:track:3Cabw7y9EoR68v7dBS76HQ",
+      "name": "Pirata e tesouro - Ao vivo",
+      "artists": "Ferrugem"
+    },
+    {
+      "uri": "spotify:track:3VAmXdzSNXU0tLJJGhdb3e",
+      "name": "Já Deu Pra Notar / Melhor Eu Ir - Ao Vivo",
+      "artists": "Rodriguinho, Gaab, Mr. Dan, Ferrugem"
+    },
+    {
+      "uri": "spotify:track:73lNYSvcytOTJoL7xHFFPn",
+      "name": "É Proibido Fumar",
+      "artists": "Gabriel Leone"
+    },
+    {
+      "uri": "spotify:track:2bFECSek9JjLe4shdOCKqf",
+      "name": "Seu Balancê - Ao Vivo / Bonus Track",
+      "artists": "Zeca Pagodinho"
+    },
+    {
+      "uri": "spotify:track:54rB86hN9T31HJ8ScVNcxP",
+      "name": "Talvez - Ao Vivo",
+      "artists": "Xande de Pilares, Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:1BkjecKwfAoqLm4YkBAQ3Y",
+      "name": "Você Vai Voltar Pra Mim - Ao Vivo",
+      "artists": "Só Pra Contrariar"
+    },
+    {
+      "uri": "spotify:track:01I10LjDK95Dw4ZcBcnxGM",
+      "name": "Sou Ciumento Mesmo",
+      "artists": "Wesley Safadão"
+    },
+    {
+      "uri": "spotify:track:6GglEvEfa8bRE74QS8XQuF",
+      "name": "Volta Pra Mim - Ao Vivo",
+      "artists": "Chico Rey & Paraná"
+    },
+    {
+      "uri": "spotify:track:5bsv4q7R48KWHf1qyWPfi3",
+      "name": "Meu Jeito de Ser - Ao Vivo",
+      "artists": "Gigantes do Samba, Raça Negra, Só Pra Contrariar"
+    },
+    {
+      "uri": "spotify:track:4NVXiFJFTX6UJGUPPNhopB",
+      "name": "Não Precisa Mudar / Palpite / Final Feliz / A Estrada / Meu Erro - Ao Vivo",
+      "artists": "Vou Zuar"
+    },
+    {
+      "uri": "spotify:track:4ED2RlSE8sZPsiZh2mFdPA",
+      "name": "22 Minutos / Sintomas de Amor - Ao Vivo",
+      "artists": "Vitinho"
+    },
+    {
+      "uri": "spotify:track:4cR4nao0hqqBtklQmGVqbe",
+      "name": "Thinking out Loud",
+      "artists": "Boyce Avenue"
+    },
+    {
+      "uri": "spotify:track:7Bie9S1N5kujNYPafzotI4",
+      "name": "Ponto Fraco - Ao Vivo",
+      "artists": "Thiaguinho"
+    },
+    {
+      "uri": "spotify:track:4t4oqMSwwmpHzQIu1aok1z",
+      "name": "Amiga Da Minha Mulher",
+      "artists": "Seu Jorge"
+    },
+    {
+      "uri": "spotify:track:1AM8QdDFZMq6SrrqUnuQ9P",
+      "name": "Feeling Good",
       "artists": "Michael Bublé"
     },
     {
-      "uri": "spotify:track:0Fhm0Eo9N3mrRl8iimUioa",
-      "name": "Energia Surreal - Ao Vivo",
-      "artists": "Sandra Sá, Thiaguinho"
+      "uri": "spotify:track:174S4zGFfw7tCzXni3x4qm",
+      "name": "Loucura do Seu Coração",
+      "artists": "Sorriso Maroto"
     },
     {
-      "uri": "spotify:track:6ZXA3cg83xY4It7mQqil8w",
-      "name": "Brigas Por Nada / 1 Metro e 65 - Ao Vivo",
-      "artists": "Sorriso Maroto, Péricles, Ferrugem"
+      "uri": "spotify:track:1oXFfHuBuasMQ9lnPSRvGU",
+      "name": "Tchau e Bença - Live From Brazil / 2007",
+      "artists": "Exaltasamba"
     },
     {
-      "uri": "spotify:track:0NMVRsqVoYEa7g6VZWcJg7",
-      "name": "Reinventar",
-      "artists": "Belo"
-    },
-    {
-      "uri": "spotify:track:5k42zoTGT3LsQQ5wiS9jJn",
-      "name": "Para Tudo / Loucura do Seu Coração - Ao Vivo",
-      "artists": "Di Propósito, Grupo Menos É Mais"
+      "uri": "spotify:track:4muZ1PUxmss4cVmYnpLrvs",
+      "name": "Refém",
+      "artists": "Dilsinho"
     }
   ]
 }

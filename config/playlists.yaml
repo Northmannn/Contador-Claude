@@ -194,14 +194,14 @@ playlists:
   # rock/metal/funk/rap/melancolia, e aprende com o que ele remove.
   # =====================================================================
   - name: "🌅 Bom Dia, Motivação"
-    description: "Pra treinar segunda voz no carro: melódica, contagiante, em português. Conhecidas + 3 novas por dia."
+    description: "Pra treinar segunda voz no carro: melódica, contagiante, em português. 25 músicas: conhecidas + 4 novas por dia."
     public: false
-    size: 15
+    size: 25
     seasons: [always]
     daily: true            # entra no fluxo diário (sync --daily), não no sazonal
     # ---- REGRAS (definidas com você) ----
     sing_along: true       # maioria de músicas que você conhece (top tracks + curtidas)
-    new_tracks: 3          # pelo menos 3 novas por dia, sempre dentro do seu escopo
+    new_tracks: 4          # 4 novas por dia (o resto é do que você já ouve), sempre dentro do seu escopo
     max_per_artist: 1      # nunca repete artista
     portuguese_only: true  # só português; inglês apenas se JÁ estiver nas curtidas
     learn_removals: true   # o que você tira vira "não gosto" (com guarda anti-bug)

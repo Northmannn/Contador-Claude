@@ -50,13 +50,40 @@ def _load_generated(base: str, name: str) -> list[dict]:
         return []
 
 
+RECENT_KEEP = 3  # gerações guardadas pra não repetir música em dias seguidos
+
+
+def _load_recent_uris(base: str, name: str) -> set[str]:
+    """URIs das últimas gerações (inclui a atual) — pra 'quero algo novo'."""
+    try:
+        path = os.path.join(base, "state", f"{_slug(name)}.json")
+        with open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+    except (FileNotFoundError, ValueError):
+        return set()
+    uris = {t["uri"] for t in data.get("generated", [])}
+    for gen in data.get("history", []):
+        uris.update(gen)
+    return uris
+
+
 def _save_generated(base: str, name: str, tracks: list[Track]) -> None:
     os.makedirs(os.path.join(base, "state"), exist_ok=True)
     path = os.path.join(base, "state", f"{_slug(name)}.json")
+    try:
+        with open(path, encoding="utf-8") as fh:
+            old = json.load(fh)
+    except (FileNotFoundError, ValueError):
+        old = {}
+    history = old.get("history", [])
+    prev = [t["uri"] for t in old.get("generated", [])]
+    if prev:
+        history = ([prev] + history)[: RECENT_KEEP - 1]
     payload = {
         "generated": [
             {"uri": t.uri, "name": t.name, "artists": t.artists} for t in tracks
-        ]
+        ],
+        "history": history,
     }
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False, indent=2)
@@ -210,7 +237,8 @@ def sync_playlist(sp: Spotify, pdef: PlaylistDef, data_dir: str = DATA_DIR) -> l
             print(f"   🧠 Aprendi: você removeu {learned} música(s) — não repito mais.")
 
     disliked = set(feedback["disliked_uris"])
-    tracks = curate(sp, pdef.spec, disliked_uris=disliked)
+    recent = _load_recent_uris(data_dir, pdef.name) if pdef.spec.learn_removals else set()
+    tracks = curate(sp, pdef.spec, disliked_uris=disliked, recent_uris=recent)
     playlist_id = _ensure_playlist(sp, pdef)
     _replace_tracks(sp, playlist_id, tracks)
 

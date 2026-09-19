@@ -617,7 +617,7 @@ def _curate_discovery(
 
 
 def _curate_sing_along(
-    sp: Spotify, spec: CurationSpec, disliked_uris=frozenset()
+    sp: Spotify, spec: CurationSpec, disliked_uris=frozenset(), recent_uris=frozenset()
 ) -> list[Track]:
     """Modo "cantar junto": maioria de músicas que você CONHECE (top tracks +
     curtidas) + umas poucas NOVAS (``new_tracks``) pra você ir conhecendo aos
@@ -684,18 +684,25 @@ def _curate_sing_along(
         counts[key] = counts.get(key, 0) + 1
         return True
 
+    # Não repetir o que saiu nas últimas gerações: recentes ficam pro fim da
+    # fila e só entram se o acervo não bastar pra fechar o tamanho.
+    fresh_known = [t for t in known if t.uri not in recent_uris]
+    stale_known = [t for t in known if t.uri in recent_uris]
+    fresh_new = [t for t in new_list if t.uri not in recent_uris]
+    stale_new = [t for t in new_list if t.uri in recent_uris]
+
     # 1) até ``new_tracks`` novas  2) completa com conhecidas  3) sobra? mais novas.
     added_new = 0
-    for t in new_list:
+    for t in fresh_new + stale_new:
         if added_new >= max(0, spec.new_tracks):
             break
         if add(t):
             added_new += 1
-    for t in known:
+    for t in fresh_known:
         if len(chosen) >= spec.size:
             break
         add(t)
-    for t in new_list:
+    for t in fresh_new + stale_known + stale_new:
         if len(chosen) >= spec.size:
             break
         add(t)
@@ -726,7 +733,9 @@ def _curate_fixed(sp: Spotify, spec: CurationSpec) -> list[Track]:
 
 
 # --------------------------------------------------------------------------- #
-def curate(sp: Spotify, spec: CurationSpec, disliked_uris=frozenset()) -> list[Track]:
+def curate(
+    sp: Spotify, spec: CurationSpec, disliked_uris=frozenset(), recent_uris=frozenset()
+) -> list[Track]:
     """Monta a lista final de faixas, escolhendo o modo conforme a config.
 
     ``disliked_uris`` são faixas que você tirou de playlists antes (aprendidas
@@ -736,7 +745,7 @@ def curate(sp: Spotify, spec: CurationSpec, disliked_uris=frozenset()) -> list[T
     if spec.fixed_tracks:
         return _curate_fixed(sp, spec)
     if spec.sing_along:
-        return _curate_sing_along(sp, spec, disliked_uris)
+        return _curate_sing_along(sp, spec, disliked_uris, recent_uris)
     if spec.mode == "discovery":
         return _curate_discovery(sp, spec, disliked_uris)
     return _curate_search(sp, spec, disliked_uris)

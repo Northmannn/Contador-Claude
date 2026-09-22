@@ -1,132 +1,159 @@
 {
   "generated": [
     {
-      "uri": "spotify:track:4RGRfGjhTxsCkLaHFF90Bq",
-      "name": "Você Me Vira A Cabeça (Me Tira Do Sério)",
-      "artists": "Alcione"
-    },
-    {
-      "uri": "spotify:track:3kPxKkGxD3fhPgffA7a8VN",
-      "name": "Só Pra Contrariar / O Irene",
-      "artists": "Grupo Fundo De Quintal"
-    },
-    {
-      "uri": "spotify:track:736FDKnI6aHOFckR0MFqz6",
-      "name": "Flor de Lis - Ao Vivo",
-      "artists": "Thiaguinho"
-    },
-    {
-      "uri": "spotify:track:2JvY6MtUEnzyU9xrDw1biP",
-      "name": "Lobo Mau",
-      "artists": "Chay Suede"
-    },
-    {
-      "uri": "spotify:track:1XKbgEelWqRkilDM0PrTVz",
-      "name": "Chopp garotinho",
-      "artists": "Ferrugem"
-    },
-    {
-      "uri": "spotify:track:0pnrx9K3Q9goF88oPFoykU",
-      "name": "Domingo - Ao Vivo",
-      "artists": "Só Pra Contrariar"
-    },
-    {
-      "uri": "spotify:track:0NKJtFWFyRjYzJxMGiMsH6",
-      "name": "Você Virou Saudade - Ao Vivo",
-      "artists": "Alexandre Pires"
-    },
-    {
-      "uri": "spotify:track:0AefgmJ7eq2eRWOvTs6f1K",
-      "name": "Fantástico",
-      "artists": "Luiza Possi, Chay Suede, Orquestra"
-    },
-    {
-      "uri": "spotify:track:1jjpREr7VVD0z1EOyXQNaz",
-      "name": "Não Te Mereço",
-      "artists": "Vitinho"
-    },
-    {
-      "uri": "spotify:track:35uPMtbq7v1L5z8j52BOSG",
-      "name": "Ela É Linda",
-      "artists": "Vitinho Imperador"
-    },
-    {
-      "uri": "spotify:track:02uGRWxlEIbpdypNUvJoXm",
-      "name": "Até Que Durou - Ao Vivo",
-      "artists": "Péricles"
-    },
-    {
-      "uri": "spotify:track:5XnkKOmt7KOhxgvTwB04f4",
-      "name": "Vai Vadiar",
-      "artists": "Zeca Pagodinho"
-    },
-    {
-      "uri": "spotify:track:1YyIkCcfK16V3L6usbxOXp",
-      "name": "Ainda Existe Amor Em Nós",
-      "artists": "Sorriso Maroto"
-    },
-    {
-      "uri": "spotify:track:5oEKWUfdYcOktLjGlIOGjO",
-      "name": "João E Maria",
-      "artists": "Gabriel Leone"
-    },
-    {
-      "uri": "spotify:track:4aWvRjHweMAoB1RzUcXUUu",
-      "name": "Farol Das Estrelas",
-      "artists": "Soweto"
-    },
-    {
-      "uri": "spotify:track:7pBPXkaVQaP3Y3Wwfkpvbn",
-      "name": "Mentirosa - Ao Vivo",
-      "artists": "Hugo & Guilherme, Wesley Safadão"
-    },
-    {
-      "uri": "spotify:track:4kMNM7X2S2nnIvRHoECGut",
-      "name": "Sol Loiro",
-      "artists": "Armandinho"
-    },
-    {
-      "uri": "spotify:track:0IM1QJ8UuYm0GPxLarnX2i",
-      "name": "Amor a Três",
-      "artists": "Chininha & Príncipe, Belo"
-    },
-    {
-      "uri": "spotify:track:0uAFGvNJOQMyB4UZN7qoIB",
-      "name": "Seis Cordas / Baião de Dois / Cavalo Lampião - Ao Vivo",
+      "uri": "spotify:track:2DnVQNaLGO1lYJrKEV0A9e",
+      "name": "Ressaca de Saudade - Ao Vivo",
       "artists": "Wesley Safadão"
     },
     {
-      "uri": "spotify:track:6SvpFmoAAehspS8RTmguFp",
-      "name": "Tua Boca",
-      "artists": "Belo"
+      "uri": "spotify:track:7iWpJr4Muh4n122rWgtevb",
+      "name": "Apaguei Seu Nome - Ao Vivo",
+      "artists": "Vitinho"
     },
     {
-      "uri": "spotify:track:3jtrsVOdNi4QmqkKoXjB64",
-      "name": "Pararura",
-      "artists": "Rayne, Chay Suede"
+      "uri": "spotify:track:5kunnyRXn1uwU3h1H2MYpI",
+      "name": "Disritmia",
+      "artists": "Casuarina"
     },
     {
-      "uri": "spotify:track:7wgYqjzA3qJLpyz89IlVPA",
-      "name": "That's Life",
+      "uri": "spotify:track:5KNi9XFap48ry4puG7rvqv",
+      "name": "Pra você acreditar - Ao vivo",
+      "artists": "Ferrugem"
+    },
+    {
+      "uri": "spotify:track:2P5Hd3ghYMY5PT9yR73gR3",
+      "name": "Energia Surreal - Ao Vivo",
+      "artists": "Thiaguinho"
+    },
+    {
+      "uri": "spotify:track:2wl1UWNjMuklWFhqpWpPSk",
+      "name": "Pupila",
+      "artists": "Péricles"
+    },
+    {
+      "uri": "spotify:track:7wMVzl22OE7mV7Cm00O1a7",
+      "name": "DNA do Mato",
+      "artists": "Zé Vaqueiro, Wesley Safadão, NATTAN"
+    },
+    {
+      "uri": "spotify:track:174S4zGFfw7tCzXni3x4qm",
+      "name": "Loucura do Seu Coração",
+      "artists": "Sorriso Maroto"
+    },
+    {
+      "uri": "spotify:track:3beOCT1wZvgiSANG0dKjjO",
+      "name": "Mande um Sinal - Ao Vivo",
+      "artists": "Pixote"
+    },
+    {
+      "uri": "spotify:track:4FytmtwjnW4GdycPb4TwF0",
+      "name": "Perfect",
+      "artists": "Boyce Avenue"
+    },
+    {
+      "uri": "spotify:track:642WSldBQqArHKbhjJeKad",
+      "name": "Interfone",
+      "artists": "Só Pra Contrariar"
+    },
+    {
+      "uri": "spotify:track:4jgEEhTJiuF5Jm9PcAmtO0",
+      "name": "Vem Quente Que Eu Estou Fervendo",
+      "artists": "Chay Suede"
+    },
+    {
+      "uri": "spotify:track:4t4oqMSwwmpHzQIu1aok1z",
+      "name": "Amiga Da Minha Mulher",
+      "artists": "Seu Jorge"
+    },
+    {
+      "uri": "spotify:track:6GglEvEfa8bRE74QS8XQuF",
+      "name": "Volta Pra Mim - Ao Vivo",
+      "artists": "Chico Rey & Paraná"
+    },
+    {
+      "uri": "spotify:track:56bWd9eEu5xsIWETPBIA8k",
+      "name": "Inaraí",
+      "artists": "Katinguelê"
+    },
+    {
+      "uri": "spotify:track:5xEfTvJm1WvxaSEo4XSbEs",
+      "name": "You've Got a Friend in Me",
       "artists": "Michael Bublé"
     },
     {
-      "uri": "spotify:track:6WnwnMSRkihOPbuC7TN3BR",
-      "name": "Amor Falsificado",
-      "artists": "Grupo Menos É Mais, Marília Mendonça"
+      "uri": "spotify:track:0LCmcvoMVhUpeGSuHQVpnm",
+      "name": "Desse Jeito é Ruim pra Mim - Ao Vivo",
+      "artists": "Belo"
     },
     {
-      "uri": "spotify:track:3Xvl9CwWglXH5ASQFr5izB",
-      "name": "Viver Sem Ti",
-      "artists": "Exaltasamba, Mariana Rios"
+      "uri": "spotify:track:5v747rXdm2NzkchPoMjb2U",
+      "name": "Champanhe - Ao Vivo",
+      "artists": "Grupo Menos É Mais"
     },
     {
-      "uri": "spotify:track:2yyPLEChnKh4MdCMwiyMNx",
-      "name": "Eu Sou o Samba - Ao Vivo",
-      "artists": "Seu Jorge, Alexandre Pires"
+      "uri": "spotify:track:3Rp4m03mbhlYgIeSWNP9xm",
+      "name": "Faixa Amarela",
+      "artists": "Zeca Pagodinho"
+    },
+    {
+      "uri": "spotify:track:2UvCzEf2vOg6nw5pzEc3Vi",
+      "name": "O Calhambeque",
+      "artists": "Gabriel Leone"
+    },
+    {
+      "uri": "spotify:track:0m3hiKjI2QGSKxvG732Ekq",
+      "name": "Tiro Ao Álvaro",
+      "artists": "Elis Regina, Adoniran Barbosa"
+    },
+    {
+      "uri": "spotify:track:2k818cpVCwtF1VFJPM7k7H",
+      "name": "É Tudo",
+      "artists": "Soweto"
+    },
+    {
+      "uri": "spotify:track:09NEs5vKA27eWZbQBoTxJW",
+      "name": "Talvez - Ao Vivo",
+      "artists": "Xande de Pilares, Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:4TjaDr4QlsfNYiRu3agmry",
+      "name": "Quando é Amor / Amor Verdadeiro / Minha Metade (Take Me Now) - Ao Vivo",
+      "artists": "Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:4kB3EvXt9ZyFibpUWvUpo0",
+      "name": "Você é Meu Mô - Ao Vivo",
+      "artists": "Kamisa 10, Grupo Menos É Mais"
     }
   ],
   "history": [
+    [
+      "spotify:track:4RGRfGjhTxsCkLaHFF90Bq",
+      "spotify:track:3kPxKkGxD3fhPgffA7a8VN",
+      "spotify:track:736FDKnI6aHOFckR0MFqz6",
+      "spotify:track:2JvY6MtUEnzyU9xrDw1biP",
+      "spotify:track:1XKbgEelWqRkilDM0PrTVz",
+      "spotify:track:0pnrx9K3Q9goF88oPFoykU",
+      "spotify:track:0NKJtFWFyRjYzJxMGiMsH6",
+      "spotify:track:0AefgmJ7eq2eRWOvTs6f1K",
+      "spotify:track:1jjpREr7VVD0z1EOyXQNaz",
+      "spotify:track:35uPMtbq7v1L5z8j52BOSG",
+      "spotify:track:02uGRWxlEIbpdypNUvJoXm",
+      "spotify:track:5XnkKOmt7KOhxgvTwB04f4",
+      "spotify:track:1YyIkCcfK16V3L6usbxOXp",
+      "spotify:track:5oEKWUfdYcOktLjGlIOGjO",
+      "spotify:track:4aWvRjHweMAoB1RzUcXUUu",
+      "spotify:track:7pBPXkaVQaP3Y3Wwfkpvbn",
+      "spotify:track:4kMNM7X2S2nnIvRHoECGut",
+      "spotify:track:0IM1QJ8UuYm0GPxLarnX2i",
+      "spotify:track:0uAFGvNJOQMyB4UZN7qoIB",
+      "spotify:track:6SvpFmoAAehspS8RTmguFp",
+      "spotify:track:3jtrsVOdNi4QmqkKoXjB64",
+      "spotify:track:7wgYqjzA3qJLpyz89IlVPA",
+      "spotify:track:6WnwnMSRkihOPbuC7TN3BR",
+      "spotify:track:3Xvl9CwWglXH5ASQFr5izB",
+      "spotify:track:2yyPLEChnKh4MdCMwiyMNx"
+    ],
     [
       "spotify:track:2Y3uiDX6gAf9urjUfTmJex",
       "spotify:track:3Oi1rRW0QdWsE7SGATTE2z",
@@ -153,33 +180,6 @@
       "spotify:track:4cR4nao0hqqBtklQmGVqbe",
       "spotify:track:1AM8QdDFZMq6SrrqUnuQ9P",
       "spotify:track:537FDwjbLrfq5ypEuJVGIn"
-    ],
-    [
-      "spotify:track:3VAmXdzSNXU0tLJJGhdb3e",
-      "spotify:track:1SzB9WTPve0QUaRRChWppZ",
-      "spotify:track:4NVXiFJFTX6UJGUPPNhopB",
-      "spotify:track:1mWbNJY5fd08bdBZQxga56",
-      "spotify:track:4iPXQjrlMVGFcgrM6z0aya",
-      "spotify:track:16ccm8UqDN07CBuE9pQ77B",
-      "spotify:track:1jqTRCJLrvtAfKSQGy1N5S",
-      "spotify:track:5bsv4q7R48KWHf1qyWPfi3",
-      "spotify:track:1N19UVD4GRBFT6UrDaX6rk",
-      "spotify:track:5cvp1KoIUet6H6X17XaXKM",
-      "spotify:track:4TGM7Ao2goY1FQ57z9Xqcx",
-      "spotify:track:6lc4zG8U6yaP96JJ9n4LSi",
-      "spotify:track:5nnKdN5H0YcmtG1DiH1NCH",
-      "spotify:track:3UHKTBxEAf8tcKfKG2jKCS",
-      "spotify:track:05yhrGXwNTfZbpNR2Lc8qS",
-      "spotify:track:7LmG9LUGnpdzSbqkxN3Pch",
-      "spotify:track:5xyVTYGlRwh4XQT8RNJAsy",
-      "spotify:track:4RGRfGjhTxsCkLaHFF90Bq",
-      "spotify:track:5MMrkwK6AgNAsgHVdC7daZ",
-      "spotify:track:2Z0XzRVb1fOqxrGCGVJBaV",
-      "spotify:track:4kMNM7X2S2nnIvRHoECGut",
-      "spotify:track:5meHnUDxCryJbYhQVg66PT",
-      "spotify:track:2is1yyh4NWQUzSDlEFZgUj",
-      "spotify:track:0RBOFW5424gCCCZrgECbt6",
-      "spotify:track:0vXKKHxzwndf65d8E10oND"
     ]
   ]
 }

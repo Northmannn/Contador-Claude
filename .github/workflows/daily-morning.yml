@@ -1,13 +1,14 @@
 name: Playlist matinal (diária)
 
-# Alvo: playlist pronta ~05:00 de Brasília. O cron do GitHub atrasa 1-3h em
-# horários de pico (medido nos runs reais), então agendamos às 06:23 UTC
-# (03:23 BRT), em minuto "quebrado" fora do pico — com o atraso típico, a
-# atualização chega entre ~04:50 e ~06:30 BRT.
+# Alvo: playlist pronta antes de ~05:00 de Brasília. O cron do GitHub para este
+# repositório vem atrasando 5-6h (medido em set/2026: agendado 03:23 BRT, rodou
+# 08:10-10:00 BRT). Por isso agendamos às 00:23 UTC (21:23 BRT da noite
+# anterior): com o atraso atual chega ~02:30-03:30; sem atraso, 21:23 — nos dois
+# casos está pronta ao acordar. Minuto "quebrado" pra fugir do pico.
 # Atualiza apenas as playlists marcadas com "daily: true" no config.
 on:
   schedule:
-    - cron: "23 6 * * *"
+    - cron: "23 0 * * *"
   workflow_dispatch:
 
 jobs:

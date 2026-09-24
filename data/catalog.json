@@ -1,0 +1,5714 @@
+{
+ "artists": {
+  "adoniran barbosa": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Adoniran Barbosa",
+   "tracks": [
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Trem Das Onze",
+     "uri": "spotify:track:2TI5GBkbrrFtZRM5v1heeb"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Saudosa Maloca",
+     "uri": "spotify:track:2lWmqGC70SKMebW1HgPGkA"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Iracema",
+     "uri": "spotify:track:6EGho5QIEfl2JsSKZAHC9n"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Samba do Arnesto",
+     "uri": "spotify:track:4rHVF5gLsupBfRVwY2SNRw"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP",
+      "0yFvXd36g5sNKYDi0Kkvl8"
+     ],
+     "artists": "Adoniran Barbosa, Elis Regina",
+     "name": "Tiro ao Álvaro",
+     "uri": "spotify:track:6769YQ7Lhb0OCbRTUr309y"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Saudosa Maloca",
+     "uri": "spotify:track:0tI5iMOH9l0724yqazuw5v"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Trem Das Onze",
+     "uri": "spotify:track:5JSNcb3MwTxkDH4mrYKnHG"
+    },
+    {
+     "artist_ids": [
+      "0yFvXd36g5sNKYDi0Kkvl8",
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Elis Regina, Adoniran Barbosa",
+     "name": "Tiro Ao Álvaro",
+     "uri": "spotify:track:0m3hiKjI2QGSKxvG732Ekq"
+    },
+    {
+     "artist_ids": [
+      "0yFvXd36g5sNKYDi0Kkvl8",
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Elis Regina, Adoniran Barbosa",
+     "name": "Tiro Ao Álvaro",
+     "uri": "spotify:track:7f31hpuzCNIU0rX5E6Dr3g"
+    },
+    {
+     "artist_ids": [
+      "0yFvXd36g5sNKYDi0Kkvl8",
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Elis Regina, Adoniran Barbosa",
+     "name": "Tiro Ao Álvaro",
+     "uri": "spotify:track:7fTTRW3YFXrTvDGONhKM1G"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Samba do Arnesto",
+     "uri": "spotify:track:0AiqtPuX3jjdNTkksVQBwT"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Prova De Carinho",
+     "uri": "spotify:track:4dvSYOKfLQHarVXnVSG5wL"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Apaga O Fogo Mané",
+     "uri": "spotify:track:2ED9HofscoyZul6V2YNxa4"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Bom Dia Tristeza",
+     "uri": "spotify:track:1dy4mBnewEPbskr6urBaR9"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP",
+      "1LOFaxDBvn3YuvarTldGAe"
+     ],
+     "artists": "Adoniran Barbosa, Gonzaguinha",
+     "name": "Despejo Na Favela",
+     "uri": "spotify:track:6GjihOgwZzhmClyCKktcKI"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "No Morro Da Casa Verde",
+     "uri": "spotify:track:6fbdjFg0LX6m4heXQkRwgf"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Saudosa Maloca",
+     "uri": "spotify:track:1BSOKVzoPqJh6z6YzvJtkJ"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Deus Te Abençõe",
+     "uri": "spotify:track:0FJTeDpmG0Kji0Y4p8ZFUk"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Abrigo De Vagabundo",
+     "uri": "spotify:track:7L4UpDj9CRPIJWkIRNG6q2"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Vide Verso Meu Endereço",
+     "uri": "spotify:track:2AEfrXJcJI0diqOjryWnai"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "As Mariposa",
+     "uri": "spotify:track:3YXA9Smn7CDYtJAG6ykVJc"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Praça da Sé",
+     "uri": "spotify:track:6qQhEDOORyJQ7wKrwfxAKh"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Envelhecer É Uma Arte",
+     "uri": "spotify:track:3ZRn7AcDgklkQcujexUQnj"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP",
+      "0tWtrXx0eO52k40JMojM0j",
+      "7hCs0WFpp3KGh2Sg5YGmfG"
+     ],
+     "artists": "Adoniran Barbosa, Clementina De Jesus, Carlinhos Vergueiro",
+     "name": "Torresmo À Milanesa",
+     "uri": "spotify:track:1UkoVMlJ5DZHziw74CqFuj"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Já Fui Uma Brasa",
+     "uri": "spotify:track:5Q0sgAvC9XnHEvEU7VWVK7"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Não Quero Entrar",
+     "uri": "spotify:track:3ZEkudtsTqHtZPdeuFz7Ha"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Trem Das Onze",
+     "uri": "spotify:track:1hRl61m1eC0tcN9v6ENgwW"
+    },
+    {
+     "artist_ids": [
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Adoniran Barbosa",
+     "name": "Apaga O Fogo Mané",
+     "uri": "spotify:track:7ECA0O99QsKEMRvsCzKSvp"
+    },
+    {
+     "artist_ids": [
+      "0yFvXd36g5sNKYDi0Kkvl8",
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Elis Regina, Adoniran Barbosa",
+     "name": "Tiro Ao Álvaro",
+     "uri": "spotify:track:2sLvYnCS3S8klPvZGXGic2"
+    },
+    {
+     "artist_ids": [
+      "0yFvXd36g5sNKYDi0Kkvl8",
+      "7vTlV3ajnMxl5l0ahupUeP"
+     ],
+     "artists": "Elis Regina, Adoniran Barbosa",
+     "name": "Tiro Ao Álvaro",
+     "uri": "spotify:track:6YZMEuxFCudiK6OHmJcGpf"
+    }
+   ]
+  },
+  "alcione": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Alcione",
+   "tracks": [
+    {
+     "artist_ids": [
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alcione",
+     "name": "A Loba",
+     "uri": "spotify:track:6TJJi1sNzwrUpjlXHXazlz"
+    },
+    {
+     "artist_ids": [
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alcione",
+     "name": "Você Me Vira A Cabeça (Me Tira Do Sério)",
+     "uri": "spotify:track:4RGRfGjhTxsCkLaHFF90Bq"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N",
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alexandre Pires, Alcione",
+     "name": "Depois do Prazer (feat. Alcione) - Ao Vivo",
+     "uri": "spotify:track:0KqOyeYJxUn2M8HUtQhYjf"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "3qZ2n5keOAat1SoF6bHwmb",
+      "4Mw0vJsDXTZF7kn7EsdNoD",
+      "34dfPo3Zi55yM6oV46q4y7",
+      "5rrmaoBXZ7Jcs4Qb77j0YA",
+      "5GmHrvfki94D20jsW5PRTi",
+      "096an3uS6ZaK2XySae6SqP",
+      "1C8UBSZs5rOPfxuxTMS6OI",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Sambabook, Zeca Pagodinho, Dudu Nobre, Mumuzinho, Djavan, Sombrinha, Arlindo Cruz, Maria Rita, Péricles, Alcione",
+     "name": "Camarão Que Dorme a Onda Leva",
+     "uri": "spotify:track:60M76S6OMP5vnqZW7D4Nad"
+    },
+    {
+     "artist_ids": [
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alcione",
+     "name": "Meu ébano",
+     "uri": "spotify:track:0nmEuK27DMGbYmSdh6NtKB"
+    },
+    {
+     "artist_ids": [
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alcione",
+     "name": "Sufoco",
+     "uri": "spotify:track:3WaSohmE1Ahd3viZ7nfen2"
+    },
+    {
+     "artist_ids": [
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alcione",
+     "name": "Não Deixe O Samba Morrer",
+     "uri": "spotify:track:5iq4NDi4fznJJRLL1rXNE4"
+    },
+    {
+     "artist_ids": [
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alcione",
+     "name": "Faz uma loucura por mim",
+     "uri": "spotify:track:5o3xxkrCQI0Df5GOhXHPNk"
+    },
+    {
+     "artist_ids": [
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alcione",
+     "name": "Estranha loucura - Ao vivo",
+     "uri": "spotify:track:35wwcw8U2AaSqghkG21Wjx"
+    },
+    {
+     "artist_ids": [
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alcione",
+     "name": "Meu Ébano",
+     "uri": "spotify:track:5qXf6pUwHgeRqO3lIpvJwG"
+    },
+    {
+     "artist_ids": [
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alcione",
+     "name": "Meu Vício é Você",
+     "uri": "spotify:track:6ZlKnQhzFTEm27OUnXxeeh"
+    },
+    {
+     "artist_ids": [
+      "7rXMvXRnWHaSwnVvPeUUfw",
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Gloria Groove, Alcione",
+     "name": "A Loba - Ao Vivo",
+     "uri": "spotify:track:5SSOaOh6W2vjiRVfPKSqoS"
+    },
+    {
+     "artist_ids": [
+      "3CDoRporvSjdzTrm99a3gi",
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "LUDMILLA, Alcione",
+     "name": "Faz uma Loucura por mim / Você me vira a cabeça - Ao Vivo",
+     "uri": "spotify:track:2hy9PyCleGC4HRe5MsPwfF"
+    }
+   ]
+  },
+  "alexandre pires": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Alexandre Pires",
+   "tracks": [
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N",
+      "7yQrcdkLdBAkV7yY9fF2Hw"
+     ],
+     "artists": "Alexandre Pires, Grupo Revelação",
+     "name": "Delírios de Amor (feat. Grupo Revelação) - Ao Vivo",
+     "uri": "spotify:track:6gHmsUaIhh7cCRBfe4hhqI"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Tira Ela de Mim (Quitame Ese Hombre) - Ao Vivo",
+     "uri": "spotify:track:5TPei9Z7hYSCXhCUFx7V8R"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N",
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Alexandre Pires, Alcione",
+     "name": "Depois do Prazer (feat. Alcione) - Ao Vivo",
+     "uri": "spotify:track:0KqOyeYJxUn2M8HUtQhYjf"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Só por um Momento - Ao Vivo",
+     "uri": "spotify:track:3mYN35wSMxc0jBp4Qd6mSl"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Dessa Vez Eu Me Rendo - Ao Vivo",
+     "uri": "spotify:track:7o8mnlsmeJtCtOet7O0r0b"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Cigano - Ao Vivo",
+     "uri": "spotify:track:1a0mRgS2HLKEPkznxi84sg"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Domingo - Ao Vivo",
+     "uri": "spotify:track:5LBMUgKmkheyVJa1Zn6Qoz"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Sai da Minha Aba (Bicão) - Ao Vivo",
+     "uri": "spotify:track:5ItzCHDPJD6t0R6Jj7DIY2"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Eva Meu Amor (Everytime You Go Away) - Ao Vivo",
+     "uri": "spotify:track:0ZEP84JczYVsAExYYkQqRm"
+    },
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo",
+      "2Ww1QbvRHPMqWCrk8oFz8m"
+     ],
+     "artists": "Seu Jorge, Alexandre Pires",
+     "name": "Eu Sou o Samba - Ao Vivo",
+     "uri": "spotify:track:2yyPLEChnKh4MdCMwiyMNx"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Essa Tal Liberdade - Ao Vivo",
+     "uri": "spotify:track:2QDSAsBeneqDnECPXyWAy7"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Eu Menti - Ao Vivo",
+     "uri": "spotify:track:20oJRGD2UinF4AHzIg1FSH"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Quando é Amor / Amor Verdadeiro / Minha Metade (Take Me Now) - Ao Vivo",
+     "uri": "spotify:track:4TjaDr4QlsfNYiRu3agmry"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N"
+     ],
+     "artists": "Alexandre Pires",
+     "name": "Barulho do Foguete - Ao Vivo",
+     "uri": "spotify:track:6jNCqB68h5pKgOTUDcTZxQ"
+    },
+    {
+     "artist_ids": [
+      "0Rrl4hJQjRAbGtiEwAqS5N",
+      "7KVJCU4z5L4EUHILL8aMxR"
+     ],
+     "artists": "Alexandre Pires, Léo Santana",
+     "name": "Botecoterapia - Ao Vivo",
+     "uri": "spotify:track:2z5p7crXk8yuzXrj7DN1uu"
+    }
+   ]
+  },
+  "anavitória": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "ANAVITÓRIA",
+   "tracks": [
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe",
+      "4FGcERJWMg8ENOLixwF71U"
+     ],
+     "artists": "ANAVITÓRIA, Vitor Kley",
+     "name": "Pupila",
+     "uri": "spotify:track:7Gk5OrMYaMRtT2JmgJVAfk"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe",
+      "4YLBdrR3DVSMncm785NH6C"
+     ],
+     "artists": "ANAVITÓRIA, Lenine",
+     "name": "Lisboa",
+     "uri": "spotify:track:2o2xhyri4aJUtgMGkf5P0J"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe"
+     ],
+     "artists": "ANAVITÓRIA",
+     "name": "Ai, Amor",
+     "uri": "spotify:track:3bR8wBqLky6b61ROJlaBEF"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe",
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "ANAVITÓRIA, Matheus & Kauan",
+     "name": "Fica",
+     "uri": "spotify:track:3KK3nLgrRdycpnYxPDVfMV"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe"
+     ],
+     "artists": "ANAVITÓRIA",
+     "name": "Tenta acreditar",
+     "uri": "spotify:track:20hgA0b2k5RUCgORJmu92T"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe",
+      "4iWkwAVzssjb8XgxdoOL6M"
+     ],
+     "artists": "ANAVITÓRIA, TIAGO IORC",
+     "name": "Trevo (Tu)",
+     "uri": "spotify:track:01Z18LIRXx7QHzWp2QpDaE"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe"
+     ],
+     "artists": "ANAVITÓRIA",
+     "name": "Porque Eu Te Amo",
+     "uri": "spotify:track:3idU6lZVKD6hvGjnpSHde8"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe"
+     ],
+     "artists": "ANAVITÓRIA",
+     "name": "Cor De Marte",
+     "uri": "spotify:track:3kNT9msV6JCFz6NnmDcyp2"
+    },
+    {
+     "artist_ids": [
+      "7n1XMwvxPf10t4OX6h6Ufy",
+      "1sPg5EHuQXTMElpZ4iUgXe"
+     ],
+     "artists": "Nando Reis, ANAVITÓRIA",
+     "name": "N",
+     "uri": "spotify:track:6iIcwVfeRZx7eeLR9WtGO1"
+    },
+    {
+     "artist_ids": [
+      "0slVGXBggrLglTLNKbeEyW",
+      "1sPg5EHuQXTMElpZ4iUgXe"
+     ],
+     "artists": "Rubel, ANAVITÓRIA",
+     "name": "Partilhar",
+     "uri": "spotify:track:5wcZuhzXFf7At0N0RmVV6b"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe",
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "ANAVITÓRIA, Jorge & Mateus",
+     "name": "Geleira do tempo",
+     "uri": "spotify:track:4ziqkaBXfo4GrmuF0gsNyi"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe",
+      "7dnT2FUXhjirperXaH22IJ"
+     ],
+     "artists": "ANAVITÓRIA, Rita Lee",
+     "name": "Amarelo, azul e branco",
+     "uri": "spotify:track:2LOIoeI16A8jjKubPKoCSa"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe"
+     ],
+     "artists": "ANAVITÓRIA",
+     "name": "Singular",
+     "uri": "spotify:track:1BvJaROX5ju5Ua0A10pWqX"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe"
+     ],
+     "artists": "ANAVITÓRIA",
+     "name": "Dói Sem Tanto",
+     "uri": "spotify:track:5IAx5ePf9QztrT7MqdCyDT"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe"
+     ],
+     "artists": "ANAVITÓRIA",
+     "name": "Água-viva",
+     "uri": "spotify:track:48MtQ4Ys6eqpsw0I5cyXNt"
+    }
+   ]
+  },
+  "arlindinho": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Arlindinho",
+   "tracks": [
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Arlindinho, Xande de Pilares",
+     "name": "Nos Braços Da Batucada - Ao Vivo",
+     "uri": "spotify:track:5oeisHZFbqPrLlbOxW9vCC"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindinho",
+     "name": "A Sós",
+     "uri": "spotify:track:5SOv7Xd1KwJsNRw3ieKqzv"
+    },
+    {
+     "artist_ids": [
+      "096an3uS6ZaK2XySae6SqP",
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindo Cruz, Arlindinho",
+     "name": "A Sós",
+     "uri": "spotify:track:1CHzHWuBQjMsjpOThQkb0u"
+    },
+    {
+     "artist_ids": [
+      "7htTHUkgfSZeRhK6pqMLHB",
+      "2eN5C7mT6TLPTxdIG9DiRP",
+      "5DM4yO0oJhBI392KIInTu6",
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Prettos, Magnu Sousá, Maurilio de Oliveira, Arlindinho",
+     "name": "Agora viu que perdeu e chora - Dor de amor - O show tem que continuar - Ao Vivo",
+     "uri": "spotify:track:5ftZENY4T0v7x1hKSM5nTz"
+    },
+    {
+     "artist_ids": [
+      "096an3uS6ZaK2XySae6SqP",
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindo Cruz, Arlindinho",
+     "name": "Iansã / Oyá",
+     "uri": "spotify:track:4bD5KtXMzS0pRPlaQ3GDCH"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindinho",
+     "name": "Trilha Do Amor - Ao Vivo",
+     "uri": "spotify:track:6QUft7Oh9vc1LbNddKiyjA"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindinho",
+     "name": "Além Do Meu Querer / O Que É O Amor - Ao Vivo",
+     "uri": "spotify:track:7qpvluWWxI3n1qpvU0sgZX"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "1uN4dou3TaR8hMTIqAlrc6"
+     ],
+     "artists": "Arlindinho, Marquinhos Sensação",
+     "name": "Frasco Pequeno / Um Lindo Sonho / Onde Está",
+     "uri": "spotify:track:34gAU40KDlY1Vm8BiDrXlb"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Arlindinho, Xande de Pilares",
+     "name": "Fora De Ocasião / Novo Endereço - Ao Vivo",
+     "uri": "spotify:track:48KZomxLNYEtYcvTJ7KaAh"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindinho",
+     "name": "Onde A Gente Se Perdeu - Ao Vivo",
+     "uri": "spotify:track:79A7dmGO9fjAsjmP6fMS9c"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Arlindinho, Xande de Pilares",
+     "name": "Trilha Do Amor / Fogo De Saudade - Ao Vivo",
+     "uri": "spotify:track:6FAiNynlfq8zQVN7RS0sLu"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindinho",
+     "name": "Agora Viu Que Perdeu E Chora - Ao Vivo",
+     "uri": "spotify:track:2nE0AplRYB2HUEefZgu7K6"
+    },
+    {
+     "artist_ids": [
+      "7dzq55YG3wjViqexDwiycQ",
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Ivete Sangalo, Arlindinho",
+     "name": "O Bem / Agora Viu Que Me Perdeu E Chora - Ao Vivo",
+     "uri": "spotify:track:2ZqZtBnQCeZBm0SQKNoTQ8"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "56TkPi7rpmU8jTpkcK7FY3",
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Sambabook, Beth Carvalho, Arlindinho",
+     "name": "Sem Ataque, Sem Defesa",
+     "uri": "spotify:track:00rmzNBMbxVlePVr8nHYS3"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindinho",
+     "name": "Nos Braços da Batucada - Ao Vivo",
+     "uri": "spotify:track:4MD9E6mSca3JXJFzyXI8xx"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindinho",
+     "name": "Além do Meu Querer / O Que é o Amor/ Chegamos ao Fim",
+     "uri": "spotify:track:4QkDZZEmjnPrfHtW8e2YkF"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Arlindinho, Xande de Pilares",
+     "name": "Odara / Sina - Ao Vivo",
+     "uri": "spotify:track:4pXnsOhEvbPdY7dwrmJp7G"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Arlindinho, Xande de Pilares",
+     "name": "Talvez / Só Depois - Ao Vivo",
+     "uri": "spotify:track:2PSbgpLmFkVyR7QOCVkLAS"
+    },
+    {
+     "artist_ids": [
+      "7htTHUkgfSZeRhK6pqMLHB",
+      "2eN5C7mT6TLPTxdIG9DiRP",
+      "5DM4yO0oJhBI392KIInTu6",
+      "2d9LRvQJnAXRijqIJDDs2K",
+      "1C8UBSZs5rOPfxuxTMS6OI",
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "1zZcaxPgRLMHbHmas2c8hR",
+      "1VhCv2vQBYPF9gCtn04fiG"
+     ],
+     "artists": "Prettos, Magnu Sousá, Maurilio de Oliveira, Emicida, Maria Rita, Arlindinho, Salgadinho, Fred Camacho",
+     "name": "Batucada dos Nossos Tantãs - Vou Festejar - Ao Vivo",
+     "uri": "spotify:track:069ceJiGEkMnK31CYnL08v"
+    },
+    {
+     "artist_ids": [
+      "1rn3KQS1oYAHFdQbL5APYq"
+     ],
+     "artists": "Arlindinho",
+     "name": "Amor A Distancia / Chegamos Ao Fim - Ao Vivo",
+     "uri": "spotify:track:51mjs8UqagfegtUJgQc5GQ"
+    },
+    {
+     "artist_ids": [
+      "50WgAZQkWLb1jysnVRsZBJ",
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "6jwvr6lqkKaz8VlMgOJ9bt",
+      "4QXf68owEt4pbGAUeDaIfp",
+      "043uVElzGdVBp2bzZV0PXY"
+     ],
+     "artists": "FM O Dia, Arlindinho, Bernini, Caju Pra Baixo, Nego Damoé",
+     "name": "Preciso Desse Mel - Ao Vivo",
+     "uri": "spotify:track:68Hr0jWrFonP64PPra8rJg"
+    },
+    {
+     "artist_ids": [
+      "50WgAZQkWLb1jysnVRsZBJ",
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "6jwvr6lqkKaz8VlMgOJ9bt",
+      "4QXf68owEt4pbGAUeDaIfp",
+      "043uVElzGdVBp2bzZV0PXY"
+     ],
+     "artists": "FM O Dia, Arlindinho, Bernini, Caju Pra Baixo, Nego Damoé",
+     "name": "Além do Meu Querer - Ao Vivo",
+     "uri": "spotify:track:4yVZeO7kwKS1AwA7SNpi7n"
+    },
+    {
+     "artist_ids": [
+      "50WgAZQkWLb1jysnVRsZBJ",
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "6jwvr6lqkKaz8VlMgOJ9bt",
+      "4QXf68owEt4pbGAUeDaIfp",
+      "043uVElzGdVBp2bzZV0PXY"
+     ],
+     "artists": "FM O Dia, Arlindinho, Bernini, Caju Pra Baixo, Nego Damoé",
+     "name": "Sentimento Nu - Ao Vivo",
+     "uri": "spotify:track:4WRw8nxyGQJJIJZTFajgyw"
+    },
+    {
+     "artist_ids": [
+      "50WgAZQkWLb1jysnVRsZBJ",
+      "1rn3KQS1oYAHFdQbL5APYq",
+      "6jwvr6lqkKaz8VlMgOJ9bt",
+      "4QXf68owEt4pbGAUeDaIfp",
+      "043uVElzGdVBp2bzZV0PXY"
+     ],
+     "artists": "FM O Dia, Arlindinho, Bernini, Caju Pra Baixo, Nego Damoé",
+     "name": "Mulher da Minha Vida - Ao Vivo",
+     "uri": "spotify:track:5XLhnQFpafkdeRAGtncxpr"
+    }
+   ]
+  },
+  "armandinho": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Armandinho",
+   "tracks": [
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Outra Vida",
+     "uri": "spotify:track:1tqNjCuAIoG1kyBfs8DfZE"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Outra Noite Que Se Vai",
+     "uri": "spotify:track:57wAk7wxxgeadU1gkHlChd"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Sol Loiro",
+     "uri": "spotify:track:6vKuj6jriwIdnuAjR7UAmD"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Analua",
+     "uri": "spotify:track:1gJJghkaqrRTk9WwmyEwyd"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Lua Cheia",
+     "uri": "spotify:track:0x1i0F777Y9cSiJJgzxlHQ"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Casinha",
+     "uri": "spotify:track:5R2m3STpw8QAllKI8OuLR4"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Desenho De Deus",
+     "uri": "spotify:track:4G17iavwP0xVguOKlwzL0f"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Pescador",
+     "uri": "spotify:track:5yQW46XPWdGqkX2PyMegLD"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Casa Do Sol",
+     "uri": "spotify:track:00AMkgbeTKRbkfsZz3iBq9"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Rosa Norte",
+     "uri": "spotify:track:4guiihOYsq8ry9oY2Fj10X"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Reggae Das Tramanda",
+     "uri": "spotify:track:55PZTNK5UmUqWktzQtU1uI"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Amor Vem Cá",
+     "uri": "spotify:track:5ZlQ2UarCS3c9yoVlgyWrn"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Ainda Gosto de Você",
+     "uri": "spotify:track:6iyMiQ8WIi5RCD9FsjUiLV"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Outra Vida - Ao Vivo",
+     "uri": "spotify:track:0RgMbvZ5BJZeZeq62z6RhU"
+    },
+    {
+     "artist_ids": [
+      "3h7RaVXBvdSNa7LXQtVYqH"
+     ],
+     "artists": "Armandinho",
+     "name": "Eu Juro",
+     "uri": "spotify:track:6Ws5oN1UkpEV66Yw2pQMpC"
+    }
+   ]
+  },
+  "belo": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Belo",
+   "tracks": [
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Reinventar / Pra Ver o Sol Brilhar - Ao Vivo",
+     "uri": "spotify:track:67hKgDUbY3ktUK241L94d7"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Reinventar",
+     "uri": "spotify:track:0NMVRsqVoYEa7g6VZWcJg7"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "3CDoRporvSjdzTrm99a3gi",
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Sorriso Maroto, LUDMILLA, Belo",
+     "name": "Ainda Gosto de Você / Já Era - Ao Vivo",
+     "uri": "spotify:track:06WkQibI8OhOLjDxIRKu5B"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Perfume - Ao Vivo",
+     "uri": "spotify:track:3nc9vQ8vdLdXTMaigOKWrk"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Pura Adrenalina - Ao Vivo",
+     "uri": "spotify:track:5dHoAr4xe1XBNeYhYdKI3p"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Desse Jeito é Ruim pra Mim - Ao Vivo",
+     "uri": "spotify:track:0LCmcvoMVhUpeGSuHQVpnm"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Pra Ver O Sol Brilhar (Ao Vivo)",
+     "uri": "spotify:track:606BZSenGHNVQ9UqXMSZbP"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Farol Das Estrelas / Refém Do Coração / Tempo De Aprender - Ao Vivo",
+     "uri": "spotify:track:7twV4lkBhVToFi4oRCIYe2"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Farol Das Estrelas / Refém Do Coração / Tempo De Aprender - Ao Vivo",
+     "uri": "spotify:track:01eYsYkb7mbweBBEgLMSp5"
+    },
+    {
+     "artist_ids": [
+      "5xYkM2vMrE23taj6tl7qkm",
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Pk, Belo",
+     "name": "Indomável (Participação especial de Belo)",
+     "uri": "spotify:track:4YbZBChhX5SkLhNJcvvhuD"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Pura Adrenalina - Ao Vivo",
+     "uri": "spotify:track:43VDWEYXNozZ5VSfKS8Jgc"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Perfume / Intriga da Oposição / Desse Jeito é Ruim pra Mim - Ao Vivo",
+     "uri": "spotify:track:3FfkIbxSB1hFb70GaNwaWA"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Direito de Te Amar",
+     "uri": "spotify:track:5nnKdN5H0YcmtG1DiH1NCH"
+    },
+    {
+     "artist_ids": [
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Belo",
+     "name": "Defeito Meu",
+     "uri": "spotify:track:2Ty9lmWbd1F48qbQ2leR5n"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "7hLjkyL9Pz9xtQNahzJZki",
+      "19u9kLKs9e7GebW6GmhtVm"
+     ],
+     "artists": "Sorriso Maroto, Belo, Renan Oliveira",
+     "name": "Amar Você - Ao Vivo",
+     "uri": "spotify:track:5MTk0GTkEuxHKQTrI7U59j"
+    }
+   ]
+  },
+  "bruno & barretto": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Bruno & Barretto",
+   "tracks": [
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Bruno & Barretto",
+     "name": "Farra, Pinga e Foguete",
+     "uri": "spotify:track:50BLTf1U0LHzxYc4M6clwC"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Bruno & Barretto",
+     "name": "Texana 37",
+     "uri": "spotify:track:6D0SGjUVUmu8Fp2y1QsFIK"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS",
+      "5IREutgMnyQqRcc8r15gWk"
+     ],
+     "artists": "Bruno & Barretto, CountryBeat",
+     "name": "Gerente da Sicredi",
+     "uri": "spotify:track:1daiWH5HMrDH9I8r3LIhqb"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS",
+      "06EMbW4WO6U4fGNnKjeuI5",
+      "3la3vRfIuDMsydpPfUBryR"
+     ],
+     "artists": "Bruno & Barretto, Latino, DJ Ari SL",
+     "name": "Me Leva Pros Rodeios",
+     "uri": "spotify:track:22o6N5xx5NStxpZqR7mZG9"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Bruno & Barretto",
+     "name": "Texana 37",
+     "uri": "spotify:track:72KzypkTLmEyOz3xWuAurD"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS",
+      "6WRpFyCGbRCFl3LGARktzd"
+     ],
+     "artists": "Bruno & Barretto, Dj Kevin",
+     "name": "Lá Se Foi O Boi Com A Corda",
+     "uri": "spotify:track:5e1kjkChbD6ltwaAjStADh"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS",
+      "2f88CSOFEgN0ATmxgXaCTb"
+     ],
+     "artists": "Bruno & Barretto, Marco Brasil Filho",
+     "name": "Bruto Memo",
+     "uri": "spotify:track:6yONKq2REQrijkNS6E5GhT"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Bruno & Barretto",
+     "name": "40 Graus de Amor - Ao Vivo",
+     "uri": "spotify:track:2cWJmq9RNHy9T4xftqNZ0P"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Bruno & Barretto",
+     "name": "Sextou Bonito",
+     "uri": "spotify:track:5cENEytG7rvG3dK7NayEo0"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Bruno & Barretto",
+     "name": "Os Cuiudo",
+     "uri": "spotify:track:6EQUtJyljIVHLwZBlyvDAU"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Bruno & Barretto",
+     "name": "Nega",
+     "uri": "spotify:track:4MyN4jApg11JTCSzCa2YVO"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Bruno & Barretto",
+     "name": "Amor De Cana - Ao Vivo",
+     "uri": "spotify:track:0fZfE8LEbsQT8eLMxqJBRF"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Bruno & Barretto",
+     "name": "Lovenejo - Live",
+     "uri": "spotify:track:5mGLuvOu3XY68bP3xRi1T9"
+    },
+    {
+     "artist_ids": [
+      "70x9rYb58QCNNeNxuO3StS",
+      "6WRpFyCGbRCFl3LGARktzd"
+     ],
+     "artists": "Bruno & Barretto, Dj Kevin",
+     "name": "Nesse Verão",
+     "uri": "spotify:track:6mjAHbrbkeYAJTE4B4kDsO"
+    },
+    {
+     "artist_ids": [
+      "1uhE4e8omc2wKqIK88bqH4",
+      "70x9rYb58QCNNeNxuO3StS"
+     ],
+     "artists": "Antony & Gabriel, Bruno & Barretto",
+     "name": "Desandeiro",
+     "uri": "spotify:track:6nF518SPVInJZfMwWQe4qy"
+    }
+   ]
+  },
+  "casuarina": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Casuarina",
+   "tracks": [
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Disritmia",
+     "uri": "spotify:track:5kunnyRXn1uwU3h1H2MYpI"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Canto de Ossanha",
+     "uri": "spotify:track:6Q4no26EaF80ttkI9HEWME"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "É isso aí - Isso é problema dela",
+     "uri": "spotify:track:7CbogWJsD0zfxPXlIycfuH"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b",
+      "4YLBdrR3DVSMncm785NH6C"
+     ],
+     "artists": "Casuarina, Lenine",
+     "name": "Eu Quero é Botar Meu Bloco na Rua - Ao Vivo",
+     "uri": "spotify:track:3LLm0oN6Ro9Lrmty6Wr0s9"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Ponto de Vista",
+     "uri": "spotify:track:2o95xNRQni6A28MD2PUcFr"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b",
+      "50sWvKw2zsmX9lmcPWmJaT"
+     ],
+     "artists": "Casuarina, Paulinho Moska",
+     "name": "Cabelos Brancos",
+     "uri": "spotify:track:4AxQF7F3zKsxO8nhTYiD6Z"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Retalhos De Cetim - Live From Brazil/2008",
+     "uri": "spotify:track:2GGZ0PpUX0BA936Ef0EPQX"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Minha filosofia",
+     "uri": "spotify:track:2H22I5b5ZWbDEWACE9setp"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b",
+      "7hcNvhSP25PN38RaktRYpC"
+     ],
+     "artists": "Casuarina, Moinho",
+     "name": "Rosa Morena",
+     "uri": "spotify:track:4UzgLMoTKm0woWLof31Jf3"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Swing de Campo Grande",
+     "uri": "spotify:track:0z31CUJwk1u8ICIPvsD9Jy"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b",
+      "3WVjDclrbHsxjxhiOqHdnw"
+     ],
+     "artists": "Casuarina, Frejat",
+     "name": "Já fui uma brasa",
+     "uri": "spotify:track:1oo38XGzRNl41rH1ZCRciU"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Certidão",
+     "uri": "spotify:track:0jrCTDFXQVEz6peMprg3tp"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b",
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Casuarina, Péricles",
+     "name": "Coração Feliz",
+     "uri": "spotify:track:6X8qaprmjvc1DQCqlOLGQ6"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Disritmia - Ao Vivo",
+     "uri": "spotify:track:2RXw22BXSDbRNmyOC4hGjB"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Murmúrio",
+     "uri": "spotify:track:1X4ZCUeIJqffQ59as5QZhD"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b",
+      "0CA7Kj6QiDs62kvbZgpYzE"
+     ],
+     "artists": "Casuarina, Wilson Moreira",
+     "name": "Senhora Liberdade",
+     "uri": "spotify:track:0aKYXgaKmy1HMRqy2CZsey"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Minhas Madrugadas / Pecado Capital",
+     "uri": "spotify:track:2COJ5OBMkgJ2pLSnxYvJaL"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "O dia se zangou",
+     "uri": "spotify:track:5Lu8KXjjJdGBgTeNh95jyi"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Vaso ruim",
+     "uri": "spotify:track:7zcVHgzYSarButAP2ABamx"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b"
+     ],
+     "artists": "Casuarina",
+     "name": "Você Já Foi à Bahia",
+     "uri": "spotify:track:3JTaPaXRq0rO1Mj0abrrr0"
+    },
+    {
+     "artist_ids": [
+      "0Z7qVrRll0xvdJ68DX0O0b",
+      "1Rss3uFn05QgrraQCNvfRR"
+     ],
+     "artists": "Casuarina, Roberto Silva",
+     "name": "Jornal da Morte - Uma edição Extra",
+     "uri": "spotify:track:2ehOp0KBkIV3X7FyJKwH3X"
+    }
+   ]
+  },
+  "chay suede": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Chay Suede",
+   "tracks": [
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Minha Fama De Mau",
+     "uri": "spotify:track:2UPFQMaONjH3m89lkLABq7"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Festa De Arromba",
+     "uri": "spotify:track:5s7hIES3QmAZE8rhb5cTSW"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr",
+      "4GiLjWLDEAfW8Cy7mmYnbp"
+     ],
+     "artists": "Chay Suede, Malu Rodrigues",
+     "name": "Devolva-me",
+     "uri": "spotify:track:6OOAvqRAPGPEwiQOwMc0nH"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Gatinha Manhosa",
+     "uri": "spotify:track:01ofb1BNbQV66YpH98Bk4x"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Vem Quente Que Eu Estou Fervendo",
+     "uri": "spotify:track:4jgEEhTJiuF5Jm9PcAmtO0"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Eu Sou Terrível",
+     "uri": "spotify:track:7xZWykSdLS9glSKx66CGHX"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Papel",
+     "uri": "spotify:track:1cyMf9eHvQVm6sbhfMo7an"
+    },
+    {
+     "artist_ids": [
+      "6xF3XdxG7VHRmQmTJxRqX8",
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Manu Gavassi, Chay Suede",
+     "name": "Segredo",
+     "uri": "spotify:track:3XpltIwfhnYEG63dBeaK3d"
+    },
+    {
+     "artist_ids": [
+      "6xF3XdxG7VHRmQmTJxRqX8",
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Manu Gavassi, Chay Suede",
+     "name": "Segredo",
+     "uri": "spotify:track:2pGm8zc49C3TkewGD0ZClt"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Lobo Mau",
+     "uri": "spotify:track:2JvY6MtUEnzyU9xrDw1biP"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Sentado À Beira Do Caminho",
+     "uri": "spotify:track:2is1yyh4NWQUzSDlEFZgUj"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Pra Sempre",
+     "uri": "spotify:track:70aw66QgQEcPcM6mqqAKx8"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Papel",
+     "uri": "spotify:track:2Qt9QHD5lY7L1lXV6matGt"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Ainda Que Você Me Esqueça",
+     "uri": "spotify:track:79wBgk9x9vmPFQ302D9oqJ"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Mais Perto",
+     "uri": "spotify:track:3qvTDzDoRP0JvuFqRWHg3K"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "O Canto Da Sereia",
+     "uri": "spotify:track:455PZjvMH69I1sRRV8xon6"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Verso Acelerado",
+     "uri": "spotify:track:1Ioo4BuDxjUNJEcfpt0RDV"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Grita Sem Ter Medo",
+     "uri": "spotify:track:7qcih6duRHxrKwRIUyKFLD"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Brega",
+     "uri": "spotify:track:32Oxbx8OLOYBSaXMGKz4np"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Papel - Versão Alternativa",
+     "uri": "spotify:track:3NhsTZyj1SfOoCdCrG9b4G"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Muito Quente",
+     "uri": "spotify:track:7DPToEsYR3TWubTKjNxzb5"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Essa Canção (Os Dias Passam)",
+     "uri": "spotify:track:0Kxa4hLWfyO0YYFwZfU0Vg"
+    },
+    {
+     "artist_ids": [
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Chay Suede",
+     "name": "Vez Do Avesso",
+     "uri": "spotify:track:1fLhMavem88a9zW5GUoFtr"
+    },
+    {
+     "artist_ids": [
+      "3SZwn7FfVTwWXZpbCqwZgQ",
+      "73bgVhR9U7El1BplWfUngr"
+     ],
+     "artists": "Rayne, Chay Suede",
+     "name": "Pararura",
+     "uri": "spotify:track:3jtrsVOdNi4QmqkKoXjB64"
+    },
+    {
+     "artist_ids": [
+      "46P1tvf6evAk5wk2Rg3jOq",
+      "73bgVhR9U7El1BplWfUngr",
+      "5wsMyKudSczm8PbWhkb0FW"
+     ],
+     "artists": "Luiza Possi, Chay Suede, Orquestra",
+     "name": "Fantástico",
+     "uri": "spotify:track:0AefgmJ7eq2eRWOvTs6f1K"
+    }
+   ]
+  },
+  "chico rey": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Chico Rey",
+   "tracks": [
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Volta Pra Mim - Ao Vivo",
+     "uri": "spotify:track:6GglEvEfa8bRE74QS8XQuF"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Um Degrau Na Escada",
+     "uri": "spotify:track:5Pn6spaFtc1kEk2HI86SaW"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Liguei Pra Dizer Que Te Amo - Acústico",
+     "uri": "spotify:track:0qGIbwC4iIpu9CAutV4J63"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Canarinho Prisioneiro - Ao Vivo",
+     "uri": "spotify:track:5lPQqltp3XtnudcdQWAnzG"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Um Degrau Na Escada",
+     "uri": "spotify:track:0ySycbfovxwBkAZW20xZoq"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Você Não Sabe Amar - Ao Vivo",
+     "uri": "spotify:track:62qP3AiT3STKFCTXr9ueFc"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Leão Domado - Ao Vivo",
+     "uri": "spotify:track:5tmG1iSaOTW40qWBJS9chX"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Tá Com Raiva de Mim - Ao Vivo",
+     "uri": "spotify:track:3KtFWbEXDBiNK1RZH69y72"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm",
+      "0padwH2BcP3olMtXhfW24N"
+     ],
+     "artists": "Chico Rey & Paraná, Cezar & Paulinho",
+     "name": "Amor Rebelde - Ao Vivo",
+     "uri": "spotify:track:7pyF5eghFou5RDlFPOAuJk"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Minha Serenata - Ao Vivo",
+     "uri": "spotify:track:1UpWS8c4YB7cOGQ5nO7vWk"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Um Degrau Na Escada - Ao Vivo",
+     "uri": "spotify:track:6h5pAbfAeKdLcJ1RnFOViF"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm",
+      "4buBFwMpWBNjnlQ6Xn9uiQ"
+     ],
+     "artists": "Chico Rey & Paraná, Leonardo",
+     "name": "Alma Transparente - Acústico",
+     "uri": "spotify:track:1WINIXg6qGGtWoTZFvbQBN"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Você Não Sabe Amar (acústico) - Ao Vivo",
+     "uri": "spotify:track:46i6quzuUixPybXIUQDoui"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm",
+      "55Wn8tf8dBvfl1HRsD7Kze"
+     ],
+     "artists": "Chico Rey & Paraná, Continental",
+     "name": "Leão domado",
+     "uri": "spotify:track:1FpcPUulc6GPWAB7oMufkg"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Alma Transparente - Ao Vivo",
+     "uri": "spotify:track:0GkdRC4r9yqBwhngvyZs7i"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Quem Será Seu Outro Amor - Acústico",
+     "uri": "spotify:track:4yUMqAhv8RxjpSZVYljmki"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm",
+      "2OUgs5INWK2UEvZ6amWiJr"
+     ],
+     "artists": "Chico Rey & Paraná, Eduardo Costa",
+     "name": "Tranque a Porta e Me Beija - Ao Vivo",
+     "uri": "spotify:track:2UkzVNSm1lVYv5sTwp720l"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Não São Palavras Lindas",
+     "uri": "spotify:track:6Pl5z9vCXy7A8gmOIoJipr"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Pra Desbotar a Saudade (acústico) - Ao Vivo",
+     "uri": "spotify:track:51ME5xz9lsJGuhR6n3BRcU"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm",
+      "1wT33JDD3YLC0fqFnsWo9F"
+     ],
+     "artists": "Chico Rey & Paraná, ZeZé Di Camargo",
+     "name": "Saudade de Nós Dois (acústico) - Ao Vivo",
+     "uri": "spotify:track:5lm5qPAuHK5tK3pb6eSrWv"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Telefone Mais - Acústico",
+     "uri": "spotify:track:1rgeAumK0fR8PqXoaemLw2"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm",
+      "55Wn8tf8dBvfl1HRsD7Kze"
+     ],
+     "artists": "Chico Rey & Paraná, Continental",
+     "name": "Canarinho prisioneiro",
+     "uri": "spotify:track:3s2uIAEpMR58OVNwc37zAt"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Amor Rebelde - Acústico",
+     "uri": "spotify:track:1ieOjCnBsWj2WDC29U48Yu"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Você não sabe amar",
+     "uri": "spotify:track:2ryEQ6pIddCptkD8p8o2Iw"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Tá Com Raiva De Mim",
+     "uri": "spotify:track:0mqDp9ynjlH9pA6ukp0n7z"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "De Lá Pra Cá",
+     "uri": "spotify:track:1k0UWU1CQH3CkmZKJgq1qR"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm",
+      "7zIRO89G0FBAQtGMHO1Wa0"
+     ],
+     "artists": "Chico Rey & Paraná, João Bosco & Vinícius",
+     "name": "De Lá Pra Cá (acústico) - Ao Vivo",
+     "uri": "spotify:track:1utwE8FIdWl1WBAQpDNFFw"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "De Lá Pra Cá - Ao Vivo",
+     "uri": "spotify:track:3YBvzHjvY4iMwOeuC3KpIs"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Senhorita (acústico) - Ao Vivo",
+     "uri": "spotify:track:5fNGYW2ZoKfY9Pugc5kfut"
+    },
+    {
+     "artist_ids": [
+      "1UIlMGFBSIAFckml8NylWm"
+     ],
+     "artists": "Chico Rey & Paraná",
+     "name": "Dona Da Verdade",
+     "uri": "spotify:track:7LAFK6INBdjE1w9R7TpEFn"
+    }
+   ]
+  },
+  "dilsinho": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Dilsinho",
+   "tracks": [
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Dilsinho",
+     "name": "Refém",
+     "uri": "spotify:track:4muZ1PUxmss4cVmYnpLrvs"
+    },
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Dilsinho",
+     "name": "Péssimo Negócio (Ao Vivo)",
+     "uri": "spotify:track:5MMrkwK6AgNAsgHVdC7daZ"
+    },
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Dilsinho",
+     "name": "Diferentão - Ao Vivo",
+     "uri": "spotify:track:3PLdcrfVesYKyTpS1EXsxO"
+    },
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg",
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Dilsinho, Sorriso Maroto",
+     "name": "Mensagem Apagada",
+     "uri": "spotify:track:7xoW9ae2eFXgzw2JFkttmq"
+    },
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Dilsinho",
+     "name": "Sou Pagodeiro (Love Yourself) - Ao Vivo",
+     "uri": "spotify:track:6sWrtSw5H8crwA6fR4dyFb"
+    },
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg",
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Dilsinho, Sorriso Maroto",
+     "name": "Pouco a Pouco (Ao Vivo) (feat. Sorriso Maroto)",
+     "uri": "spotify:track:2lm3Ric7MeBk8hLfsiVokr"
+    },
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg",
+      "4PzYKhC14sTJNEr0dzoo0d",
+      "0PMk31f9Log4ixwUUY40p6"
+     ],
+     "artists": "Dilsinho, Luísa Sonza, Malibu",
+     "name": "Não Vai Embora",
+     "uri": "spotify:track:28atBekPVlTdnU4M9Z7udd"
+    },
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Dilsinho",
+     "name": "Tortura - Ao Vivo",
+     "uri": "spotify:track:0CR7xCXgBdErtTS68LtW5e"
+    },
+    {
+     "artist_ids": [
+      "37mqXU98U5GmH5ZDtlHM1c",
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Matheus Fernandes, Dilsinho",
+     "name": "Baby Me Atende",
+     "uri": "spotify:track:5R9KPXQVeyqsHZoPLMgfNy"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Grupo Menos É Mais, Dilsinho",
+     "name": "Quando Você Me Beija / Eternamente / Depois da Briga - Ao Vivo",
+     "uri": "spotify:track:5ruG18WndCCaU4f0ZMwehj"
+    },
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Dilsinho",
+     "name": "Trovão",
+     "uri": "spotify:track:1q87J3ftrxGqKKSPXYqOhd"
+    },
+    {
+     "artist_ids": [
+      "4NUePmzDvCYqilXBFa91Hg",
+      "2CKOmarVWvWqkNWUatHCex"
+     ],
+     "artists": "Dilsinho, Ana Castela",
+     "name": "Passada de Mão - Ao Vivo",
+     "uri": "spotify:track:0I0WaeHgXRRA9sP2LOLoE4"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Sorriso Maroto, Dilsinho",
+     "name": "50 Vezes - Ao Vivo",
+     "uri": "spotify:track:01wavOnjFBNgdMWBFYIAP4"
+    },
+    {
+     "artist_ids": [
+      "7nVA7u9N6fIcxxTXJDl4hq",
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Yan, Dilsinho",
+     "name": "A Gente Separou - Ao Vivo",
+     "uri": "spotify:track:43nKYhoerVMO48BFvbkR4v"
+    },
+    {
+     "artist_ids": [
+      "37mqXU98U5GmH5ZDtlHM1c",
+      "4NUePmzDvCYqilXBFa91Hg"
+     ],
+     "artists": "Matheus Fernandes, Dilsinho",
+     "name": "Baby Me Atende - Ao Vivo",
+     "uri": "spotify:track:1bWBG6IkMnDr3qvCKSvQT7"
+    }
+   ]
+  },
+  "dudu nobre": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Dudu Nobre",
+   "tracks": [
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Dudu Nobre",
+     "name": "Ô Irene / Cadê Ioiô / Vai Lá, Vai Lá - Medley/Live",
+     "uri": "spotify:track:0fMiHLlqyzoyfxVAiSAN7I"
+    },
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Dudu Nobre",
+     "name": "Vou Botar Teu Nome Na Macumba / Quem É Ela? - Ao Vivo",
+     "uri": "spotify:track:1YDdbnkoXqQMZRP3n2v7h4"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "3qZ2n5keOAat1SoF6bHwmb",
+      "4Mw0vJsDXTZF7kn7EsdNoD",
+      "34dfPo3Zi55yM6oV46q4y7",
+      "5rrmaoBXZ7Jcs4Qb77j0YA",
+      "5GmHrvfki94D20jsW5PRTi",
+      "096an3uS6ZaK2XySae6SqP",
+      "1C8UBSZs5rOPfxuxTMS6OI",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Sambabook, Zeca Pagodinho, Dudu Nobre, Mumuzinho, Djavan, Sombrinha, Arlindo Cruz, Maria Rita, Péricles, Alcione",
+     "name": "Camarão Que Dorme a Onda Leva",
+     "uri": "spotify:track:60M76S6OMP5vnqZW7D4Nad"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "3qZ2n5keOAat1SoF6bHwmb",
+      "5GmHrvfki94D20jsW5PRTi",
+      "4vKCAkbdulcqatglgbi5CG",
+      "4Mw0vJsDXTZF7kn7EsdNoD",
+      "34dfPo3Zi55yM6oV46q4y7",
+      "4YLBdrR3DVSMncm785NH6C",
+      "096an3uS6ZaK2XySae6SqP",
+      "1C8UBSZs5rOPfxuxTMS6OI",
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Sambabook, Zeca Pagodinho, Sombrinha, Roberta Sá, Dudu Nobre, Mumuzinho, Lenine, Arlindo Cruz, Maria Rita, Péricles",
+     "name": "Camarão Que Dorme a Onda Leva",
+     "uri": "spotify:track:09w2BoODgecKD44OPHwgL8"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "57xRtfFlssbpntpRQOBodd",
+      "096an3uS6ZaK2XySae6SqP",
+      "4Mw0vJsDXTZF7kn7EsdNoD",
+      "2j5unrF80yCu3AF8MPE2VE",
+      "1vEN3d3dJbmdHQpXD6AIkL",
+      "1Tm9XBJrigDUM4NEE9EAEu",
+      "6xBfvBOVmzVbkVgl0C6jxH",
+      "0hPar6ePAELiu9rYMdvMEo",
+      "64neTfIIdYKNhJ9zxoz3jF"
+     ],
+     "artists": "Sambabook, Diogo Nogueira, Arlindo Cruz, Dudu Nobre, Teresa Cristina, Marcelo D2, Leny Andrade, Fundo De Quintal, Alcione, Ivan Lins",
+     "name": "Clube do Samba",
+     "uri": "spotify:track:1Pl25lDKU2K9jQPGmcryAD"
+    },
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Dudu Nobre",
+     "name": "É Preciso Muito Amor - Live",
+     "uri": "spotify:track:1gL7NKbYqjMz1mvJeK1y5T"
+    },
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD",
+      "4vKCAkbdulcqatglgbi5CG"
+     ],
+     "artists": "Dudu Nobre, Roberta Sá",
+     "name": "Quem É Ela? - Live",
+     "uri": "spotify:track:4WB8sLYWMjWoA8BxaWTgMI"
+    },
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Dudu Nobre",
+     "name": "A Grande Família",
+     "uri": "spotify:track:1JtxEMmDhKzA7QRZE1ISNP"
+    },
+    {
+     "artist_ids": [
+      "3C46KtMg8M2HXzjSWEq2QE",
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Reinaldo, Dudu Nobre",
+     "name": "Pra Ser Minha Musa - Ao Vivo",
+     "uri": "spotify:track:3rmIJW71WCRSXaLMRMRkbx"
+    },
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Dudu Nobre",
+     "name": "Vou Botar Teu Nome Na Macumba / Posso Até Me Apaixonar - Medley/Live",
+     "uri": "spotify:track:5ScMcKsv4UtRcCvJg0pbht"
+    },
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Dudu Nobre",
+     "name": "É Hoje - Ao Vivo",
+     "uri": "spotify:track:371m7ARqAqwDJ7pcvSTZe9"
+    },
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Dudu Nobre",
+     "name": "O Amanhã - Ao Vivo",
+     "uri": "spotify:track:6yWj69n942SakhJiyJRr7u"
+    },
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Dudu Nobre",
+     "name": "Água da Minha Sede - Ao Vivo",
+     "uri": "spotify:track:3aED14mk3SMuBAoDTBka27"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb",
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Zeca Pagodinho, Dudu Nobre",
+     "name": "Faixa Amarela - Ao Vivo",
+     "uri": "spotify:track:2PoHBRBYGXZ9DMaEIR73hk"
+    },
+    {
+     "artist_ids": [
+      "4Mw0vJsDXTZF7kn7EsdNoD"
+     ],
+     "artists": "Dudu Nobre",
+     "name": "Faz O Pagode Explodir",
+     "uri": "spotify:track:4PoAoHttxrGZp3N7p68Xmq"
+    }
+   ]
+  },
+  "exaltasamba": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Exaltasamba",
+   "tracks": [
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Calma Amor - Ao Vivo Na Ilha Da Magia,Brasil/2008",
+     "uri": "spotify:track:4Mnfug0sgaMw7g3wyZD4ss"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Abandonado - Ao Vivo Em Brazil/2008",
+     "uri": "spotify:track:0HCuwztevX33tSpKWONoZj"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Livre Pra Voar (Quando A Gente Se Encontrar)",
+     "uri": "spotify:track:6XOsXDAtgNGOPzyalU4zcT"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Me Apaixonei Pela Pessoa Errada",
+     "uri": "spotify:track:0lskTzcFFTmCCgLKRpGJdQ"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Tá Vendo Aquela Lua",
+     "uri": "spotify:track:6DjKWVAqXUvMaAzO4U4CIo"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Por Tão Pouco - Ao Vivo",
+     "uri": "spotify:track:3b7cDVaxhyIGr0gCyo5WV7"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Gamei",
+     "uri": "spotify:track:6kCDp3zpRoUnmyujZBKbjK"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "A Gente Bota Pra Quebrar - Ao Vivo Na Ilha Da Magia,Brasil/2008",
+     "uri": "spotify:track:1XGwhMYkMaOQuBpiZI72IP"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Tchau e Bença - Live From Brazil / 2007",
+     "uri": "spotify:track:1oXFfHuBuasMQ9lnPSRvGU"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Telegrama",
+     "uri": "spotify:track:43uHeQc9kdMzFAbxCTcgiI"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "A Carta - Ao Vivo",
+     "uri": "spotify:track:1ETtf3dqqA58ESTiAIgA2Y"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Separação - Extra / Ao Vivo Na Ilha Da Magia,Brasil/2008",
+     "uri": "spotify:track:7ch58HVDTPKKTUvI4xO9QX"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "É No Pagode",
+     "uri": "spotify:track:2AKnTIqeNvuMS9YCWHRMQk"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Fugidinha",
+     "uri": "spotify:track:3rbpdn9eiqXotLoiuF2oTi"
+    },
+    {
+     "artist_ids": [
+      "6VPRGmbZ0dupZrbwwEDRRw"
+     ],
+     "artists": "Exaltasamba",
+     "name": "Me Apaixonei Pela Pessoa Errada",
+     "uri": "spotify:track:3IbQGxLsZfV8EzA7ILNDwB"
+    }
+   ]
+  },
+  "ferrugem": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Ferrugem",
+   "tracks": [
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Arrependidaço (Onde Você Anda)",
+     "uri": "spotify:track:2NWFrQ7jPrZily5NVfgjFp"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2",
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Ferrugem, Sorriso Maroto",
+     "name": "Apaguei Pra Todos - Ao Vivo",
+     "uri": "spotify:track:65vJAh07BdwurqR9SRa6f8"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Me Bloqueia (Ao Vivo)",
+     "uri": "spotify:track:0rosNwHC9T8YNu3EvXLPfX"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Arrependidaço (Onde Você Anda)",
+     "uri": "spotify:track:4rvk9VCJDbB4oSQJATrces"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Sorriso Maroto, Ferrugem",
+     "name": "Ela - Ao Vivo",
+     "uri": "spotify:track:1kWcd9h9HoeXsKaDVhSOtj"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Me Bloqueia (Ao Vivo)",
+     "uri": "spotify:track:07BRm4ATW5VXnpUagfVJhs"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Pirata e tesouro - Ao vivo",
+     "uri": "spotify:track:3Cabw7y9EoR68v7dBS76HQ"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Pra você acreditar - Ao vivo",
+     "uri": "spotify:track:5KNi9XFap48ry4puG7rvqv"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Sinto sua falta - Ao vivo",
+     "uri": "spotify:track:3eWHUE5D5R19q7BvOX7NSJ"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Sorriso Maroto, Péricles, Ferrugem",
+     "name": "Sinais - Ao Vivo",
+     "uri": "spotify:track:28tIFuQHxmEZAg2FljrCwp"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "5ZfBThYiIIhL7jHMG8gDB2",
+      "66aYJzbeqXd9LyYc1qppzy"
+     ],
+     "artists": "Sorriso Maroto, Ferrugem, Grupo Benzadeus",
+     "name": "Perdas e Danos - Ao Vivo",
+     "uri": "spotify:track:4PnEGuadJd0PKDO7GDXBqH"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Sinto sua falta / É natural / Pra você acreditar / Pirata e tesouro - Ao vivo",
+     "uri": "spotify:track:3Y4Hb9pm222fOawpKVZXny"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Eu não sou de me entregar",
+     "uri": "spotify:track:3IsTYAUWhdQgqEV35GlJYB"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Ferrugem",
+     "name": "Apagar (Fundo Raso)",
+     "uri": "spotify:track:4TBIfr533GxVCrnuAMpYPX"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Sorriso Maroto, Péricles, Ferrugem",
+     "name": "Brigas Por Nada / 1 Metro e 65 - Ao Vivo",
+     "uri": "spotify:track:6ZXA3cg83xY4It7mQqil8w"
+    }
+   ]
+  },
+  "fundo de quintal": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Fundo de Quintal",
+   "tracks": [
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "A Amizade",
+     "uri": "spotify:track:1wPYSsMTy44fcY8eFXFBhE"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "Amor Dos Deuses",
+     "uri": "spotify:track:3HquVaSS0kA3SLbf7tVoJU"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "O Show Tem Que Continuar",
+     "uri": "spotify:track:1AeZGZtgWxgd5ye9h7rzWx"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "6Q1U3z1hge970f3QhrPKcW",
+      "7HGNYPmbDrMkylWqeFCOIQ",
+      "6rM2yY0GnVcOHMU5GD3y9E",
+      "57xRtfFlssbpntpRQOBodd",
+      "5zuSZ0T9iRss0BaobIc6Xm",
+      "1WkZvxuA4zCcFF9GChK6Vr",
+      "2zDJszdrISx9K4L5hvWT33",
+      "4IQKOXNGjuRRe0WgOm5YfB",
+      "4ph6Bt1mkDlmf32PSvRa8A"
+     ],
+     "artists": "Sambabook, Dona Ivone Lara, Caetano Veloso, Martinho Da Vila, Diogo Nogueira, Bruno Castro, Grupo Fundo De Quintal, Zélia Duncan, Xande de Pilares, Elba Ramalho",
+     "name": "Sonho Meu",
+     "uri": "spotify:track:4wUzJax4y4a6jIhbF28LoC"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "A Batucada Dos Nossos Tantãs / Do Fundo Do Nosso Quintal",
+     "uri": "spotify:track:5KDgtCIqnrnIb9thLNFc3j"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr",
+      "2cAooeeHKk2UvzUgIxpS0y"
+     ],
+     "artists": "Grupo Fundo De Quintal, Jorge Aragão",
+     "name": "Lucidez - Ao vivo",
+     "uri": "spotify:track:6jrwEHluHDKsSqOF5oQzeY"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "Trem das Onze",
+     "uri": "spotify:track:0YTjxhBtk2aODrusQLNYOw"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "Nosso Grito",
+     "uri": "spotify:track:5KReogEW4oBWjHHYzO7DKh"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "Conselho / Insensato Destino / Coisa de Pele - Ao Vivo",
+     "uri": "spotify:track:4BMcmOV5mCYOnLqIBA5tVa"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr",
+      "56TkPi7rpmU8jTpkcK7FY3"
+     ],
+     "artists": "Grupo Fundo De Quintal, Beth Carvalho",
+     "name": "Vou Festejar",
+     "uri": "spotify:track:3TfHKaSjz2SnAzIMFbdmWj"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "Vai Lá, Vai Lá",
+     "uri": "spotify:track:3WQyTWS7CUBTzaZ0TjTgMf"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "Só Felicidade",
+     "uri": "spotify:track:1f0W7YIdWXuJ70ZU6j5VBA"
+    },
+    {
+     "artist_ids": [
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Grupo Fundo De Quintal",
+     "name": "A Batucada Dos Nossos Tantãs",
+     "uri": "spotify:track:1yqJ3Xi70OumcNDUgVAT5p"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "57xRtfFlssbpntpRQOBodd",
+      "096an3uS6ZaK2XySae6SqP",
+      "4Mw0vJsDXTZF7kn7EsdNoD",
+      "2j5unrF80yCu3AF8MPE2VE",
+      "1vEN3d3dJbmdHQpXD6AIkL",
+      "1Tm9XBJrigDUM4NEE9EAEu",
+      "6xBfvBOVmzVbkVgl0C6jxH",
+      "0hPar6ePAELiu9rYMdvMEo",
+      "64neTfIIdYKNhJ9zxoz3jF"
+     ],
+     "artists": "Sambabook, Diogo Nogueira, Arlindo Cruz, Dudu Nobre, Teresa Cristina, Marcelo D2, Leny Andrade, Fundo De Quintal, Alcione, Ivan Lins",
+     "name": "Clube do Samba",
+     "uri": "spotify:track:1Pl25lDKU2K9jQPGmcryAD"
+    }
+   ]
+  },
+  "gabriel leone": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Gabriel Leone",
+   "tracks": [
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Parei Na Contra Mão",
+     "uri": "spotify:track:1jqTRCJLrvtAfKSQGy1N5S"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN",
+      "2SFIMUkCdZowbeisskDdhn"
+     ],
+     "artists": "Gabriel Leone, Ney Matogrosso",
+     "name": "Êta Nóis",
+     "uri": "spotify:track:41uHXUQewtLYIV8dANlnzo"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "O Calhambeque",
+     "uri": "spotify:track:2UvCzEf2vOg6nw5pzEc3Vi"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Amigo",
+     "uri": "spotify:track:2KqrswPdCr3FfBg9mjAT8b"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Nós Dois",
+     "uri": "spotify:track:0Mys3c6tZ4zduoKvfQlvRe"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Nós Dois",
+     "uri": "spotify:track:2vzIjRWxafZ0fOYW7FhdYR"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "É Proibido Fumar",
+     "uri": "spotify:track:73lNYSvcytOTJoL7xHFFPn"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Suzie",
+     "uri": "spotify:track:2w6eLQqhyV2B4PtI689mgM"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Cara Limpa",
+     "uri": "spotify:track:32JWv6BThEfCu1a6t7oQYQ"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "João E Maria",
+     "uri": "spotify:track:5oEKWUfdYcOktLjGlIOGjO"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN",
+      "2SFIMUkCdZowbeisskDdhn"
+     ],
+     "artists": "Gabriel Leone, Ney Matogrosso",
+     "name": "Êta Nóis",
+     "uri": "spotify:track:46SfI9mhPRcmoUQJDglINa"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN",
+      "06nnwdhfK1jBLXF9uwyDlN"
+     ],
+     "artists": "Gabriel Leone, Juliana Linhares",
+     "name": "As Portas do Meu Sorriso",
+     "uri": "spotify:track:4Utqxe1Nx0UDXV8dFHXBfz"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Segredo",
+     "uri": "spotify:track:0WS1028DqFMOPZRdLO0TtI"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Antes da Chuva Chegar",
+     "uri": "spotify:track:2um0y0XKgi9O9iswUaENFq"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Choro Das Águas",
+     "uri": "spotify:track:0x7oum8eT0YQye46eP2zHy"
+    },
+    {
+     "artist_ids": [
+      "360FjbxByY4XLqXrZ6cWGF",
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Boca Livre, Gabriel Leone",
+     "name": "Benefício",
+     "uri": "spotify:track:5rY2CfQjsmFwoNyXqJdQTb"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Museu das Relações Perdidas",
+     "uri": "spotify:track:2k6Mj1mNQ19XfHsXpPXFxF"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN",
+      "06nnwdhfK1jBLXF9uwyDlN"
+     ],
+     "artists": "Gabriel Leone, Juliana Linhares",
+     "name": "As Portas do Meu Sorriso",
+     "uri": "spotify:track:12brLjuHF4KTMkg5PhGZoF"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "O Sofrimento Ensina",
+     "uri": "spotify:track:5GXrDEHdfIVRmTGydPZd9J"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Bolero de Satã",
+     "uri": "spotify:track:35B3FlIyVvMI7U6QtvIIjx"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Perdido na Vida",
+     "uri": "spotify:track:0718nvFlSYpOw9494gI1bS"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "O Amor da Minha Vida",
+     "uri": "spotify:track:2XSR5C7vdDjxJLJsoi5bGx"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Assim Sem Mais",
+     "uri": "spotify:track:0ww7iMN4SPuUzAqOYkTUyi"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Minhas Lágrimas",
+     "uri": "spotify:track:0k4Akta6Sdh21DbwPmFq8Q"
+    },
+    {
+     "artist_ids": [
+      "0ZvQ1lksNxtDX3jeOF0EQZ"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "Quién Juró No Volverse a Enamorar",
+     "uri": "spotify:track:2Xd6kuhbskhWtvPmG8oaJx"
+    }
+   ]
+  },
+  "grupo menos é mais": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Grupo Menos É Mais",
+   "tracks": [
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2eK9gcJQ6uqVvJL63dnOM3"
+     ],
+     "artists": "Grupo Menos É Mais, Simone Mendes",
+     "name": "P do Pecado - Ao Vivo",
+     "uri": "spotify:track:7EknynLJTt9YMm1HL37s5D"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "37mqXU98U5GmH5ZDtlHM1c"
+     ],
+     "artists": "Grupo Menos É Mais, Matheus Fernandes",
+     "name": "Lapada Dela - Ao Vivo",
+     "uri": "spotify:track:4f0aDk7HX37SfzerfznYlr"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Grupo Menos É Mais",
+     "name": "Coração Partido (Corazón Partío) - Ao Vivo",
+     "uri": "spotify:track:6Kyl2nFgU0J8WBlbBvDv6g"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2eK9gcJQ6uqVvJL63dnOM3"
+     ],
+     "artists": "Grupo Menos É Mais, Simone Mendes",
+     "name": "P do Pecado - Ao Vivo",
+     "uri": "spotify:track:38Ps9Kui6qJjpVqdBOfN5M"
+    },
+    {
+     "artist_ids": [
+      "5JG9GISYjRLQUJMH2C6iJ5",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Turma do Pagode, Grupo Menos É Mais",
+     "name": "Bebe e Vem Me Procurar / Quem Ama Sente Saudade (Ao Vivo)",
+     "uri": "spotify:track:1N19UVD4GRBFT6UrDaX6rk"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Grupo Menos É Mais",
+     "name": "Coração Partido (Corazón Partío) - Ao Vivo",
+     "uri": "spotify:track:1YlfGwNizEKy299l1PVggn"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Grupo Menos É Mais",
+     "name": "Champanhe - Ao Vivo",
+     "uri": "spotify:track:5v747rXdm2NzkchPoMjb2U"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2uSwBbWqsXgoMYQjynmwQ7",
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Grupo Menos É Mais, Di Propósito, Vou Zuar",
+     "name": "Pot-Pourri: Melhor Eu Ir / Ligando Os Fatos / Sonho de Amor / Deixa Eu Te Querer - Ao Vivo",
+     "uri": "spotify:track:5r9CZJMoMmxio2AnJdxuDS"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "1SXhEXzOTF7YeuQX59m7pT"
+     ],
+     "artists": "Grupo Menos É Mais, NATTAN",
+     "name": "Pela Última Vez - Ao Vivo",
+     "uri": "spotify:track:6B7ot6Wlqf7zt3FCkYl2FJ"
+    },
+    {
+     "artist_ids": [
+      "5JG9GISYjRLQUJMH2C6iJ5",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Turma do Pagode, Grupo Menos É Mais",
+     "name": "Bebe e Vem Me Procurar / Quem Ama Sente Saudade (Ao Vivo)",
+     "uri": "spotify:track:5A4DlgM68SnFSKImnMeiUH"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Grupo Menos É Mais",
+     "name": "Aquele Lugar - Ao Vivo",
+     "uri": "spotify:track:0pGsxpkJC9IwK93fmqEYXn"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Grupo Menos É Mais",
+     "name": "Brinda Aê - Ao Vivo",
+     "uri": "spotify:track:03Xt1TTim0FhR5fS48DLhE"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "1SXhEXzOTF7YeuQX59m7pT"
+     ],
+     "artists": "Grupo Menos É Mais, NATTAN",
+     "name": "Pela Última Vez - Ao Vivo",
+     "uri": "spotify:track:4bxyHku6rNffRealVxu30p"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Grupo Menos É Mais",
+     "name": "Jejum de Amor / Caixa Postal / Vida Vazia - Ao Vivo",
+     "uri": "spotify:track:2je7f5dovpUabOqTSfyD5V"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2uOlKKhuUUWlTITCYYUuIK"
+     ],
+     "artists": "Grupo Menos É Mais, Pablo",
+     "name": "Saudade Inconveniente - Ao Vivo",
+     "uri": "spotify:track:4cpCxymnRFo8fn9PF56zbK"
+    }
+   ]
+  },
+  "jorge & mateus": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Jorge & Mateus",
+   "tracks": [
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Pra Sempre Com Você - Ao Vivo",
+     "uri": "spotify:track:2KGv51jgAz8OTjNPyRryfq"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Logo Eu",
+     "uri": "spotify:track:2655xYZ347fG2N6OjkoMQ8"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Calma",
+     "uri": "spotify:track:7evftBiobEwWOwfxiTnnKc"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Os Anjos Cantam",
+     "uri": "spotify:track:6ccKu0LwJzOhLAxBwP2PTk"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr",
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Matheus & Kauan, Jorge & Mateus",
+     "name": "Quarta Cadeira - Ao Vivo",
+     "uri": "spotify:track:5q0NlM6Pm8Pp3orq7zGiRn"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Paredes - Ao Vivo",
+     "uri": "spotify:track:2GfxgssRHvY1azHtaRqKoK"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Nocaute",
+     "uri": "spotify:track:2NnSYdNhqye00il4nRB4tj"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Pergunta Boba - Ao Vivo",
+     "uri": "spotify:track:36OBPVuz58hAsKxgLCKer6"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Seu Astral - Ao Vivo",
+     "uri": "spotify:track:2TE9rkhJYDctxgzak0AnSb"
+    },
+    {
+     "artist_ids": [
+      "41QLxRXlc2NwfJZkHGHKid",
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Israel & Rodolffo, Jorge & Mateus",
+     "name": "Marca Evidente - Ao Vivo",
+     "uri": "spotify:track:3aDV90V6vHUSYKKYDLNdQ8"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Duas Metades - Ao Vivo",
+     "uri": "spotify:track:3UStHHOyFXetR5621bKJBz"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "Louca de Saudade - Ao Vivo",
+     "uri": "spotify:track:2InJDvDcA4RXEeA9njdibl"
+    },
+    {
+     "artist_ids": [
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Jorge & Mateus",
+     "name": "O Que É Que Tem - Ao Vivo",
+     "uri": "spotify:track:1p6dBmCdP7xh3OMTYJDZPK"
+    },
+    {
+     "artist_ids": [
+      "7MiDcPa6UiV3In7lIM71IN",
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Gusttavo Lima, Jorge & Mateus",
+     "name": "Inventor dos Amores (feat. Jorge & Mateus) - Ao Vivo",
+     "uri": "spotify:track:3Q8cDYX0CYQWgcXmAFwXsN"
+    },
+    {
+     "artist_ids": [
+      "1X6ORK7IekgmyjV6IFPszP",
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Gustavo Mioto, Jorge & Mateus",
+     "name": "Anti Amor - Ao Vivo",
+     "uri": "spotify:track:3zlU0V45H1FcjZeGEVt8ih"
+    }
+   ]
+  },
+  "katinguelê": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Katinguelê",
+   "tracks": [
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Inaraí",
+     "uri": "spotify:track:56bWd9eEu5xsIWETPBIA8k"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "No compasso do criador",
+     "uri": "spotify:track:5RY5Qnk9IFiVuWRGM1Rw4X"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Recado a minha amada",
+     "uri": "spotify:track:6oDfRqEbg2gOf64XSwgfCF"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Ainda resta uma bagagem",
+     "uri": "spotify:track:0opXInVk6e0AesqnTmFbmw"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Mundo dos sonhos",
+     "uri": "spotify:track:17qvsjclu3oQ1YGEq93bdp"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Cilada",
+     "uri": "spotify:track:4yt1hUOda8fVmoShOUFnyH"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu",
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Katinguelê, Belo",
+     "name": "Por Amor - Ao Vivo",
+     "uri": "spotify:track:7vlBx0E0ei8KVe5z0o5u8s"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Engraçadinha",
+     "uri": "spotify:track:6C0o36aGsJlFvsDuRhy2Dn"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Só mesmo o teu amor",
+     "uri": "spotify:track:1ChFVVFSgW6Sma4NL4wKoS"
+    },
+    {
+     "artist_ids": [
+      "3C46KtMg8M2HXzjSWEq2QE",
+      "3gdaj3L0OqxdaVoxnI7ZGu",
+      "1WkZvxuA4zCcFF9GChK6Vr"
+     ],
+     "artists": "Reinaldo, Katinguelê, Grupo Fundo De Quintal",
+     "name": "Facho de esperança / Momento infeliz",
+     "uri": "spotify:track:4WFmSYudHZWl3aR2Qmmq3b"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "No compasso do criador - Ao vivo",
+     "uri": "spotify:track:0kKuVSnv97w8dZ0yjde1KU"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Ainda resta uma bagagem - Ao vivo",
+     "uri": "spotify:track:64iS2tmMBhTKEEZJG4Vd19"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Engraçadinha - Ao vivo",
+     "uri": "spotify:track:2g0aAzqmBIlpiqJlxlt2lM"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu"
+     ],
+     "artists": "Katinguelê",
+     "name": "Só pedindo bis",
+     "uri": "spotify:track:3e77TIMLypYX3FxWsDFSoq"
+    },
+    {
+     "artist_ids": [
+      "3gdaj3L0OqxdaVoxnI7ZGu",
+      "1sPTOnMc3tEimHIT9xZX4G"
+     ],
+     "artists": "Katinguelê, Sampa Crew",
+     "name": "Fecha Comigo - Ao Vivo",
+     "uri": "spotify:track:2Nz65IApLncHRy0AtUMXi5"
+    }
+   ]
+  },
+  "marcos & belutti": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Marcos & Belutti",
+   "tracks": [
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Eu Era",
+     "uri": "spotify:track:5hkjlU7sUcZb9wOYd1eRBE"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Domingo de Manhã",
+     "uri": "spotify:track:68dIzxiTmEvV7zPsymunKG"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT",
+      "1AL2GKpmRrKXkYIcASuRFa"
+     ],
+     "artists": "Marcos & Belutti, Wesley Safadão",
+     "name": "Aquele 1% (feat. Wesley Safadão)",
+     "uri": "spotify:track:3m8Ndnhd8u1VuSlu75hy7D"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Romântico Anônimo",
+     "uri": "spotify:track:3gVmJpOShpM2Zwm0Ax4EgX"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT",
+      "1AL2GKpmRrKXkYIcASuRFa"
+     ],
+     "artists": "Marcos & Belutti, Wesley Safadão",
+     "name": "Aquele 1%",
+     "uri": "spotify:track:5CMtWJRI0MIlpJC3b3WmNj"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Tão Feliz",
+     "uri": "spotify:track:7pSSPK28StDPjPYww81y1R"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Pena Que Cê Já Namora",
+     "uri": "spotify:track:2BIxaXyOICP5qPMo73IQey"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Sonho de Todo Casal - Ao Vivo",
+     "uri": "spotify:track:4GUtj93QgJPOg44yWBgVhF"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Sonho de Todo Casal - Ao Vivo",
+     "uri": "spotify:track:6Uiq1haT1Y38F56TrQKA99"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Então Foge",
+     "uri": "spotify:track:36BXjbW6z8IBt2tqtBriq2"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Eu Era",
+     "uri": "spotify:track:09hQbo0PphvZ7y3ZZK9AJw"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Eu Era - Ao Vivo",
+     "uri": "spotify:track:6iiALJOZ0zYqQ6CFTQPPGk"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Sem Me Controlar - Ao Vivo",
+     "uri": "spotify:track:6PMsuyTiK3PYlhTpoLyqw6"
+    },
+    {
+     "artist_ids": [
+      "0NsJZ5PMjqghGDuMzY7CuT"
+     ],
+     "artists": "Marcos & Belutti",
+     "name": "Pega Esse Carro - Ao Vivo",
+     "uri": "spotify:track:7HY7YlBwdZMTh69E1gkYm3"
+    }
+   ]
+  },
+  "matheus & kauan": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Matheus & Kauan",
+   "tracks": [
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr",
+      "1elUiq4X7pxej6FRlrEzjM"
+     ],
+     "artists": "Matheus & Kauan, Jorge & Mateus",
+     "name": "Quarta Cadeira - Ao Vivo",
+     "uri": "spotify:track:5q0NlM6Pm8Pp3orq7zGiRn"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "Matheus & Kauan",
+     "name": "Que Sorte A Nossa - Ao Vivo",
+     "uri": "spotify:track:44pllb9f5QwcrD2kKc0gS0"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr",
+      "1yR65psqiazQpeM79CcGh8"
+     ],
+     "artists": "Matheus & Kauan, Marília Mendonça",
+     "name": "Vou Ter Que Superar - Ao Vivo",
+     "uri": "spotify:track:6sRLrSetyIwIKhW1eMlUNP"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr",
+      "2eK9gcJQ6uqVvJL63dnOM3"
+     ],
+     "artists": "Matheus & Kauan, Simone Mendes",
+     "name": "Meu Silêncio - Ao Vivo",
+     "uri": "spotify:track:0ycQtDnc4mOcefV6yyV6dm"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr",
+      "2CKOmarVWvWqkNWUatHCex"
+     ],
+     "artists": "Matheus & Kauan, Ana Castela",
+     "name": "Ilusão De Ótica - Ao Vivo",
+     "uri": "spotify:track:44CTudFZ0kbaIF9n0jk7oU"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "Matheus & Kauan",
+     "name": "Me Amar Amanhã - Na Praia / Ao Vivo",
+     "uri": "spotify:track:0vXKKHxzwndf65d8E10oND"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "Matheus & Kauan",
+     "name": "Decide Aí - Na Praia / Ao Vivo",
+     "uri": "spotify:track:2CKg2u26mtyRYodwbxmA8l"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "Matheus & Kauan",
+     "name": "A Rosa E O Beija-Flor - Na Praia / Ao Vivo",
+     "uri": "spotify:track:4XrAf0Z1J2NunZXl4BMjlA"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr",
+      "6TYimByryGphZCtwYopH0y"
+     ],
+     "artists": "Matheus & Kauan, Lauana Prado",
+     "name": "Admita - Ao Vivo",
+     "uri": "spotify:track:2YKc5o2kQ6e1Pch1DwpjkO"
+    },
+    {
+     "artist_ids": [
+      "1sPg5EHuQXTMElpZ4iUgXe",
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "ANAVITÓRIA, Matheus & Kauan",
+     "name": "Fica",
+     "uri": "spotify:track:3KK3nLgrRdycpnYxPDVfMV"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "Matheus & Kauan",
+     "name": "O Nosso Santo Bateu - Live",
+     "uri": "spotify:track:5C0wi5U4l0YUv7yIKe2TEe"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr",
+      "7FNnA9vBm6EKceENgCGRMb"
+     ],
+     "artists": "Matheus & Kauan, Anitta",
+     "name": "Ao Vivo E A Cores",
+     "uri": "spotify:track:2Ab1wPTEqulaCGoBak1gUo"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "Matheus & Kauan",
+     "name": "Cronômetro - Ao Vivo",
+     "uri": "spotify:track:7pkpWcko6KEZANj0xKsCsu"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "Matheus & Kauan",
+     "name": "Te Assumi Pro Brasil - Ao Vivo",
+     "uri": "spotify:track:6P7Uodyh8g40Nyc3no6R8E"
+    },
+    {
+     "artist_ids": [
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "Matheus & Kauan",
+     "name": "Nessas Horas - Ao Vivo",
+     "uri": "spotify:track:1MnUXXQEuzlJFNF5xMH1XQ"
+    }
+   ]
+  },
+  "melly": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Melly",
+   "tracks": [
+    {
+     "artist_ids": [
+      "7FNnA9vBm6EKceENgCGRMb",
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Anitta, Melly",
+     "name": "Ternura",
+     "uri": "spotify:track:5FOy6KydSZWIJwdtLUj0FS"
+    },
+    {
+     "artist_ids": [
+      "7FNnA9vBm6EKceENgCGRMb",
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Anitta, Melly",
+     "name": "Ternura",
+     "uri": "spotify:track:25MYB3TfF1E6iMNYSG0nPJ"
+    },
+    {
+     "artist_ids": [
+      "2O6q06oNcmOIPg1qidSU3C",
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Liniker, Melly",
+     "name": "PAPO DE EDREDOM",
+     "uri": "spotify:track:63oAJhMI95D287EfDbppVx"
+    },
+    {
+     "artist_ids": [
+      "5JHYuwE2n7bleXMUsmtCW5",
+      "2d9LRvQJnAXRijqIJDDs2K",
+      "7a7n9ka0Mnevq19mOU8tcW",
+      "6UOqGECOrz2Whn4I24CO8E"
+     ],
+     "artists": "BaianaSystem, Emicida, Melly, Kandace Lindsey",
+     "name": "A Laje",
+     "uri": "spotify:track:0EXqaE8m9hSzNrO9h6Yepq"
+    },
+    {
+     "artist_ids": [
+      "1YOVBTvznjiDvtAj4ExHeo",
+      "2VkcTqilyDsylnfoa8D8W9",
+      "3Bnq7jiU506HcPjRgQ43TM",
+      "2eYGPD8O1chWmQ92TvdtCW"
+     ],
+     "artists": "BK, Melly, Milton Nascimento, JXNV$",
+     "name": "Ninguém Vai Tirar Minha Paz",
+     "uri": "spotify:track:5zHo2tBtevTtHh8KZEgSTN"
+    },
+    {
+     "artist_ids": [
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Melly",
+     "name": "Azul",
+     "uri": "spotify:track:6FAabpbqQbU8B4k78oux1m"
+    },
+    {
+     "artist_ids": [
+      "7a7n9ka0Mnevq19mOU8tcW",
+      "2O6q06oNcmOIPg1qidSU3C"
+     ],
+     "artists": "Melly, Liniker",
+     "name": "ANA",
+     "uri": "spotify:track:7GOUnrow71w6FbKGwgjDLX"
+    },
+    {
+     "artist_ids": [
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Melly",
+     "name": "Cacau",
+     "uri": "spotify:track:71k9Yzhra50zpdh3ypzdYA"
+    },
+    {
+     "artist_ids": [
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Melly",
+     "name": "AluSina",
+     "uri": "spotify:track:1C7fLnGDAGlJZhCwSNbeKS"
+    },
+    {
+     "artist_ids": [
+      "4jsA7x5v8Xg3L4FGwyhGaQ",
+      "7a7n9ka0Mnevq19mOU8tcW",
+      "4S6UaubswBroSpIooustWt"
+     ],
+     "artists": "Mulú, Melly, Dandan",
+     "name": "PEIXIN",
+     "uri": "spotify:track:2goq9J8vz19zGvINVURBxT"
+    },
+    {
+     "artist_ids": [
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Melly",
+     "name": "Nêga",
+     "uri": "spotify:track:37AIEnveDvWcRdjyqeYam1"
+    },
+    {
+     "artist_ids": [
+      "7a7n9ka0Mnevq19mOU8tcW",
+      "2O6q06oNcmOIPg1qidSU3C"
+     ],
+     "artists": "Melly, Liniker",
+     "name": "10 Minutos",
+     "uri": "spotify:track:7exzjXAlIdaZN72iALsc5W"
+    },
+    {
+     "artist_ids": [
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Melly",
+     "name": "A GENTE COMBINA",
+     "uri": "spotify:track:40z0XrdegYW7nVS3VEfR8I"
+    },
+    {
+     "artist_ids": [
+      "7a7n9ka0Mnevq19mOU8tcW",
+      "7FNnA9vBm6EKceENgCGRMb"
+     ],
+     "artists": "Melly, Anitta",
+     "name": "ELA GOSTA DE MENINA",
+     "uri": "spotify:track:2Iaj6B6CmvrCDa3fhYOs1K"
+    },
+    {
+     "artist_ids": [
+      "4iWkwAVzssjb8XgxdoOL6M",
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "TIAGO IORC, Melly",
+     "name": "Eu Errei",
+     "uri": "spotify:track:5woqloXSO0cwRodujcLzJM"
+    }
+   ]
+  },
+  "os travessos": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Os Travessos",
+   "tracks": [
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Tu Mandas No Meu Coração",
+     "uri": "spotify:track:66PlG0p0tSryA2098pmBvE"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Adivinha",
+     "uri": "spotify:track:7CzZpoMj9c6MNU4UzEExzk"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Tô te filmando (Sorria)",
+     "uri": "spotify:track:3Oi1rRW0QdWsE7SGATTE2z"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Dividido - Ao Vivo",
+     "uri": "spotify:track:0R6kKyjeO6fbHHsxGh9vth"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Sonhos e Planos (Sou Eu)",
+     "uri": "spotify:track:3qWjTdtTYBVQTQiibR3TW5"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Quando a Gente Ama",
+     "uri": "spotify:track:2BHrCF2e44gkaQ4HDOb41d"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Maravilha Te Amar",
+     "uri": "spotify:track:45PD1shJcUVckmslQycpEL"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Meu querubim",
+     "uri": "spotify:track:562SQ6vogWQPio2ne6iDgz"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Sonhos e Planos / Sou Eu - Ao Vivo",
+     "uri": "spotify:track:1K2SY9c5W65wtpRejSCA6h"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Vou te procurar",
+     "uri": "spotify:track:4EfuV1AfSwisgxyXLG8vaT"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Um dia pra nós dois",
+     "uri": "spotify:track:6zkuZPoFUINPwfl0llKhwX"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Tô com saudade",
+     "uri": "spotify:track:30gkv0z2VuVLhbZV08aBwB"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Quer me machucar",
+     "uri": "spotify:track:5e51nvrsLrXYWvKoCzwBJR"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Distância",
+     "uri": "spotify:track:4XfVUdg8viNh2Mcho0lnAk"
+    },
+    {
+     "artist_ids": [
+      "3RpJ23sQA3B70ZgSnT2Vxr"
+     ],
+     "artists": "Os Travessos",
+     "name": "Vou Te Procurar / Distância - Ao Vivo",
+     "uri": "spotify:track:16IvIPcnbESJF6NxyqetpU"
+    }
+   ]
+  },
+  "pixote": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Pixote",
+   "tracks": [
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Mande um Sinal - Ao Vivo",
+     "uri": "spotify:track:3beOCT1wZvgiSANG0dKjjO"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Insegurança - Ao Vivo",
+     "uri": "spotify:track:6LQQGxRzNLsWQtwgLe5fAm"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Nem de Graça",
+     "uri": "spotify:track:11Y1IGMIThaxu4ijcXRNYs"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Saudade Arregaça",
+     "uri": "spotify:track:0O9dWZhjnYjzPqqFpj4cTb"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Nem de Graça / Saudade Arregaça - Ao Vivo",
+     "uri": "spotify:track:3rDAHk73LZmgJIyGZstWQ0"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Meu Amor - Ao Vivo",
+     "uri": "spotify:track:4BVH1mjLoS0TeJ0ni2o9AN"
+    },
+    {
+     "artist_ids": [
+      "3V7U1x0TRBn7spzHDQiZhi",
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Jeito Moleque, Pixote",
+     "name": "Minha Estrela Perdida - Ao Vivo",
+     "uri": "spotify:track:6e4vTOwee98cfQWj0ThfZZ"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Coração e Cadeado",
+     "uri": "spotify:track:1wAVmlw4xUyXaP0xjfyP4T"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Coração e Cadeado",
+     "uri": "spotify:track:1L5Uiwe36wa9Y2MjMCX3JR"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB",
+      "0vLuOi2k62sHujIfplInlK"
+     ],
+     "artists": "Pixote, Hungria",
+     "name": "Amor e Fé - Ao Vivo",
+     "uri": "spotify:track:4unCW9GLKNYT1h7fScPKtZ"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Brilho de Cristal / É de Arrepiar / Saudade de Nós - Ao Vivo",
+     "uri": "spotify:track:3xCKdkgo7V7WfCyCPvhtyz"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Coisas do Amor (Fã de Carteirinha) / Você Pode - Ao Vivo",
+     "uri": "spotify:track:2Fj8K3IROlXO1xp6Y6Vtu2"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Nem de Graça / Saudade Arregaça - Ao Vivo",
+     "uri": "spotify:track:141xCZ6pvh4ymCsQkOFX80"
+    },
+    {
+     "artist_ids": [
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Pixote",
+     "name": "Primeira Noite",
+     "uri": "spotify:track:52hiDRn42Oe7bJBYxEMBdg"
+    },
+    {
+     "artist_ids": [
+      "3V7U1x0TRBn7spzHDQiZhi",
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Jeito Moleque, Pixote",
+     "name": "Minha Estrela Perdida - Ao Vivo",
+     "uri": "spotify:track:4E9aNF9m7VsE3bNv4VYugK"
+    }
+   ]
+  },
+  "péricles": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Péricles",
+   "tracks": [
+    {
+     "artist_ids": [
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Péricles",
+     "name": "Supera - Ao Vivo",
+     "uri": "spotify:track:5kq8WyCcvAnfI0lyxmFkA2"
+    },
+    {
+     "artist_ids": [
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Péricles",
+     "name": "Até Que Durou - Ao Vivo",
+     "uri": "spotify:track:5MLTylyzHVd7oV8OE4JMZt"
+    },
+    {
+     "artist_ids": [
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Péricles",
+     "name": "Final De Tarde",
+     "uri": "spotify:track:61owCysJTu0HlCDFSASYJw"
+    },
+    {
+     "artist_ids": [
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Péricles",
+     "name": "Melhor Eu Ir",
+     "uri": "spotify:track:5d45BOkZaOnusIg9OBGjBC"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Sorriso Maroto, Péricles, Ferrugem",
+     "name": "Sinais - Ao Vivo",
+     "uri": "spotify:track:28tIFuQHxmEZAg2FljrCwp"
+    },
+    {
+     "artist_ids": [
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Péricles",
+     "name": "Já É - Ao Vivo Em Brasília",
+     "uri": "spotify:track:7iSA7bUe5psG3uS9ch4J0d"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Sorriso Maroto, Péricles, Ferrugem",
+     "name": "Brigas Por Nada / 1 Metro e 65 - Ao Vivo",
+     "uri": "spotify:track:6ZXA3cg83xY4It7mQqil8w"
+    },
+    {
+     "artist_ids": [
+      "2cAooeeHKk2UvzUgIxpS0y",
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Jorge Aragão, Péricles",
+     "name": "Eu E Você Sempre - Live",
+     "uri": "spotify:track:5pT4So93Gl4dySdw8sT7EJ"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "3qZ2n5keOAat1SoF6bHwmb",
+      "4Mw0vJsDXTZF7kn7EsdNoD",
+      "34dfPo3Zi55yM6oV46q4y7",
+      "5rrmaoBXZ7Jcs4Qb77j0YA",
+      "5GmHrvfki94D20jsW5PRTi",
+      "096an3uS6ZaK2XySae6SqP",
+      "1C8UBSZs5rOPfxuxTMS6OI",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Sambabook, Zeca Pagodinho, Dudu Nobre, Mumuzinho, Djavan, Sombrinha, Arlindo Cruz, Maria Rita, Péricles, Alcione",
+     "name": "Camarão Que Dorme a Onda Leva",
+     "uri": "spotify:track:60M76S6OMP5vnqZW7D4Nad"
+    },
+    {
+     "artist_ids": [
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "0pC5o5Jo4P8uNn2SSNmpXz"
+     ],
+     "artists": "Péricles, Marvvila",
+     "name": "Nosso Amor Quer Paz - Ao Vivo",
+     "uri": "spotify:track:4LQBF260adcuLpjBC3mBSV"
+    },
+    {
+     "artist_ids": [
+      "09djLPsTydbIFC9duW5mQp",
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Vitinho, Péricles",
+     "name": "Sobrenome - Ao vivo",
+     "uri": "spotify:track:3gYvOU6MJGBS2WNyDTW7Ui"
+    },
+    {
+     "artist_ids": [
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Péricles",
+     "name": "Até Que Durou",
+     "uri": "spotify:track:4wbvJBqwJmk7u215lUk1GR"
+    },
+    {
+     "artist_ids": [
+      "0Ludmn78UAusTsNCXgICrN",
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Fabio Brazza, Péricles",
+     "name": "Só Uma Noite",
+     "uri": "spotify:track:2JbC87EgF2n4uTViIy6b5H"
+    },
+    {
+     "artist_ids": [
+      "1MzXJ8AaHdidMAnjgcahS4",
+      "2YvHMMn0rYDvE3rs6dqzhq",
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Delacruz, JOK3R, Péricles",
+     "name": "pensando direito",
+     "uri": "spotify:track:57FSQIGpI6WZm4ko6mGOVJ"
+    }
+   ]
+  },
+  "reginaldo rossi": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Reginaldo Rossi",
+   "tracks": [
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Garçon",
+     "uri": "spotify:track:4kgsoM4wTP2HAOQoEyNyTL"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "A Raposa e as Uvas",
+     "uri": "spotify:track:0u8vLdKjqe63Lrs8bTw6ka"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "As Quatro Estações",
+     "uri": "spotify:track:4DiVs7MeNuSds1qiSEBVpg"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Em Plena Lua De Mel (Dina)",
+     "uri": "spotify:track:4FwfiZYw2hm4CkoZctZIDq"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "A Raposa e as Uvas",
+     "uri": "spotify:track:5d7HXbygC36qy2zegmGxAT"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Leviana",
+     "uri": "spotify:track:7xyl9nogYJsmt7Wfu4GXFc"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "A Raposa E As Uvas",
+     "uri": "spotify:track:44tDMe7tQVuvDMPAVFesqG"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Mon Amour, Meu Bem, Ma Femme / Música Incidental: La Vie En Rose",
+     "uri": "spotify:track:2fZVfPQxLPyVzlOFoy8D5a"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Meu Fracasso",
+     "uri": "spotify:track:0wN3qzNR3FxJDz0E3eUdWg"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Quando Você Foi Embora",
+     "uri": "spotify:track:1t9HNvBOX5nhC9zakjRpyD"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Garçon",
+     "uri": "spotify:track:6aRwrXCd1wT7XkQoRw44i2"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Garçon",
+     "uri": "spotify:track:7dL6SM9NCshPhj28cLXASt"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Amor, Amor, Amor",
+     "uri": "spotify:track:7h76l7sXK3y6Q5JPKlzmZn"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "As Quatro Estações",
+     "uri": "spotify:track:3ViF3OwkcyWDJ9m20UFz6j"
+    },
+    {
+     "artist_ids": [
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Reginaldo Rossi",
+     "name": "Teu Olhar, Teu Andar",
+     "uri": "spotify:track:1IDzEcAmfElzO6BjS8P22Y"
+    },
+    {
+     "artist_ids": [
+      "6pRYBBHNsZYnZ8w2xjkAgP",
+      "6DYBkobQCkvav5GCnfqlcC"
+     ],
+     "artists": "Roberta Miranda, Reginaldo Rossi",
+     "name": "Amanhã (Mañana)",
+     "uri": "spotify:track:4GFBAczraCPIxjM7lYa2g8"
+    }
+   ]
+  },
+  "seu jorge": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Seu Jorge",
+   "tracks": [
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Seu Jorge",
+     "name": "Amiga da Minha Mulher",
+     "uri": "spotify:track:5nh2T9qvyXZCvVVYYESeRW"
+    },
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Seu Jorge",
+     "name": "Felicidade",
+     "uri": "spotify:track:1Zq0RY1VUFXOyxU5QTOtxi"
+    },
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Seu Jorge",
+     "name": "Mina do Condomínio",
+     "uri": "spotify:track:3QA7VF91ehKfoYEDa5wcJb"
+    },
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Seu Jorge",
+     "name": "Burguesinha",
+     "uri": "spotify:track:35Wfw6eyw39YpOp2lRH11c"
+    },
+    {
+     "artist_ids": [
+      "2fYAyTS2erZgqEHKHYqgi2",
+      "2450WxbFxHjnttFAv31zGk",
+      "0i1s9WcIu0PrUvHzALgofo",
+      "6uEEza0WufPi44ybkWACFc"
+     ],
+     "artists": "Edi Rock, Bagua Records, Seu Jorge, Leon Mobley",
+     "name": "That's My Way",
+     "uri": "spotify:track:4M7bbRsVNB8iWQaX8Sbfln"
+    },
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Seu Jorge",
+     "name": "Quem Não Quer Sou Eu",
+     "uri": "spotify:track:7sVg4RBtbPqVaRC0X63xAj"
+    },
+    {
+     "artist_ids": [
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Péricles, Seu Jorge",
+     "name": "Boca Louca - Ao Vivo Em São Paulo",
+     "uri": "spotify:track:1rVwEMWJl0BUiYZW8oR5r4"
+    },
+    {
+     "artist_ids": [
+      "4HP9KltldfmkH2M2pQozzN",
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Ana Carolina, Seu Jorge",
+     "name": "É Isso Aí (The Blower'S Daughter) - Ao Vivo",
+     "uri": "spotify:track:6tvnj77OJD0DJTgSIi6fQ3"
+    },
+    {
+     "artist_ids": [
+      "0rSTXALHu0EKAawPLBdODH",
+      "0i1s9WcIu0PrUvHzALgofo",
+      "3CdTias43b3Oic66fadZWY"
+     ],
+     "artists": "Marisa Monte, Seu Jorge, Flor",
+     "name": "Pra Melhorar",
+     "uri": "spotify:track:77ZXpEPLBswvfVFVrLjpTi"
+    },
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo",
+      "2Ww1QbvRHPMqWCrk8oFz8m"
+     ],
+     "artists": "Seu Jorge, Alexandre Pires",
+     "name": "Eu Sou o Samba - Ao Vivo",
+     "uri": "spotify:track:2yyPLEChnKh4MdCMwiyMNx"
+    },
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Seu Jorge",
+     "name": "Alma de Guerreiro - Ao Vivo",
+     "uri": "spotify:track:0e2V5KljXuAAhNi1PRNqQ2"
+    },
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Seu Jorge",
+     "name": "São Gonça - Ao Vivo",
+     "uri": "spotify:track:30lKTJnxHqfD1UeiAn0BLD"
+    },
+    {
+     "artist_ids": [
+      "0i1s9WcIu0PrUvHzALgofo"
+     ],
+     "artists": "Seu Jorge",
+     "name": "Carolina - Ao Vivo",
+     "uri": "spotify:track:5rrQVPDt0mapp7sSuQHN1s"
+    },
+    {
+     "artist_ids": [
+      "0iZz25uH5PLaShpqq84uYv",
+      "0i1s9WcIu0PrUvHzALgofo",
+      "6aCbXH85qN6xo54C7atSMx"
+     ],
+     "artists": "Papatinho, Seu Jorge, Black Alien",
+     "name": "Final de Semana",
+     "uri": "spotify:track:41sjmSYBlafAQrfcxt5387"
+    }
+   ]
+  },
+  "sorriso maroto": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Sorriso Maroto",
+   "tracks": [
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Sorriso Maroto, Péricles, Ferrugem",
+     "name": "Sinais - Ao Vivo",
+     "uri": "spotify:track:28tIFuQHxmEZAg2FljrCwp"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "3CDoRporvSjdzTrm99a3gi",
+      "7hLjkyL9Pz9xtQNahzJZki"
+     ],
+     "artists": "Sorriso Maroto, LUDMILLA, Belo",
+     "name": "Ainda Gosto de Você / Já Era - Ao Vivo",
+     "uri": "spotify:track:06WkQibI8OhOLjDxIRKu5B"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Sorriso Maroto, Ferrugem",
+     "name": "Ela - Ao Vivo",
+     "uri": "spotify:track:1kWcd9h9HoeXsKaDVhSOtj"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1",
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Thiaguinho, Sorriso Maroto",
+     "name": "Como Nunca Amei Ninguém / Por Tão Pouco - Ao Vivo",
+     "uri": "spotify:track:7HS03vpAYoQuZxeXSpzGbM"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2",
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Ferrugem, Sorriso Maroto",
+     "name": "Apaguei Pra Todos - Ao Vivo",
+     "uri": "spotify:track:65vJAh07BdwurqR9SRa6f8"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "5ZfBThYiIIhL7jHMG8gDB2",
+      "66aYJzbeqXd9LyYc1qppzy"
+     ],
+     "artists": "Sorriso Maroto, Ferrugem, Grupo Benzadeus",
+     "name": "Perdas e Danos - Ao Vivo",
+     "uri": "spotify:track:4PnEGuadJd0PKDO7GDXBqH"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Sorriso Maroto, Péricles, Ferrugem",
+     "name": "Brigas Por Nada / 1 Metro e 65 - Ao Vivo",
+     "uri": "spotify:track:6ZXA3cg83xY4It7mQqil8w"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "3CDoRporvSjdzTrm99a3gi",
+      "39VceBo0jXir85LCeAmAIs"
+     ],
+     "artists": "Sorriso Maroto, LUDMILLA, Kamisa 10",
+     "name": "Não Mereço Ser Amante - Ao Vivo",
+     "uri": "spotify:track:7zLGpzKdSqbqq5i4eCcgm7"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "7rXMvXRnWHaSwnVvPeUUfw"
+     ],
+     "artists": "Sorriso Maroto, Gloria Groove",
+     "name": "Me Olha Nos Olhos / Futuro Prometido / Não Tem Perdão - Ao Vivo",
+     "uri": "spotify:track:6npsMy4sqPy5oywywl2UJy"
+    },
+    {
+     "artist_ids": [
+      "7nVA7u9N6fIcxxTXJDl4hq",
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Yan, Sorriso Maroto",
+     "name": "Fica com Deus - Ao Vivo",
+     "uri": "spotify:track:5W7OZVxOtnQsPVLOEUvu1G"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Sorriso Maroto",
+     "name": "1 Metro e 65 - Ao Vivo",
+     "uri": "spotify:track:2yhtzzLeMc3t0LgtlZMgS8"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Sorriso Maroto",
+     "name": "Clichê - Live",
+     "uri": "spotify:track:0M7LoALTZfLKdZswb70qBL"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "1RnHJ07H3jcpay9PrUPjnt"
+     ],
+     "artists": "Sorriso Maroto, Raça Negra",
+     "name": "É Tarde Demais / Estou Mal - Ao Vivo",
+     "uri": "spotify:track:3AJhn8JHsUq64vzQgPGm4T"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Sorriso Maroto",
+     "name": "80 Anos - Ao Vivo",
+     "uri": "spotify:track:456jHlePrLkYsOlzG0tnHr"
+    },
+    {
+     "artist_ids": [
+      "5ZfBThYiIIhL7jHMG8gDB2",
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Ferrugem, Sorriso Maroto",
+     "name": "Apaguei Pra Todos - Ao Vivo",
+     "uri": "spotify:track:5lCErzo5pzcERgOL5hScRG"
+    }
+   ]
+  },
+  "soweto": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Soweto",
+   "tracks": [
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Tempo De Aprender",
+     "uri": "spotify:track:5IgZj3KNhnyctdJy0OXIn5"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "É Tudo",
+     "uri": "spotify:track:2k818cpVCwtF1VFJPM7k7H"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Farol Das Estrelas",
+     "uri": "spotify:track:4aWvRjHweMAoB1RzUcXUUu"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Derê",
+     "uri": "spotify:track:32TvsJTuBVTGcvx059g0hJ"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Estrela Da Paz",
+     "uri": "spotify:track:1WT4qStae7srswI3aB9bBU"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Não Foi A Toa",
+     "uri": "spotify:track:7j3DQh43j7Hn3L3gMPStWX"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Maça Do Amor",
+     "uri": "spotify:track:3Awmd7T3mCRL1RqIihWqf1"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Antes De Dizer Adeus",
+     "uri": "spotify:track:01HNv4xuxwrSXFKJl3IFyW"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Refém Do Coração",
+     "uri": "spotify:track:4thPM2vyb1OSLGHblRFWKA"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Buzios E Tarô",
+     "uri": "spotify:track:6r9SgqJqjv0ddQDOQT67vE"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Tudo Fica Blue",
+     "uri": "spotify:track:5tZ7cshgStBh6v8GIi66UL"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Preciso Te Amar",
+     "uri": "spotify:track:1MpNaw8YCVojUA1lCgiRVW"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Estrela Da Paz",
+     "uri": "spotify:track:4INPRMpbhUjkSADG7XBxxI"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Derê",
+     "uri": "spotify:track:6N6wYxdPVMnEVK8xsplS8z"
+    },
+    {
+     "artist_ids": [
+      "3QYmec82Yj7fjTMvrt49E4"
+     ],
+     "artists": "Soweto",
+     "name": "Mundo De Oz",
+     "uri": "spotify:track:140jlfUtRImKeT8fBKyhMv"
+    }
+   ]
+  },
+  "só pra contrariar": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Só Pra Contrariar",
+   "tracks": [
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Domingo - Ao Vivo",
+     "uri": "spotify:track:0pnrx9K3Q9goF88oPFoykU"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Que Se Chama Amor",
+     "uri": "spotify:track:5nmaIfT1GufHI0lnC3TE2J"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Depois do Prazer",
+     "uri": "spotify:track:3R0fWjRyx1GN4rFDirZZlC"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Essa Tal Liberdade",
+     "uri": "spotify:track:3EjxAbEOH28icEK1ZFOUSh"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Que Se Chama Amor",
+     "uri": "spotify:track:3q8U4Q7zDxLPSsx8upRq1Z"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Você Virou Saudade - Ao Vivo",
+     "uri": "spotify:track:078MdSOvVCN2tfwcUhhLVS"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Você Virou Saudade",
+     "uri": "spotify:track:1CJ6dBpfeA5P6kjHDdk33I"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Quando é Amor",
+     "uri": "spotify:track:1KBeIjKEOr95FXKRkYB3pD"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Mineirinho",
+     "uri": "spotify:track:0sRAXMfrDR9eg5jgMyjp6P"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Mineirinho",
+     "uri": "spotify:track:4kPTeexIB0BxP3bDeMqbel"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Que Se Chama Amor - Ao Vivo",
+     "uri": "spotify:track:3wREisWcvPJj6rSQdh44Tr"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Interfone - Ao Vivo",
+     "uri": "spotify:track:32bMyUcCcnDQDvWYWoCsM4"
+    },
+    {
+     "artist_ids": [
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Só Pra Contrariar",
+     "name": "Que Se Chama Amor",
+     "uri": "spotify:track:0woxPw7XdQly1Dv0w4ffwJ"
+    },
+    {
+     "artist_ids": [
+      "4gsyzG3BVJ3RscqBR3TtSF",
+      "1RnHJ07H3jcpay9PrUPjnt",
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Gigantes do Samba, Raça Negra, Só Pra Contrariar",
+     "name": "Essa Tal Liberdade - Ao Vivo",
+     "uri": "spotify:track:7q5XZjQSTiQP4OYt5I9QNp"
+    },
+    {
+     "artist_ids": [
+      "4gsyzG3BVJ3RscqBR3TtSF",
+      "1RnHJ07H3jcpay9PrUPjnt",
+      "2B8HcBRTizIsSPryM46Sb1"
+     ],
+     "artists": "Gigantes do Samba, Raça Negra, Só Pra Contrariar",
+     "name": "Quando Te Encontrei - Ao Vivo",
+     "uri": "spotify:track:3FmM1puJh1LL3v2bP9Ga1I"
+    }
+   ]
+  },
+  "thiaguinho": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Thiaguinho",
+   "tracks": [
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Caixa Postal - Ao Vivo",
+     "uri": "spotify:track:72jA1tDosuqZClsbaw9hve"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Falta Você",
+     "uri": "spotify:track:05yhrGXwNTfZbpNR2Lc8qS"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Poderosa - Ao Vivo",
+     "uri": "spotify:track:5JTL91USvogeqs9huIpXk8"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1",
+      "1fUSLFr4WUBx7joEcGwpvG"
+     ],
+     "artists": "Thiaguinho, Sorriso Maroto",
+     "name": "Como Nunca Amei Ninguém / Por Tão Pouco - Ao Vivo",
+     "uri": "spotify:track:7HS03vpAYoQuZxeXSpzGbM"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Falta Você - Ao Vivo",
+     "uri": "spotify:track:6gFL0JSbPbKBvCiBtNtOtn"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Me Balançou - Ao Vivo",
+     "uri": "spotify:track:1JiPOyylq1ELYj1rkDAmj8"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Buquê De Flores - Ao Vivo",
+     "uri": "spotify:track:6UXcutdDzSN7qkthFJ1C3Y"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Sou O Cara Pra Você - Ao Vivo",
+     "uri": "spotify:track:0a7N1MGv0uwjxVNlHF2d74"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Reinventar / A Carta - Ao Vivo",
+     "uri": "spotify:track:7b8rDZCjKpTkS1sGjbktFx"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1",
+      "4GH92X1Uuv583KVfSiQBxJ"
+     ],
+     "artists": "Thiaguinho, Billy SP",
+     "name": "Em Busca Da Minha Sorte - Ao Vivo",
+     "uri": "spotify:track:6jds4N5VX0XVcC3TNT9cC7"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Pela Vida Inteira / Vergonha Na Cara - Ao Vivo",
+     "uri": "spotify:track:2sC9NcBWmZX2gt3gM0ZEmo"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Ponto Fraco - Ao Vivo",
+     "uri": "spotify:track:0KkZFQSvZrTL1zU3cX8Z7e"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1"
+     ],
+     "artists": "Thiaguinho",
+     "name": "Patricinha Do Olho Azul / Corpo Nú - Ao Vivo",
+     "uri": "spotify:track:3qojJfMa2p3TAs4IB4x5Ym"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1",
+      "4GH92X1Uuv583KVfSiQBxJ"
+     ],
+     "artists": "Thiaguinho, Billy SP",
+     "name": "Em Busca Da Minha Sorte - Ao Vivo",
+     "uri": "spotify:track:4oev7XjyhZb9CaY4H3kz2T"
+    },
+    {
+     "artist_ids": [
+      "1vppDmG3i5sXf3DJzrK4T1",
+      "4GH92X1Uuv583KVfSiQBxJ"
+     ],
+     "artists": "Thiaguinho, Billy SP",
+     "name": "Em Busca Da Minha Sorte - Ao Vivo",
+     "uri": "spotify:track:5cwtADIfwSm2FDwKqUMwL9"
+    }
+   ]
+  },
+  "vitinho": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Vitinho",
+   "tracks": [
+    {
+     "artist_ids": [
+      "09djLPsTydbIFC9duW5mQp",
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Vitinho, Péricles",
+     "name": "Sobrenome - Ao vivo",
+     "uri": "spotify:track:3gYvOU6MJGBS2WNyDTW7Ui"
+    },
+    {
+     "artist_ids": [
+      "09djLPsTydbIFC9duW5mQp"
+     ],
+     "artists": "Vitinho",
+     "name": "Traição - Ao Vivo",
+     "uri": "spotify:track:5H4CNCiKB9iuKPz5SkMSOG"
+    },
+    {
+     "artist_ids": [
+      "09djLPsTydbIFC9duW5mQp"
+     ],
+     "artists": "Vitinho",
+     "name": "Iceberg - Ao Vivo",
+     "uri": "spotify:track:1ny3bb7PvZEsHCSsPFQJwd"
+    },
+    {
+     "artist_ids": [
+      "09djLPsTydbIFC9duW5mQp"
+     ],
+     "artists": "Vitinho",
+     "name": "A Dor Desse Amor - Ao Vivo",
+     "uri": "spotify:track:3txRBqJxlMlIDsuKq6YK8g"
+    },
+    {
+     "artist_ids": [
+      "6xrc4RXcso9uKlYWlIANPU"
+     ],
+     "artists": "Vitinho Imperador",
+     "name": "Eu Me Apaixonei",
+     "uri": "spotify:track:4SjcIkVc4cvFgURD1EHxDM"
+    },
+    {
+     "artist_ids": [
+      "09djLPsTydbIFC9duW5mQp"
+     ],
+     "artists": "Vitinho",
+     "name": "50 Tons - Ao Vivo",
+     "uri": "spotify:track:4N7YAWIUEYqntHh04Qdf8M"
+    },
+    {
+     "artist_ids": [
+      "3CDoRporvSjdzTrm99a3gi",
+      "09djLPsTydbIFC9duW5mQp"
+     ],
+     "artists": "LUDMILLA, Vitinho",
+     "name": "1% - Ao Vivo",
+     "uri": "spotify:track:6gu8xo31Bsg22KhwTLJsmJ"
+    },
+    {
+     "artist_ids": [
+      "6xrc4RXcso9uKlYWlIANPU"
+     ],
+     "artists": "Vitinho Imperador",
+     "name": "Ela É Linda - Ao Vivo",
+     "uri": "spotify:track:1hyCNB5WSChlAhaBGrHXgd"
+    },
+    {
+     "artist_ids": [
+      "2UMj7NCbuqy1yUZmiSYGjJ",
+      "3B9jl6KbMcVVInEm0EjIuv",
+      "52xstrfqEahsQREdysdsgr"
+     ],
+     "artists": "MC Kevin o Chris, MC Vitinho Avassalador, DJ CZ",
+     "name": "Biquini Cavadinho",
+     "uri": "spotify:track:6X2ZCbvCzMXoZm8Z6rnONU"
+    },
+    {
+     "artist_ids": [
+      "6xrc4RXcso9uKlYWlIANPU"
+     ],
+     "artists": "Vitinho Imperador",
+     "name": "Sem Limites para Sonhar",
+     "uri": "spotify:track:6ToyHLBJmqNWPCvUfyLNph"
+    },
+    {
+     "artist_ids": [
+      "09djLPsTydbIFC9duW5mQp",
+      "0ciLF0bOuu2BhqzCEZgHoB"
+     ],
+     "artists": "Vitinho, Pixote",
+     "name": "Sem Perceber - Ao Vivo",
+     "uri": "spotify:track:35QVA4aLkkfiooChOruhy6"
+    },
+    {
+     "artist_ids": [
+      "09djLPsTydbIFC9duW5mQp"
+     ],
+     "artists": "Vitinho",
+     "name": "Não Me Vejo Sem Você - Ao Vivo",
+     "uri": "spotify:track:6Bjodqpu1TWVoRFFQ5DtNa"
+    },
+    {
+     "artist_ids": [
+      "09djLPsTydbIFC9duW5mQp",
+      "4hpKB93agzoncsTXEstSpK"
+     ],
+     "artists": "Vitinho, Suel",
+     "name": "Mega-Sena - Ao Vivo",
+     "uri": "spotify:track:3MdW2jdTQHbvOokoez67In"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "1x7Y5zQOvhROVPgy73689r",
+      "09djLPsTydbIFC9duW5mQp"
+     ],
+     "artists": "Sorriso Maroto, Tá Na Mente, Vitinho",
+     "name": "Lua de Mel / Clichê / Eu Nunca Amei - Ao Vivo",
+     "uri": "spotify:track:6Y2VePP5AiONwXBwLVI6PK"
+    },
+    {
+     "artist_ids": [
+      "6xrc4RXcso9uKlYWlIANPU"
+     ],
+     "artists": "Vitinho Imperador",
+     "name": "Cê Mente",
+     "uri": "spotify:track:1ChHJVzBsjHuXpVyJuDpFy"
+    }
+   ]
+  },
+  "vou zuar": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Vou Zuar",
+   "tracks": [
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Vou Zuar, Grupo Menos É Mais",
+     "name": "Essa Tal Liberdade / É Tarde Demais / Sentimento Nú / 40 Graus de Amor - Ao Vivo",
+     "uri": "spotify:track:1csQHYgxEJFIVFJ6cQ3TVk"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Vou Zuar, Grupo Menos É Mais",
+     "name": "Não Deixe o Samba Morrer / Retalhos de Cetim / Será Que É Amor - Ao Vivo",
+     "uri": "spotify:track:6fbCGwvj2V5JXYFovauhUr"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2uSwBbWqsXgoMYQjynmwQ7",
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Grupo Menos É Mais, Di Propósito, Vou Zuar",
+     "name": "Pot-Pourri: Fatalmente / Separação / Temporal - Ao Vivo",
+     "uri": "spotify:track:2o7zYsFCKirT6JaFJ4oXRy"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2uSwBbWqsXgoMYQjynmwQ7",
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Grupo Menos É Mais, Di Propósito, Vou Zuar",
+     "name": "Pot-Pourri: Melhor Eu Ir / Ligando Os Fatos / Sonho de Amor / Deixa Eu Te Querer - Ao Vivo",
+     "uri": "spotify:track:5r9CZJMoMmxio2AnJdxuDS"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2uSwBbWqsXgoMYQjynmwQ7",
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Grupo Menos É Mais, Di Propósito, Vou Zuar",
+     "name": "Pot-Pourri: Tempo de Aprender / Energia Surreal / Não Pedi Pra Me Apaixonar / Deixa Acontecer - Ao Vivo",
+     "uri": "spotify:track:03PztApOdNGJ1Cn9kDKRNr"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2uSwBbWqsXgoMYQjynmwQ7",
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Grupo Menos É Mais, Di Propósito, Vou Zuar",
+     "name": "Vai Me Dando Corda - Ao Vivo",
+     "uri": "spotify:track:4rGZaAoBrEvfLGMDZapBKL"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Vou Zuar",
+     "name": "Não Precisa Mudar / Palpite / Final Feliz / A Estrada / Meu Erro - Ao Vivo",
+     "uri": "spotify:track:4NVXiFJFTX6UJGUPPNhopB"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Vou Zuar, Grupo Menos É Mais",
+     "name": "Fulminante / Megastar / Telegrama - Ao Vivo",
+     "uri": "spotify:track:6vUbvOE2bM2GwlnfGIVbwy"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Vou Zuar, Grupo Menos É Mais",
+     "name": "Me Apaixonei pela Pessoa Errada / Tempo de Aprender / Fã de Carteirinha / Não Pedi pra Me Apaixonar - Ao Vivo",
+     "uri": "spotify:track:0I8u327kKaSLQoFJeTS22Q"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Vou Zuar, Grupo Menos É Mais",
+     "name": "Tá Escrito / Tianastácia / Não Sou Mais Disso - Ao Vivo",
+     "uri": "spotify:track:3vU1bFm5jhprOxMklZGbt7"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "77BRZxLjoqGGTrra6Sx8uP"
+     ],
+     "artists": "Vou Zuar, Bruno Diegues",
+     "name": "Bem Querer - Ao Vivo",
+     "uri": "spotify:track:4ho2P1u6E36BZt9URMDxy6"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Vou Zuar",
+     "name": "Ponto Fraco / Pra Ver o Sol Brilhar / Lua Vai / Final de Tarde",
+     "uri": "spotify:track:2rGFYChVuzHNSfCA5eO7mD"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Vou Zuar",
+     "name": "Envolvidão / Essa Mina É Louca / Meu Lugar - Ao Vivo",
+     "uri": "spotify:track:6llEd54Ff1PhNNaNa7Rpki"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "2bRmiOcLOpBKxnMRZ9Nqiv"
+     ],
+     "artists": "Vou Zuar, Renato da Rocinha",
+     "name": "Castelo De Um Quarto Só - Ao Vivo",
+     "uri": "spotify:track:7D76jmTgpdIODh33RWzAMo"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2uSwBbWqsXgoMYQjynmwQ7",
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "3jlloviEHr7oIzGWP7JyDC"
+     ],
+     "artists": "Grupo Menos É Mais, Di Propósito, Vou Zuar, TH DOS ANJOS",
+     "name": "Pot-Pourri: Cohab City / Vem Pra Cá / Beijo Geladinho - Ao Vivo",
+     "uri": "spotify:track:25UN6tV1rZRtRmk4m0BnfQ"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "2uSwBbWqsXgoMYQjynmwQ7",
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Grupo Menos É Mais, Di Propósito, Vou Zuar",
+     "name": "Pot-Pourri: Quem / Frenesi / Deixa Alagar - Ao Vivo",
+     "uri": "spotify:track:6MQb0uNdfdsMFaG5XoWIoe"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Vou Zuar",
+     "name": "Chato Pa Carai",
+     "uri": "spotify:track:4IPQWJcKCrltyd5wOyK33R"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Vou Zuar, Grupo Menos É Mais",
+     "name": "Chato Pa Carai / Recaída / Vai Me Dando Corda / Salseiro / Ninguém É Dono de Ninguém - Ao Vivo",
+     "uri": "spotify:track:7pK4HfptJem9oBME3QDXYm"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Vou Zuar, Grupo Menos É Mais",
+     "name": "Separação / Fatalmente / Como Nunca Amei Ninguém / Tô Te Filmando / Eternamente Feliz - Ao Vivo",
+     "uri": "spotify:track:0u6y4WeFYPXonKLwUqMTxD"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "2bRmiOcLOpBKxnMRZ9Nqiv"
+     ],
+     "artists": "Vou Zuar, Renato da Rocinha",
+     "name": "Inigualável Paixão / Pra Ser Minha Musa - Ao Vivo",
+     "uri": "spotify:track:3p52JAuaJ2cFvbZFYFhXjG"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "6vTqEFbTtTRJsuIpzZgjxi"
+     ],
+     "artists": "Vou Zuar, Grupo Menos É Mais",
+     "name": "Tudo Fica Blue / Sonho de Amor / Papel de Homem - Ao Vivo",
+     "uri": "spotify:track:2yzWW9iDh87vJCCWNpMy2l"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "2bRmiOcLOpBKxnMRZ9Nqiv"
+     ],
+     "artists": "Vou Zuar, Renato da Rocinha",
+     "name": "Se A Fila Andar / Meiguice Descarada / Retrato Cantado De Um Amor - Ao Vivo",
+     "uri": "spotify:track:6aPXuqUF0U7dzsTP5K5CWy"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "2OCUMvnRrx5qIbjSwl8Tph"
+     ],
+     "artists": "Vou Zuar, Príncipe",
+     "name": "Fora Da Lei / Namoro Escondido / Pele Na Pele - Ao Vivo",
+     "uri": "spotify:track:27eGbnWWm1sHyO8lJ7kOy9"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Vou Zuar",
+     "name": "Intriga Da Oposição / Quando A Gente Ama / Adivinha - Ao Vivo",
+     "uri": "spotify:track:48psFsh5Y9WVDMqD0WUPIb"
+    },
+    {
+     "artist_ids": [
+      "6vTqEFbTtTRJsuIpzZgjxi",
+      "5x2zeeLVXEDaMHRaRmH3FD"
+     ],
+     "artists": "Grupo Menos É Mais, Vou Zuar",
+     "name": "Chato Pa Carai - Ao Vivo",
+     "uri": "spotify:track:6xO8FmrLCWlJfheI6vECe0"
+    },
+    {
+     "artist_ids": [
+      "5x2zeeLVXEDaMHRaRmH3FD",
+      "2OCUMvnRrx5qIbjSwl8Tph"
+     ],
+     "artists": "Vou Zuar, Príncipe",
+     "name": "Pai Do Filho Dela / Papel De Homem / Sonho De Amor - Ao Vivo",
+     "uri": "spotify:track:5r2EDo79ik8vkxr9uQsvHk"
+    }
+   ]
+  },
+  "wesley safadão": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Wesley Safadão",
+   "tracks": [
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa",
+      "0Il5vC8lqunSFNav4mMLxU"
+     ],
+     "artists": "Wesley Safadão, Natanzinho Lima",
+     "name": "Mentira Estampada",
+     "uri": "spotify:track:4dGx53NJZJyuuLP5ownH1p"
+    },
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa",
+      "2LiTVEYDOEckioqrkD83jL"
+     ],
+     "artists": "Wesley Safadão, Rey Vaqueiro",
+     "name": "Displicente - Ao Vivo",
+     "uri": "spotify:track:7cYwK2NkBOMpKs44d6HroI"
+    },
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa",
+      "5K8Rmjmf4RZFffz94EmBRt"
+     ],
+     "artists": "Wesley Safadão, Zé Vaqueiro",
+     "name": "Quatro Semanas de Amor / Não Me Julgue / Do Meu Jeito - Ao Vivo",
+     "uri": "spotify:track:2epQhTaZrZOOvHEEXP0Hy2"
+    },
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa"
+     ],
+     "artists": "Wesley Safadão",
+     "name": "Seis Cordas / Baião de Dois / Cavalo Lampião - Ao Vivo",
+     "uri": "spotify:track:0uAFGvNJOQMyB4UZN7qoIB"
+    },
+    {
+     "artist_ids": [
+      "1LIuN7ov1IBQDdLsU83ojl",
+      "1AL2GKpmRrKXkYIcASuRFa"
+     ],
+     "artists": "Hugo & Guilherme, Wesley Safadão",
+     "name": "Mentirosa - Ao Vivo",
+     "uri": "spotify:track:7pBPXkaVQaP3Y3Wwfkpvbn"
+    },
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa"
+     ],
+     "artists": "Wesley Safadão",
+     "name": "Ar Condicionado no 15 - Ao Vivo",
+     "uri": "spotify:track:59iqQY09BBJD3cSvojPsh0"
+    },
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa"
+     ],
+     "artists": "Wesley Safadão",
+     "name": "Coração Machucado - Ao Vivo",
+     "uri": "spotify:track:4NSmJoSBSWpb9crI6wA5gT"
+    },
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa",
+      "2Z0lRIqr997lIUiPtrpKCr"
+     ],
+     "artists": "Wesley Safadão, Matheus & Kauan",
+     "name": "Meu Coração Deu PT - Ao Vivo",
+     "uri": "spotify:track:4zHavHoLCNqqZQ8JVqPZa6"
+    },
+    {
+     "artist_ids": [
+      "71qmoLfGw4fDPJPJ2MBNax",
+      "1AL2GKpmRrKXkYIcASuRFa"
+     ],
+     "artists": "Seu Desejo, Wesley Safadão",
+     "name": "Diga Sim pra Mim",
+     "uri": "spotify:track:6PVU4xWp7EBdrYgULuSuSL"
+    },
+    {
+     "artist_ids": [
+      "5K8Rmjmf4RZFffz94EmBRt",
+      "1AL2GKpmRrKXkYIcASuRFa",
+      "1SXhEXzOTF7YeuQX59m7pT"
+     ],
+     "artists": "Zé Vaqueiro, Wesley Safadão, NATTAN",
+     "name": "DNA do Mato",
+     "uri": "spotify:track:7wMVzl22OE7mV7Cm00O1a7"
+    },
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa",
+      "43DRDu6nLSeIedZ7T1A616"
+     ],
+     "artists": "Wesley Safadão, Xand Avião",
+     "name": "Sede de Te Amar / Timidez - Ao Vivo",
+     "uri": "spotify:track:10ogXfLjDtiKAWw48kXu9Q"
+    },
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa",
+      "0Il5vC8lqunSFNav4mMLxU"
+     ],
+     "artists": "Wesley Safadão, Natanzinho Lima",
+     "name": "Laranjinha",
+     "uri": "spotify:track:4HrIZyZIqd7kqShDXEyN1n"
+    },
+    {
+     "artist_ids": [
+      "1AL2GKpmRrKXkYIcASuRFa",
+      "5K8Rmjmf4RZFffz94EmBRt"
+     ],
+     "artists": "Wesley Safadão, Zé Vaqueiro",
+     "name": "Cê Volta - Ao Vivo",
+     "uri": "spotify:track:115Pqrml85HpHlylru3HLL"
+    },
+    {
+     "artist_ids": [
+      "2LiTVEYDOEckioqrkD83jL",
+      "1AL2GKpmRrKXkYIcASuRFa"
+     ],
+     "artists": "Rey Vaqueiro, Wesley Safadão",
+     "name": "Não Diz que Acabou",
+     "uri": "spotify:track:3U2bwJqm215AP9vErb5ADm"
+    },
+    {
+     "artist_ids": [
+      "0Il5vC8lqunSFNav4mMLxU",
+      "1AL2GKpmRrKXkYIcASuRFa"
+     ],
+     "artists": "Natanzinho Lima, Wesley Safadão",
+     "name": "Fazer Amor é Diferente de Amar - Ao Vivo",
+     "uri": "spotify:track:3owdDSzMHdlNTva7lIX30M"
+    }
+   ]
+  },
+  "xande de pilares": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Xande de Pilares",
+   "tracks": [
+    {
+     "artist_ids": [
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Xande de Pilares",
+     "name": "Clareou",
+     "uri": "spotify:track:0ONAzA6lvUfGqvmT8QsfD5"
+    },
+    {
+     "artist_ids": [
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Xande de Pilares",
+     "name": "Ainda Bem - Ao Vivo",
+     "uri": "spotify:track:0GBsYdxpAPsOd6H8QzGCCU"
+    },
+    {
+     "artist_ids": [
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Xande de Pilares",
+     "name": "Só Depois",
+     "uri": "spotify:track:2gMOV0x8g5sVlIQbLUUzkq"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "6Q1U3z1hge970f3QhrPKcW",
+      "7HGNYPmbDrMkylWqeFCOIQ",
+      "6rM2yY0GnVcOHMU5GD3y9E",
+      "57xRtfFlssbpntpRQOBodd",
+      "5zuSZ0T9iRss0BaobIc6Xm",
+      "1WkZvxuA4zCcFF9GChK6Vr",
+      "2zDJszdrISx9K4L5hvWT33",
+      "4IQKOXNGjuRRe0WgOm5YfB",
+      "4ph6Bt1mkDlmf32PSvRa8A"
+     ],
+     "artists": "Sambabook, Dona Ivone Lara, Caetano Veloso, Martinho Da Vila, Diogo Nogueira, Bruno Castro, Grupo Fundo De Quintal, Zélia Duncan, Xande de Pilares, Elba Ramalho",
+     "name": "Sonho Meu",
+     "uri": "spotify:track:4wUzJax4y4a6jIhbF28LoC"
+    },
+    {
+     "artist_ids": [
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Xande de Pilares",
+     "name": "Tá Escrito",
+     "uri": "spotify:track:6x5e5VKWm3nquEZPy1WMup"
+    },
+    {
+     "artist_ids": [
+      "4IQKOXNGjuRRe0WgOm5YfB",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Xande de Pilares, Ferrugem",
+     "name": "Degradê - Ao Vivo",
+     "uri": "spotify:track:6GYTlakLY14kQ0lyvJ1IXt"
+    },
+    {
+     "artist_ids": [
+      "4IQKOXNGjuRRe0WgOm5YfB",
+      "3uok7FAxt9FKrsLB6rmNp7"
+     ],
+     "artists": "Xande de Pilares, Jorginho China",
+     "name": "Inigualável Paixão / Quem de Nós - Ao Vivo",
+     "uri": "spotify:track:5SDedw14zpI3vzmbBdZa6C"
+    },
+    {
+     "artist_ids": [
+      "32GW4h2xb3glY99mWLjwlG",
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Benito Di Paula, Xande de Pilares",
+     "name": "Retalhos De Cetim - Ao Vivo",
+     "uri": "spotify:track:6DeIRzMM8sZaFD2eIkBxtZ"
+    },
+    {
+     "artist_ids": [
+      "0slVGXBggrLglTLNKbeEyW",
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Rubel, Xande de Pilares",
+     "name": "Grão de Areia",
+     "uri": "spotify:track:5kV7zUqQqd8rvYX82GoWCg"
+    },
+    {
+     "artist_ids": [
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Xande de Pilares",
+     "name": "Clareou - Ao Vivo",
+     "uri": "spotify:track:4B9IZ65xBqKie4ddzdFwtL"
+    },
+    {
+     "artist_ids": [
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Xande de Pilares",
+     "name": "Gratidão",
+     "uri": "spotify:track:0TdVVky1bm2HnamYfkk8X7"
+    },
+    {
+     "artist_ids": [
+      "4IQKOXNGjuRRe0WgOm5YfB",
+      "5ZfBThYiIIhL7jHMG8gDB2"
+     ],
+     "artists": "Xande de Pilares, Ferrugem",
+     "name": "Degradê - Ao Vivo",
+     "uri": "spotify:track:4FgHFMadYmfduckXBrlOsm"
+    },
+    {
+     "artist_ids": [
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "4IQKOXNGjuRRe0WgOm5YfB"
+     ],
+     "artists": "Péricles, Xande de Pilares",
+     "name": "Estrela da Paz - Ao Vivo",
+     "uri": "spotify:track:60DlVcOApcEYbXwHYLhntF"
+    },
+    {
+     "artist_ids": [
+      "1fUSLFr4WUBx7joEcGwpvG",
+      "4IQKOXNGjuRRe0WgOm5YfB",
+      "34dfPo3Zi55yM6oV46q4y7"
+     ],
+     "artists": "Sorriso Maroto, Xande de Pilares, Mumuzinho",
+     "name": "É Diferente / Tarde Demais / Nada de Pensar em Despedida - Ao Vivo",
+     "uri": "spotify:track:0AMKPyAgb3FVXdmuug2SLC"
+    }
+   ]
+  },
+  "zeca pagodinho": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Zeca Pagodinho",
+   "tracks": [
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Zeca Pagodinho",
+     "name": "Maneiras - Ao Vivo",
+     "uri": "spotify:track:3kqzSZdgPRqMqgTvyw0V3t"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Zeca Pagodinho",
+     "name": "Deixa A Vida Me Levar",
+     "uri": "spotify:track:7bdhM9AJqWAIHooF4sh3wW"
+    },
+    {
+     "artist_ids": [
+      "5JG9GISYjRLQUJMH2C6iJ5",
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Turma do Pagode, Zeca Pagodinho",
+     "name": "Pedindo a Conta - Ao Vivo",
+     "uri": "spotify:track:1b1KmtqgB4gPhrouObJh64"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "2cAooeeHKk2UvzUgIxpS0y",
+      "3qZ2n5keOAat1SoF6bHwmb",
+      "4cn4gMq0KXORHeYA45PcBi",
+      "5Rxz1EE4Jj08mu40vlrqHv",
+      "3KlU8ZNbRdGSe2hGY5aUF9",
+      "2d9LRvQJnAXRijqIJDDs2K",
+      "57xRtfFlssbpntpRQOBodd",
+      "0rzVUhvOIVNUbY6uKCpGfb",
+      "6rM2yY0GnVcOHMU5GD3y9E"
+     ],
+     "artists": "Sambabook, Jorge Aragão, Zeca Pagodinho, Elza Soares, Sandra Sá, Joyce Cândido, Emicida, Diogo Nogueira, Luciana Mello, Martinho Da Vila",
+     "name": "Vou Festejar",
+     "uri": "spotify:track:6eZGI7okD8U3zFCjkz7LEc"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "3qZ2n5keOAat1SoF6bHwmb",
+      "4Mw0vJsDXTZF7kn7EsdNoD",
+      "34dfPo3Zi55yM6oV46q4y7",
+      "5rrmaoBXZ7Jcs4Qb77j0YA",
+      "5GmHrvfki94D20jsW5PRTi",
+      "096an3uS6ZaK2XySae6SqP",
+      "1C8UBSZs5rOPfxuxTMS6OI",
+      "6gEzJZrbm0F4ihvE9iXR9z",
+      "0hPar6ePAELiu9rYMdvMEo"
+     ],
+     "artists": "Sambabook, Zeca Pagodinho, Dudu Nobre, Mumuzinho, Djavan, Sombrinha, Arlindo Cruz, Maria Rita, Péricles, Alcione",
+     "name": "Camarão Que Dorme a Onda Leva",
+     "uri": "spotify:track:60M76S6OMP5vnqZW7D4Nad"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Zeca Pagodinho",
+     "name": "Mais Feliz",
+     "uri": "spotify:track:1PX26jqxFcahtiibUj6EYr"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Zeca Pagodinho",
+     "name": "Faixa Amarela",
+     "uri": "spotify:track:3Rp4m03mbhlYgIeSWNP9xm"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Zeca Pagodinho",
+     "name": "Verdade",
+     "uri": "spotify:track:2Hw2kl2Vkthv8JMRKyQkCU"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Zeca Pagodinho",
+     "name": "Seu Balancê",
+     "uri": "spotify:track:2cynkyn1tRlilsW1yUWv6P"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Zeca Pagodinho",
+     "name": "Vacilão",
+     "uri": "spotify:track:2r05fN1qdcN0y66l0vzUGY"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Zeca Pagodinho",
+     "name": "Água Da Minha Sede",
+     "uri": "spotify:track:5yEGs6NxH8JJseKVNKeduc"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb"
+     ],
+     "artists": "Zeca Pagodinho",
+     "name": "Quando A Gira Girou - Ao Vivo",
+     "uri": "spotify:track:6AHsV0Wb4t3ttgs5P4wsf6"
+    },
+    {
+     "artist_ids": [
+      "3qZ2n5keOAat1SoF6bHwmb",
+      "5JYtpnUKxAzXfHEYpOeeit"
+     ],
+     "artists": "Zeca Pagodinho, Jorge Ben Jor",
+     "name": "Ogum - Ao Vivo",
+     "uri": "spotify:track:5ii11kM3XEBh1viHC6ObhX"
+    },
+    {
+     "artist_ids": [
+      "2FW6Zt8gyIF7Fb7O3TGxnE",
+      "3qZ2n5keOAat1SoF6bHwmb",
+      "5GmHrvfki94D20jsW5PRTi",
+      "4vKCAkbdulcqatglgbi5CG",
+      "4Mw0vJsDXTZF7kn7EsdNoD",
+      "34dfPo3Zi55yM6oV46q4y7",
+      "4YLBdrR3DVSMncm785NH6C",
+      "096an3uS6ZaK2XySae6SqP",
+      "1C8UBSZs5rOPfxuxTMS6OI",
+      "6gEzJZrbm0F4ihvE9iXR9z"
+     ],
+     "artists": "Sambabook, Zeca Pagodinho, Sombrinha, Roberta Sá, Dudu Nobre, Mumuzinho, Lenine, Arlindo Cruz, Maria Rita, Péricles",
+     "name": "Camarão Que Dorme a Onda Leva",
+     "uri": "spotify:track:09w2BoODgecKD44OPHwgL8"
+    }
+   ]
+  },
+  "zezé di camargo": {
+   "fetched": "2026-09-24T01:51:04+00:00",
+   "name": "Zezé Di Camargo",
+   "tracks": [
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Você Vai Ver",
+     "uri": "spotify:track:0jwGxgupGo2ovlU5eonF9D"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Irmão da Lua, Amigo das Estrelas",
+     "uri": "spotify:track:1PW3LjmxJqVoQ9nmdbxF9f"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Sonho de Amor - Ao Vivo",
+     "uri": "spotify:track:5B5AyKmjN4cieujx8XrbGH"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Pra Não Pensar em Você",
+     "uri": "spotify:track:06mJICPD91PUTdS08mH1If"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Sem Medo de Ser Feliz",
+     "uri": "spotify:track:3u3G8q8xzUv3ujZ59DLKzU"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "No Dia em Que Eu Saí de Casa",
+     "uri": "spotify:track:3TPVkq85S5r0EoXZHn5zxU"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Dou a Vida por um Beijo",
+     "uri": "spotify:track:6BLguGrN4ZeDnPSM5SFRV2"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Flores Em Vida",
+     "uri": "spotify:track:3kZOV1DT3feAHjbyfVbQn9"
+    },
+    {
+     "artist_ids": [
+      "1wT33JDD3YLC0fqFnsWo9F"
+     ],
+     "artists": "ZeZé Di Camargo",
+     "name": "Irmão da Lua, Amigo das Estrelas",
+     "uri": "spotify:track:5iiwGH2liWj3Vx2AvQq7FA"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Antes de Voltar Pra Casa",
+     "uri": "spotify:track:0NpMp7FoYF4p4NHdbHih0L"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Mentes Tão Bem",
+     "uri": "spotify:track:3DkE4v0ipzLzXlYyXY0AY2"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Dois Corações e uma História",
+     "uri": "spotify:track:5XRUIRvX0BTzuBDtxMCZZ9"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Será Que Foi Saudade?",
+     "uri": "spotify:track:3jxrrBr3Emah0Ku4tEL9Jz"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Coração Está em Pedaços",
+     "uri": "spotify:track:19rlBaW5ew5AEayQqHM10s"
+    },
+    {
+     "artist_ids": [
+      "4dyYjqmYDjegbB3F2mbvcT"
+     ],
+     "artists": "Zezé Di Camargo & Luciano",
+     "name": "Pra Mudar a Minha Vida",
+     "uri": "spotify:track:4oMlV3X4i2jaKRIGmTXriC"
+    }
+   ]
+  }
+ }
+}

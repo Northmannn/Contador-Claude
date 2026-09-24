@@ -170,6 +170,28 @@ def test_foreign_artists_never_as_new_from_catalog():
     assert "Feeling Good" in chosen and "Haven't Met You Yet" not in chosen, chosen
 
 
+def test_one_per_artist_counts_features():
+    curator._GENRE_CACHE.clear()
+    spec = _spec(size=3, new_tracks=0, match_artists=["Jorge & Mateus", "Humberto & Ronaldo", "Artista A"])
+
+    class Sp(FakeSpotify):
+        def current_user_top_tracks(self, limit, time_range):
+            if time_range != "long_term":
+                return {"items": []}
+            return {"items": [
+                {"uri": "1", "name": "Carência", "artists": [{"id": "h", "name": "Humberto & Ronaldo"}, {"id": "j", "name": "Jorge & Mateus"}]},
+                _item("2", "Amor Pra Recomeçar", "Jorge & Mateus"),
+                _item("3", "Outra", "Artista A"),
+            ]}
+
+        def current_user_saved_tracks(self, limit):
+            return {"items": [], "next": None}
+
+    chosen = curator.curate(Sp(), spec, recent={}, catalog=[Track("zz", "Z", "Z", [])])
+    with_jm = [t for t in chosen if "Jorge & Mateus" in t.artists]
+    assert len(with_jm) == 1, [t.name for t in chosen]
+
+
 def test_slots():
     slots = [DailySlot("manha", 2, 12), DailySlot("noite", 17, 24)]
     at = lambda h: datetime(2026, 9, 24, (h + 3) % 24, 30, tzinfo=timezone.utc) + (

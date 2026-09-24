@@ -841,13 +841,15 @@ def _curate_sing_along(
         keys = song_keys(track.name)
         if keys & chosen_keys:  # mesma música em outra versão/medley
             return False
-        key = _artist_key(track)
-        if spec.max_per_artist and counts.get(key, 0) >= spec.max_per_artist:
+        # 1 por artista contando PARTICIPAÇÕES ("X, Jorge & Mateus" conta p/ os dois)
+        names = {a.strip().lower() for a in track.artists.split(",") if a.strip()}
+        if spec.max_per_artist and any(counts.get(n, 0) >= spec.max_per_artist for n in names):
             return False
         chosen.append(track)
         chosen_uris.add(track.uri)
         chosen_keys.update(keys)
-        counts[key] = counts.get(key, 0) + 1
+        for n in names:
+            counts[n] = counts.get(n, 0) + 1
         return True
 
     # 1) as novas  2) conhecidas  3) hits dos seus artistas  4) reuso (mais antigo)

@@ -27,7 +27,15 @@ spotify_playlists/
   seasons.py     # estação atual (hemisfério sul / Brasil)
 .github/workflows/
   seasonal-update.yml   # cron semanal (playlists sazonais)
-  daily-morning.yml     # cron diário 08:00 UTC = 05:00 BRT (playlists daily:true)
+  daily-morning.yml     # cron DE HORA EM HORA + trava de janela (diária 2x/dia)
+  manual-sync.yml       # gera UMA playlist sob demanda (input: nome)
+  diagnose.yml / taste.yml  # read-only: diagnóstico do leitor / gosto do usuário
+data/                   # estado versionado (o workflow commita de volta)
+  feedback.json         # "não gosto" aprendido do que o usuário remove
+  catalog.json          # cache dos hits de cada artista permitido (TTL 14 dias)
+  state/<playlist>.json # última geração + "played" (música -> quando tocou)
+  state/_slots.json     # última janela (manhã/noite) já gerada
+tests/test_daily.py     # rodízio, catálogo, janelas — rodar antes de commitar
 ```
 
 ## 3. Como rodar
@@ -108,6 +116,24 @@ suposições antigas. O que JÁ pegamos aqui:
    caem em busca genérica = artistas aleatórios); o que segura é veto por
    **nome** (`exclude_artists`) e a heurística "MC …"/"DJ …" = funk. Idioma
    (`portuguese_only`) usa heurística de texto + exceção pras curtidas.
+
+## 5b. Playlist diária (🌅 Bom Dia) — como funciona hoje
+
+- **2x ao dia por janelas** (`daily_slots` no YAML, hora de Brasília): manhã
+  02h–12h, noite 17h–24h. O cron roda **toda hora** (o GitHub atrasa 5-6h e às
+  vezes descarta execuções); `sync --daily --slot-guard` só gera se a janela
+  atual ainda não foi gerada. Disparo manual gera sempre e **marca** a janela.
+- **Rodízio (`rotation_days: 7`)**: cada música gerada vai pro `played`
+  (por *chave de música* — `curator.song_keys`: ignora "Ao Vivo", "(feat.)",
+  e separa medleys por "/"). Nada tocado em 7 dias volta; se o acervo não
+  bastar, reusa a que tocou há mais tempo (e avisa no log).
+- **Acervo** = conhecidas (top tracks + ~600 curtidas) ∩ `match_artists`, mais
+  o **catálogo** (hits via busca `artist:"Nome"`, 30 por artista), cacheado em
+  `data/catalog.json` e atualizado em lotes (`CATALOG_BUDGET`, padrão 12
+  artistas/geração, pausa entre chamadas, para no 1º 429). As `new_tracks`
+  saem do catálogo (hits dos artistas dele que o Spotify não o viu ouvir).
+  `foreign_artists` nunca vêm do catálogo — deles só o que ele já ouve.
+- Uma semana = 14 listas × 25 ≈ 350 músicas: o catálogo existe pra isso.
 
 ## 6. Rate limit (IMPORTANTE)
 

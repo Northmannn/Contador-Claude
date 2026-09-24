@@ -22,6 +22,13 @@
 hemisphere: southern   # Brasil = southern (estações invertidas vs. EUA/Europa)
 market: BR
 
+# Janelas (hora de Brasília, [from, to)) em que as playlists "daily" se renovam.
+# O GitHub dispara de hora em hora; a 1ª execução dentro de cada janela gera a
+# lista e as demais daquela janela só conferem e saem.
+daily_slots:
+  - {name: manha, from: 2, to: 12}    # pronta pra sair de manhã
+  - {name: noite, from: 17, to: 24}   # pronta antes das 22h (volta do trabalho)
+
 playlists:
   - name: "☀️ Verão na Praia"
     description: "Energia alta pra dias quentes. Atualizada a cada verão."
@@ -187,14 +194,15 @@ playlists:
       - "Tim Maia"
 
   # =====================================================================
-  # 🌅 BOM DIA — DIÁRIA às 5h: pra treinar SEGUNDA VOZ no carro.
-  # Regras v2 (definidas com o usuário): melódica e contagiante (sertanejo,
-  # pagode, samba, MPB, axé...), só português (inglês só se já for curtida),
-  # maioria conhecida + 3 novas do próprio gosto, sem repetir artista, sem
-  # rock/metal/funk/rap/melancolia, e aprende com o que ele remove.
+  # 🌅 BOM DIA — DIÁRIA, 2x ao dia (manhã e noite): treino de SEGUNDA VOZ no carro.
+  # Regras (definidas com o usuário): melódica e contagiante (pagode, samba,
+  # sertanejo, MPB...), só português (inglês só do que ele já ouve), maioria
+  # conhecida + novas dos próprios artistas, 1 por artista, sem rock/metal/funk/
+  # rap/melancolia, aprende com o que ele remove e RODÍZIO de 7 dias (nenhuma
+  # música — em qualquer versão/medley — repete dentro de uma semana).
   # =====================================================================
   - name: "🌅 Bom Dia, Motivação"
-    description: "Pra treinar segunda voz no carro: melódica, contagiante, em português. 25 músicas: conhecidas + 4 novas por dia."
+    description: "Treino de segunda voz no carro: melódica, em português, 25 músicas. Renova 2x ao dia (manhã e noite) sem repetir nada por 7 dias."
     public: false
     size: 25
     seasons: [always]
@@ -205,6 +213,7 @@ playlists:
     max_per_artist: 1      # nunca repete artista
     portuguese_only: true  # só português; inglês apenas se JÁ estiver nas curtidas
     learn_removals: true   # o que você tira vira "não gosto" (com guarda anti-bug)
+    rotation_days: 7       # nenhuma música repete por 7 dias (2 listas/dia = ~350 músicas)
     seed_from_taste: true  # as novas saem dos SEUS artistas (não de gente aleatória)
     mode: discovery
     # Melódico e contagiante — o que funciona pra segunda voz (terças):

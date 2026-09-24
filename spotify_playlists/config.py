@@ -29,10 +29,24 @@ class PlaylistDef:
 
 
 @dataclass
+class DailySlot:
+    """Janela (hora de Brasília, [start, end)) em que a diária se renova 1x."""
+
+    name: str
+    start: int
+    end: int
+
+
+# Padrão: manhã (pronta pra sair de casa) e noite (pronta antes das 22h).
+DEFAULT_DAILY_SLOTS = [DailySlot("manha", 2, 12), DailySlot("noite", 17, 24)]
+
+
+@dataclass
 class Config:
     hemisphere: str
     market: str
     playlists: list[PlaylistDef]
+    daily_slots: list[DailySlot] = field(default_factory=lambda: list(DEFAULT_DAILY_SLOTS))
 
 
 def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
@@ -80,6 +94,7 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             match_artists=raw.get("match_artists", []),
             foreign_artists=raw.get("foreign_artists", []),
             exclude_keywords=raw.get("exclude_keywords", []),
+            rotation_days=int(raw.get("rotation_days", 0)),
         )
         playlists.append(
             PlaylistDef(
@@ -92,4 +107,14 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             )
         )
 
-    return Config(hemisphere=hemisphere, market=market, playlists=playlists)
+    slots = [
+        DailySlot(str(d["name"]), int(d["from"]), int(d["to"]))
+        for d in (data.get("daily_slots") or [])
+    ] or list(DEFAULT_DAILY_SLOTS)
+    for sl in slots:
+        if not (0 <= sl.start < sl.end <= 24):
+            raise ValueError(f"daily_slots: janela inválida {sl}")
+
+    return Config(
+        hemisphere=hemisphere, market=market, playlists=playlists, daily_slots=slots
+    )

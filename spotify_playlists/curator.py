@@ -17,7 +17,9 @@ from __future__ import annotations
 
 import random
 import re
+import time
 from dataclasses import dataclass, field, replace
+from datetime import datetime, timezone
 
 from spotipy import Spotify
 from spotipy.exceptions import SpotifyException
@@ -70,6 +72,7 @@ class CurationSpec:
     match_artists: list[str] = field(default_factory=list)  # LISTA DE PERMITIDOS (por nome)
     foreign_artists: list[str] = field(default_factory=list)  # estrangeiros: só do acervo conhecido
     exclude_keywords: list[str] = field(default_factory=list)  # veta por palavra no título/artista
+    rotation_days: int = 0  # não repetir a mesma MÚSICA (qualquer versão) por N dias
 
 
 def _track_from_item(item: dict) -> Track | None:
@@ -271,12 +274,33 @@ def _drop(
     ]
 
 
-_TITLE_NOISE = re.compile(r"\s*[-–(\[].*$")
+_MEDLEY_PREFIX = re.compile(r"^(pot[\s-]?pourri|medley)\s*:?\s*", re.IGNORECASE)
+
+
+def song_keys(name: str) -> set[str]:
+    """Identidade da MÚSICA, independente da versão.
+
+    'Talvez - Ao Vivo', 'Talvez (feat. X)' → {'talvez'}; medleys viram uma chave
+    por música: '(Medley) Para Tudo / Loucura do Seu Coração - Ao Vivo' →
+    {'para tudo', 'loucura do seu coração'}. Assim a mesma canção em outra
+    gravação/medley conta como repetição.
+    """
+    s = re.sub(r"[\(\[].*?[\)\]]", " ", name or "")
+    s = re.split(r"\s[-–—]\s", s)[0]
+    keys: set[str] = set()
+    for part in re.split(r"\s*/\s*", s):
+        part = _MEDLEY_PREFIX.sub("", part.strip())
+        k = re.sub(r"[^\w\s]", "", part.lower())
+        k = re.sub(r"\s+", " ", k).strip()
+        if k:
+            keys.add(k)
+    return keys
 
 
 def _norm_title(name: str) -> str:
-    """'Pupila - Ao Vivo' e 'Pupila (feat. X)' viram 'pupila' (não repetir versões)."""
-    return _TITLE_NOISE.sub("", name or "").strip().lower()
+    """Compat: chave única e estável da música (a menor chave do medley)."""
+    keys = song_keys(name)
+    return min(keys) if keys else ""
 
 
 # --------------------------------------------------------------------------- #
@@ -440,8 +464,8 @@ def _user_top_tracks(sp: Spotify) -> list[Track]:
     return tracks
 
 
-def _saved_tracks(sp: Spotify, max_pages: int = 6) -> list[Track]:
-    """Suas músicas curtidas (as ~300 mais recentes) — coisas que você conhece."""
+def _saved_tracks(sp: Spotify, max_pages: int = 12) -> list[Track]:
+    """Suas músicas curtidas (as ~600 mais recentes) — coisas que você conhece."""
     tracks: list[Track] = []
     try:
         page = sp.current_user_saved_tracks(limit=50)
@@ -616,97 +640,232 @@ def _curate_discovery(
     return unique[: spec.size]
 
 
-def _curate_sing_along(
-    sp: Spotify, spec: CurationSpec, disliked_uris=frozenset(), recent_uris=frozenset()
-) -> list[Track]:
-    """Modo "cantar junto": maioria de músicas que você CONHECE (top tracks +
-    curtidas) + umas poucas NOVAS (``new_tracks``) pra você ir conhecendo aos
-    poucos. Sem repetir artista e sem os que você já vetou/removeu.
+# --------------------------------------------------------------------------- #
+# Catálogo dos artistas permitidos (cache em data/catalog.json, pelo manager)
+# --------------------------------------------------------------------------- #
+# Sem "top tracks"/"álbuns" (403 em Development Mode), o catálogo de cada artista
+# vem da BUSCA com filtro artist:"Nome" (ordem ≈ popularidade = os hits dele).
+# Cacheado com TTL e atualizado em lotes pequenos por execução, com pausa entre
+# chamadas — nunca estourar o rate limit (ver AGENTS.md §6).
+CATALOG_PAGES = 3          # 3 x 10 = até 30 músicas por artista
+CATALOG_TTL_DAYS = 14
+CATALOG_PAUSE_S = 0.35
+
+
+class CatalogRateLimited(Exception):
+    """429 durante a atualização do catálogo: paramos e seguimos com o cache."""
+
+
+def _utcnow() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def _fetch_artist_catalog(sp: Spotify, name: str, market: str, pages: int) -> list[Track]:
+    tracks: list[Track] = []
+    seen: set[str] = set()
+    for query in (f'artist:"{name}"', name):
+        for page in range(pages):
+            try:
+                resp = sp.search(
+                    q=query, type="track", market=market,
+                    limit=SEARCH_MAX_LIMIT, offset=page * SEARCH_MAX_LIMIT,
+                )
+            except SpotifyException as exc:
+                if exc.http_status == 429:
+                    raise CatalogRateLimited() from exc
+                break
+            except Exception:
+                break
+            finally:
+                time.sleep(CATALOG_PAUSE_S)
+            items = resp.get("tracks", {}).get("items", [])
+            if not items:
+                break
+            for t in (_track_from_item(it) for it in items):
+                # só músicas DESTE artista (a busca por texto traz homônimos)
+                if t and t.uri not in seen and _name_matches(t.artists, [name]):
+                    seen.add(t.uri)
+                    tracks.append(t)
+        if tracks:
+            break  # o filtro artist:"" funcionou; não precisa do texto puro
+    return tracks
+
+
+def refresh_catalog(
+    sp: Spotify,
+    cache: dict,
+    artists: list[str],
+    market: str,
+    budget: int,
+    ttl_days: int = CATALOG_TTL_DAYS,
+    pages: int = CATALOG_PAGES,
+) -> int:
+    """Atualiza até ``budget`` artistas vencidos/ausentes (os mais velhos antes).
+
+    ``cache`` = {"artists": {nome_minúsculo: {"name", "fetched", "tracks": [...]}}}.
+    Retorna quantos artistas foram atualizados. Em 429, para e mantém o cache.
     """
-    # Conhecidas: o que você mais ouve + curtidas (dá pra cantar de cabeça).
+    entries = cache.setdefault("artists", {})
+    now = _utcnow()
+
+    def age(name: str) -> float:
+        e = entries.get(name.lower())
+        if not e or not e.get("fetched"):
+            return float("inf")
+        try:
+            return (now - datetime.fromisoformat(e["fetched"])).total_seconds()
+        except ValueError:
+            return float("inf")
+
+    due = [a for a in artists if age(a) >= ttl_days * 86400]
+    due.sort(key=age, reverse=True)
+    done = 0
+    for name in due[: max(0, budget)]:
+        try:
+            tracks = _fetch_artist_catalog(sp, name, market, pages)
+        except CatalogRateLimited:
+            print("   ⛔ rate limit ao atualizar o catálogo — sigo com o que já tenho.")
+            break
+        entries[name.lower()] = {
+            "name": name,
+            "fetched": now.isoformat(timespec="seconds"),
+            "tracks": [
+                {"uri": t.uri, "name": t.name, "artists": t.artists, "artist_ids": t.artist_ids}
+                for t in tracks
+            ],
+        }
+        done += 1
+    return done
+
+
+def catalog_tracks(cache: dict, artists: list[str]) -> list[Track]:
+    """Faixas cacheadas dos artistas pedidos (vazio se ainda não baixou)."""
+    out: list[Track] = []
+    for name in artists:
+        e = (cache.get("artists") or {}).get(name.lower())
+        for d in (e or {}).get("tracks", []):
+            out.append(
+                Track(d["uri"], d["name"], d["artists"], list(d.get("artist_ids") or []))
+            )
+    return out
+
+
+def _last_played(track: Track, recent: dict[str, str]) -> str | None:
+    """Última vez (ISO) que QUALQUER versão desta música tocou; None = fresca."""
+    dates = [recent[k] for k in song_keys(track.name) if k in recent]
+    return max(dates) if dates else None
+
+
+def _curate_sing_along(
+    sp: Spotify,
+    spec: CurationSpec,
+    disliked_uris=frozenset(),
+    recent: dict[str, str] | None = None,
+    catalog: list[Track] | None = None,
+) -> list[Track]:
+    """Modo "cantar junto".
+
+    - CONHECIDAS: suas mais ouvidas + curtidas (dá pra cantar de cabeça).
+    - NOVAS (``new_tracks``): músicas dos seus artistas que o Spotify não te
+      viu ouvir — vêm do catálogo cacheado dos artistas permitidos.
+    - Rodízio: nada que tocou nos últimos ``rotation_days`` dias volta (qualquer
+      versão/medley da mesma música). Quando o acervo conhecido acaba na semana,
+      completa com hits dos SEUS artistas (catálogo); só em último caso reusa,
+      e aí a que tocou há mais tempo.
+    - 1 por artista, lista de permitidos, idioma, vetos e "não gosto".
+    """
+    recent = recent or {}
+
+    # Conhecidas: o que você mais ouve + curtidas.
     saved = _saved_tracks(sp)
     saved_uris = {t.uri for t in saved}
-    known = _drop(
-        _dedupe(_user_top_tracks(sp) + saved),
-        disliked_uris,
-        spec.exclude_artists,
-        spec.exclude_keywords,
-    )
+    known_all = _dedupe(_user_top_tracks(sp) + saved)
+    heard_uris = {t.uri for t in known_all}
+    known = _drop(known_all, disliked_uris, spec.exclude_artists, spec.exclude_keywords)
     known = [t for t in known if _artist_allowed(t, spec.match_artists)]
-    # Regras de idioma e de gênero valem pro acervo conhecido também
-    # (senão entra rock/inglês que você ouve mas não quer de manhã).
     _artist_genres_for(sp, known)
-    with_genre = sum(1 for t in known if _genres_of(t))
-    print(
-        f"   🎼 gêneros conhecidos em {with_genre}/{len(known)} faixas do acervo"
-        + ("  (GET /artists bloqueado — usando heurísticas)" if "artists" in _BLOCKED else "")
-    )
     known = [
         t for t in known
         if _passes_genres(t, spec) and _passes_language(t, saved_uris, spec, allow_by_list=True)
     ]
-    random.shuffle(known)
 
-    # Novas: descobertas no seu gosto (o cap por artista é aplicado no fim, aqui não).
-    disc = replace(
-        spec,
-        exclude_heard=True,
-        include_top_tracks=False,
-        sing_along=False,
-        max_per_artist=0,
-        size=max(spec.size * 4, 40),
+    # Catálogo dos artistas permitidos = novas + reserva do rodízio.
+    if catalog:
+        extra = _drop(_dedupe(catalog), disliked_uris, spec.exclude_artists, spec.exclude_keywords)
+        extra = [
+            t for t in extra
+            if t.uri not in heard_uris
+            and _artist_allowed(t, spec.match_artists)
+            and _passes_genres(t, spec)
+            and _passes_language(t, saved_uris, spec)  # estrangeira nova: não
+        ]
+    else:
+        # Sem catálogo ainda (1ª execução / falha): descoberta antiga por busca.
+        disc = replace(
+            spec, exclude_heard=True, include_top_tracks=False, sing_along=False,
+            max_per_artist=0, size=max(spec.size * 4, 40),
+        )
+        extra = _curate_discovery(sp, disc, disliked_uris)
+        _artist_genres_for(sp, extra)
+        extra = [
+            t for t in extra
+            if t.uri not in saved_uris and _passes_genres(t, spec)
+            and _passes_language(t, set(), spec)
+        ]
+
+    known_uris = {t.uri for t in known}
+    extra = [t for t in _dedupe(extra) if t.uri not in known_uris]
+
+    fresh_known = [t for t in known if _last_played(t, recent) is None]
+    fresh_extra = [t for t in extra if _last_played(t, recent) is None]
+    random.shuffle(fresh_known)
+    random.shuffle(fresh_extra)
+    # reuso só em último caso: a que tocou há mais tempo primeiro
+    stale = sorted(
+        [t for t in known + extra if _last_played(t, recent) is not None],
+        key=lambda t: _last_played(t, recent) or "",
     )
-    new_list = _curate_discovery(sp, disc, disliked_uris)
-    _artist_genres_for(sp, new_list)
-    # Nova NUNCA é estrangeira (a exceção do inglês só vale pras curtidas).
-    new_list = [
-        t for t in new_list
-        if t.uri not in saved_uris and _passes_genres(t, spec) and _passes_language(t, set(), spec)
-    ]
+    print(
+        f"   🔁 acervo: {len(known)} conhecidas ({len(fresh_known)} fora do rodízio) · "
+        f"{len(extra)} dos seus artistas ({len(fresh_extra)} fora do rodízio)"
+    )
 
     chosen: list[Track] = []
     chosen_uris: set[str] = set()
-    chosen_titles: set[str] = set()
+    chosen_keys: set[str] = set()
     counts: dict[str, int] = {}
 
     def add(track: Track) -> bool:
         if len(chosen) >= spec.size or track.uri in chosen_uris:
             return False
-        title = _norm_title(track.name)
-        if title and title in chosen_titles:  # mesma música em outra versão
+        keys = song_keys(track.name)
+        if keys & chosen_keys:  # mesma música em outra versão/medley
             return False
         key = _artist_key(track)
         if spec.max_per_artist and counts.get(key, 0) >= spec.max_per_artist:
             return False
         chosen.append(track)
         chosen_uris.add(track.uri)
-        chosen_titles.add(title)
+        chosen_keys.update(keys)
         counts[key] = counts.get(key, 0) + 1
         return True
 
-    # Não repetir o que saiu nas últimas gerações: recentes ficam pro fim da
-    # fila e só entram se o acervo não bastar pra fechar o tamanho.
-    fresh_known = [t for t in known if t.uri not in recent_uris]
-    stale_known = [t for t in known if t.uri in recent_uris]
-    fresh_new = [t for t in new_list if t.uri not in recent_uris]
-    stale_new = [t for t in new_list if t.uri in recent_uris]
-
-    # 1) até ``new_tracks`` novas  2) completa com conhecidas  3) sobra? mais novas.
+    # 1) as novas  2) conhecidas  3) hits dos seus artistas  4) reuso (mais antigo)
     added_new = 0
-    for t in fresh_new + stale_new:
+    for t in fresh_extra:
         if added_new >= max(0, spec.new_tracks):
             break
         if add(t):
             added_new += 1
-    for t in fresh_known:
-        if len(chosen) >= spec.size:
-            break
-        add(t)
-    for t in fresh_new + stale_known + stale_new:
-        if len(chosen) >= spec.size:
-            break
-        add(t)
+    for pool in (fresh_known, fresh_extra, stale):
+        for t in pool:
+            if len(chosen) >= spec.size:
+                break
+            add(t)
 
+    reused = sum(1 for t in chosen if _last_played(t, recent) is not None)
+    if reused:
+        print(f"   ⚠️ acervo curto: {reused} música(s) repetida(s) do rodízio (as mais antigas).")
     random.shuffle(chosen)
     return chosen[: spec.size]
 
@@ -734,7 +893,11 @@ def _curate_fixed(sp: Spotify, spec: CurationSpec) -> list[Track]:
 
 # --------------------------------------------------------------------------- #
 def curate(
-    sp: Spotify, spec: CurationSpec, disliked_uris=frozenset(), recent_uris=frozenset()
+    sp: Spotify,
+    spec: CurationSpec,
+    disliked_uris=frozenset(),
+    recent: dict[str, str] | None = None,
+    catalog: list[Track] | None = None,
 ) -> list[Track]:
     """Monta a lista final de faixas, escolhendo o modo conforme a config.
 
@@ -745,7 +908,7 @@ def curate(
     if spec.fixed_tracks:
         return _curate_fixed(sp, spec)
     if spec.sing_along:
-        return _curate_sing_along(sp, spec, disliked_uris, recent_uris)
+        return _curate_sing_along(sp, spec, disliked_uris, recent, catalog)
     if spec.mode == "discovery":
         return _curate_discovery(sp, spec, disliked_uris)
     return _curate_search(sp, spec, disliked_uris)

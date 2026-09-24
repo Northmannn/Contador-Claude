@@ -12,6 +12,7 @@ Comandos:
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 
 from spotipy.exceptions import SpotifyException
@@ -23,9 +24,13 @@ from spotify_playlists.auth import (
 )
 from spotify_playlists.config import load_config
 from spotify_playlists.manager import (
+    DEFAULT_CATALOG_BUDGET,
+    current_slot,
     describe_diagnosis,
     describe_feedback,
     describe_taste,
+    mark_slot_done,
+    slot_already_done,
     sync_all,
     sync_playlist,
 )
@@ -89,6 +94,21 @@ def cmd_list(args: argparse.Namespace) -> int:
 
 def cmd_sync(args: argparse.Namespace) -> int:
     config = load_config(args.config)
+    budget = args.catalog_budget
+    if budget is None:
+        budget = int(os.environ.get("CATALOG_BUDGET") or DEFAULT_CATALOG_BUDGET)
+    slot = current_slot(config.daily_slots)
+
+    # Agendamento de hora em hora: só gera 1x por janela (manhã / noite).
+    if args.slot_guard:
+        if slot is None:
+            print("⏸️  Fora das janelas da diária — nada a fazer agora.")
+            return 0
+        if slot_already_done(slot):
+            print(f"✔️  Janela {slot} já foi gerada — nada a fazer agora.")
+            return 0
+        print(f"▶️  Gerando a janela {slot}")
+
     try:
         sp = get_client()
 
@@ -97,12 +117,16 @@ def cmd_sync(args: argparse.Namespace) -> int:
             if not match:
                 print(f"Playlist '{args.only}' não está na config.", file=sys.stderr)
                 return 1
-            tracks = sync_playlist(sp, match)
+            tracks = sync_playlist(sp, match, catalog_budget=budget)
             print(f"✅ '{match.name}': {len(tracks)} faixas atualizadas")
+            if match.daily and slot:
+                mark_slot_done(slot)  # geração manual conta como a da janela
             return 0
 
         scope = "all" if args.force else "daily" if args.daily else "season"
-        sync_all(sp, config, scope=scope)
+        sync_all(sp, config, scope=scope, catalog_budget=budget)
+        if scope == "daily" and slot:
+            mark_slot_done(slot)
         return 0
     except SpotifyException as exc:
         if exc.http_status == 429:
@@ -142,6 +166,14 @@ def build_parser() -> argparse.ArgumentParser:
     p_sync.add_argument("--force", action="store_true", help="Atualiza todas, ignora estação")
     p_sync.add_argument("--daily", action="store_true", help="Atualiza só as playlists diárias")
     p_sync.add_argument("--only", metavar="NOME", help="Atualiza só esta playlist")
+    p_sync.add_argument(
+        "--slot-guard", action="store_true",
+        help="Só gera se a janela atual (manhã/noite) ainda não foi gerada",
+    )
+    p_sync.add_argument(
+        "--catalog-budget", type=int, default=None, metavar="N",
+        help="Quantos artistas atualizar no catálogo nesta execução",
+    )
     p_sync.set_defaults(func=cmd_sync)
 
     return parser

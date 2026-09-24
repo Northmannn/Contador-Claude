@@ -5,11 +5,12 @@ from __future__ import annotations
 import json
 import os
 import re
+from datetime import datetime, timedelta, timezone
 
 from spotipy import Spotify
 
-from .config import Config, PlaylistDef
-from .curator import Track, curate
+from .config import Config, DailySlot, PlaylistDef
+from .curator import Track, catalog_tracks, curate, refresh_catalog, song_keys
 from .seasons import current_season, season_label
 
 # --------------------------------------------------------------------------- #
@@ -50,43 +51,118 @@ def _load_generated(base: str, name: str) -> list[dict]:
         return []
 
 
-RECENT_KEEP = 3  # gerações guardadas pra não repetir música em dias seguidos
+PLAYED_KEEP_DAYS = 60  # quanto tempo guardar o registro de "tocou quando"
 
 
-def _load_recent_uris(base: str, name: str) -> set[str]:
-    """URIs das últimas gerações (inclui a atual) — pra 'quero algo novo'."""
+def _state_path(base: str, name: str) -> str:
+    return os.path.join(base, "state", f"{_slug(name)}.json")
+
+
+def _load_state(base: str, name: str) -> dict:
     try:
-        path = os.path.join(base, "state", f"{_slug(name)}.json")
-        with open(path, encoding="utf-8") as fh:
-            data = json.load(fh)
+        with open(_state_path(base, name), encoding="utf-8") as fh:
+            return json.load(fh)
     except (FileNotFoundError, ValueError):
-        return set()
-    uris = {t["uri"] for t in data.get("generated", [])}
-    for gen in data.get("history", []):
-        uris.update(gen)
-    return uris
+        return {}
 
 
-def _save_generated(base: str, name: str, tracks: list[Track]) -> None:
+def _recent_played(state: dict, days: int, now: datetime | None = None) -> dict[str, str]:
+    """{chave_da_música: último ISO em que tocou} dentro da janela de ``days``."""
+    if days <= 0:
+        return {}
+    now = now or datetime.now(timezone.utc)
+    cutoff = (now - timedelta(days=days)).isoformat(timespec="seconds")
+    return {k: v for k, v in (state.get("played") or {}).items() if v >= cutoff}
+
+
+def _save_generated(
+    base: str, name: str, tracks: list[Track], now: datetime | None = None
+) -> None:
+    """Guarda a geração atual (pro detector de remoções) e registra no rodízio
+    a data em que cada música tocou (por chave de música, qualquer versão)."""
     os.makedirs(os.path.join(base, "state"), exist_ok=True)
-    path = os.path.join(base, "state", f"{_slug(name)}.json")
-    try:
-        with open(path, encoding="utf-8") as fh:
-            old = json.load(fh)
-    except (FileNotFoundError, ValueError):
-        old = {}
-    history = old.get("history", [])
-    prev = [t["uri"] for t in old.get("generated", [])]
-    if prev:
-        history = ([prev] + history)[: RECENT_KEEP - 1]
+    now = now or datetime.now(timezone.utc)
+    stamp = now.isoformat(timespec="seconds")
+    old = _load_state(base, name)
+    played = dict(old.get("played") or {})
+    for t in tracks:
+        for k in song_keys(t.name):
+            played[k] = stamp
+    cutoff = (now - timedelta(days=PLAYED_KEEP_DAYS)).isoformat(timespec="seconds")
+    played = {k: v for k, v in sorted(played.items()) if v >= cutoff}
     payload = {
-        "generated": [
-            {"uri": t.uri, "name": t.name, "artists": t.artists} for t in tracks
-        ],
-        "history": history,
+        "generated": [{"uri": t.uri, "name": t.name, "artists": t.artists} for t in tracks],
+        "played": played,
     }
-    with open(path, "w", encoding="utf-8") as fh:
+    with open(_state_path(base, name), "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False, indent=2)
+
+
+# --------------------------------------------------------------------------- #
+# Catálogo dos artistas permitidos (cache versionado em data/catalog.json)
+# --------------------------------------------------------------------------- #
+DEFAULT_CATALOG_BUDGET = 12  # artistas atualizados por geração (freio de rate limit)
+
+
+def _load_catalog(base: str) -> dict:
+    try:
+        with open(os.path.join(base, "catalog.json"), encoding="utf-8") as fh:
+            return json.load(fh)
+    except (FileNotFoundError, ValueError):
+        return {"artists": {}}
+
+
+def _save_catalog(base: str, cache: dict) -> None:
+    os.makedirs(base, exist_ok=True)
+    with open(os.path.join(base, "catalog.json"), "w", encoding="utf-8") as fh:
+        json.dump(cache, fh, ensure_ascii=False, indent=1, sort_keys=True)
+
+
+def _catalog_for(sp: Spotify, pdef: PlaylistDef, base: str, budget: int) -> list[Track]:
+    """Atualiza (em lote pequeno) e devolve o catálogo dos artistas permitidos.
+    Estrangeiros ficam de fora: deles só entra o que você já ouve."""
+    foreign = {a.lower() for a in pdef.spec.foreign_artists}
+    artists = [a for a in pdef.spec.match_artists if a.lower() not in foreign]
+    cache = _load_catalog(base)
+    updated = refresh_catalog(sp, cache, artists, pdef.spec.market, budget)
+    if updated:
+        _save_catalog(base, cache)
+    have = sum(1 for a in artists if (cache.get("artists") or {}).get(a.lower()))
+    print(f"   📚 catálogo: {have}/{len(artists)} artistas em cache ({updated} atualizados agora)")
+    return catalog_tracks(cache, artists)
+
+
+# --------------------------------------------------------------------------- #
+# Janelas da diária (manhã / noite) — 1 geração por janela
+# --------------------------------------------------------------------------- #
+BRT = timezone(timedelta(hours=-3))  # Brasil sem horário de verão desde 2019
+
+
+def current_slot(slots: list[DailySlot], now: datetime | None = None) -> str | None:
+    """Chave da janela atual, ex. '2026-09-24-noite'; None fora das janelas."""
+    local = (now or datetime.now(timezone.utc)).astimezone(BRT)
+    for slot in slots:
+        if slot.start <= local.hour < slot.end:
+            return f"{local.date().isoformat()}-{slot.name}"
+    return None
+
+
+def _slots_path(base: str) -> str:
+    return os.path.join(base, "state", "_slots.json")
+
+
+def slot_already_done(slot: str, base: str = DATA_DIR) -> bool:
+    try:
+        with open(_slots_path(base), encoding="utf-8") as fh:
+            return json.load(fh).get("last") == slot
+    except (FileNotFoundError, ValueError):
+        return False
+
+
+def mark_slot_done(slot: str, base: str = DATA_DIR) -> None:
+    os.makedirs(os.path.join(base, "state"), exist_ok=True)
+    with open(_slots_path(base), "w", encoding="utf-8") as fh:
+        json.dump({"last": slot}, fh)
 
 
 def _current_playlist_uris(sp: Spotify, playlist_id: str) -> set[str] | None:
@@ -222,7 +298,12 @@ def _replace_tracks(sp: Spotify, playlist_id: str, tracks: list[Track]) -> None:
         sp.playlist_add_items(playlist_id, uris[i : i + 100])
 
 
-def sync_playlist(sp: Spotify, pdef: PlaylistDef, data_dir: str = DATA_DIR) -> list[Track]:
+def sync_playlist(
+    sp: Spotify,
+    pdef: PlaylistDef,
+    data_dir: str = DATA_DIR,
+    catalog_budget: int = DEFAULT_CATALOG_BUDGET,
+) -> list[Track]:
     """Cura e grava uma playlist. Retorna as faixas escolhidas.
 
     Se a playlist tem ``learn_removals``, antes de renovar ela LÊ o que você
@@ -237,12 +318,15 @@ def sync_playlist(sp: Spotify, pdef: PlaylistDef, data_dir: str = DATA_DIR) -> l
             print(f"   🧠 Aprendi: você removeu {learned} música(s) — não repito mais.")
 
     disliked = set(feedback["disliked_uris"])
-    recent = _load_recent_uris(data_dir, pdef.name) if pdef.spec.learn_removals else set()
-    tracks = curate(sp, pdef.spec, disliked_uris=disliked, recent_uris=recent)
+    recent = _recent_played(_load_state(data_dir, pdef.name), pdef.spec.rotation_days)
+    catalog = None
+    if pdef.spec.sing_along and pdef.spec.match_artists:
+        catalog = _catalog_for(sp, pdef, data_dir, catalog_budget)
+    tracks = curate(sp, pdef.spec, disliked_uris=disliked, recent=recent, catalog=catalog)
     playlist_id = _ensure_playlist(sp, pdef)
     _replace_tracks(sp, playlist_id, tracks)
 
-    if pdef.spec.learn_removals:
+    if pdef.spec.learn_removals or pdef.spec.rotation_days:
         _save_generated(data_dir, pdef.name, tracks)
     _save_feedback(data_dir, feedback)
     return tracks
@@ -387,7 +471,12 @@ def _should_sync(pdef: PlaylistDef, scope: str, season: str) -> bool:
     return not pdef.daily and pdef.runs_in_season(season)
 
 
-def sync_all(sp: Spotify, config: Config, scope: str = "season") -> dict[str, list[Track]]:
+def sync_all(
+    sp: Spotify,
+    config: Config,
+    scope: str = "season",
+    catalog_budget: int = DEFAULT_CATALOG_BUDGET,
+) -> dict[str, list[Track]]:
     """Sincroniza as playlists conforme o ``scope`` (season | daily | all).
 
     Retorna um dict {nome_da_playlist: faixas} apenas das que foram atualizadas.
@@ -401,7 +490,7 @@ def sync_all(sp: Spotify, config: Config, scope: str = "season") -> dict[str, li
             print(f"⏭️  Pulando '{pdef.name}'")
             continue
 
-        tracks = sync_playlist(sp, pdef)
+        tracks = sync_playlist(sp, pdef, catalog_budget=catalog_budget)
         results[pdef.name] = tracks
         print(f"✅ '{pdef.name}': {len(tracks)} faixas")
         for t in tracks[:5]:

@@ -2,11 +2,12 @@
   "disliked_uris": [
     "spotify:track:5C0wi5U4l0YUv7yIKe2TEe",
     "spotify:track:5oEKWUfdYcOktLjGlIOGjO",
-    "spotify:track:2JvY6MtUEnzyU9xrDw1biP"
+    "spotify:track:2JvY6MtUEnzyU9xrDw1biP",
+    "spotify:track:1fLhMavem88a9zW5GUoFtr"
   ],
   "disliked_artists": {
     "matheus & kauan": 1,
     "gabriel leone": 1,
-    "chay suede": 1
+    "chay suede": 2
   }
 }

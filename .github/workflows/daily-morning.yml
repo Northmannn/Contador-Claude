@@ -7,7 +7,9 @@ name: Playlist diária (manhã e noite)
 # vezes descarta execuções (medido em set/2026). Disparando toda hora, a 1ª
 # execução que cair dentro da janela gera a lista; as outras da mesma janela só
 # conferem (`--slot-guard`) e saem em segundos, sem chamar o Spotify.
-# Disparo manual (workflow_dispatch) sempre gera, e conta como a janela atual.
+# Disparo manual (workflow_dispatch) sempre gera e marca a janela, mas NÃO grava
+# o rodízio de 7 dias — senão cada teste manual queima 25 músicas. O input
+# `force` grava o rodízio, igual ao cron.
 on:
   schedule:
     - cron: "17 * * * *"
@@ -17,6 +19,11 @@ on:
         description: "Quantos artistas atualizar no catálogo nesta execução"
         required: false
         default: "12"
+      force:
+        description: "Gravar esta geração no rodízio de 7 dias. No cron isso já acontece. No disparo manual, sem este campo, a lista atualiza mas não queima a semana."
+        required: false
+        type: boolean
+        default: false
 
 # Uma execução por vez em tudo que grava data/ (diária + manual).
 concurrency:
@@ -50,8 +57,13 @@ jobs:
           SPOTIPY_REDIRECT_URI: ${{ secrets.SPOTIPY_REDIRECT_URI }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           CATALOG_BUDGET: ${{ inputs.catalog_budget || '12' }}
-          GUARD: ${{ github.event_name == 'schedule' && '--slot-guard' || '' }}
-        run: python main.py sync --daily $GUARD
+          SLOT_GUARD: ${{ github.event_name == 'schedule' && '1' || '0' }}
+          RECORD_ROTATION: ${{ (github.event_name == 'schedule' || inputs.force == true || inputs.force == 'true') && '1' || '0' }}
+        run: |
+          args=(sync --daily)
+          if [ "$SLOT_GUARD" = "1" ]; then args+=(--slot-guard); fi
+          if [ "$RECORD_ROTATION" != "1" ]; then args+=(--no-record-rotation); fi
+          python main.py "${args[@]}"
 
       - name: Salvar aprendizado, rodízio e catálogo (data/)
         run: |

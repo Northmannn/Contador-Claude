@@ -116,24 +116,38 @@ suposições antigas. O que JÁ pegamos aqui:
    caem em busca genérica = artistas aleatórios); o que segura é veto por
    **nome** (`exclude_artists`) e a heurística "MC …"/"DJ …" = funk. Idioma
    (`portuguese_only`) usa heurística de texto + exceção pras curtidas.
+   No catálogo da diária, título claramente em inglês não entra como faixa
+   nova mesmo de artista permitido (a heurística "parece português" sozinha
+   barraria clássico sem acento, tipo "Trem das Onze", então não é exigida).
 
 ## 5b. Playlist diária (🌅 Bom Dia) — como funciona hoje
 
 - **2x ao dia por janelas** (`daily_slots` no YAML, hora de Brasília): manhã
   02h–12h, noite 17h–24h. O cron roda **toda hora** (o GitHub atrasa 5-6h e às
   vezes descarta execuções); `sync --daily --slot-guard` só gera se a janela
-  atual ainda não foi gerada. Disparo manual gera sempre e **marca** a janela.
-- **Rodízio (`rotation_days: 7`)**: cada música gerada vai pro `played`
+  atual ainda não foi gerada. Disparo manual gera sempre e **marca** a janela,
+  mas **não grava o rodízio** (não queima a semana). O input `force` do workflow
+  grava o rodízio, igual ao cron. Na mão: `sync --no-record-rotation`.
+- **Rodízio (`rotation_days: 7`)**: cada música gerada no cron vai pro `played`
   (por *chave de música* — `curator.song_keys`: ignora "Ao Vivo", "(feat.)",
-  e separa medleys por "/"). Nada tocado em 7 dias volta; se o acervo não
-  bastar, reusa a que tocou há mais tempo (e avisa no log).
-- **Acervo** = conhecidas (top tracks + ~600 curtidas) ∩ `match_artists`, mais
-  o **catálogo** (hits via busca `artist:"Nome"`, 30 por artista), cacheado em
-  `data/catalog.json` e atualizado em lotes (`CATALOG_BUDGET`, padrão 12
-  artistas/geração, pausa entre chamadas, para no 1º 429). As `new_tracks`
-  saem do catálogo (hits dos artistas dele que o Spotify não o viu ouvir).
+  e separa medleys por "/"). Nada tocado em 7 dias volta. Se as conhecidas
+  frescas acabam, **reusa a conhecida que tocou há mais tempo**. Faixa de
+  catálogo (não ouvida) **nunca passa de `new_tracks`** — não completa a lista
+  com mais catálogo.
+- **Acervo conhecido** = top tracks + ~600 curtidas ∩ `match_artists`.
+- **Catálogo** (hits via busca `artist:"Nome"`, até 30 por artista) só entra
+  nas `new_tracks`. Cache em `data/catalog.json`, atualizado em lotes
+  (`CATALOG_BUDGET`, padrão 12 artistas/geração, pausa entre chamadas, para no
+  1º 429). Só fica a faixa em que o artista permitido é o **crédito principal**
+  — participação ("Papatinho, Seu Jorge") e homônimo ("Vitinho Imperador")
+  saem. "Grupo X" e a dupla "X & Y" contam como o mesmo artista. Cache antigo
+  é filtrado na leitura (`scrub_catalog`), sem chamada nova à API.
   `foreign_artists` nunca vêm do catálogo — deles só o que ele já ouve.
-- Uma semana = 14 listas × 25 ≈ 350 músicas: o catálogo existe pra isso.
+- **Artista removido demais** (`disliked_artists` no `feedback.json`) sai da
+  seleção quando a contagem chega em `dislike_artist_threshold` (padrão 2;
+  0 desliga). Uma música tirada não bane o artista; a segunda vez, sim.
+- Uma semana = 14 listas × 25 ≈ 350 músicas. Dessas, só `new_tracks` por lista
+  vêm do catálogo (4 × 14 = 56). O resto sai do acervo conhecido.
 
 ## 6. Rate limit (IMPORTANTE)
 

@@ -2597,7 +2597,7 @@
    ]
   },
   "gabriel leone": {
-   "fetched": "2026-09-24T01:51:04+00:00",
+   "fetched": "2026-10-08T04:29:09+00:00",
    "name": "Gabriel Leone",
    "tracks": [
     {
@@ -2630,16 +2630,16 @@
       "5OSnDersfRNsStPWnyuOKN"
      ],
      "artists": "Gabriel Leone",
-     "name": "Amigo",
-     "uri": "spotify:track:2KqrswPdCr3FfBg9mjAT8b"
+     "name": "Nós Dois",
+     "uri": "spotify:track:0Mys3c6tZ4zduoKvfQlvRe"
     },
     {
      "artist_ids": [
       "5OSnDersfRNsStPWnyuOKN"
      ],
      "artists": "Gabriel Leone",
-     "name": "Nós Dois",
-     "uri": "spotify:track:0Mys3c6tZ4zduoKvfQlvRe"
+     "name": "Cara Limpa",
+     "uri": "spotify:track:32JWv6BThEfCu1a6t7oQYQ"
     },
     {
      "artist_ids": [
@@ -2662,24 +2662,16 @@
       "5OSnDersfRNsStPWnyuOKN"
      ],
      "artists": "Gabriel Leone",
+     "name": "Amigo",
+     "uri": "spotify:track:2KqrswPdCr3FfBg9mjAT8b"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
      "name": "Suzie",
      "uri": "spotify:track:2w6eLQqhyV2B4PtI689mgM"
-    },
-    {
-     "artist_ids": [
-      "5OSnDersfRNsStPWnyuOKN"
-     ],
-     "artists": "Gabriel Leone",
-     "name": "Cara Limpa",
-     "uri": "spotify:track:32JWv6BThEfCu1a6t7oQYQ"
-    },
-    {
-     "artist_ids": [
-      "5OSnDersfRNsStPWnyuOKN"
-     ],
-     "artists": "Gabriel Leone",
-     "name": "João E Maria",
-     "uri": "spotify:track:5oEKWUfdYcOktLjGlIOGjO"
     },
     {
      "artist_ids": [
@@ -2689,6 +2681,14 @@
      "artists": "Gabriel Leone, Ney Matogrosso",
      "name": "Êta Nóis",
      "uri": "spotify:track:46SfI9mhPRcmoUQJDglINa"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
+     "name": "João E Maria",
+     "uri": "spotify:track:5oEKWUfdYcOktLjGlIOGjO"
     },
     {
      "artist_ids": [
@@ -2704,16 +2704,16 @@
       "5OSnDersfRNsStPWnyuOKN"
      ],
      "artists": "Gabriel Leone",
-     "name": "Segredo",
-     "uri": "spotify:track:0WS1028DqFMOPZRdLO0TtI"
+     "name": "Antes da Chuva Chegar",
+     "uri": "spotify:track:2um0y0XKgi9O9iswUaENFq"
     },
     {
      "artist_ids": [
       "5OSnDersfRNsStPWnyuOKN"
      ],
      "artists": "Gabriel Leone",
-     "name": "Antes da Chuva Chegar",
-     "uri": "spotify:track:2um0y0XKgi9O9iswUaENFq"
+     "name": "Segredo",
+     "uri": "spotify:track:0WS1028DqFMOPZRdLO0TtI"
     },
     {
      "artist_ids": [
@@ -2737,6 +2737,14 @@
       "5OSnDersfRNsStPWnyuOKN"
      ],
      "artists": "Gabriel Leone",
+     "name": "O Sofrimento Ensina",
+     "uri": "spotify:track:5GXrDEHdfIVRmTGydPZd9J"
+    },
+    {
+     "artist_ids": [
+      "5OSnDersfRNsStPWnyuOKN"
+     ],
+     "artists": "Gabriel Leone",
      "name": "Museu das Relações Perdidas",
      "uri": "spotify:track:2k6Mj1mNQ19XfHsXpPXFxF"
     },
@@ -2754,14 +2762,6 @@
       "5OSnDersfRNsStPWnyuOKN"
      ],
      "artists": "Gabriel Leone",
-     "name": "O Sofrimento Ensina",
-     "uri": "spotify:track:5GXrDEHdfIVRmTGydPZd9J"
-    },
-    {
-     "artist_ids": [
-      "5OSnDersfRNsStPWnyuOKN"
-     ],
-     "artists": "Gabriel Leone",
      "name": "Bolero de Satã",
      "uri": "spotify:track:35B3FlIyVvMI7U6QtvIIjx"
     },
@@ -2770,8 +2770,8 @@
       "5OSnDersfRNsStPWnyuOKN"
      ],
      "artists": "Gabriel Leone",
-     "name": "Perdido na Vida",
-     "uri": "spotify:track:0718nvFlSYpOw9494gI1bS"
+     "name": "Minhas Lágrimas",
+     "uri": "spotify:track:0k4Akta6Sdh21DbwPmFq8Q"
     },
     {
      "artist_ids": [
@@ -2791,19 +2791,13 @@
     },
     {
      "artist_ids": [
+      "1YHyRTYC6sx1udTCdePyek",
+      "6I4j89rejDnYzWYiMnz5vO",
       "5OSnDersfRNsStPWnyuOKN"
      ],
-     "artists": "Gabriel Leone",
-     "name": "Minhas Lágrimas",
-     "uri": "spotify:track:0k4Akta6Sdh21DbwPmFq8Q"
-    },
-    {
-     "artist_ids": [
-      "0ZvQ1lksNxtDX3jeOF0EQZ"
-     ],
-     "artists": "Gabriel Leone",
-     "name": "Quién Juró No Volverse a Enamorar",
-     "uri": "spotify:track:2Xd6kuhbskhWtvPmG8oaJx"
+     "artists": "Hugo Bonemer, Estrela Blanco, Gabriel Leone",
+     "name": "Além da Lenda - O Filme",
+     "uri": "spotify:track:72xZECUZM6QkUI9X1LIlln"
     }
    ]
   },
@@ -3455,7 +3449,7 @@
    ]
   },
   "melly": {
-   "fetched": "2026-09-24T01:51:04+00:00",
+   "fetched": "2026-10-08T04:29:09+00:00",
    "name": "Melly",
    "tracks": [
     {
@@ -3478,15 +3472,6 @@
     },
     {
      "artist_ids": [
-      "2O6q06oNcmOIPg1qidSU3C",
-      "7a7n9ka0Mnevq19mOU8tcW"
-     ],
-     "artists": "Liniker, Melly",
-     "name": "PAPO DE EDREDOM",
-     "uri": "spotify:track:63oAJhMI95D287EfDbppVx"
-    },
-    {
-     "artist_ids": [
       "5JHYuwE2n7bleXMUsmtCW5",
       "2d9LRvQJnAXRijqIJDDs2K",
       "7a7n9ka0Mnevq19mOU8tcW",
@@ -3495,6 +3480,15 @@
      "artists": "BaianaSystem, Emicida, Melly, Kandace Lindsey",
      "name": "A Laje",
      "uri": "spotify:track:0EXqaE8m9hSzNrO9h6Yepq"
+    },
+    {
+     "artist_ids": [
+      "2O6q06oNcmOIPg1qidSU3C",
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Liniker, Melly",
+     "name": "PAPO DE EDREDOM",
+     "uri": "spotify:track:63oAJhMI95D287EfDbppVx"
     },
     {
      "artist_ids": [
@@ -3534,11 +3528,12 @@
     },
     {
      "artist_ids": [
-      "7a7n9ka0Mnevq19mOU8tcW"
+      "7a7n9ka0Mnevq19mOU8tcW",
+      "7FNnA9vBm6EKceENgCGRMb"
      ],
-     "artists": "Melly",
-     "name": "AluSina",
-     "uri": "spotify:track:1C7fLnGDAGlJZhCwSNbeKS"
+     "artists": "Melly, Anitta",
+     "name": "ELA GOSTA DE MENINA",
+     "uri": "spotify:track:2Iaj6B6CmvrCDa3fhYOs1K"
     },
     {
      "artist_ids": [
@@ -3549,6 +3544,14 @@
      "artists": "Mulú, Melly, Dandan",
      "name": "PEIXIN",
      "uri": "spotify:track:2goq9J8vz19zGvINVURBxT"
+    },
+    {
+     "artist_ids": [
+      "7a7n9ka0Mnevq19mOU8tcW"
+     ],
+     "artists": "Melly",
+     "name": "AluSina",
+     "uri": "spotify:track:1C7fLnGDAGlJZhCwSNbeKS"
     },
     {
      "artist_ids": [
@@ -3572,26 +3575,16 @@
       "7a7n9ka0Mnevq19mOU8tcW"
      ],
      "artists": "Melly",
-     "name": "A GENTE COMBINA",
-     "uri": "spotify:track:40z0XrdegYW7nVS3VEfR8I"
+     "name": "Despacha",
+     "uri": "spotify:track:5m4Ok5eGb7Igrw6d6G4fqr"
     },
     {
      "artist_ids": [
-      "7a7n9ka0Mnevq19mOU8tcW",
-      "7FNnA9vBm6EKceENgCGRMb"
-     ],
-     "artists": "Melly, Anitta",
-     "name": "ELA GOSTA DE MENINA",
-     "uri": "spotify:track:2Iaj6B6CmvrCDa3fhYOs1K"
-    },
-    {
-     "artist_ids": [
-      "4iWkwAVzssjb8XgxdoOL6M",
       "7a7n9ka0Mnevq19mOU8tcW"
      ],
-     "artists": "TIAGO IORC, Melly",
-     "name": "Eu Errei",
-     "uri": "spotify:track:5woqloXSO0cwRodujcLzJM"
+     "artists": "Melly",
+     "name": "A GENTE COMBINA",
+     "uri": "spotify:track:40z0XrdegYW7nVS3VEfR8I"
     }
    ]
   },

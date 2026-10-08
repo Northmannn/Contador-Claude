@@ -117,14 +117,19 @@ def cmd_sync(args: argparse.Namespace) -> int:
             if not match:
                 print(f"Playlist '{args.only}' não está na config.", file=sys.stderr)
                 return 1
-            tracks = sync_playlist(sp, match, catalog_budget=budget)
+            tracks = sync_playlist(
+                sp, match, catalog_budget=budget, record_rotation=not args.no_record_rotation
+            )
             print(f"✅ '{match.name}': {len(tracks)} faixas atualizadas")
             if match.daily and slot:
                 mark_slot_done(slot)  # geração manual conta como a da janela
             return 0
 
         scope = "all" if args.force else "daily" if args.daily else "season"
-        sync_all(sp, config, scope=scope, catalog_budget=budget)
+        sync_all(
+            sp, config, scope=scope, catalog_budget=budget,
+            record_rotation=not args.no_record_rotation,
+        )
         if scope == "daily" and slot:
             mark_slot_done(slot)
         return 0
@@ -173,6 +178,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_sync.add_argument(
         "--catalog-budget", type=int, default=None, metavar="N",
         help="Quantos artistas atualizar no catálogo nesta execução",
+    )
+    p_sync.add_argument(
+        "--no-record-rotation", action="store_true",
+        help="Atualiza a playlist sem marcar as músicas no rodízio (disparo manual)",
     )
     p_sync.set_defaults(func=cmd_sync)
 

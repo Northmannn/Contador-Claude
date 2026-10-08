@@ -5,12 +5,22 @@ from __future__ import annotations
 import json
 import os
 import re
+from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 
 from spotipy import Spotify
 
 from .config import Config, DailySlot, PlaylistDef
-from .curator import Track, catalog_tracks, curate, refresh_catalog, song_keys
+from .curator import (
+    CurationSpec,
+    Track,
+    catalog_artist_names,
+    catalog_tracks,
+    curate,
+    refresh_catalog,
+    scrub_catalog,
+    song_keys,
+)
 from .seasons import current_season, season_label
 
 # --------------------------------------------------------------------------- #
@@ -75,19 +85,55 @@ def _recent_played(state: dict, days: int, now: datetime | None = None) -> dict[
     return {k: v for k, v in (state.get("played") or {}).items() if v >= cutoff}
 
 
+def banned_artist_names(feedback: dict, threshold: int) -> list[str]:
+    """Artistas que você removeu vezes demais pra continuar na seleção.
+
+    ``threshold`` é o mínimo de remoções (``>=``). 0 desliga. A chave já vem
+    em minúsculas, do jeito que ``_learn_from_removals`` grava.
+    """
+    if threshold <= 0:
+        return []
+    out: list[str] = []
+    for name, count in (feedback.get("disliked_artists") or {}).items():
+        if name and isinstance(count, int) and count >= threshold:
+            out.append(name)
+    return out
+
+
+def _with_banned_artists(spec: CurationSpec, feedback: dict) -> CurationSpec:
+    """Soma ao veto da config os artistas acima do limiar de remoções."""
+    banned = banned_artist_names(feedback, spec.dislike_artist_threshold)
+    if not banned:
+        return spec
+    shown = ", ".join(sorted(banned))
+    print(
+        f"   🚫 sem estes artistas (você removeu ≥{spec.dislike_artist_threshold}×): {shown}"
+    )
+    return replace(spec, exclude_artists=[*spec.exclude_artists, *banned])
+
+
 def _save_generated(
-    base: str, name: str, tracks: list[Track], now: datetime | None = None
+    base: str,
+    name: str,
+    tracks: list[Track],
+    now: datetime | None = None,
+    record_rotation: bool = True,
 ) -> None:
-    """Guarda a geração atual (pro detector de remoções) e registra no rodízio
-    a data em que cada música tocou (por chave de música, qualquer versão)."""
+    """Guarda a geração atual (pro detector de remoções) e, se ``record_rotation``,
+    registra no rodízio a data em que cada música tocou (por chave, qualquer versão).
+
+    Disparo manual passa ``record_rotation=False`` pra atualizar a playlist sem
+    queimar a semana. O cron continua gravando.
+    """
     os.makedirs(os.path.join(base, "state"), exist_ok=True)
     now = now or datetime.now(timezone.utc)
     stamp = now.isoformat(timespec="seconds")
     old = _load_state(base, name)
     played = dict(old.get("played") or {})
-    for t in tracks:
-        for k in song_keys(t.name):
-            played[k] = stamp
+    if record_rotation:
+        for t in tracks:
+            for k in song_keys(t.name):
+                played[k] = stamp
     cutoff = (now - timedelta(days=PLAYED_KEEP_DAYS)).isoformat(timespec="seconds")
     played = {k: v for k, v in sorted(played.items()) if v >= cutoff}
     payload = {
@@ -118,14 +164,18 @@ def _save_catalog(base: str, cache: dict) -> None:
         json.dump(cache, fh, ensure_ascii=False, indent=1, sort_keys=True)
 
 
-def _catalog_for(sp: Spotify, pdef: PlaylistDef, base: str, budget: int) -> list[Track]:
+def _catalog_for(sp: Spotify, spec: CurationSpec, base: str, budget: int) -> list[Track]:
     """Atualiza (em lote pequeno) e devolve o catálogo dos artistas permitidos.
-    Estrangeiros ficam de fora: deles só entra o que você já ouve."""
-    foreign = {a.lower() for a in pdef.spec.foreign_artists}
-    artists = [a for a in pdef.spec.match_artists if a.lower() not in foreign]
+
+    Estrangeiros ficam de fora: deles só entra o que você já ouve. Artista
+    vetado (config ou remoções) também. Cache antigo perde participação e
+    homônimo sem chamar a API de novo.
+    """
+    artists = catalog_artist_names(spec)
     cache = _load_catalog(base)
-    updated = refresh_catalog(sp, cache, artists, pdef.spec.market, budget)
-    if updated:
+    scrubbed = scrub_catalog(cache)
+    updated = refresh_catalog(sp, cache, artists, spec.market, budget)
+    if scrubbed or updated:
         _save_catalog(base, cache)
     have = sum(1 for a in artists if (cache.get("artists") or {}).get(a.lower()))
     print(f"   📚 catálogo: {have}/{len(artists)} artistas em cache ({updated} atualizados agora)")
@@ -303,6 +353,7 @@ def sync_playlist(
     pdef: PlaylistDef,
     data_dir: str = DATA_DIR,
     catalog_budget: int = DEFAULT_CATALOG_BUDGET,
+    record_rotation: bool = True,
 ) -> list[Track]:
     """Cura e grava uma playlist. Retorna as faixas escolhidas.
 
@@ -317,17 +368,18 @@ def sync_playlist(
         if learned:
             print(f"   🧠 Aprendi: você removeu {learned} música(s) — não repito mais.")
 
+    spec = _with_banned_artists(pdef.spec, feedback)
     disliked = set(feedback["disliked_uris"])
-    recent = _recent_played(_load_state(data_dir, pdef.name), pdef.spec.rotation_days)
+    recent = _recent_played(_load_state(data_dir, pdef.name), spec.rotation_days)
     catalog = None
-    if pdef.spec.sing_along and pdef.spec.match_artists:
-        catalog = _catalog_for(sp, pdef, data_dir, catalog_budget)
-    tracks = curate(sp, pdef.spec, disliked_uris=disliked, recent=recent, catalog=catalog)
+    if spec.sing_along and spec.match_artists:
+        catalog = _catalog_for(sp, spec, data_dir, catalog_budget)
+    tracks = curate(sp, spec, disliked_uris=disliked, recent=recent, catalog=catalog)
     playlist_id = _ensure_playlist(sp, pdef)
     _replace_tracks(sp, playlist_id, tracks)
 
-    if pdef.spec.learn_removals or pdef.spec.rotation_days:
-        _save_generated(data_dir, pdef.name, tracks)
+    if spec.learn_removals or spec.rotation_days:
+        _save_generated(data_dir, pdef.name, tracks, record_rotation=record_rotation)
     _save_feedback(data_dir, feedback)
     return tracks
 
@@ -476,6 +528,7 @@ def sync_all(
     config: Config,
     scope: str = "season",
     catalog_budget: int = DEFAULT_CATALOG_BUDGET,
+    record_rotation: bool = True,
 ) -> dict[str, list[Track]]:
     """Sincroniza as playlists conforme o ``scope`` (season | daily | all).
 
@@ -490,7 +543,9 @@ def sync_all(
             print(f"⏭️  Pulando '{pdef.name}'")
             continue
 
-        tracks = sync_playlist(sp, pdef, catalog_budget=catalog_budget)
+        tracks = sync_playlist(
+            sp, pdef, catalog_budget=catalog_budget, record_rotation=record_rotation
+        )
         results[pdef.name] = tracks
         print(f"✅ '{pdef.name}': {len(tracks)} faixas")
         for t in tracks[:5]:

@@ -62,8 +62,17 @@ python main.py whoami                # diagnóstico: conta e permissões concedi
 python main.py sync --only "🏋️ Treino da Semana"   # só uma playlist (recomendado)
 python main.py sync                  # atualiza as playlists da estação atual
 python main.py sync --daily          # atualiza as playlists diárias (daily: true)
+python main.py sync --daily --no-record-rotation  # diária sem queimar o rodízio de 7 dias
 python main.py sync --force          # atualiza TODAS (cuidado: muitas chamadas de API)
 ```
+
+A diária (`🌅 Bom Dia, Motivação`) mistura o que você já ouve com no máximo
+`new_tracks` faixas novas (padrão 4). Se as conhecidas da semana acabam, ela
+repete a conhecida que tocou há mais tempo — não enche o resto com catálogo.
+O catálogo só traz música em que o artista permitido é o principal (não
+participação nem homônimo). Artista que você removeu pelo menos
+`dislike_artist_threshold` vezes (padrão 2) sai da seleção. No GitHub, o cron
+grava o rodízio; o disparo manual só grava se você marcar `force`.
 
 > ⚠️ A Spotify limita requisições **por app**. Prefira `--only` (uma por vez) e
 > evite gerar várias seguidas, pra não bater no rate limit (HTTP 429). Detalhes

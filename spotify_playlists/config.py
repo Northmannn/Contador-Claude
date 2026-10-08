@@ -95,6 +95,7 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             foreign_artists=raw.get("foreign_artists", []),
             exclude_keywords=raw.get("exclude_keywords", []),
             rotation_days=int(raw.get("rotation_days", 0)),
+            dislike_artist_threshold=int(raw.get("dislike_artist_threshold", 2)),
         )
         playlists.append(
             PlaylistDef(

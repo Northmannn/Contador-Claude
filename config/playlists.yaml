@@ -213,6 +213,9 @@ playlists:
     max_per_artist: 1      # nunca repete artista
     portuguese_only: true  # só português; inglês apenas se JÁ estiver nas curtidas
     learn_removals: true   # o que você tira vira "não gosto" (com guarda anti-bug)
+    # Artista que você tirou pelo menos N vezes sai da lista (0 desliga).
+    # 1 vez pode ser a música; 2 já é o artista. Chay Suede está em 3.
+    dislike_artist_threshold: 2
     rotation_days: 7       # nenhuma música repete por 7 dias (2 listas/dia = ~350 músicas)
     seed_from_taste: true  # as novas saem dos SEUS artistas (não de gente aleatória)
     mode: discovery

@@ -4,11 +4,12 @@
     "spotify:track:5oEKWUfdYcOktLjGlIOGjO",
     "spotify:track:2JvY6MtUEnzyU9xrDw1biP",
     "spotify:track:1fLhMavem88a9zW5GUoFtr",
-    "spotify:track:0Kxa4hLWfyO0YYFwZfU0Vg"
+    "spotify:track:0Kxa4hLWfyO0YYFwZfU0Vg",
+    "spotify:track:1jqTRCJLrvtAfKSQGy1N5S"
   ],
   "disliked_artists": {
     "matheus & kauan": 1,
-    "gabriel leone": 1,
+    "gabriel leone": 2,
     "chay suede": 3
   }
 }

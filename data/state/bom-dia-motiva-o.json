@@ -1,89 +1,9 @@
 {
   "generated": [
     {
-      "uri": "spotify:track:4Mnfug0sgaMw7g3wyZD4ss",
-      "name": "Calma Amor - Ao Vivo Na Ilha Da Magia,Brasil/2008",
-      "artists": "Exaltasamba"
-    },
-    {
-      "uri": "spotify:track:4cR4nao0hqqBtklQmGVqbe",
-      "name": "Thinking out Loud",
-      "artists": "Boyce Avenue"
-    },
-    {
-      "uri": "spotify:track:5yQW46XPWdGqkX2PyMegLD",
-      "name": "Pescador",
-      "artists": "Armandinho"
-    },
-    {
       "uri": "spotify:track:3mYN35wSMxc0jBp4Qd6mSl",
       "name": "Só por um Momento - Ao Vivo",
       "artists": "Alexandre Pires"
-    },
-    {
-      "uri": "spotify:track:0mvkwaZMP2gAy2ApQLtZRv",
-      "name": "It's a Beautiful Day",
-      "artists": "Michael Bublé"
-    },
-    {
-      "uri": "spotify:track:174S4zGFfw7tCzXni3x4qm",
-      "name": "Loucura do Seu Coração",
-      "artists": "Sorriso Maroto"
-    },
-    {
-      "uri": "spotify:track:3Oi1rRW0QdWsE7SGATTE2z",
-      "name": "Tô te filmando (Sorria)",
-      "artists": "Os Travessos"
-    },
-    {
-      "uri": "spotify:track:2Iaj6B6CmvrCDa3fhYOs1K",
-      "name": "ELA GOSTA DE MENINA",
-      "artists": "Melly, Anitta"
-    },
-    {
-      "uri": "spotify:track:4RGRfGjhTxsCkLaHFF90Bq",
-      "name": "Você Me Vira A Cabeça (Me Tira Do Sério)",
-      "artists": "Alcione"
-    },
-    {
-      "uri": "spotify:track:2bWiY47WIbAXfCe0pFgrMB",
-      "name": "Olha o Que o Amor Me Faz - Ao Vivo",
-      "artists": "Vitinho"
-    },
-    {
-      "uri": "spotify:track:0HacRu8vOnGiR7gLXQ1srC",
-      "name": "Tá por Fora / Machuca Demais - Ao Vivo",
-      "artists": "Só Pra Contrariar"
-    },
-    {
-      "uri": "spotify:track:7puOgmB4ykiWcauLVa09fg",
-      "name": "Vai Me Dando Corda",
-      "artists": "Grupo Menos É Mais"
-    },
-    {
-      "uri": "spotify:track:3KtFWbEXDBiNK1RZH69y72",
-      "name": "Tá Com Raiva de Mim - Ao Vivo",
-      "artists": "Chico Rey & Paraná"
-    },
-    {
-      "uri": "spotify:track:5M8rc7DOM5MW1F8eP0OX9a",
-      "name": "Caraca, Muleke!",
-      "artists": "Thiaguinho"
-    },
-    {
-      "uri": "spotify:track:2QDZw7C4Hj2SKmBDYqGtxQ",
-      "name": "Alma De Guerreiro - Bonus Track",
-      "artists": "Seu Jorge"
-    },
-    {
-      "uri": "spotify:track:5Q0sgAvC9XnHEvEU7VWVK7",
-      "name": "Já Fui Uma Brasa",
-      "artists": "Adoniran Barbosa"
-    },
-    {
-      "uri": "spotify:track:37PVa5ZwK1aWtk477Gz16G",
-      "name": "Amor Pra Recomeçar - Ao Vivo",
-      "artists": "Jorge & Mateus"
     },
     {
       "uri": "spotify:track:0NMVRsqVoYEa7g6VZWcJg7",
@@ -91,9 +11,9 @@
       "artists": "Belo"
     },
     {
-      "uri": "spotify:track:59iqQY09BBJD3cSvojPsh0",
-      "name": "Ar Condicionado no 15 - Ao Vivo",
-      "artists": "Wesley Safadão"
+      "uri": "spotify:track:7HY7YlBwdZMTh69E1gkYm3",
+      "name": "Pega Esse Carro - Ao Vivo",
+      "artists": "Marcos & Belutti"
     },
     {
       "uri": "spotify:track:6LQQGxRzNLsWQtwgLe5fAm",
@@ -101,14 +21,19 @@
       "artists": "Pixote"
     },
     {
-      "uri": "spotify:track:4muZ1PUxmss4cVmYnpLrvs",
-      "name": "Refém",
-      "artists": "Dilsinho"
+      "uri": "spotify:track:4kMNM7X2S2nnIvRHoECGut",
+      "name": "Sol Loiro",
+      "artists": "Armandinho"
     },
     {
-      "uri": "spotify:track:21sO4LbODCpTKlSR8YqigU",
-      "name": "Deixa A Vida Me Levar - Ao Vivo No Rio De Janeiro / 2009",
-      "artists": "Zeca Pagodinho"
+      "uri": "spotify:track:06IofSQwG41NV6lLVl5gaT",
+      "name": "Segunda Opção",
+      "artists": "Wesley Safadão"
+    },
+    {
+      "uri": "spotify:track:3Oi1rRW0QdWsE7SGATTE2z",
+      "name": "Tô te filmando (Sorria)",
+      "artists": "Os Travessos"
     },
     {
       "uri": "spotify:track:0bE9HzpDqguoiYOPuoPyeQ",
@@ -116,14 +41,89 @@
       "artists": "Péricles"
     },
     {
+      "uri": "spotify:track:5k42zoTGT3LsQQ5wiS9jJn",
+      "name": "Para Tudo / Loucura do Seu Coração - Ao Vivo",
+      "artists": "Di Propósito, Grupo Menos É Mais"
+    },
+    {
+      "uri": "spotify:track:2bWiY47WIbAXfCe0pFgrMB",
+      "name": "Olha o Que o Amor Me Faz - Ao Vivo",
+      "artists": "Vitinho"
+    },
+    {
+      "uri": "spotify:track:2077eHXxwRgxDhEBtJV0wD",
+      "name": "Amo Noite E Dia - Live In Sao Paulo / 2010",
+      "artists": "Jorge & Mateus"
+    },
+    {
+      "uri": "spotify:track:4cR4nao0hqqBtklQmGVqbe",
+      "name": "Thinking out Loud",
+      "artists": "Boyce Avenue"
+    },
+    {
+      "uri": "spotify:track:4muZ1PUxmss4cVmYnpLrvs",
+      "name": "Refém",
+      "artists": "Dilsinho"
+    },
+    {
+      "uri": "spotify:track:5M8rc7DOM5MW1F8eP0OX9a",
+      "name": "Caraca, Muleke!",
+      "artists": "Thiaguinho"
+    },
+    {
+      "uri": "spotify:track:1Cn42z1q8r9hGECUFHBzQo",
+      "name": "Futuro Prometido",
+      "artists": "Sorriso Maroto"
+    },
+    {
+      "uri": "spotify:track:0HacRu8vOnGiR7gLXQ1srC",
+      "name": "Tá por Fora / Machuca Demais - Ao Vivo",
+      "artists": "Só Pra Contrariar"
+    },
+    {
+      "uri": "spotify:track:2k818cpVCwtF1VFJPM7k7H",
+      "name": "É Tudo",
+      "artists": "Soweto"
+    },
+    {
+      "uri": "spotify:track:4Mnfug0sgaMw7g3wyZD4ss",
+      "name": "Calma Amor - Ao Vivo Na Ilha Da Magia,Brasil/2008",
+      "artists": "Exaltasamba"
+    },
+    {
+      "uri": "spotify:track:2QDZw7C4Hj2SKmBDYqGtxQ",
+      "name": "Alma De Guerreiro - Bonus Track",
+      "artists": "Seu Jorge"
+    },
+    {
+      "uri": "spotify:track:17qvsjclu3oQ1YGEq93bdp",
+      "name": "Mundo dos sonhos",
+      "artists": "Katinguelê"
+    },
+    {
+      "uri": "spotify:track:0mvkwaZMP2gAy2ApQLtZRv",
+      "name": "It's a Beautiful Day",
+      "artists": "Michael Bublé"
+    },
+    {
+      "uri": "spotify:track:2Iaj6B6CmvrCDa3fhYOs1K",
+      "name": "ELA GOSTA DE MENINA",
+      "artists": "Melly, Anitta"
+    },
+    {
+      "uri": "spotify:track:21sO4LbODCpTKlSR8YqigU",
+      "name": "Deixa A Vida Me Levar - Ao Vivo No Rio De Janeiro / 2009",
+      "artists": "Zeca Pagodinho"
+    },
+    {
       "uri": "spotify:track:7LmG9LUGnpdzSbqkxN3Pch",
       "name": "De rolê (Participação especial de Ferrugem) - Ao vivo",
       "artists": "LUDMILLA, Ferrugem"
     },
     {
-      "uri": "spotify:track:1jqTRCJLrvtAfKSQGy1N5S",
-      "name": "Parei Na Contra Mão",
-      "artists": "Gabriel Leone"
+      "uri": "spotify:track:4RGRfGjhTxsCkLaHFF90Bq",
+      "name": "Você Me Vira A Cabeça (Me Tira Do Sério)",
+      "artists": "Alcione"
     }
   ],
   "played": {
@@ -167,7 +167,7 @@
     "ainda gosto de você": "2026-10-01T23:11:37+00:00",
     "ainda que você me esqueça": "2026-09-18T11:27:26+00:00",
     "ainda resta uma bagagem": "2026-10-02T20:43:47+00:00",
-    "alma de guerreiro": "2026-10-01T05:50:23+00:00",
+    "alma de guerreiro": "2026-10-08T21:18:45+00:00",
     "alma transparente": "2026-10-04T09:45:39+00:00",
     "alusina": "2026-10-02T20:43:47+00:00",
     "além da lenda": "2026-10-08T04:29:37+00:00",
@@ -177,6 +177,7 @@
     "amarelo azul e branco": "2026-10-04T09:45:39+00:00",
     "amiga da minha mulher": "2026-10-01T23:11:37+00:00",
     "amigo": "2026-10-04T23:08:42+00:00",
+    "amo noite e dia": "2026-10-08T21:18:45+00:00",
     "amor a distancia": "2026-10-03T06:31:32+00:00",
     "amor a três": "2026-09-21T13:00:11+00:00",
     "amor amor amor": "2026-10-02T15:45:29+00:00",
@@ -236,12 +237,12 @@
     "cadê ioiô": "2026-10-01T23:11:37+00:00",
     "caixa postal": "2026-10-06T07:33:24+00:00",
     "calma": "2026-10-08T04:28:53+00:00",
-    "calma amor": "2026-10-02T08:33:56+00:00",
+    "calma amor": "2026-10-08T21:18:45+00:00",
     "camarão que dorme a onda leva": "2026-10-06T20:18:37+00:00",
     "canarinho prisioneiro": "2026-10-08T04:29:17+00:00",
     "canto de ossanha": "2026-10-02T15:45:29+00:00",
     "cara limpa": "2026-10-08T02:27:36+00:00",
-    "caraca muleke": "2026-10-01T05:50:23+00:00",
+    "caraca muleke": "2026-10-08T21:18:45+00:00",
     "carolina": "2026-10-06T20:18:37+00:00",
     "carência": "2026-10-01T23:11:37+00:00",
     "casa do sol": "2026-10-08T04:29:37+00:00",
@@ -277,11 +278,11 @@
     "cê volta": "2026-10-06T20:18:37+00:00",
     "código cama": "2026-10-06T00:48:31+00:00",
     "de lá pra cá": "2026-10-03T23:03:31+00:00",
-    "de rolê": "2026-10-01T05:50:23+00:00",
+    "de rolê": "2026-10-08T21:18:45+00:00",
     "decide aí": "2026-10-01T23:11:37+00:00",
     "defeito meu": "2026-10-02T08:33:56+00:00",
     "degradê": "2026-10-06T20:18:37+00:00",
-    "deixa a vida me levar": "2026-10-01T23:11:37+00:00",
+    "deixa a vida me levar": "2026-10-08T21:18:45+00:00",
     "deixa alagar": "2026-10-06T20:18:37+00:00",
     "delírios de amor": "2026-10-01T23:11:37+00:00",
     "dependente do amor": "2026-10-05T09:02:03+00:00",
@@ -317,7 +318,7 @@
     "dói demais": "2026-10-08T04:28:53+00:00",
     "dói sem tanto": "2026-10-05T09:02:03+00:00",
     "ela": "2026-10-08T04:24:17+00:00",
-    "ela gosta de menina": "2026-10-02T08:33:56+00:00",
+    "ela gosta de menina": "2026-10-08T21:18:45+00:00",
     "ela é demais": "2026-10-03T23:03:31+00:00",
     "ela é linda": "2026-10-03T06:31:32+00:00",
     "em busca da minha sorte": "2026-10-02T15:42:13+00:00",
@@ -384,13 +385,13 @@
     "frenesi": "2026-10-06T20:18:37+00:00",
     "fugidinha": "2026-10-02T20:43:47+00:00",
     "fulminante": "2026-10-07T20:36:45+00:00",
-    "futuro prometido": "2026-10-01T05:50:23+00:00",
+    "futuro prometido": "2026-10-08T21:18:45+00:00",
     "gamei": "2026-10-08T04:28:53+00:00",
     "garçon": "2026-10-02T20:43:47+00:00",
     "gatinha manhosa": "2026-10-04T23:08:42+00:00",
     "gerente da sicredi": "2026-10-02T20:43:47+00:00",
     "gratidão": "2026-10-02T15:42:13+00:00",
-    "graveto": "2026-10-03T23:03:31+00:00",
+    "graveto": "2026-10-08T21:18:45+00:00",
     "grita sem ter medo": "2026-10-08T04:28:53+00:00",
     "grão de areia": "2026-10-08T04:29:37+00:00",
     "hackearamme": "2026-09-19T20:38:54+00:00",
@@ -403,13 +404,13 @@
     "indomável": "2026-10-02T15:42:13+00:00",
     "inevitável": "2026-10-02T20:43:47+00:00",
     "inigualável paixão": "2026-10-02T15:42:13+00:00",
-    "insegurança": "2026-10-04T23:08:42+00:00",
+    "insegurança": "2026-10-08T21:18:45+00:00",
     "insensato destino": "2026-10-08T04:29:17+00:00",
     "interfone": "2026-10-04T23:08:42+00:00",
     "inventor dos amores": "2026-10-03T23:03:31+00:00",
     "iracema": "2026-10-08T05:33:15+00:00",
     "irmão da lua amigo das estrelas": "2026-10-03T06:31:32+00:00",
-    "its a beautiful day": "2026-10-01T23:11:37+00:00",
+    "its a beautiful day": "2026-10-08T21:18:45+00:00",
     "jeito felino": "2026-09-19T20:38:54+00:00",
     "jornal da morte": "2026-10-02T20:43:47+00:00",
     "joão e maria": "2026-09-28T22:00:02+00:00",
@@ -430,13 +431,13 @@
     "lobo mau": "2026-09-28T22:00:02+00:00",
     "logo eu": "2026-10-06T20:18:37+00:00",
     "louca de saudade": "2026-10-08T04:29:37+00:00",
-    "loucura do seu coração": "2026-10-01T05:50:23+00:00",
+    "loucura do seu coração": "2026-10-08T21:18:45+00:00",
     "love you anymore": "2026-10-08T02:27:36+00:00",
     "lua cheia": "2026-10-07T20:36:45+00:00",
     "lua de mel": "2026-10-06T07:33:24+00:00",
     "lucidez": "2026-10-01T23:11:37+00:00",
     "lágrima caindo": "2026-09-23T09:22:58+00:00",
-    "machuca demais": "2026-09-29T08:28:55+00:00",
+    "machuca demais": "2026-10-08T21:18:45+00:00",
     "mais feliz": "2026-10-07T20:36:45+00:00",
     "mais perto": "2026-10-02T15:45:29+00:00",
     "mande um sinal": "2026-10-07T20:36:45+00:00",
@@ -487,7 +488,7 @@
     "muito quente": "2026-09-25T22:19:13+00:00",
     "mulher da minha vida": "2026-09-28T06:52:15+00:00",
     "mundo de oz": "2026-10-08T04:29:17+00:00",
-    "mundo dos sonhos": "2026-10-01T05:50:23+00:00",
+    "mundo dos sonhos": "2026-10-08T21:18:45+00:00",
     "murmúrio": "2026-10-08T02:27:36+00:00",
     "museu das relações perdidas": "2026-10-01T05:50:23+00:00",
     "músic incidental deixa isso prá lá": "2026-10-02T08:33:56+00:00",
@@ -543,7 +544,7 @@
     "o sofrimento ensina": "2026-10-02T20:43:47+00:00",
     "odara": "2026-10-08T04:29:17+00:00",
     "ogum": "2026-10-03T23:03:31+00:00",
-    "olha o que o amor me faz": "2026-10-01T05:50:23+00:00",
+    "olha o que o amor me faz": "2026-10-08T21:18:45+00:00",
     "onde a gente se perdeu": "2026-10-03T23:03:31+00:00",
     "onde está": "2026-10-02T08:33:56+00:00",
     "onde você mora": "2026-10-01T23:11:37+00:00",
@@ -562,7 +563,7 @@
     "papel": "2026-10-02T15:42:13+00:00",
     "papel de homem": "2026-09-26T07:39:39+00:00",
     "papo de edredom": "2026-10-08T04:28:53+00:00",
-    "para tudo": "2026-10-01T05:50:23+00:00",
+    "para tudo": "2026-10-08T21:18:45+00:00",
     "pararura": "2026-10-08T04:29:17+00:00",
     "paredes": "2026-10-06T07:33:24+00:00",
     "parei na contra mão": "2026-10-03T23:03:31+00:00",
@@ -571,7 +572,7 @@
     "patricinha do olho azul": "2026-10-07T07:13:28+00:00",
     "pecado capital": "2026-10-08T04:24:17+00:00",
     "pedindo a conta": "2026-10-07T07:13:28+00:00",
-    "pega esse carro": "2026-10-01T05:50:23+00:00",
+    "pega esse carro": "2026-10-08T21:18:45+00:00",
     "peixin": "2026-10-01T23:11:37+00:00",
     "pela vida inteira": "2026-10-03T23:03:31+00:00",
     "pela última vez": "2026-10-08T04:24:17+00:00",
@@ -633,10 +634,10 @@
     "ratatúia": "2026-09-19T20:36:26+00:00",
     "recado a minha amada": "2026-10-08T04:29:17+00:00",
     "recordações": "2026-09-27T22:09:41+00:00",
-    "refém": "2026-10-04T23:08:42+00:00",
+    "refém": "2026-10-08T21:18:45+00:00",
     "refém do coração": "2026-10-04T09:45:39+00:00",
     "reggae das tramanda": "2026-10-06T07:33:24+00:00",
-    "reinventar": "2026-10-03T23:03:31+00:00",
+    "reinventar": "2026-10-08T21:18:45+00:00",
     "ressaca de saudade": "2026-09-22T11:50:24+00:00",
     "retalhos de cetim": "2026-10-02T08:33:56+00:00",
     "retrato cantado de um amor": "2026-10-06T07:33:24+00:00",
@@ -655,7 +656,7 @@
     "se você chorar": "2026-10-08T04:29:37+00:00",
     "sede de te amar": "2026-10-04T09:45:39+00:00",
     "segredo": "2026-10-02T08:33:56+00:00",
-    "segunda opção": "2026-10-01T23:11:37+00:00",
+    "segunda opção": "2026-10-08T21:18:45+00:00",
     "seis cordas": "2026-10-03T06:31:32+00:00",
     "sem ataque sem defesa": "2026-10-02T15:42:13+00:00",
     "sem limites para sonhar": "2026-10-05T09:02:03+00:00",
@@ -678,7 +679,7 @@
     "sintomas de amor": "2026-09-19T07:54:21+00:00",
     "sistema sertanejo": "2026-10-08T04:29:17+00:00",
     "sobrenome": "2026-10-08T05:33:15+00:00",
-    "sol loiro": "2026-10-06T00:48:31+00:00",
+    "sol loiro": "2026-10-08T21:18:45+00:00",
     "solteiro de novo": "2026-09-23T09:22:58+00:00",
     "someday": "2026-10-03T06:31:32+00:00",
     "sonho de amor": "2026-10-03T23:03:31+00:00",
@@ -700,7 +701,7 @@
     "só felicidade": "2026-10-03T06:31:32+00:00",
     "só mesmo o teu amor": "2026-10-02T15:42:13+00:00",
     "só pedindo bis": "2026-10-02T15:45:29+00:00",
-    "só por um momento": "2026-10-01T05:50:23+00:00",
+    "só por um momento": "2026-10-08T21:18:45+00:00",
     "só pra contrariar": "2026-09-21T13:00:11+00:00",
     "só uma noite": "2026-09-30T06:42:18+00:00",
     "só vem": "2026-10-04T09:45:39+00:00",
@@ -720,7 +721,7 @@
     "texana 37": "2026-10-08T02:27:36+00:00",
     "thats life": "2026-10-06T00:48:31+00:00",
     "thats my way": "2026-10-08T04:29:17+00:00",
-    "thinking out loud": "2026-10-04T23:08:42+00:00",
+    "thinking out loud": "2026-10-08T21:18:45+00:00",
     "timidez": "2026-10-04T09:45:39+00:00",
     "tira ela de mim": "2026-10-08T05:33:15+00:00",
     "tiro ao álvaro": "2026-10-07T07:13:28+00:00",
@@ -739,12 +740,12 @@
     "tudo fica blue": "2026-10-06T20:18:37+00:00",
     "tá com raiva de mim": "2026-10-01T05:50:23+00:00",
     "tá escrito": "2026-10-07T07:13:28+00:00",
-    "tá por fora": "2026-09-29T08:28:55+00:00",
+    "tá por fora": "2026-10-08T21:18:45+00:00",
     "tá vendo aquela lua": "2026-10-08T04:24:17+00:00",
     "tão feliz": "2026-10-05T09:02:03+00:00",
     "tão só": "2026-10-03T06:31:32+00:00",
     "tô com saudade": "2026-10-07T20:36:45+00:00",
-    "tô te filmando": "2026-10-04T23:08:42+00:00",
+    "tô te filmando": "2026-10-08T21:18:45+00:00",
     "tú mandas no meu coração": "2026-10-08T02:27:36+00:00",
     "um degrau na escada": "2026-10-08T04:28:53+00:00",
     "um dia pra nós dois": "2026-10-08T04:28:53+00:00",
@@ -770,7 +771,7 @@
     "vizinha": "2026-10-07T20:36:45+00:00",
     "você de volta": "2026-10-06T20:18:37+00:00",
     "você já foi à bahia": "2026-10-06T07:33:24+00:00",
-    "você me vira a cabeça": "2026-10-06T00:48:31+00:00",
+    "você me vira a cabeça": "2026-10-08T21:18:45+00:00",
     "você não sabe amar": "2026-10-02T20:43:47+00:00",
     "você pode": "2026-10-02T15:45:29+00:00",
     "você vai ver": "2026-10-03T23:03:31+00:00",
@@ -797,7 +798,7 @@
     "é preciso muito amor": "2026-10-07T07:13:28+00:00",
     "é proibido fumar": "2026-10-08T04:28:53+00:00",
     "é tarde demais": "2026-10-06T00:48:31+00:00",
-    "é tudo": "2026-10-01T05:50:23+00:00",
+    "é tudo": "2026-10-08T21:18:45+00:00",
     "êta nóis": "2026-10-01T23:11:37+00:00",
     "ô irene": "2026-10-01T23:11:37+00:00"
   }

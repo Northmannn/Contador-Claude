@@ -308,6 +308,115 @@ playlists:
       - "ATLXS"
     # SEM 'queries' de propósito: busca genérica = artistas aleatórios de manhã.
 
+
+  # 🌙 SÁBADO À NOITE: variação da Bom Dia, mesmas regras, rodízio próprio, mais descobertas.
+  - name: "🌙 Sábado à Noite"
+    description: "Variação de sábado à noite da Bom Dia: mesmas regras (melódica, em português, 1 por artista), mais músicas novas dos seus artistas."
+    public: false
+    size: 25
+    seasons: [always]
+    daily: false           # fora do fluxo diário (sync --daily); entra no sazonal semanal (seasons: always)
+    # ---- REGRAS (definidas com você) ----
+    sing_along: true       # maioria de músicas que você conhece (top tracks + curtidas)
+    new_tracks: 10         # 10 novas por geração (o resto é do que você já ouve), sempre dentro do seu escopo
+    max_per_artist: 1      # nunca repete artista
+    portuguese_only: true  # só português; inglês apenas se JÁ estiver nas curtidas
+    learn_removals: true   # o que você tira vira "não gosto" (com guarda anti-bug)
+    # Artista que você tirou pelo menos N vezes sai da lista (0 desliga).
+    # 1 vez pode ser a música; 2 já é o artista. Chay Suede está em 3.
+    dislike_artist_threshold: 2
+    rotation_days: 7       # nenhuma música repete por 7 dias (rodízio próprio, separado da Bom Dia)
+    seed_from_taste: true  # as novas saem dos SEUS artistas (não de gente aleatória)
+    mode: discovery
+    # Melódico e contagiante — mesmas regras da Bom Dia (segunda voz, terças):
+    match_genres: [sertanejo, pagode, samba, mpb, "axé", axe, arrocha, "forró", forro,
+                   "brazilian", nacional, "pop brasileiro", "samba rock", "brega"]
+    # Fora do clima desta variação: nada pesado, nada melancólico, nada funk/rap
+    exclude_genres: ["rock nacional", "brazilian rock", "hard rock", "classic rock",
+                     "alternative rock", metal, thrash, punk, hardcore, grunge,
+                     funk, "funk carioca", "funk brasileiro", "funk mtg", "funk ostentação",
+                     rap, trap, "hip hop", "brazilian hip hop", drill,
+                     "bossa nova", "lo-fi", ambient, jazz]
+    # A API (2026) não devolve mais gênero dos artistas, então a regra "sábado à
+    # noite só melódico" é garantida por LISTA DE PERMITIDOS — montada dos SEUS
+    # artistas reais (python main.py taste). Só entram músicas destes; as 10 novas
+    # também vêm só deles. Lista viva: me passe nomes pra entrar/sair.
+    match_artists:
+      # pagode / samba (seu núcleo)
+      - "Só Pra Contrariar"
+      - "Grupo Menos É Mais"
+      - "Péricles"
+      - "Thiaguinho"
+      - "Sorriso Maroto"
+      - "Ferrugem"
+      - "Vitinho"
+      - "Dilsinho"
+      - "Alexandre Pires"
+      - "Os Travessos"
+      - "Zeca Pagodinho"
+      - "Pixote"
+      - "Vou Zuar"
+      - "Belo"
+      - "Xande de Pilares"
+      - "Fundo de Quintal"
+      - "Arlindinho"
+      - "Katinguelê"
+      - "Soweto"
+      - "Dudu Nobre"
+      - "Casuarina"
+      - "Exaltasamba"
+      # sertanejo / duplas (terça maior e menor de fábrica — ideal p/ segunda voz)
+      - "Zezé Di Camargo"
+      - "Chico Rey"
+      - "Matheus & Kauan"
+      - "Jorge & Mateus"
+      - "Marcos & Belutti"
+      - "Bruno & Barretto"
+      - "Wesley Safadão"
+      # MPB / samba-pop melódico
+      - "Seu Jorge"
+      - "Armandinho"
+      - "Chay Suede"
+      - "ANAVITÓRIA"
+      - "Alcione"
+      - "Adoniran Barbosa"
+      - "Reginaldo Rossi"
+      - "Gabriel Leone"
+      - "Melly"
+      # internacionais que você curte (as que você já ouve entram mesmo em inglês;
+      # nova em inglês continua bloqueada)
+      - "Michael Bublé"
+      - "Boyce Avenue"
+    # Estrangeiros da lista: só o que você JÁ ouve/curte; nova em inglês, nunca.
+    foreign_artists: ["Michael Bublé", "Boyce Avenue"]
+    # Veto por palavra no título/artista (versões que não cabem nesta variação):
+    exclude_keywords: [slowed, "sped up", "speed up", remix, montagem, automotivo,
+                       phonk, mtg, funk, bruxaria, "mandelão", putaria, "proibidão",
+                       nightcore, "8d"]
+    # Veto por nome (redundante com a lista acima, mas fica como cinto e suspensório):
+    exclude_artists:
+      - "Legião Urbana"
+      - "Matanza"
+      - "Raimundos"
+      - "Velhas Virgens"
+      - "Skank"
+      - "Jota Quest"
+      - "Engenheiros do Hawaii"
+      - "Ultraje a Rigor"
+      - "Pedra Leticia"
+      - "Mamonas Assassinas"
+      - "Capital Inicial"
+      - "Charlie Brown Jr"
+      - "Tenacious D"
+      - "Green Day"
+      - "Guns N' Roses"
+      - "Dazaranha"
+      - "Mr. Catra"
+      - "DENNIS"
+      - "Nego do Borel"
+      - "ATLXS"
+    # SEM 'queries' de propósito: busca genérica = artistas aleatórios.
+
   # =====================================================================
   # 🌙 HIPERFOCO NOTURNO — INTENSO e EUFÓRICO pra madrugada de foco.
   # Em português, ritmo envolvente, gêneros naturalmente acima de ~100 BPM

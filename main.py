@@ -16,6 +16,7 @@ import os
 import sys
 
 from spotipy.exceptions import SpotifyException
+from spotipy.oauth2 import SpotifyOauthError
 
 from spotify_playlists.auth import (
     describe_auth,
@@ -53,6 +54,34 @@ def _handle_rate_limit(exc: SpotifyException) -> int:
         "      troque no .env, apague o .cache e rode 'python main.py login'."
     )
     print(msg, file=sys.stderr)
+    return 1
+
+
+def _handle_oauth_error(exc: SpotifyOauthError) -> int:
+    """Mensagem amigável quando a Spotify recusa o refresh token (invalid_grant etc.)."""
+    detail = str(exc).strip().splitlines()[0] if str(exc).strip() else exc.__class__.__name__
+    print(
+        f"\n⛔ A Spotify recusou o token de acesso ({detail}).\n"
+        "   Causas comuns: refresh token de OUTRA conta ou de outro app, conta antiga\n"
+        "   apagada/desvinculada, ou Client ID/Secret trocados sem refazer o login.\n"
+        "   Solução: na sua máquina, logado na conta certa, rode 'python main.py login'\n"
+        "   e atualize o secret SPOTIFY_REFRESH_TOKEN (README → 'Trocar de conta Spotify').",
+        file=sys.stderr,
+    )
+    return 1
+
+
+def _handle_not_registered(exc: SpotifyException) -> int:
+    """403 'user not registered': a conta não está na allowlist do app (Development Mode)."""
+    print(
+        "\n⛔ A Spotify negou o acesso (403): esta conta não está cadastrada no app.\n"
+        "   Em Development Mode só entram as contas listadas no app. No\n"
+        "   developer.spotify.com/dashboard → seu app → Settings → User Management,\n"
+        "   adicione o nome e o e-mail da conta que você usa agora — ou crie um app\n"
+        "   novo já logado nela (AGENTS.md, seção 7) e troque os 3 secrets.\n"
+        f"   Detalhe: {exc.msg}",
+        file=sys.stderr,
+    )
     return 1
 
 
@@ -109,34 +138,29 @@ def cmd_sync(args: argparse.Namespace) -> int:
             return 0
         print(f"▶️  Gerando a janela {slot}")
 
-    try:
-        sp = get_client()
+    sp = get_client()
 
-        if args.only:
-            match = next((p for p in config.playlists if p.name == args.only), None)
-            if not match:
-                print(f"Playlist '{args.only}' não está na config.", file=sys.stderr)
-                return 1
-            tracks = sync_playlist(
-                sp, match, catalog_budget=budget, record_rotation=not args.no_record_rotation
-            )
-            print(f"✅ '{match.name}': {len(tracks)} faixas atualizadas")
-            if match.daily and slot:
-                mark_slot_done(slot)  # geração manual conta como a da janela
-            return 0
-
-        scope = "all" if args.force else "daily" if args.daily else "season"
-        sync_all(
-            sp, config, scope=scope, catalog_budget=budget,
-            record_rotation=not args.no_record_rotation,
+    if args.only:
+        match = next((p for p in config.playlists if p.name == args.only), None)
+        if not match:
+            print(f"Playlist '{args.only}' não está na config.", file=sys.stderr)
+            return 1
+        tracks = sync_playlist(
+            sp, match, catalog_budget=budget, record_rotation=not args.no_record_rotation
         )
-        if scope == "daily" and slot:
-            mark_slot_done(slot)
+        print(f"✅ '{match.name}': {len(tracks)} faixas atualizadas")
+        if match.daily and slot:
+            mark_slot_done(slot)  # geração manual conta como a da janela
         return 0
-    except SpotifyException as exc:
-        if exc.http_status == 429:
-            return _handle_rate_limit(exc)
-        raise
+
+    scope = "all" if args.force else "daily" if args.daily else "season"
+    sync_all(
+        sp, config, scope=scope, catalog_budget=budget,
+        record_rotation=not args.no_record_rotation,
+    )
+    if scope == "daily" and slot:
+        mark_slot_done(slot)
+    return 0
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -190,7 +214,16 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> int:
     args = build_parser().parse_args()
-    return args.func(args)
+    try:
+        return args.func(args)
+    except SpotifyOauthError as exc:
+        return _handle_oauth_error(exc)
+    except SpotifyException as exc:
+        if exc.http_status == 429:
+            return _handle_rate_limit(exc)
+        if exc.http_status == 403 and "not registered" in str(exc.msg or "").lower():
+            return _handle_not_registered(exc)
+        raise
 
 
 if __name__ == "__main__":

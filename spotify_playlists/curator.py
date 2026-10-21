@@ -892,8 +892,10 @@ def _fill_sing_along(
     """Monta a lista: até ``new_tracks`` novas, depois conhecidas.
 
     Quando as conhecidas frescas acabam, reusa a conhecida que tocou há mais
-    tempo. Faixa de catálogo (não ouvida) nunca passa de ``new_tracks`` — não
-    completa o tamanho com mais catálogo.
+    tempo. Faixa de catálogo (não ouvida) não passa de ``new_tracks`` enquanto
+    houver conhecida pra reusar. Só quando o acervo conhecido NÃO dá pra
+    completar a lista (conta nova, sem curtidas nem histórico) o catálogo
+    completa o tamanho — e ``_curate_sing_along`` avisa no log.
     """
     fresh_known = [t for t in known if _last_played(t, recent) is None]
     fresh_extra = [t for t in extra if _last_played(t, recent) is None]
@@ -936,6 +938,15 @@ def _fill_sing_along(
             added_new += 1
     for pool in (fresh_known, stale_known):
         for t in pool:
+            if len(chosen) >= spec.size:
+                break
+            add(t)
+
+    # 4) Acervo conhecido insuficiente (conta nova / sem curtidas): não há o que
+    #    reusar, e a alternativa seria uma lista de ``new_tracks`` músicas. Só
+    #    neste caso o catálogo (respeitando o rodízio) completa o tamanho.
+    if len(chosen) < spec.size:
+        for t in fresh_extra:
             if len(chosen) >= spec.size:
                 break
             add(t)
@@ -1025,13 +1036,20 @@ def _curate_sing_along(
     extra_uris = {t.uri for t in extra}
     n_new = sum(1 for t in chosen if t.uri in extra_uris)
     reused = sum(1 for t in chosen if _last_played(t, recent) is not None)
-    print(f"   ✨ novas nesta lista: {n_new} (teto {max(0, spec.new_tracks)})")
+    cap = max(0, spec.new_tracks)
+    print(f"   ✨ novas nesta lista: {n_new} (teto {cap})")
     if reused:
         print(f"   ⚠️ acervo curto: {reused} conhecida(s) repetida(s) do rodízio (as mais antigas).")
+    if n_new > cap:
+        print(
+            f"   ⚠️ acervo conhecido insuficiente ({len(known)} conhecida(s) desta lista): "
+            f"completei com {n_new - cap} do catálogo além do teto. Conta nova? Curta músicas "
+            "dos seus artistas nesta conta (ou ouça por umas semanas) e isso volta ao normal."
+        )
     if len(chosen) < spec.size:
         print(
-            f"   ⚠️ lista com {len(chosen)} de {spec.size}: não completei com catálogo "
-            f"além de new_tracks={max(0, spec.new_tracks)}."
+            f"   ⚠️ lista com {len(chosen)} de {spec.size}: acabaram as conhecidas e o "
+            "catálogo fora do rodízio."
         )
     return chosen
 

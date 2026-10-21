@@ -50,8 +50,11 @@ SPOTIPY_REDIRECT_URI=http://127.0.0.1:8888/callback
 python main.py login
 ```
 
-Isso abre o navegador pra você autorizar. No fim, ele imprime um
-**refresh token** — guarde-o, você vai usar no GitHub Actions.
+Isso abre o navegador pra você autorizar. No fim, ele mostra **qual conta
+autorizou** (confira!) e salva o **refresh token** em `refresh_token.txt` —
+guarde-o, você vai usar no GitHub Actions. Rodar de novo sempre pede
+autorização outra vez (o cache do login anterior é apagado), então serve
+também pra trocar de conta.
 
 ## 5. Usar na mão
 
@@ -68,7 +71,9 @@ python main.py sync --force          # atualiza TODAS (cuidado: muitas chamadas 
 
 A diária (`🌅 Bom Dia, Motivação`) mistura o que você já ouve com no máximo
 `new_tracks` faixas novas (padrão 4). Se as conhecidas da semana acabam, ela
-repete a conhecida que tocou há mais tempo — não enche o resto com catálogo.
+repete a conhecida que tocou há mais tempo — não enche o resto com catálogo
+(a única exceção é uma conta sem curtidas nem histórico, que não tem conhecida
+nenhuma: aí ela completa com o catálogo dos seus artistas e avisa no log).
 O catálogo só traz música em que o artista permitido é o principal (não
 participação nem homônimo). Artista que você removeu pelo menos
 `dislike_artist_threshold` vezes (padrão 2) sai da seleção. No GitHub, o cron
@@ -94,6 +99,41 @@ crie estes secrets:
 | `SPOTIFY_REFRESH_TOKEN` | o refresh token do passo 4 |
 
 Pronto: quando virar a estação, as playlists daquela estação se renovam sozinhas.
+
+Outros workflows na aba **Actions** (todos com *Run workflow*): **Playlist
+diária** (a 🌅 Bom Dia, também roda sozinha de hora em hora), **Gerar uma
+playlist (manual)**, e os só-leitura **Qual conta? (whoami)** (mostra para qual
+conta o secret aponta), **Meu gosto** e **Diagnóstico**.
+
+## 7. Trocar de conta Spotify
+
+Tudo que o projeto aprendeu fica no repositório (`data/`: o que você removeu,
+o rodízio de 7 dias, o catálogo) e segue valendo na conta nova. O que muda é
+**quem autoriza**: o `SPOTIFY_REFRESH_TOKEN` é de uma conta só.
+
+1. **Decida o app.** O app do Dashboard pertence a uma conta Spotify e, em
+   Development Mode, só atende as contas listadas nele.
+   - *Manter o app antigo:* no Dashboard, **Settings → User Management**,
+     adicione nome e e-mail da conta nova.
+   - *Conta antiga vai ser encerrada:* crie um app novo já logado na conta nova
+     (passo 2 deste README) e troque também `SPOTIPY_CLIENT_ID` e
+     `SPOTIPY_CLIENT_SECRET` nos secrets e no `.env`.
+2. **No seu computador**, com o `.env` do app certo, entre no Spotify pelo
+   navegador **com a conta nova** e rode `python main.py login`. Ele apaga o
+   cache do login anterior, abre a autorização e, no fim, mostra **qual conta
+   autorizou** — confira o nome.
+3. Cole o conteúdo de `refresh_token.txt` no secret `SPOTIFY_REFRESH_TOKEN`
+   (GitHub → Settings → Secrets and variables → Actions).
+4. No GitHub, **Actions → "Qual conta? (whoami)" → Run workflow**: tem que
+   aparecer a conta nova.
+5. **Actions → "Playlist diária" → Run workflow.** As playlists que não
+   existirem na conta nova são criadas na hora, com os mesmos nomes.
+
+Numa conta sem curtidas nem histórico, a diária não tem "conhecidas" pra
+montar a lista: ela avisa no log e completa com o catálogo dos seus artistas
+até você curtir músicas (ou ouvir por umas semanas) na conta nova. Se o
+token for de outra conta/app ou a conta não estiver cadastrada no app, o
+`sync` para com uma mensagem dizendo exatamente isso.
 
 ---
 

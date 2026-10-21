@@ -263,6 +263,29 @@ def test_new_tracks_cap_reuses_oldest_known():
     assert "Nova Z" not in names
 
 
+def test_new_account_without_library_fills_from_catalog():
+    """Conta nova (sem curtidas nem histórico): não há conhecida pra reusar e a
+    lista sairia com só ``new_tracks`` músicas. Só nesse caso o catálogo completa
+    o tamanho — respeitando rodízio e 1 por artista."""
+    curator._GENRE_CACHE.clear()
+
+    class Empty(FakeSpotify):
+        def current_user_top_tracks(self, limit, time_range):
+            return {"items": []}
+
+        def current_user_saved_tracks(self, limit):
+            return {"items": [], "next": None}
+
+    catalog = [Track(f"c{i}", f"Hit {i}", ARTISTS[i], []) for i in range(30)]
+    recent = {"hit 0": "2026-09-24T00:00:00+00:00"}  # tocou esta semana: não volta
+    spec = _spec(size=10, new_tracks=4)
+    chosen = curator.curate(Empty(), spec, recent=recent, catalog=catalog)
+    names = [t.name for t in chosen]
+    assert len(chosen) == 10, names
+    assert "Hit 0" not in names, names
+    assert len({curator._artist_key(t) for t in chosen}) == 10, names
+
+
 def test_catalog_keeps_only_main_artist():
     """Participação e homônimo ficam de fora; grupo e dupla oficial ficam."""
     curator.CATALOG_PAUSE_S = 0
@@ -469,9 +492,12 @@ def test_offline_catalog_file_drops_features_and_namealikes():
     assert any("Chico Rey & Paraná" in artists for _name, artists in kept)
     assert any(artists.lower().startswith("grupo fundo de quintal") for _name, artists in kept)
     assert any("Zezé Di Camargo & Luciano" in artists for _name, artists in kept)
-    banned = manager.banned_artist_names(feedback, 2)
-    assert banned == ["chay suede"]
-    assert "matheus & kauan" not in banned
+    banned = set(manager.banned_artist_names(feedback, 2))
+    counts = feedback.get("disliked_artists") or {}
+    assert counts, "feedback.json sem disliked_artists — o teste não exercita o veto"
+    for artist, n in counts.items():  # o feedback real muda todo dia: compara com ele
+        assert (artist in banned) == (n >= 2), (artist, n, banned)
+    assert banned <= set(counts)
 
 
 def _fill_legado(known, extra, recent, spec):
@@ -584,8 +610,11 @@ def test_offline_simulated_list_respects_new_tracks():
         assert curator._is_allowlisted_main(t, spec.match_artists), t
         assert "chay suede" not in t.artists.lower(), t
         assert t.uri not in _BAD_CATALOG_URIS
-    # com o rodízio real estourado, tem de reusar conhecida em vez de catálogo
-    assert any(curator._last_played(t, recent) is not None for t in chosen), "não reusou conhecida"
+    # Se as conhecidas frescas não bastam, tem de reusar conhecida em vez de
+    # catálogo (depende do estado real do rodízio no dia do teste).
+    fresh_known = [t for t in known if curator._last_played(t, recent) is None]
+    if len(fresh_known) < spec.size - spec.new_tracks:
+        assert any(curator._last_played(t, recent) is not None for t in chosen), "não reusou conhecida"
     assert len(known) > spec.size  # senão o teste não exercita o teto de verdade
 
 

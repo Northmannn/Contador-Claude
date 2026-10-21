@@ -29,7 +29,7 @@ spotify_playlists/
   seasonal-update.yml   # cron semanal (playlists sazonais)
   daily-morning.yml     # cron DE HORA EM HORA + trava de janela (diária 2x/dia)
   manual-sync.yml       # gera UMA playlist sob demanda (input: nome)
-  diagnose.yml / taste.yml  # read-only: diagnóstico do leitor / gosto do usuário
+  diagnose.yml / taste.yml / whoami.yml  # read-only: diagnóstico / gosto / conta do secret
 data/                   # estado versionado (o workflow commita de volta)
   feedback.json         # "não gosto" aprendido do que o usuário remove
   catalog.json          # cache dos hits de cada artista permitido (TTL 14 dias)
@@ -49,7 +49,7 @@ python main.py list             # lista as playlists configuradas
 python main.py sync --only "NOME"   # atualiza UMA playlist (preferir isto)
 python main.py sync --daily     # atualiza as playlists daily:true
 python main.py sync --force     # atualiza TODAS (cuidado: muitas chamadas de API)
-python main.py whoami           # diagnóstico: usuário, conta, escopos concedidos
+python main.py whoami           # diagnóstico: usuário, conta, escopos (com SPOTIFY_REFRESH_TOKEN = conta do secret)
 ```
 
 `.env` necessário: `SPOTIPY_CLIENT_ID`, `SPOTIPY_CLIENT_SECRET`,
@@ -148,6 +148,10 @@ suposições antigas. O que JÁ pegamos aqui:
   0 desliga). Uma música tirada não bane o artista; a segunda vez, sim.
 - Uma semana = 14 listas × 25 ≈ 350 músicas. Dessas, só `new_tracks` por lista
   vêm do catálogo (4 × 14 = 56). O resto sai do acervo conhecido.
+- **Conta sem acervo** (trocou de conta; sem curtidas nem histórico): não há
+  conhecida pra reusar e a lista sairia com 4 músicas. Só nesse caso
+  `_fill_sing_along` completa com catálogo além de `new_tracks` (respeitando
+  rodízio e 1 por artista) e avisa no log. Com acervo normal nunca acontece.
 
 ## 6. Rate limit (IMPORTANTE)
 
@@ -169,6 +173,29 @@ HTTP **429** com `Retry-After` que pode chegar a **horas**. Regras:
 4. Settings > User Management: adicione a conta Spotify (nome + e-mail).
 5. `del .cache` (Windows) ou `rm .cache`; depois `python main.py login`.
 
+## 7b. Trocar de conta Spotify (checklist)
+
+O usuário trocou de conta Spotify em out/2026. Só o token muda de dono —
+`data/` (feedback, rodízio, catálogo) continua valendo. Os passos 1–3 só o
+usuário consegue fazer: o agente não tem as credenciais (sem `.env`, sem
+secrets) e o OAuth exige o navegador dele.
+
+1. App: ou adiciona a conta nova em **User Management** do app atual, ou cria
+   app novo logado na conta nova (seção 7) e troca também Client ID/Secret.
+2. No PC, logado na conta nova no navegador: `python main.py login` (apaga o
+   `.cache` sozinho e imprime a conta autorizada). Copiar `refresh_token.txt`
+   para o secret `SPOTIFY_REFRESH_TOKEN`.
+3. Workflow **Qual conta? (whoami)**: confirma para qual conta o secret aponta
+   (`main.py whoami` usa o refresh token quando ele existe no ambiente).
+4. Workflow **Playlist diária** (Run workflow). Playlist inexistente na conta
+   nova é criada pelo nome; `_learn_from_removals` não aprende nada na 1ª vez
+   porque não acha a playlist.
+5. Conta sem curtidas/histórico: ver "Conta sem acervo" na seção 5b.
+
+Erros típicos pós-troca, já com mensagem clara em `main.py`: `SpotifyOauthError`
+(refresh token de outra conta/app → `invalid_grant`) e 403 "user not
+registered" (conta fora da allowlist do app em Development Mode).
+
 ## 8. Estado atual
 
 Playlists já configuradas em `config/playlists.yaml`: sazonais (Verão/Outono/
@@ -179,3 +206,26 @@ No Mesmo Clima — Descobertas (mesmo gosto, músicas novas).
 
 Branch de desenvolvimento: `claude/spotify-playlist-integration-hz4sdw`
 (também é a branch padrão do repositório).
+
+Em 21/10/2026: a conta do GitHub estava **bloqueada por cobrança** (seção 9),
+nada rodava desde a noite de 19/10, e o usuário **trocou de conta Spotify** —
+o secret `SPOTIFY_REFRESH_TOKEN` ainda apontava para a conta antiga (seção 7b).
+
+## 9. GitHub Actions: todos os jobs "falham" em ~3 s, sem passos e sem log
+
+Visto em 19–21/10/2026: cron e disparo manual falhando em 2-3 s, job sem
+nenhum step, sem runner, download do log dá 404. Não é o código nem a
+Spotify. A causa fica na **anotação** do job (API pública; o repositório é
+público):
+
+```bash
+curl -s https://api.github.com/repos/Northmannn/Contador-Claude/actions/runs/<RUN_ID>/jobs   # pega o id do job
+curl -s https://api.github.com/repos/Northmannn/Contador-Claude/check-runs/<JOB_ID>/annotations
+```
+
+Mensagem vista: *"The job was not started because your account is locked due
+to a billing issue"* → conta do GitHub bloqueada por cobrança; resolve em
+https://github.com/settings/billing e nada roda até lá (repo público não gasta
+minutos, então não é cota). Fora isso, o cron do GitHub descarta execuções à
+vontade (várias horas seguidas sem rodar): o `--slot-guard` já foi desenhado
+pra isso — a 1ª execução que cair dentro da janela gera a lista.

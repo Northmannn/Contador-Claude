@@ -77,16 +77,33 @@ def get_client() -> Spotify:
     return Spotify(auth_manager=oauth, retries=0)
 
 
-def describe_auth() -> None:
-    """Mostra usuário e escopos concedidos, SEM expor tokens. Diagnóstico."""
+def _token_for_diagnosis() -> tuple[dict | None, str]:
+    """Token pra diagnóstico + de onde ele veio (secret/.env ou cache local)."""
     oauth = _oauth()
-    token_info = oauth.get_cached_token()
+    refresh_token = "".join(os.environ.get("SPOTIFY_REFRESH_TOKEN", "").split())
+    if refresh_token:
+        return (
+            oauth.refresh_access_token(refresh_token),
+            "SPOTIFY_REFRESH_TOKEN (secret do GitHub / .env)",
+        )
+    return oauth.get_cached_token(), "cache local (.cache do último login)"
+
+
+def describe_auth() -> None:
+    """Mostra usuário e escopos concedidos, SEM expor tokens. Diagnóstico.
+
+    Com ``SPOTIFY_REFRESH_TOKEN`` (GitHub Actions ou .env) usa o refresh token —
+    é assim que se confere PARA QUAL CONTA o secret aponta depois de trocar de
+    conta. Sem ele, usa o cache do último ``login``.
+    """
+    token_info, origem = _token_for_diagnosis()
     if not token_info:
-        print("Sem token em cache. Rode 'python main.py login' primeiro.")
+        print("Sem token em cache nem SPOTIFY_REFRESH_TOKEN. Rode 'python main.py login' primeiro.")
         return
 
     sp = Spotify(auth=token_info["access_token"])
     me = sp.me()
+    print(f"Token de: {origem}")
     print(f"Usuário:  {me.get('display_name')}  (id: {me.get('id')})")
     print(f"Conta:    {me.get('product')}  | país: {me.get('country')}")
 
@@ -105,7 +122,7 @@ def describe_auth() -> None:
     missing = sorted(needed - granted)
     if missing:
         print("\n⚠️  FALTAM escopos:", ", ".join(missing))
-        print("    → Apague o .cache e rode 'python main.py login' de novo.")
+        print("    → Rode 'python main.py login' de novo (ele apaga o cache sozinho).")
     else:
         print("\n✅ Todos os escopos necessários foram concedidos.")
         if me.get("product") != "premium":
@@ -113,10 +130,22 @@ def describe_auth() -> None:
 
 
 def login_and_print_refresh_token() -> str:
-    """Roda o fluxo interativo e devolve o refresh token (pra usar como secret)."""
+    """Roda o fluxo interativo e devolve o refresh token (pra usar como secret).
+
+    Sempre pede autorização no navegador: um ``.cache`` de login anterior
+    (de OUTRA conta, por exemplo) faria o spotipy devolver o token antigo sem
+    perguntar nada — e o secret continuaria apontando pra conta errada.
+    """
+    try:
+        os.remove(".cache")
+        print("(apaguei o .cache de um login anterior — vou pedir autorização de novo)")
+    except FileNotFoundError:
+        pass
+
     oauth = _oauth()
     token_info = oauth.get_access_token(as_dict=True)
     refresh_token = token_info["refresh_token"]
+    me = Spotify(auth=token_info["access_token"]).me()
 
     # Salva num arquivo de texto pra copiar SEM quebras de linha do terminal
     # (copiar token comprido do PowerShell costuma corrompê-lo).
@@ -124,6 +153,9 @@ def login_and_print_refresh_token() -> str:
         fh.write(refresh_token)
 
     print("\n✅ Login concluído!\n")
+    print(f"Conta autorizada: {me.get('display_name')}  (id: {me.get('id')})")
+    print("   ⚠️  Confira se é a conta CERTA. Se não for: saia do Spotify no navegador")
+    print("      (ou use 'Não é você?' na tela de autorização) e rode o login de novo.\n")
     print("Seu REFRESH TOKEN foi salvo no arquivo:  refresh_token.txt")
     print("Abra com:  notepad refresh_token.txt")
     print("Copie TODO o conteúdo e cole no secret SPOTIFY_REFRESH_TOKEN do GitHub.")

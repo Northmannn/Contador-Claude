@@ -1,74 +1,9 @@
 {
   "generated": [
     {
-      "uri": "spotify:track:1ns1vR6mxOYjsYFunuH3Yq",
-      "name": "É Tarde Demais / Estou Mal - Ao Vivo",
-      "artists": "Sorriso Maroto, Raça Negra"
-    },
-    {
-      "uri": "spotify:track:4RGRfGjhTxsCkLaHFF90Bq",
-      "name": "Você Me Vira A Cabeça (Me Tira Do Sério)",
-      "artists": "Alcione"
-    },
-    {
-      "uri": "spotify:track:5MMrkwK6AgNAsgHVdC7daZ",
-      "name": "Péssimo Negócio (Ao Vivo)",
-      "artists": "Dilsinho"
-    },
-    {
-      "uri": "spotify:track:4guiihOYsq8ry9oY2Fj10X",
-      "name": "Rosa Norte",
-      "artists": "Armandinho"
-    },
-    {
-      "uri": "spotify:track:115Pqrml85HpHlylru3HLL",
-      "name": "Cê Volta - Ao Vivo",
-      "artists": "Wesley Safadão, Zé Vaqueiro"
-    },
-    {
-      "uri": "spotify:track:7HY7YlBwdZMTh69E1gkYm3",
-      "name": "Pega Esse Carro - Ao Vivo",
-      "artists": "Marcos & Belutti"
-    },
-    {
-      "uri": "spotify:track:5H4CNCiKB9iuKPz5SkMSOG",
-      "name": "Traição - Ao Vivo",
-      "artists": "Vitinho"
-    },
-    {
-      "uri": "spotify:track:0Irmfs9y37hrHDl88DlWHV",
-      "name": "Página de Amigos / Inevitável / Flor - Ao Vivo",
-      "artists": "Grupo Menos É Mais"
-    },
-    {
-      "uri": "spotify:track:21sO4LbODCpTKlSR8YqigU",
-      "name": "Deixa A Vida Me Levar - Ao Vivo No Rio De Janeiro / 2009",
-      "artists": "Zeca Pagodinho"
-    },
-    {
-      "uri": "spotify:track:0NMVRsqVoYEa7g6VZWcJg7",
-      "name": "Reinventar",
-      "artists": "Belo"
-    },
-    {
-      "uri": "spotify:track:1mWbNJY5fd08bdBZQxga56",
-      "name": "Tá por Fora / Machuca Demais / Interfone - Ao Vivo",
-      "artists": "Alexandre Pires"
-    },
-    {
-      "uri": "spotify:track:1XGwhMYkMaOQuBpiZI72IP",
-      "name": "A Gente Bota Pra Quebrar - Ao Vivo Na Ilha Da Magia,Brasil/2008",
-      "artists": "Exaltasamba"
-    },
-    {
-      "uri": "spotify:track:4DA0kOHVWloVgEXImREW3g",
-      "name": "A Jogada - Ao Vivo",
-      "artists": "Só Pra Contrariar"
-    },
-    {
-      "uri": "spotify:track:3p52JAuaJ2cFvbZFYFhXjG",
-      "name": "Inigualável Paixão / Pra Ser Minha Musa - Ao Vivo",
-      "artists": "Vou Zuar, Renato da Rocinha"
+      "uri": "spotify:track:61owCysJTu0HlCDFSASYJw",
+      "name": "Final De Tarde",
+      "artists": "Péricles"
     },
     {
       "uri": "spotify:track:5e51nvrsLrXYWvKoCzwBJR",
@@ -76,24 +11,9 @@
       "artists": "Os Travessos"
     },
     {
-      "uri": "spotify:track:3lyLqIn8mybyEFTs8JJaLf",
-      "name": "Home",
-      "artists": "Michael Bublé"
-    },
-    {
-      "uri": "spotify:track:2GfxgssRHvY1azHtaRqKoK",
-      "name": "Paredes - Ao Vivo",
-      "artists": "Jorge & Mateus"
-    },
-    {
-      "uri": "spotify:track:5d7HXbygC36qy2zegmGxAT",
-      "name": "A Raposa e as Uvas",
-      "artists": "Reginaldo Rossi"
-    },
-    {
-      "uri": "spotify:track:61owCysJTu0HlCDFSASYJw",
-      "name": "Final De Tarde",
-      "artists": "Péricles"
+      "uri": "spotify:track:5xyVTYGlRwh4XQT8RNJAsy",
+      "name": "Vem Meu Amor",
+      "artists": "ANAVITÓRIA"
     },
     {
       "uri": "spotify:track:7yLQVtQsh68PPFrq93GuJl",
@@ -101,9 +21,89 @@
       "artists": "Rodriguinho, Thiaguinho"
     },
     {
-      "uri": "spotify:track:5zfr2AE09iDlGiI3tMTOCH",
-      "name": "Burguesinha - Live",
+      "uri": "spotify:track:115Pqrml85HpHlylru3HLL",
+      "name": "Cê Volta - Ao Vivo",
+      "artists": "Wesley Safadão, Zé Vaqueiro"
+    },
+    {
+      "uri": "spotify:track:6sRLrSetyIwIKhW1eMlUNP",
+      "name": "Vou Ter Que Superar - Ao Vivo",
+      "artists": "Matheus & Kauan, Marília Mendonça"
+    },
+    {
+      "uri": "spotify:track:1IDzEcAmfElzO6BjS8P22Y",
+      "name": "Teu Olhar, Teu Andar",
+      "artists": "Reginaldo Rossi"
+    },
+    {
+      "uri": "spotify:track:3lyLqIn8mybyEFTs8JJaLf",
+      "name": "Home",
+      "artists": "Michael Bublé"
+    },
+    {
+      "uri": "spotify:track:1mWbNJY5fd08bdBZQxga56",
+      "name": "Tá por Fora / Machuca Demais / Interfone - Ao Vivo",
+      "artists": "Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:0q1Z4KlPrvkAUIFiMxrqSf",
+      "name": "Sossego / Músic Incidental: Deixa Isso Prá Lá - Live",
       "artists": "Seu Jorge"
+    },
+    {
+      "uri": "spotify:track:4NVXiFJFTX6UJGUPPNhopB",
+      "name": "Não Precisa Mudar / Palpite / Final Feliz / A Estrada / Meu Erro - Ao Vivo",
+      "artists": "Vou Zuar"
+    },
+    {
+      "uri": "spotify:track:2bWiY47WIbAXfCe0pFgrMB",
+      "name": "Olha o Que o Amor Me Faz - Ao Vivo",
+      "artists": "Vitinho"
+    },
+    {
+      "uri": "spotify:track:5MMrkwK6AgNAsgHVdC7daZ",
+      "name": "Péssimo Negócio (Ao Vivo)",
+      "artists": "Dilsinho"
+    },
+    {
+      "uri": "spotify:track:0Irmfs9y37hrHDl88DlWHV",
+      "name": "Página de Amigos / Inevitável / Flor - Ao Vivo",
+      "artists": "Grupo Menos É Mais"
+    },
+    {
+      "uri": "spotify:track:0BjmFkZVsiv0sajyyUNt2y",
+      "name": "Recordações - Ao Vivo",
+      "artists": "Só Pra Contrariar"
+    },
+    {
+      "uri": "spotify:track:36BXjbW6z8IBt2tqtBriq2",
+      "name": "Então Foge",
+      "artists": "Marcos & Belutti"
+    },
+    {
+      "uri": "spotify:track:0NMVRsqVoYEa7g6VZWcJg7",
+      "name": "Reinventar",
+      "artists": "Belo"
+    },
+    {
+      "uri": "spotify:track:0m3hiKjI2QGSKxvG732Ekq",
+      "name": "Tiro Ao Álvaro",
+      "artists": "Elis Regina, Adoniran Barbosa"
+    },
+    {
+      "uri": "spotify:track:21sO4LbODCpTKlSR8YqigU",
+      "name": "Deixa A Vida Me Levar - Ao Vivo No Rio De Janeiro / 2009",
+      "artists": "Zeca Pagodinho"
+    },
+    {
+      "uri": "spotify:track:4Mnfug0sgaMw7g3wyZD4ss",
+      "name": "Calma Amor - Ao Vivo Na Ilha Da Magia,Brasil/2008",
+      "artists": "Exaltasamba"
+    },
+    {
+      "uri": "spotify:track:1wPYSsMTy44fcY8eFXFBhE",
+      "name": "A Amizade",
+      "artists": "Grupo Fundo De Quintal"
     },
     {
       "uri": "spotify:track:5KNi9XFap48ry4puG7rvqv",
@@ -116,14 +116,14 @@
       "artists": "Pixote"
     },
     {
-      "uri": "spotify:track:0m3hiKjI2QGSKxvG732Ekq",
-      "name": "Tiro Ao Álvaro",
-      "artists": "Elis Regina, Adoniran Barbosa"
+      "uri": "spotify:track:4guiihOYsq8ry9oY2Fj10X",
+      "name": "Rosa Norte",
+      "artists": "Armandinho"
     },
     {
-      "uri": "spotify:track:5xyVTYGlRwh4XQT8RNJAsy",
-      "name": "Vem Meu Amor",
-      "artists": "ANAVITÓRIA"
+      "uri": "spotify:track:4RGRfGjhTxsCkLaHFF90Bq",
+      "name": "Você Me Vira A Cabeça (Me Tira Do Sério)",
+      "artists": "Alcione"
     }
   ],
   "played": {

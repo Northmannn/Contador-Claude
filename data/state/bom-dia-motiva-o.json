@@ -1,89 +1,14 @@
 {
   "generated": [
     {
-      "uri": "spotify:track:6QUft7Oh9vc1LbNddKiyjA",
-      "name": "Trilha Do Amor - Ao Vivo",
-      "artists": "Arlindinho"
-    },
-    {
-      "uri": "spotify:track:1AeZGZtgWxgd5ye9h7rzWx",
-      "name": "O Show Tem Que Continuar",
-      "artists": "Grupo Fundo De Quintal"
-    },
-    {
-      "uri": "spotify:track:3ADuEIn09NAZIBgpYY3IsE",
-      "name": "Deixa A Vida Me Levar - Ao Vivo",
-      "artists": "Zeca Pagodinho"
-    },
-    {
-      "uri": "spotify:track:4cR4nao0hqqBtklQmGVqbe",
-      "name": "Thinking out Loud",
-      "artists": "Boyce Avenue"
-    },
-    {
-      "uri": "spotify:track:4guiihOYsq8ry9oY2Fj10X",
-      "name": "Rosa Norte",
-      "artists": "Armandinho"
-    },
-    {
       "uri": "spotify:track:0Fhm0Eo9N3mrRl8iimUioa",
       "name": "Energia Surreal - Ao Vivo",
       "artists": "Sandra Sá, Thiaguinho"
     },
     {
-      "uri": "spotify:track:0CR7xCXgBdErtTS68LtW5e",
-      "name": "Tortura - Ao Vivo",
-      "artists": "Dilsinho"
-    },
-    {
-      "uri": "spotify:track:3Cabw7y9EoR68v7dBS76HQ",
-      "name": "Pirata e tesouro - Ao vivo",
-      "artists": "Ferrugem"
-    },
-    {
-      "uri": "spotify:track:4aWvRjHweMAoB1RzUcXUUu",
-      "name": "Farol Das Estrelas",
-      "artists": "Soweto"
-    },
-    {
-      "uri": "spotify:track:4T6HLdP6OcAtqC6tGnQelG",
-      "name": "Everything",
-      "artists": "Michael Bublé"
-    },
-    {
-      "uri": "spotify:track:0bE9HzpDqguoiYOPuoPyeQ",
-      "name": "Graveto - Ao Vivo",
-      "artists": "Péricles"
-    },
-    {
-      "uri": "spotify:track:5e51nvrsLrXYWvKoCzwBJR",
-      "name": "Quer me machucar",
-      "artists": "Os Travessos"
-    },
-    {
-      "uri": "spotify:track:4Evg4nShfksCiQSnigvw5c",
-      "name": "Meu Parceiro - Live",
-      "artists": "Seu Jorge"
-    },
-    {
-      "uri": "spotify:track:174S4zGFfw7tCzXni3x4qm",
-      "name": "Loucura do Seu Coração",
-      "artists": "Sorriso Maroto"
-    },
-    {
-      "uri": "spotify:track:0NpMp7FoYF4p4NHdbHih0L",
-      "name": "Antes de Voltar Pra Casa",
-      "artists": "Zezé Di Camargo & Luciano"
-    },
-    {
       "uri": "spotify:track:2bWiY47WIbAXfCe0pFgrMB",
       "name": "Olha o Que o Amor Me Faz - Ao Vivo",
       "artists": "Vitinho"
-    },
-    {
-      "uri": "spotify:track:24nnH0sODD5P2eq5agxJmv",
-      "name": "Sá Marina - Ao Vivo",
-      "artists": "Alexandre Pires"
     },
     {
       "uri": "spotify:track:4NSmJoSBSWpb9crI6wA5gT",
@@ -96,14 +21,9 @@
       "artists": "Matheus & Kauan"
     },
     {
-      "uri": "spotify:track:1xYu3Kh0SpQAFcOstFA0Bg",
-      "name": "Se Você Chorar - Ao Vivo",
-      "artists": "Só Pra Contrariar"
-    },
-    {
-      "uri": "spotify:track:0Irmfs9y37hrHDl88DlWHV",
-      "name": "Página de Amigos / Inevitável / Flor - Ao Vivo",
-      "artists": "Grupo Menos É Mais"
+      "uri": "spotify:track:4aWvRjHweMAoB1RzUcXUUu",
+      "name": "Farol Das Estrelas",
+      "artists": "Soweto"
     },
     {
       "uri": "spotify:track:4Mnfug0sgaMw7g3wyZD4ss",
@@ -111,14 +31,94 @@
       "artists": "Exaltasamba"
     },
     {
+      "uri": "spotify:track:24nnH0sODD5P2eq5agxJmv",
+      "name": "Sá Marina - Ao Vivo",
+      "artists": "Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:0Irmfs9y37hrHDl88DlWHV",
+      "name": "Página de Amigos / Inevitável / Flor - Ao Vivo",
+      "artists": "Grupo Menos É Mais"
+    },
+    {
+      "uri": "spotify:track:2r05fN1qdcN0y66l0vzUGY",
+      "name": "Vacilão",
+      "artists": "Zeca Pagodinho"
+    },
+    {
+      "uri": "spotify:track:2I0ipcC2mCiVeceoIPuvSj",
+      "name": "O Samba Não Tem Fronteiras - Ao Vivo",
+      "artists": "Só Pra Contrariar"
+    },
+    {
+      "uri": "spotify:track:6769YQ7Lhb0OCbRTUr309y",
+      "name": "Tiro ao Álvaro",
+      "artists": "Adoniran Barbosa, Elis Regina"
+    },
+    {
+      "uri": "spotify:track:4Evg4nShfksCiQSnigvw5c",
+      "name": "Meu Parceiro - Live",
+      "artists": "Seu Jorge"
+    },
+    {
+      "uri": "spotify:track:37PVa5ZwK1aWtk477Gz16G",
+      "name": "Amor Pra Recomeçar - Ao Vivo",
+      "artists": "Jorge & Mateus"
+    },
+    {
+      "uri": "spotify:track:4guiihOYsq8ry9oY2Fj10X",
+      "name": "Rosa Norte",
+      "artists": "Armandinho"
+    },
+    {
+      "uri": "spotify:track:0bE9HzpDqguoiYOPuoPyeQ",
+      "name": "Graveto - Ao Vivo",
+      "artists": "Péricles"
+    },
+    {
+      "uri": "spotify:track:4cR4nao0hqqBtklQmGVqbe",
+      "name": "Thinking out Loud",
+      "artists": "Boyce Avenue"
+    },
+    {
+      "uri": "spotify:track:5e51nvrsLrXYWvKoCzwBJR",
+      "name": "Quer me machucar",
+      "artists": "Os Travessos"
+    },
+    {
+      "uri": "spotify:track:0CR7xCXgBdErtTS68LtW5e",
+      "name": "Tortura - Ao Vivo",
+      "artists": "Dilsinho"
+    },
+    {
       "uri": "spotify:track:5nnKdN5H0YcmtG1DiH1NCH",
       "name": "Direito de Te Amar",
       "artists": "Belo"
     },
     {
-      "uri": "spotify:track:1UpWS8c4YB7cOGQ5nO7vWk",
-      "name": "Minha Serenata - Ao Vivo",
+      "uri": "spotify:track:5xyVTYGlRwh4XQT8RNJAsy",
+      "name": "Vem Meu Amor",
+      "artists": "ANAVITÓRIA"
+    },
+    {
+      "uri": "spotify:track:2ryEQ6pIddCptkD8p8o2Iw",
+      "name": "Você não sabe amar",
       "artists": "Chico Rey & Paraná"
+    },
+    {
+      "uri": "spotify:track:4T6HLdP6OcAtqC6tGnQelG",
+      "name": "Everything",
+      "artists": "Michael Bublé"
+    },
+    {
+      "uri": "spotify:track:1kWcd9h9HoeXsKaDVhSOtj",
+      "name": "Ela - Ao Vivo",
+      "artists": "Sorriso Maroto, Ferrugem"
+    },
+    {
+      "uri": "spotify:track:3HkxjvRiVYoPVJEtBlDbRD",
+      "name": "Paixão Proibida - Ao Vivo",
+      "artists": "Chico Rey & Panará, Teodoro & Sampaio, Marco Brasil"
     },
     {
       "uri": "spotify:track:6LQQGxRzNLsWQtwgLe5fAm",

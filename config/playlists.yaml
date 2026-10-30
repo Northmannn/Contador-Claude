@@ -308,6 +308,247 @@ playlists:
       - "ATLXS"
     # SEM 'queries' de propósito: busca genérica = artistas aleatórios de manhã.
 
+
+  # =====================================================================
+  # 🎤 BOM DIA, SEGUNDA VOZ — paralela à Bom Dia, daily desligado até o
+  # Maurício aprovar (aí ela pode virar a principal). Mesmas regras de
+  # forma (melódica, português, 1 por artista, 4 novas, rodízio de 7 dias),
+  # foco em samba e pagode com melodia pra segunda voz, curadoria a dedo.
+  # Até Que Durou tem teto duro de 1x por semana (weekly_cap_tracks): não entra
+  # no reuso quando o acervo fresco acaba. O resto só evita repetir por 7 dias.
+  # Veto por faixa, espera até data e versão única são desta playlist —
+  # não entram no feedback global, então a Bom Dia atual não muda.
+  # =====================================================================
+  - name: "🎤 Bom Dia, Segunda Voz"
+    description: "Segunda voz no carro: samba e pagode melódico, em português. Curadoria a dedo, fora do fluxo diário até aprovação."
+    public: false
+    size: 25
+    seasons: [always]
+    daily: false           # fora do fluxo diário por enquanto; entra no sazonal semanal até virar a principal
+    # ---- REGRAS (as da Bom Dia, com curadoria desta variação) ----
+    sing_along: true       # maioria de músicas que você conhece (top tracks + curtidas + favoritas)
+    new_tracks: 4          # 4 novas por geração (o resto é acervo conhecido)
+    max_per_artist: 1      # nunca repete artista
+    portuguese_only: true  # só português; inglês apenas se JÁ estiver nas curtidas ou nas favoritas
+    learn_removals: true   # o que você tira vira "não gosto" global (com guarda anti-bug)
+    dislike_artist_threshold: 2
+    rotation_days: 7       # nenhuma música repete por 7 dias (reusa a mais antiga se o acervo fresco acabar)
+    # Até Que Durou: manter, mas no máx. 1x por semana — sem o reuso do rodízio.
+    weekly_cap_tracks:
+      - "Até Que Durou"
+    seed_from_taste: true
+    mode: discovery
+    # Foco em samba/pagode. Sertanejo permanece só porque a API não devolve
+    # gênero e duas favoritas são sertanejas (Paredes, Sou Ciumento Mesmo).
+    match_genres: [pagode, samba, mpb, "samba rock", sertanejo, "brazilian", nacional, "pop brasileiro"]
+    exclude_genres: ["rock nacional", "brazilian rock", "hard rock", "classic rock",
+                     "alternative rock", metal, thrash, punk, hardcore, grunge,
+                     funk, "funk carioca", "funk brasileiro", "funk mtg", "funk ostentação",
+                     rap, trap, "hip hop", "brazilian hip hop", drill,
+                     "bossa nova", "lo-fi", ambient, jazz]
+    # Samba e pagode melódicos (segunda voz). Sertanejo de fora, exceto as
+    # favoritas. Sem Zezé, Chico Rey, Matheus & Kauan, Marcos & Belutti,
+    # Bruno & Barretto, ANAVITÓRIA, Melly, Reginaldo Rossi.
+    match_artists:
+      - "Só Pra Contrariar"
+      - "Grupo Menos É Mais"
+      - "Péricles"
+      - "Thiaguinho"
+      - "Sorriso Maroto"
+      - "Ferrugem"
+      - "Vitinho"
+      - "Dilsinho"
+      - "Alexandre Pires"
+      - "Os Travessos"
+      - "Zeca Pagodinho"
+      - "Pixote"
+      - "Vou Zuar"
+      - "Belo"
+      - "Xande de Pilares"
+      - "Fundo de Quintal"
+      - "Arlindinho"
+      - "Katinguelê"
+      - "Soweto"
+      - "Dudu Nobre"
+      - "Casuarina"
+      - "Exaltasamba"
+      - "Seu Jorge"
+      - "Alcione"
+      - "Adoniran Barbosa"
+      - "Armandinho"          # favorita: Casinha
+      - "Jorge & Mateus"      # favorita: Paredes
+      - "Wesley Safadão"      # favorita: Sou Ciumento Mesmo
+      - "Michael Bublé"       # favorita: It's a Beautiful Day (só acervo)
+      - "Boyce Avenue"        # favorita: Perfect (só acervo)
+    foreign_artists: ["Michael Bublé", "Boyce Avenue"]
+    exclude_keywords: [slowed, "sped up", "speed up", remix, montagem, automotivo,
+                       phonk, mtg, funk, bruxaria, "mandelão", putaria, "proibidão",
+                       nightcore, "8d"]
+    exclude_artists:
+      - "Legião Urbana"
+      - "Matanza"
+      - "Raimundos"
+      - "Velhas Virgens"
+      - "Skank"
+      - "Jota Quest"
+      - "Engenheiros do Hawaii"
+      - "Ultraje a Rigor"
+      - "Pedra Leticia"
+      - "Mamonas Assassinas"
+      - "Capital Inicial"
+      - "Charlie Brown Jr"
+      - "Tenacious D"
+      - "Green Day"
+      - "Guns N' Roses"
+      - "Dazaranha"
+      - "Mr. Catra"
+      - "DENNIS"
+      - "Nego do Borel"
+      - "ATLXS"
+    # REMOVER de vez — qualquer versão ou medley que contenha a música.
+    exclude_tracks:
+      - "Farol das Estrelas"
+      - "Samba do Arnesto"
+      - "Você de Volta"
+      - "Um Dia pra Nós Dois"
+      - "Canarinho Prisioneiro"
+      - "Amor de Cana"
+      - "Pega Esse Carro"
+      - "Caraca Muleke"
+      - "Tristinha"
+    # SEGURAR até ~17/12/2026 (1 a 2 meses a partir de 17/10/2026).
+    hold_until:
+      "Tchau e Bença": "2026-12-17"
+      "Tua Boca": "2026-12-17"
+    # Tive Razão: só o DVD acústico Ana & Jorge. O crédito da Ana Carolina
+    # identifica essa gravação; o objeto da faixa não traz o nome do álbum.
+    only_versions:
+      - title: "Tive Razão"
+        artists: ["Ana Carolina"]
+    # MANTER — entram no acervo conhecido (não gastam vaga de faixa nova).
+    # Até Que Durou não está aqui: segue no acervo, com teto duro em weekly_cap_tracks.
+    favorite_tracks:
+      - "Loucura do Seu Coração"
+      - "Casinha"
+      - "Velocidade da Luz/Verdade/Hoje Eu Vou Pagodear"
+      - "Baby Me Atende"
+      - "It's a Beautiful Day"
+      - "Perfect"
+      - "Apaguei Seu Nome"
+      - "Sou Ciumento Mesmo"
+      - "Paredes"
+      - "Página de Amigos/Inevitável/Flor"
+      - "Tá por Fora/Machuca Demais/Interfone"
+      - "Vai Vadiar"
+
+  # 🌙 SÁBADO À NOITE: variação da Bom Dia, mesmas regras, rodízio próprio, mais descobertas.
+  - name: "🌙 Sábado à Noite"
+    description: "Variação de sábado à noite da Bom Dia: mesmas regras (melódica, em português, 1 por artista), mais músicas novas dos seus artistas."
+    public: false
+    size: 25
+    seasons: [always]
+    daily: false           # fora do fluxo diário (sync --daily); entra no sazonal semanal (seasons: always)
+    # ---- REGRAS (definidas com você) ----
+    sing_along: true       # maioria de músicas que você conhece (top tracks + curtidas)
+    new_tracks: 10         # 10 novas por geração (o resto é do que você já ouve), sempre dentro do seu escopo
+    max_per_artist: 1      # nunca repete artista
+    portuguese_only: true  # só português; inglês apenas se JÁ estiver nas curtidas
+    learn_removals: true   # o que você tira vira "não gosto" (com guarda anti-bug)
+    # Artista que você tirou pelo menos N vezes sai da lista (0 desliga).
+    # 1 vez pode ser a música; 2 já é o artista. Chay Suede está em 3.
+    dislike_artist_threshold: 2
+    rotation_days: 7       # nenhuma música repete por 7 dias (rodízio próprio, separado da Bom Dia)
+    seed_from_taste: true  # as novas saem dos SEUS artistas (não de gente aleatória)
+    mode: discovery
+    # Melódico e contagiante — mesmas regras da Bom Dia (segunda voz, terças):
+    match_genres: [sertanejo, pagode, samba, mpb, "axé", axe, arrocha, "forró", forro,
+                   "brazilian", nacional, "pop brasileiro", "samba rock", "brega"]
+    # Fora do clima desta variação: nada pesado, nada melancólico, nada funk/rap
+    exclude_genres: ["rock nacional", "brazilian rock", "hard rock", "classic rock",
+                     "alternative rock", metal, thrash, punk, hardcore, grunge,
+                     funk, "funk carioca", "funk brasileiro", "funk mtg", "funk ostentação",
+                     rap, trap, "hip hop", "brazilian hip hop", drill,
+                     "bossa nova", "lo-fi", ambient, jazz]
+    # A API (2026) não devolve mais gênero dos artistas, então a regra "sábado à
+    # noite só melódico" é garantida por LISTA DE PERMITIDOS — montada dos SEUS
+    # artistas reais (python main.py taste). Só entram músicas destes; as 10 novas
+    # também vêm só deles. Lista viva: me passe nomes pra entrar/sair.
+    match_artists:
+      # pagode / samba (seu núcleo)
+      - "Só Pra Contrariar"
+      - "Grupo Menos É Mais"
+      - "Péricles"
+      - "Thiaguinho"
+      - "Sorriso Maroto"
+      - "Ferrugem"
+      - "Vitinho"
+      - "Dilsinho"
+      - "Alexandre Pires"
+      - "Os Travessos"
+      - "Zeca Pagodinho"
+      - "Pixote"
+      - "Vou Zuar"
+      - "Belo"
+      - "Xande de Pilares"
+      - "Fundo de Quintal"
+      - "Arlindinho"
+      - "Katinguelê"
+      - "Soweto"
+      - "Dudu Nobre"
+      - "Casuarina"
+      - "Exaltasamba"
+      # sertanejo / duplas (terça maior e menor de fábrica — ideal p/ segunda voz)
+      - "Zezé Di Camargo"
+      - "Chico Rey"
+      - "Matheus & Kauan"
+      - "Jorge & Mateus"
+      - "Marcos & Belutti"
+      - "Bruno & Barretto"
+      - "Wesley Safadão"
+      # MPB / samba-pop melódico
+      - "Seu Jorge"
+      - "Armandinho"
+      - "Chay Suede"
+      - "ANAVITÓRIA"
+      - "Alcione"
+      - "Adoniran Barbosa"
+      - "Reginaldo Rossi"
+      - "Gabriel Leone"
+      - "Melly"
+      # internacionais que você curte (as que você já ouve entram mesmo em inglês;
+      # nova em inglês continua bloqueada)
+      - "Michael Bublé"
+      - "Boyce Avenue"
+    # Estrangeiros da lista: só o que você JÁ ouve/curte; nova em inglês, nunca.
+    foreign_artists: ["Michael Bublé", "Boyce Avenue"]
+    # Veto por palavra no título/artista (versões que não cabem nesta variação):
+    exclude_keywords: [slowed, "sped up", "speed up", remix, montagem, automotivo,
+                       phonk, mtg, funk, bruxaria, "mandelão", putaria, "proibidão",
+                       nightcore, "8d"]
+    # Veto por nome (redundante com a lista acima, mas fica como cinto e suspensório):
+    exclude_artists:
+      - "Legião Urbana"
+      - "Matanza"
+      - "Raimundos"
+      - "Velhas Virgens"
+      - "Skank"
+      - "Jota Quest"
+      - "Engenheiros do Hawaii"
+      - "Ultraje a Rigor"
+      - "Pedra Leticia"
+      - "Mamonas Assassinas"
+      - "Capital Inicial"
+      - "Charlie Brown Jr"
+      - "Tenacious D"
+      - "Green Day"
+      - "Guns N' Roses"
+      - "Dazaranha"
+      - "Mr. Catra"
+      - "DENNIS"
+      - "Nego do Borel"
+      - "ATLXS"
+    # SEM 'queries' de propósito: busca genérica = artistas aleatórios.
+
   # =====================================================================
   # 🌙 HIPERFOCO NOTURNO — INTENSO e EUFÓRICO pra madrugada de foco.
   # Em português, ritmo envolvente, gêneros naturalmente acima de ~100 BPM

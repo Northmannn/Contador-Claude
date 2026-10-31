@@ -96,6 +96,10 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             exclude_keywords=raw.get("exclude_keywords", []),
             rotation_days=int(raw.get("rotation_days", 0)),
             dislike_artist_threshold=int(raw.get("dislike_artist_threshold", 2)),
+            min_gap_days=int(raw.get("min_gap_days", 0)),
+            fill_with_catalog=bool(raw.get("fill_with_catalog", True)),
+            trend_tracks=int(raw.get("trend_tracks", 0)),
+            trend_queries=list(raw.get("trend_queries", []) or []),
         )
         playlists.append(
             PlaylistDef(

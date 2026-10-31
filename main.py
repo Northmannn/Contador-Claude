@@ -26,11 +26,15 @@ from spotify_playlists.auth import (
 from spotify_playlists.config import load_config
 from spotify_playlists.manager import (
     DEFAULT_CATALOG_BUDGET,
+    MIN_HOURS_BETWEEN_RUNS,
+    audit_playlist,
     current_slot,
     describe_diagnosis,
     describe_feedback,
     describe_taste,
+    explore_all,
     mark_slot_done,
+    recently_generated,
     slot_already_done,
     sync_all,
     sync_playlist,
@@ -136,6 +140,13 @@ def cmd_sync(args: argparse.Namespace) -> int:
         if slot_already_done(slot):
             print(f"✔️  Janela {slot} já foi gerada — nada a fazer agora.")
             return 0
+        fresh = recently_generated(config)
+        if fresh:
+            print(
+                f"✔️  '{fresh}' foi gerada há menos de {MIN_HOURS_BETWEEN_RUNS}h "
+                "(execuções atrasadas do cron chegando juntas) — nada a fazer agora."
+            )
+            return 0
         print(f"▶️  Gerando a janela {slot}")
 
     sp = get_client()
@@ -160,6 +171,42 @@ def cmd_sync(args: argparse.Namespace) -> int:
     )
     if scope == "daily" and slot:
         mark_slot_done(slot)
+    return 0
+
+
+def _daily_playlists(config, only: str | None):
+    if only:
+        match = [p for p in config.playlists if p.name == only]
+        if not match:
+            print(f"Playlist '{only}' não está na config.", file=sys.stderr)
+        return match
+    return [p for p in config.playlists if p.daily]
+
+
+def cmd_explore(args: argparse.Namespace) -> int:
+    """Explorador: lançamentos dos seus artistas + tendências → data/catalog.json."""
+    config = load_config(args.config)
+    report = explore_all(get_client(), config, only=args.only, budget=args.budget)
+    if not report:
+        print("Nenhuma playlist diária com catálogo de artistas pra explorar.")
+        return 1 if args.only else 0
+    total = sum(r["releases"] + r["trends"] for r in report.values())
+    print(f"\n✅ Explorador: {total} música(s) nova(s) guardada(s) pra entrar nas próximas listas.")
+    return 0
+
+
+def cmd_audit(args: argparse.Namespace) -> int:
+    """Fiscal: repetição da última lista e da semana (lê só o estado em data/)."""
+    config = load_config(args.config)
+    targets = _daily_playlists(config, args.only)
+    if not targets:
+        return 1
+    violations = 0
+    for pdef in targets:
+        violations += audit_playlist(pdef, days=args.days)["violations"]
+    if violations and args.strict:
+        print(f"\n⛔ {violations} violação(ões) do gap mínimo.", file=sys.stderr)
+        return 1
     return 0
 
 
@@ -208,6 +255,27 @@ def build_parser() -> argparse.ArgumentParser:
         help="Atualiza a playlist sem marcar as músicas no rodízio (disparo manual)",
     )
     p_sync.set_defaults(func=cmd_sync)
+
+    p_exp = sub.add_parser(
+        "explore", help="Explorador semanal: lançamentos dos seus artistas + tendências"
+    )
+    p_exp.add_argument("--only", metavar="NOME", help="Só esta playlist (padrão: as diárias)")
+    p_exp.add_argument(
+        "--budget", type=int, default=None, metavar="N",
+        help="Quantos artistas consultar nesta execução (padrão: todos)",
+    )
+    p_exp.set_defaults(func=cmd_explore)
+
+    p_aud = sub.add_parser(
+        "audit", help="Fiscal de repetição: confere a última lista e a semana (offline)"
+    )
+    p_aud.add_argument("--only", metavar="NOME", help="Só esta playlist (padrão: as diárias)")
+    p_aud.add_argument("--days", type=int, default=7, help="Janela do resumo (padrão: 7)")
+    p_aud.add_argument(
+        "--strict", action="store_true",
+        help="Sai com erro se alguma música violou o gap mínimo",
+    )
+    p_aud.set_defaults(func=cmd_audit)
 
     return parser
 

@@ -7,9 +7,10 @@ name: Playlist diária (manhã e noite)
 # vezes descarta execuções (medido em set/2026). Disparando toda hora, a 1ª
 # execução que cair dentro da janela gera a lista; as outras da mesma janela só
 # conferem (`--slot-guard`) e saem em segundos, sem chamar o Spotify.
-# Disparo manual (workflow_dispatch) sempre gera e marca a janela, mas NÃO grava
-# o rodízio de 7 dias — senão cada teste manual queima 25 músicas. O input
-# `force` grava o rodízio, igual ao cron.
+# Disparo manual (workflow_dispatch) sempre gera e marca a janela. Por padrão
+# também GRAVA o rodízio (out/2026: lista manual sem gravar voltava inteira na
+# geração seguinte = repetição no mesmo dia). Desmarque `force` só pra testar
+# sem queimar a semana.
 on:
   schedule:
     - cron: "17 * * * *"
@@ -20,10 +21,10 @@ on:
         required: false
         default: "12"
       force:
-        description: "Gravar esta geração no rodízio de 7 dias. No cron isso já acontece. No disparo manual, sem este campo, a lista atualiza mas não queima a semana."
+        description: "Gravar esta geração no rodízio de 7 dias (padrão: sim, igual ao cron). Desmarque só pra testar sem queimar a semana."
         required: false
         type: boolean
-        default: false
+        default: true
 
 # Uma execução por vez em tudo que grava data/ (diária + manual).
 concurrency:
@@ -64,6 +65,10 @@ jobs:
           if [ "$SLOT_GUARD" = "1" ]; then args+=(--slot-guard); fi
           if [ "$RECORD_ROTATION" != "1" ]; then args+=(--no-record-rotation); fi
           python main.py "${args[@]}"
+
+      - name: Fiscal de repetição (relatório no resumo da execução)
+        if: always()
+        run: python main.py audit --days 7 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Salvar aprendizado, rodízio e catálogo (data/)
         run: |

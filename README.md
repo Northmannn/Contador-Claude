@@ -62,6 +62,8 @@ também pra trocar de conta.
 python main.py list                  # mostra as playlists e quais entram nesta estação
 python main.py taste                 # mostra seus artistas/músicas mais ouvidos
 python main.py whoami                # diagnóstico: conta e permissões concedidas
+python main.py explore               # explorador: lançamentos dos seus artistas + tendências → data/catalog.json
+python main.py audit                 # fiscal: repetição da última lista e da semana (offline)
 python main.py sync --only "🏋️ Treino da Semana"   # só uma playlist (recomendado)
 python main.py sync                  # atualiza as playlists da estação atual
 python main.py sync --daily          # atualiza as playlists diárias (daily: true)
@@ -69,15 +71,19 @@ python main.py sync --daily --no-record-rotation  # diária sem queimar o rodíz
 python main.py sync --force          # atualiza TODAS (cuidado: muitas chamadas de API)
 ```
 
-A diária (`🌅 Bom Dia, Motivação`) mistura o que você já ouve com no máximo
-`new_tracks` faixas novas (padrão 4). Se as conhecidas da semana acabam, ela
-repete a conhecida que tocou há mais tempo — não enche o resto com catálogo
-(a única exceção é uma conta sem curtidas nem histórico, que não tem conhecida
-nenhuma: aí ela completa com o catálogo dos seus artistas e avisa no log).
-O catálogo só traz música em que o artista permitido é o principal (não
-participação nem homônimo). Artista que você removeu pelo menos
-`dislike_artist_threshold` vezes (padrão 2) sai da seleção. No GitHub, o cron
-grava o rodízio; o disparo manual só grava se você marcar `force`.
+A diária (`🌅 Bom Dia, Motivação`) monta cada lista nesta ordem: até
+`trend_tracks` tendências (artistas de fora, achadas pelo explorador semanal),
+pelo menos `new_tracks` músicas novas dos seus artistas, as conhecidas que não
+tocaram nos últimos `rotation_days` dias e, se faltar, mais catálogo não ouvido
+— **variar antes de repetir**. Só repete quando não sobra nada, começando pela
+que tocou há mais tempo, e nunca algo que tocou há menos de `min_gap_days`
+dias (regra dura). O catálogo só traz música em que o artista permitido é o
+principal (não participação nem homônimo). Artista que você removeu pelo menos
+`dislike_artist_threshold` vezes (padrão 2) sai da seleção; artista de fora
+(tendência) sai na primeira remoção. Depois de cada geração, o **fiscal**
+(`python main.py audit`) confere a lista contra o histórico e resume a semana
+no resumo da execução no GitHub. Todo disparo grava o rodízio; desmarque
+`force` só pra testar.
 
 > ⚠️ A Spotify limita requisições **por app**. Prefira `--only` (uma por vez) e
 > evite gerar várias seguidas, pra não bater no rate limit (HTTP 429). Detalhes
@@ -101,9 +107,11 @@ crie estes secrets:
 Pronto: quando virar a estação, as playlists daquela estação se renovam sozinhas.
 
 Outros workflows na aba **Actions** (todos com *Run workflow*): **Playlist
-diária** (a 🌅 Bom Dia, também roda sozinha de hora em hora), **Gerar uma
-playlist (manual)**, e os só-leitura **Qual conta? (whoami)** (mostra para qual
-conta o secret aponta), **Meu gosto** e **Diagnóstico**.
+diária** (a 🌅 Bom Dia, também roda sozinha de hora em hora), **Explorador
+semanal** (domingo: lançamentos dos seus artistas + tendências, pra diária ter
+música nova), **Gerar uma playlist (manual)**, e os só-leitura **Qual conta?
+(whoami)** (mostra para qual conta o secret aponta), **Meu gosto** e
+**Diagnóstico**.
 
 ## 7. Trocar de conta Spotify
 

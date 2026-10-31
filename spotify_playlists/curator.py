@@ -19,7 +19,7 @@ import random
 import re
 import time
 from dataclasses import dataclass, field, replace
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from spotipy import Spotify
 from spotipy.exceptions import SpotifyException
@@ -75,6 +75,11 @@ class CurationSpec:
     rotation_days: int = 0  # não repetir a mesma MÚSICA (qualquer versão) por N dias
     # Artista sai da seleção depois de N remoções (disliked_artists). 0 desliga.
     dislike_artist_threshold: int = 2
+    # --- variação (diária) ---
+    min_gap_days: int = 0  # REGRA DURA: música que tocou há menos de N dias não entra (0 desliga)
+    fill_with_catalog: bool = True  # acabou conhecida fresca? completa com catálogo NÃO ouvido antes de repetir
+    trend_tracks: int = 0  # até N "tendências" por lista (artistas de fora, do explorador semanal); 0 desliga
+    trend_queries: list[str] = field(default_factory=list)  # buscas do explorador semanal
 
 
 def _track_from_item(item: dict) -> Track | None:
@@ -848,14 +853,17 @@ def scrub_catalog(cache: dict) -> bool:
         if not isinstance(entry, dict):
             continue
         label = entry.get("name") or key
-        kept = [
-            d
-            for d in (entry.get("tracks") or [])
-            if _is_main_artist(d.get("artists") or "", label)
-        ]
-        if kept != (entry.get("tracks") or []):
-            changed = True
-            entry["tracks"] = kept
+        for field_name in ("tracks", "releases"):
+            if field_name not in entry:
+                continue
+            kept = [
+                d
+                for d in (entry.get(field_name) or [])
+                if _is_main_artist(d.get("artists") or "", label)
+            ]
+            if kept != (entry.get(field_name) or []):
+                changed = True
+                entry[field_name] = kept
     return changed
 
 
@@ -865,22 +873,155 @@ def catalog_tracks(cache: dict, artists: list[str]) -> list[Track]:
     Mesmo num cache antigo, devolve só a faixa em que o artista é o principal.
     """
     out: list[Track] = []
+    seen: set[str] = set()
     for name in artists:
         e = (cache.get("artists") or {}).get(name.lower())
         label = (e or {}).get("name") or name
-        for d in (e or {}).get("tracks", []):
-            if not _is_main_artist(d.get("artists") or "", label):
+        # hits (busca por popularidade) + lançamentos achados pelo explorador semanal
+        for d in list((e or {}).get("tracks", [])) + list((e or {}).get("releases", [])):
+            if d["uri"] in seen or not _is_main_artist(d.get("artists") or "", label):
                 continue
+            seen.add(d["uri"])
             out.append(
                 Track(d["uri"], d["name"], d["artists"], list(d.get("artist_ids") or []))
             )
     return out
 
 
+# --------------------------------------------------------------------------- #
+# Explorador semanal: lançamentos dos seus artistas + tendências da cena
+# --------------------------------------------------------------------------- #
+# Roda 1x por semana (workflow "Explorador semanal") e guarda no catálogo:
+#   * ``releases`` de cada artista permitido: faixas lançadas este ano/ano passado
+#     que a busca por popularidade não traz (o refresh do TTL não apaga isto);
+#   * ``trends``: faixas das ``trend_queries`` da config, de artistas de FORA da
+#     lista, que passam nos mesmos vetos da diária (nome, palavra, funk, idioma).
+#     Entram na lista só pela cota ``trend_tracks``; removeu uma, o artista sai.
+RELEASE_YEARS_BACK = 1   # lançamentos: ano atual e o anterior
+TRENDS_KEEP_DAYS = 60    # tendência que não virou curtida some do cache depois disso
+TREND_PAGES = 2          # 2 x 10 resultados por busca de tendência
+
+
+def _track_row(t: Track, **extra) -> dict:
+    row = {"uri": t.uri, "name": t.name, "artists": t.artists, "artist_ids": t.artist_ids}
+    row.update(extra)
+    return row
+
+
+def explore_releases(
+    sp: Spotify,
+    cache: dict,
+    artists: list[str],
+    market: str,
+    now: datetime | None = None,
+    budget: int | None = None,
+) -> dict[str, list[Track]]:
+    """Lançamentos recentes de cada artista permitido → ``releases`` no cache.
+
+    Devolve {artista: [faixas novas desta rodada]}. Uma busca por artista, com
+    pausa; para no 1º 429 e mantém o que já achou.
+    """
+    now = now or _utcnow()
+    entries = cache.setdefault("artists", {})
+    found: dict[str, list[Track]] = {}
+    year = now.year
+    todo = artists if budget is None else artists[: max(0, budget)]
+    for name in todo:
+        entry = entries.setdefault(name.lower(), {"name": name, "fetched": None, "tracks": []})
+        have = {d["uri"] for d in (entry.get("tracks") or [])}
+        have |= {d["uri"] for d in (entry.get("releases") or [])}
+        query = f'artist:"{name}" year:{year - RELEASE_YEARS_BACK}-{year}'
+        try:
+            resp = sp.search(
+                q=query, type="track", market=market, limit=SEARCH_MAX_LIMIT, offset=0
+            )
+        except SpotifyException as exc:
+            if exc.http_status == 429:
+                print("   ⛔ rate limit no explorador — paro por aqui e guardo o que já achei.")
+                break
+            continue
+        except Exception:
+            continue
+        finally:
+            time.sleep(CATALOG_PAUSE_S)
+        new: list[Track] = []
+        for t in (_track_from_item(it) for it in resp.get("tracks", {}).get("items", [])):
+            if t and t.uri not in have and _is_main_artist(t.artists, name):
+                have.add(t.uri)
+                new.append(t)
+        if new:
+            stamp = now.isoformat(timespec="seconds")
+            entry.setdefault("releases", []).extend(_track_row(t, found=stamp) for t in new)
+            found[name] = new
+    return found
+
+
+def explore_trends(
+    sp: Spotify,
+    cache: dict,
+    spec: CurationSpec,
+    skip_uris=frozenset(),
+    now: datetime | None = None,
+) -> list[Track]:
+    """Busca as ``trend_queries`` e guarda em ``cache["trends"]`` o que passa nos
+    vetos (artista/palavra vetados, funk, título em inglês, idioma). Devolve só
+    as faixas novas desta rodada. Tendência velha (``TRENDS_KEEP_DAYS``) é podada.
+    """
+    now = now or _utcnow()
+    stamp = now.isoformat(timespec="seconds")
+    trends: list[dict] = cache.setdefault("trends", [])
+    cutoff = (now - timedelta(days=TRENDS_KEEP_DAYS)).isoformat(timespec="seconds")
+    trends[:] = [d for d in trends if (d.get("found") or "") >= cutoff]
+    have = {d["uri"] for d in trends} | set(skip_uris)
+    for entry in (cache.get("artists") or {}).values():
+        if isinstance(entry, dict):
+            have |= {d["uri"] for d in (entry.get("tracks") or []) + (entry.get("releases") or [])}
+    new_all: list[Track] = []
+    for query in spec.trend_queries:
+        tracks = _search_tracks(sp, query, spec.market, TREND_PAGES * SEARCH_MAX_LIMIT)
+        time.sleep(CATALOG_PAUSE_S)
+        tracks = _drop(tracks, frozenset(), spec.exclude_artists, spec.exclude_keywords)
+        for t in tracks:
+            if t.uri in have or _looks_funk(t) or _looks_english_title(t.name):
+                continue
+            if spec.portuguese_only and not _looks_portuguese(t.name, t.artists):
+                continue
+            have.add(t.uri)
+            trends.append(_track_row(t, found=stamp, query=query))
+            new_all.append(t)
+    return new_all
+
+
+def catalog_trends(cache: dict) -> list[Track]:
+    """Tendências guardadas pelo explorador (vazio se nunca rodou)."""
+    return [
+        Track(d["uri"], d["name"], d["artists"], list(d.get("artist_ids") or []))
+        for d in (cache.get("trends") or [])
+        if d.get("uri")
+    ]
+
+
+# --------------------------------------------------------------------------- #
+# Diária: rodízio e preenchimento
+# --------------------------------------------------------------------------- #
 def _last_played(track: Track, recent: dict[str, str]) -> str | None:
     """Última vez (ISO) que QUALQUER versão desta música tocou; None = fresca."""
     dates = [recent[k] for k in song_keys(track.name) if k in recent]
     return max(dates) if dates else None
+
+
+def _days_since(track: Track, recent: dict[str, str], now: datetime) -> float | None:
+    """Há quantos dias esta música tocou (qualquer versão); None = fora do rodízio."""
+    last = _last_played(track, recent)
+    if not last:
+        return None
+    try:
+        when = datetime.fromisoformat(last)
+    except ValueError:
+        return None
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=timezone.utc)
+    return max(0.0, (now - when).total_seconds() / 86400)
 
 
 def _fill_sing_along(
@@ -888,23 +1029,38 @@ def _fill_sing_along(
     extra: list[Track],
     recent: dict[str, str],
     spec: CurationSpec,
+    now: datetime | None = None,
+    trends: list[Track] | None = None,
 ) -> list[Track]:
-    """Monta a lista: até ``new_tracks`` novas, depois conhecidas.
+    """Monta a lista nesta ordem de preferência:
 
-    Quando as conhecidas frescas acabam, reusa a conhecida que tocou há mais
-    tempo. Faixa de catálogo (não ouvida) não passa de ``new_tracks`` enquanto
-    houver conhecida pra reusar. Só quando o acervo conhecido NÃO dá pra
-    completar a lista (conta nova, sem curtidas nem histórico) o catálogo
-    completa o tamanho — e ``_curate_sing_along`` avisa no log.
+    1. até ``trend_tracks`` tendências (artistas de fora, do explorador semanal);
+    2. pelo menos ``new_tracks`` novas (catálogo dos seus artistas, nunca ouvidas);
+    3. conhecidas frescas (fora do rodízio);
+    4. com ``fill_with_catalog``: mais catálogo não ouvido — VARIAR antes de repetir;
+    5. só então repete, começando pela que tocou há mais tempo.
+
+    Regra dura: nada que tocou há menos de ``min_gap_days`` entra, em passo nenhum.
     """
-    fresh_known = [t for t in known if _last_played(t, recent) is None]
-    fresh_extra = [t for t in extra if _last_played(t, recent) is None]
-    random.shuffle(fresh_known)
-    random.shuffle(fresh_extra)
-    stale_known = sorted(
-        [t for t in known if _last_played(t, recent) is not None],
-        key=lambda t: _last_played(t, recent) or "",
-    )
+    now = now or datetime.now(timezone.utc)
+    trends = trends or []
+
+    def gap(t: Track) -> float | None:
+        return _days_since(t, recent, now)
+
+    def fresh(pool: list[Track]) -> list[Track]:
+        out = [t for t in pool if gap(t) is None]
+        random.shuffle(out)
+        return out
+
+    def stale(pool: list[Track]) -> list[Track]:
+        """Já tocaram no rodízio: a mais antiga primeiro, nunca abaixo do gap mínimo."""
+        out = [
+            t for t in pool
+            if gap(t) is not None
+            and (spec.min_gap_days <= 0 or (gap(t) or 0) >= spec.min_gap_days)
+        ]
+        return sorted(out, key=lambda t: -(gap(t) or 0))
 
     chosen: list[Track] = []
     chosen_uris: set[str] = set()
@@ -928,28 +1084,26 @@ def _fill_sing_along(
             counts[n] = counts.get(n, 0) + 1
         return True
 
-    # 1) até new_tracks novas  2) conhecidas frescas  3) reuso das conhecidas
-    added_new = 0
-    cap = max(0, spec.new_tracks)
-    for t in fresh_extra:
-        if added_new >= cap:
-            break
-        if add(t):
-            added_new += 1
-    for pool in (fresh_known, stale_known):
+    def take(pool: list[Track], limit: int | None = None) -> int:
+        n = 0
         for t in pool:
-            if len(chosen) >= spec.size:
+            if len(chosen) >= spec.size or (limit is not None and n >= limit):
                 break
-            add(t)
+            if add(t):
+                n += 1
+        return n
 
-    # 4) Acervo conhecido insuficiente (conta nova / sem curtidas): não há o que
-    #    reusar, e a alternativa seria uma lista de ``new_tracks`` músicas. Só
-    #    neste caso o catálogo (respeitando o rodízio) completa o tamanho.
-    if len(chosen) < spec.size:
-        for t in fresh_extra:
-            if len(chosen) >= spec.size:
-                break
-            add(t)
+    fresh_extra = fresh(extra)
+    take(fresh(trends), max(0, spec.trend_tracks))      # 1) tendências (cota)
+    take(fresh_extra, max(0, spec.new_tracks))          # 2) novas garantidas
+    take(fresh(known))                                  # 3) conhecidas frescas
+    if spec.fill_with_catalog:
+        take(fresh_extra)                               # 4) variar antes de repetir
+    take(stale(known))                                  # 5) repete a mais antiga
+    if spec.fill_with_catalog:
+        take(stale(extra))
+    if len(chosen) < spec.size:                         # último recurso (acervo vazio)
+        take(fresh_extra)
 
     random.shuffle(chosen)
     return chosen[: spec.size]
@@ -961,19 +1115,25 @@ def _curate_sing_along(
     disliked_uris=frozenset(),
     recent: dict[str, str] | None = None,
     catalog: list[Track] | None = None,
+    now: datetime | None = None,
+    trends: list[Track] | None = None,
 ) -> list[Track]:
     """Modo "cantar junto".
 
     - CONHECIDAS: suas mais ouvidas + curtidas (dá pra cantar de cabeça).
-    - NOVAS (``new_tracks``): músicas dos seus artistas que o Spotify não te
-      viu ouvir — vêm do catálogo cacheado, e só se o artista é o crédito
-      principal. Nunca mais do que ``new_tracks`` por lista.
-    - Rodízio: nada que tocou nos últimos ``rotation_days`` dias volta (qualquer
-      versão/medley da mesma música). Quando o acervo conhecido fresco acaba,
-      reusa a conhecida que tocou há mais tempo — não enche com mais catálogo.
+    - NOVAS (``new_tracks`` no mínimo): músicas dos seus artistas que o Spotify
+      não te viu ouvir — do catálogo cacheado (hits + lançamentos), só se o
+      artista é o crédito principal.
+    - TENDÊNCIAS (``trend_tracks`` no máximo): achadas pelo explorador semanal,
+      artistas de fora da lista, com os mesmos vetos.
+    - Rodízio: nada que tocou nos últimos ``rotation_days`` dias volta enquanto
+      houver conhecida fresca ou catálogo não ouvido (``fill_with_catalog``);
+      quando precisa repetir, repete a mais antiga e nunca abaixo de
+      ``min_gap_days``.
     - 1 por artista, lista de permitidos, idioma, vetos e "não gosto".
     """
     recent = recent or {}
+    now = now or datetime.now(timezone.utc)
 
     # Conhecidas: o que você mais ouve + curtidas.
     saved = _saved_tracks(sp)
@@ -988,7 +1148,7 @@ def _curate_sing_along(
         if _passes_genres(t, spec) and _passes_language(t, saved_uris, spec, allow_by_list=True)
     ]
 
-    # Catálogo = só as NOVAS (teto new_tracks). Não é reserva pra encher a lista.
+    # Catálogo dos seus artistas = as NOVAS (nunca ouvidas).
     if catalog:
         extra = _drop(_dedupe(catalog), disliked_uris, spec.exclude_artists, spec.exclude_keywords)
         extra = [
@@ -1023,33 +1183,52 @@ def _curate_sing_along(
         t for t in _dedupe(extra)
         if t.uri not in known_uris and not (song_keys(t.name) & known_keys)
     ]
+    extra_uris = {t.uri for t in extra}
 
-    fresh_known = [t for t in known if _last_played(t, recent) is None]
-    fresh_extra = [t for t in extra if _last_played(t, recent) is None]
+    # Tendências (explorador semanal): artistas de fora, mesmos vetos da lista.
+    trend_pool: list[Track] = []
+    if trends and spec.trend_tracks > 0:
+        trend_pool = _drop(_dedupe(trends), disliked_uris, spec.exclude_artists, spec.exclude_keywords)
+        trend_pool = [
+            t for t in trend_pool
+            if t.uri not in heard_uris
+            and t.uri not in extra_uris
+            and not _looks_funk(t)
+            and not _looks_english_title(t.name)
+            and _passes_genres(t, spec)
+            and not (song_keys(t.name) & known_keys)
+        ]
+    trend_uris = {t.uri for t in trend_pool}
+
+    def n_fresh(pool: list[Track]) -> int:
+        return sum(1 for t in pool if _last_played(t, recent) is None)
+
     print(
-        f"   🔁 acervo: {len(known)} conhecidas ({len(fresh_known)} fora do rodízio) · "
-        f"{len(extra)} novas no catálogo ({len(fresh_extra)} fora do rodízio, "
-        f"teto {max(0, spec.new_tracks)})"
+        f"   🔁 acervo: {len(known)} conhecidas ({n_fresh(known)} fora do rodízio) · "
+        f"{len(extra)} no catálogo ({n_fresh(extra)} fora do rodízio) · "
+        f"{len(trend_pool)} tendências ({n_fresh(trend_pool)} fora do rodízio)"
     )
 
-    chosen = _fill_sing_along(known, extra, recent, spec)
-    extra_uris = {t.uri for t in extra}
+    chosen = _fill_sing_along(known, extra, recent, spec, now=now, trends=trend_pool)
     n_new = sum(1 for t in chosen if t.uri in extra_uris)
-    reused = sum(1 for t in chosen if _last_played(t, recent) is not None)
-    cap = max(0, spec.new_tracks)
-    print(f"   ✨ novas nesta lista: {n_new} (teto {cap})")
-    if reused:
-        print(f"   ⚠️ acervo curto: {reused} conhecida(s) repetida(s) do rodízio (as mais antigas).")
-    if n_new > cap:
+    n_trend = sum(1 for t in chosen if t.uri in trend_uris)
+    gaps = [g for g in (_days_since(t, recent, now) for t in chosen) if g is not None]
+    print(
+        f"   ✨ nesta lista: {len(chosen) - n_new - n_trend} conhecidas · {n_new} novas dos "
+        f"seus artistas (mínimo {max(0, spec.new_tracks)}) · {n_trend} tendências "
+        f"(teto {max(0, spec.trend_tracks)})"
+    )
+    if gaps:
         print(
-            f"   ⚠️ acervo conhecido insuficiente ({len(known)} conhecida(s) desta lista): "
-            f"completei com {n_new - cap} do catálogo além do teto. Conta nova? Curta músicas "
-            "dos seus artistas nesta conta (ou ouça por umas semanas) e isso volta ao normal."
+            f"   🔂 repetidas do rodízio: {len(gaps)} (a mais recente tocou há "
+            f"{min(gaps):.1f} dia(s); gap mínimo {spec.min_gap_days})"
         )
+    else:
+        print("   🔂 nenhuma repetição dentro do rodízio")
     if len(chosen) < spec.size:
         print(
-            f"   ⚠️ lista com {len(chosen)} de {spec.size}: acabaram as conhecidas e o "
-            "catálogo fora do rodízio."
+            f"   ⚠️ lista com {len(chosen)} de {spec.size}: acabou tudo que respeita o "
+            "rodízio e o gap mínimo."
         )
     return chosen
 
@@ -1082,6 +1261,8 @@ def curate(
     disliked_uris=frozenset(),
     recent: dict[str, str] | None = None,
     catalog: list[Track] | None = None,
+    now: datetime | None = None,
+    trends: list[Track] | None = None,
 ) -> list[Track]:
     """Monta a lista final de faixas, escolhendo o modo conforme a config.
 
@@ -1092,7 +1273,7 @@ def curate(
     if spec.fixed_tracks:
         return _curate_fixed(sp, spec)
     if spec.sing_along:
-        return _curate_sing_along(sp, spec, disliked_uris, recent, catalog)
+        return _curate_sing_along(sp, spec, disliked_uris, recent, catalog, now=now, trends=trends)
     if spec.mode == "discovery":
         return _curate_discovery(sp, spec, disliked_uris)
     return _curate_search(sp, spec, disliked_uris)

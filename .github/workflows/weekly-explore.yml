@@ -1,0 +1,71 @@
+name: Explorador semanal (lançamentos e tendências)
+
+# Uma vez por semana mapeia música nova pra diária e guarda em data/catalog.json:
+#   * lançamentos recentes de cada artista permitido (este ano e o anterior);
+#   * tendências das `trend_queries` da config (artistas de fora da lista, com
+#     os mesmos vetos: nome, palavra, funk, inglês).
+# Não mexe na playlist: a diária passa a usar o que foi achado nas próximas
+# gerações (`new_tracks` e `trend_tracks`). Rate limit: ~50 buscas com pausa.
+on:
+  schedule:
+    - cron: "41 9 * * 0"   # domingo 06:41 (Brasília); o GitHub pode atrasar horas
+  workflow_dispatch:
+    inputs:
+      budget:
+        description: "Quantos artistas consultar (vazio = todos)"
+        required: false
+        default: ""
+
+# Mesma fila da diária: nunca duas execuções gravando data/ ao mesmo tempo.
+concurrency:
+  group: spotify-data
+  cancel-in-progress: false
+
+jobs:
+  explore:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout (ponta da branch)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependências
+        run: pip install -q -r requirements.txt
+
+      - name: Explorar lançamentos e tendências
+        env:
+          SPOTIPY_CLIENT_ID: ${{ secrets.SPOTIPY_CLIENT_ID }}
+          SPOTIPY_CLIENT_SECRET: ${{ secrets.SPOTIPY_CLIENT_SECRET }}
+          SPOTIPY_REDIRECT_URI: ${{ secrets.SPOTIPY_REDIRECT_URI }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          BUDGET: ${{ inputs.budget }}
+        run: |
+          args=(explore)
+          if [ -n "$BUDGET" ]; then args+=(--budget "$BUDGET"); fi
+          python main.py "${args[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Fiscal de repetição (semana)
+        if: always()
+        run: python main.py audit --days 7 | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Salvar catálogo (data/)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --staged --quiet; then echo "nada a salvar"; exit 0; fi
+          git commit -q -m "chore: explorador semanal — lançamentos e tendências [skip ci]"
+          for i in 1 2 3; do
+            git pull -q --rebase origin "$GITHUB_REF_NAME" && git push -q origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep 5
+          done
+          exit 1

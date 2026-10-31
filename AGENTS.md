@@ -29,6 +29,7 @@ spotify_playlists/
   seasonal-update.yml   # cron semanal (playlists sazonais)
   daily-morning.yml     # cron DE HORA EM HORA + trava de janela (diária 2x/dia)
   manual-sync.yml       # gera UMA playlist sob demanda (input: nome)
+  weekly-explore.yml    # cron de domingo: lançamentos + tendências -> data/catalog.json
   diagnose.yml / taste.yml / whoami.yml  # read-only: diagnóstico / gosto / conta do secret
 data/                   # estado versionado (o workflow commita de volta)
   feedback.json         # "não gosto" aprendido do que o usuário remove
@@ -50,6 +51,8 @@ python main.py sync --only "NOME"   # atualiza UMA playlist (preferir isto)
 python main.py sync --daily     # atualiza as playlists daily:true
 python main.py sync --force     # atualiza TODAS (cuidado: muitas chamadas de API)
 python main.py whoami           # diagnóstico: usuário, conta, escopos (com SPOTIFY_REFRESH_TOKEN = conta do secret)
+python main.py explore          # explorador: lançamentos dos seus artistas + tendências -> data/catalog.json
+python main.py audit            # fiscal: repetição da última lista e da semana (offline, lê data/)
 ```
 
 `.env` necessário: `SPOTIPY_CLIENT_ID`, `SPOTIPY_CLIENT_SECRET`,
@@ -128,15 +131,21 @@ suposições antigas. O que JÁ pegamos aqui:
   atual ainda não foi gerada. Disparo manual gera sempre e **marca** a janela,
   mas **não grava o rodízio** (não queima a semana). O input `force` do workflow
   grava o rodízio, igual ao cron. Na mão: `sync --no-record-rotation`.
-- **Rodízio (`rotation_days: 7`)**: cada música gerada no cron vai pro `played`
+- **Rodízio (`rotation_days: 7`)**: cada música gerada vai pro `played`
   (por *chave de música* — `curator.song_keys`: ignora "Ao Vivo", "(feat.)",
-  e separa medleys por "/"). Nada tocado em 7 dias volta. Se as conhecidas
-  frescas acabam, **reusa a conhecida que tocou há mais tempo**. Faixa de
-  catálogo (não ouvida) **nunca passa de `new_tracks`** — não completa a lista
-  com mais catálogo.
-- **Acervo conhecido** = top tracks + ~600 curtidas ∩ `match_artists`.
-- **Catálogo** (hits via busca `artist:"Nome"`, até 30 por artista) só entra
-  nas `new_tracks`. Cache em `data/catalog.json`, atualizado em lotes
+  e separa medleys por "/"). Ordem de preenchimento (`_fill_sing_along`,
+  reescrita em 31/10/2026 depois de medir 223 músicas distintas em 525 vagas
+  numa semana): **tendências** (cota `trend_tracks`) → **pelo menos
+  `new_tracks` novas** do catálogo → **conhecidas frescas** → com
+  `fill_with_catalog` (padrão true) **mais catálogo não ouvido, pra variar
+  antes de repetir** → só então repete a que tocou há mais tempo. Regra dura
+  `min_gap_days` (Bom Dia: 3): música que tocou há menos disso **não entra em
+  passo nenhum**, nem que a lista fique curta. `fill_with_catalog: false`
+  volta ao comportamento antigo (teto de novas + repetir).
+- **Acervo conhecido** = top tracks + ~600 curtidas ∩ `match_artists`
+  (≈170 músicas em out/2026 — menos da metade do que uma semana precisa).
+- **Catálogo** (hits via busca `artist:"Nome"`, até 30 por artista, mais os
+  `releases` do explorador) é a fonte das novas. Cache em `data/catalog.json`, atualizado em lotes
   (`CATALOG_BUDGET`, padrão 12 artistas/geração, pausa entre chamadas, para no
   1º 429). Só fica a faixa em que o artista permitido é o **crédito principal**
   — participação ("Papatinho, Seu Jorge") e homônimo ("Vitinho Imperador")
@@ -146,12 +155,28 @@ suposições antigas. O que JÁ pegamos aqui:
 - **Artista removido demais** (`disliked_artists` no `feedback.json`) sai da
   seleção quando a contagem chega em `dislike_artist_threshold` (padrão 2;
   0 desliga). Uma música tirada não bane o artista; a segunda vez, sim.
-- Uma semana = 14 listas × 25 ≈ 350 músicas. Dessas, só `new_tracks` por lista
-  vêm do catálogo (4 × 14 = 56). O resto sai do acervo conhecido.
-- **Conta sem acervo** (trocou de conta; sem curtidas nem histórico): não há
-  conhecida pra reusar e a lista sairia com 4 músicas. Só nesse caso
-  `_fill_sing_along` completa com catálogo além de `new_tracks` (respeitando
-  rodízio e 1 por artista) e avisa no log. Com acervo normal nunca acontece.
+- Uma semana = 14 listas × 25 ≈ 350 músicas: ~170 conhecidas + o que faltar
+  do catálogo (~370 não ouvidas). Conta sem acervo (trocou de conta) cai no
+  mesmo mecanismo: a lista sai inteira do catálogo e o log avisa.
+- **Explorador semanal** (`main.py explore`, workflow de domingo): por artista
+  permitido, 1 busca `artist:"Nome" year:AAAA-1-AAAA` → `releases` no cache
+  (o refresh do TTL não apaga); e as `trend_queries` do YAML → `cache["trends"]`
+  (artistas de FORA da lista, filtrados por veto de nome/palavra, "MC/DJ",
+  título em inglês e `_looks_portuguese`; podados em 60 dias). Tendência entra
+  só pela cota `trend_tracks` (Bom Dia: 2) e, removida 1x, o artista já sai
+  (`_learn_from_removals` soma o limiar inteiro pra artista de fora).
+- **Fiscal** (`main.py audit`): o estado guarda `history` (listas inteiras,
+  14 dias) e `generated_at`. O audit compara a última lista com o histórico
+  (violações = abaixo de `min_gap_days`; repetições = dentro de
+  `rotation_days`) e resume a semana (músicas distintas/vagas, mais
+  repetidas). Roda depois de cada geração e vai pro resumo da execução
+  (`$GITHUB_STEP_SUMMARY`); violação vira `::warning::`. `--strict` falha.
+- **Trava de geração dupla**: `--slot-guard` também pula se qualquer diária
+  foi gerada há menos de `MIN_HOURS_BETWEEN_RUNS` (2h). Antes, duas execuções
+  atrasadas do cron chegando no mesmo minuto geravam 2 listas (ex.: 31/10
+  06:27, duas vezes). O disparo manual agora **grava o rodízio por padrão**
+  (`force` default true): lista manual sem gravar voltava inteira na geração
+  seguinte.
 
 ## 6. Rate limit (IMPORTANTE)
 
@@ -210,6 +235,11 @@ Branch de desenvolvimento: `claude/spotify-playlist-integration-hz4sdw`
 Em 21/10/2026: a conta do GitHub estava **bloqueada por cobrança** (seção 9),
 nada rodava desde a noite de 19/10, e o usuário **trocou de conta Spotify** —
 o secret `SPOTIFY_REFRESH_TOKEN` ainda apontava para a conta antiga (seção 7b).
+Em 22/10 a cobrança foi paga e tudo voltou; o token aponta para o usuário
+`223rcmqgjc32ungfrc6oahury`, dono das playlists. Em 31/10 o usuário reclamou
+de repetição ("as mesmas músicas quase todo dia") — medido: 223 distintas em
+525 vagas na semana. Resposta: nova ordem de preenchimento + `min_gap_days`,
+explorador semanal e fiscal (seção 5b).
 
 ## 9. GitHub Actions: todos os jobs "falham" em ~3 s, sem passos e sem log
 

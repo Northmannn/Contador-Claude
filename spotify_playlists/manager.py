@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import collections
 import json
 import os
 import re
@@ -14,9 +15,13 @@ from .config import Config, DailySlot, PlaylistDef
 from .curator import (
     CurationSpec,
     Track,
+    _name_matches,
     catalog_artist_names,
     catalog_tracks,
+    catalog_trends,
     curate,
+    explore_releases,
+    explore_trends,
     refresh_catalog,
     scrub_catalog,
     song_keys,
@@ -62,6 +67,8 @@ def _load_generated(base: str, name: str) -> list[dict]:
 
 
 PLAYED_KEEP_DAYS = 60  # quanto tempo guardar o registro de "tocou quando"
+HISTORY_KEEP_DAYS = 14  # gerações inteiras guardadas pro fiscal (audit)
+MIN_HOURS_BETWEEN_RUNS = 2  # --slot-guard: nunca gera 2x em menos de N horas
 
 
 def _state_path(base: str, name: str) -> str:
@@ -136,12 +143,57 @@ def _save_generated(
                 played[k] = stamp
     cutoff = (now - timedelta(days=PLAYED_KEEP_DAYS)).isoformat(timespec="seconds")
     played = {k: v for k, v in sorted(played.items()) if v >= cutoff}
+    # Histórico das listas inteiras (pro fiscal): o que de fato foi pra playlist,
+    # com ou sem gravação no rodízio.
+    hist_cutoff = (now - timedelta(days=HISTORY_KEEP_DAYS)).isoformat(timespec="seconds")
+    history = [h for h in (old.get("history") or []) if (h.get("at") or "") >= hist_cutoff]
+    history.append({
+        "at": stamp,
+        "rotation": bool(record_rotation),
+        "tracks": [[t.uri, t.name, t.artists] for t in tracks],
+    })
     payload = {
+        "generated_at": stamp,
         "generated": [{"uri": t.uri, "name": t.name, "artists": t.artists} for t in tracks],
         "played": played,
+        "history": history,
     }
     with open(_state_path(base, name), "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False, indent=2)
+
+
+def last_generated_at(base: str, name: str) -> datetime | None:
+    """Quando esta playlist foi gerada pela última vez (None se nunca/estado antigo)."""
+    stamp = _load_state(base, name).get("generated_at")
+    if not stamp:
+        return None
+    try:
+        when = datetime.fromisoformat(stamp)
+    except ValueError:
+        return None
+    return when if when.tzinfo else when.replace(tzinfo=timezone.utc)
+
+
+def recently_generated(
+    config: Config,
+    hours: float = MIN_HOURS_BETWEEN_RUNS,
+    base: str = DATA_DIR,
+    now: datetime | None = None,
+) -> str | None:
+    """Nome da 1ª playlist diária gerada há menos de ``hours`` horas (ou None).
+
+    Fecha a brecha do cron do GitHub: duas execuções atrasadas que chegam no
+    mesmo minuto passavam as duas pela trava de janela e geravam 2 listas
+    (queimando 50 músicas do rodízio de uma vez).
+    """
+    now = now or datetime.now(timezone.utc)
+    for pdef in config.playlists:
+        if not pdef.daily:
+            continue
+        when = last_generated_at(base, pdef.name)
+        if when and (now - when) < timedelta(hours=hours):
+            return pdef.name
+    return None
 
 
 # --------------------------------------------------------------------------- #
@@ -164,7 +216,9 @@ def _save_catalog(base: str, cache: dict) -> None:
         json.dump(cache, fh, ensure_ascii=False, indent=1, sort_keys=True)
 
 
-def _catalog_for(sp: Spotify, spec: CurationSpec, base: str, budget: int) -> list[Track]:
+def _catalog_for(
+    sp: Spotify, spec: CurationSpec, base: str, budget: int
+) -> tuple[list[Track], list[Track]]:
     """Atualiza (em lote pequeno) e devolve o catálogo dos artistas permitidos.
 
     Estrangeiros ficam de fora: deles só entra o que você já ouve. Artista
@@ -178,8 +232,12 @@ def _catalog_for(sp: Spotify, spec: CurationSpec, base: str, budget: int) -> lis
     if scrubbed or updated:
         _save_catalog(base, cache)
     have = sum(1 for a in artists if (cache.get("artists") or {}).get(a.lower()))
-    print(f"   📚 catálogo: {have}/{len(artists)} artistas em cache ({updated} atualizados agora)")
-    return catalog_tracks(cache, artists)
+    trends = catalog_trends(cache) if spec.trend_tracks > 0 else []
+    print(
+        f"   📚 catálogo: {have}/{len(artists)} artistas em cache ({updated} atualizados agora)"
+        f" · {len(trends)} tendências do explorador"
+    )
+    return catalog_tracks(cache, artists), trends
 
 
 # --------------------------------------------------------------------------- #
@@ -274,8 +332,15 @@ def _learn_from_removals(sp: Spotify, pdef: PlaylistDef, feedback: dict, base: s
             disliked.add(t["uri"])
         artist = (t.get("artists", "").split(",")[0].strip().lower())
         if artist:
+            # Artista de FORA da lista (tendência do explorador) removido uma vez
+            # já sai: conta direto como o limiar. Dos seus artistas, 1 por vez.
+            spec = pdef.spec
+            outsider = bool(spec.match_artists) and not _name_matches(
+                t.get("artists", ""), spec.match_artists
+            )
+            step = max(1, spec.dislike_artist_threshold) if outsider else 1
             feedback["disliked_artists"][artist] = (
-                feedback["disliked_artists"].get(artist, 0) + 1
+                feedback["disliked_artists"].get(artist, 0) + step
             )
     return len(removed)
 
@@ -370,18 +435,168 @@ def sync_playlist(
 
     spec = _with_banned_artists(pdef.spec, feedback)
     disliked = set(feedback["disliked_uris"])
-    recent = _recent_played(_load_state(data_dir, pdef.name), spec.rotation_days)
-    catalog = None
+    now = datetime.now(timezone.utc)
+    recent = _recent_played(_load_state(data_dir, pdef.name), spec.rotation_days, now=now)
+    catalog = trends = None
     if spec.sing_along and spec.match_artists:
-        catalog = _catalog_for(sp, spec, data_dir, catalog_budget)
-    tracks = curate(sp, spec, disliked_uris=disliked, recent=recent, catalog=catalog)
+        catalog, trends = _catalog_for(sp, spec, data_dir, catalog_budget)
+    tracks = curate(
+        sp, spec, disliked_uris=disliked, recent=recent, catalog=catalog, now=now, trends=trends
+    )
     playlist_id = _ensure_playlist(sp, pdef)
     _replace_tracks(sp, playlist_id, tracks)
 
     if spec.learn_removals or spec.rotation_days:
-        _save_generated(data_dir, pdef.name, tracks, record_rotation=record_rotation)
+        _save_generated(data_dir, pdef.name, tracks, now=now, record_rotation=record_rotation)
     _save_feedback(data_dir, feedback)
     return tracks
+
+
+# --------------------------------------------------------------------------- #
+# Explorador semanal (lançamentos + tendências) e fiscal de repetição
+# --------------------------------------------------------------------------- #
+def explore_all(
+    sp: Spotify,
+    config: Config,
+    only: str | None = None,
+    budget: int | None = None,
+    data_dir: str = DATA_DIR,
+) -> dict[str, dict]:
+    """Mapeia músicas novas pras playlists diárias e grava em ``data/catalog.json``.
+
+    Lançamentos recentes de cada artista permitido + tendências das
+    ``trend_queries``. Não mexe na playlist: a diária passa a usar o que foi
+    achado nas próximas gerações. Retorna {playlist: {"releases": n, "trends": n}}.
+    """
+    feedback = _load_feedback(data_dir)
+    cache = _load_catalog(data_dir)
+    scrub_catalog(cache)
+    report: dict[str, dict] = {}
+    for pdef in config.playlists:
+        if only and pdef.name != only:
+            continue
+        if not only and not pdef.daily:
+            continue
+        spec = _with_banned_artists(pdef.spec, feedback)
+        if not (spec.sing_along and spec.match_artists):
+            print(f"⏭️  '{pdef.name}' não usa catálogo de artistas — nada a explorar.")
+            continue
+        print(f"🔎 Explorando para '{pdef.name}'")
+        artists = catalog_artist_names(spec)
+        releases = explore_releases(sp, cache, artists, spec.market, budget=budget)
+        n_rel = sum(len(v) for v in releases.values())
+        print(f"   🆕 lançamentos: {n_rel} faixa(s) nova(s) de {len(releases)} artista(s)")
+        for name, tracks in releases.items():
+            for t in tracks[:3]:
+                print(f"      • {t}")
+        trends: list[Track] = []
+        if spec.trend_queries:
+            trends = explore_trends(sp, cache, spec, skip_uris=set(feedback["disliked_uris"]))
+            total = len(cache.get("trends") or [])
+            print(
+                f"   📈 tendências: {len(trends)} faixa(s) nova(s) em {len(spec.trend_queries)} "
+                f"busca(s) ({total} guardadas no total)"
+            )
+            for t in trends[:12]:
+                print(f"      • {t}")
+        else:
+            print("   📈 tendências: sem 'trend_queries' na config — só lançamentos.")
+        report[pdef.name] = {"releases": n_rel, "trends": len(trends)}
+    _save_catalog(data_dir, cache)
+    return report
+
+
+def _song_key(name: str) -> str:
+    keys = song_keys(name)
+    return min(keys) if keys else name.strip().lower()
+
+
+def audit_playlist(
+    pdef: PlaylistDef,
+    data_dir: str = DATA_DIR,
+    days: int = 7,
+    now: datetime | None = None,
+) -> dict:
+    """Fiscal de repetição: confere a última lista contra o histórico e mede a
+    semana. Imprime um relatório (legível no resumo do GitHub) e devolve números.
+
+    ``violations`` = músicas da última lista que tocaram há menos de
+    ``min_gap_days``; ``repeats`` = as que tocaram dentro de ``rotation_days``.
+    """
+    spec = pdef.spec
+    now = now or datetime.now(timezone.utc)
+    history = _load_state(data_dir, pdef.name).get("history") or []
+    out = {
+        "playlist": pdef.name, "generations": len(history), "violations": 0,
+        "repeats": 0, "unique": 0, "slots": 0, "lists": 0,
+    }
+    print(f"\n🧾 Fiscal de repetição — '{pdef.name}'")
+    if not history:
+        print("   sem histórico ainda (passa a ser gravado a partir desta versão).")
+        return out
+
+    def when(h: dict) -> datetime:
+        d = datetime.fromisoformat(h["at"])
+        return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
+
+    last = history[-1]
+    last_at = when(last)
+    seen: dict[str, datetime] = {}
+    for h in history[:-1]:
+        at = when(h)
+        for _uri, name, _artists in h["tracks"]:
+            for k in song_keys(name):
+                if k not in seen or seen[k] < at:
+                    seen[k] = at
+    repeats: list[tuple[float, str, str]] = []
+    for _uri, name, artists in last["tracks"]:
+        gaps = [(last_at - seen[k]).total_seconds() / 86400 for k in song_keys(name) if k in seen]
+        if gaps:
+            repeats.append((min(gaps), name, artists))
+    repeats.sort()
+    violations = [r for r in repeats if spec.min_gap_days > 0 and r[0] < spec.min_gap_days]
+    in_rotation = [r for r in repeats if spec.rotation_days > 0 and r[0] < spec.rotation_days]
+    stamp = last_at.astimezone(BRT).strftime("%d/%m %H:%M")
+    print(
+        f"   última lista ({stamp}, Brasília): {len(last['tracks'])} músicas · "
+        f"{len(in_rotation)} tocaram nos últimos {spec.rotation_days} dias · "
+        f"{len(violations)} há menos de {spec.min_gap_days} dias"
+        + (" ⛔" if violations else " ✅")
+    )
+    for gap, name, artists in violations[:10]:
+        print(f"      ⛔ {name} — {artists} (há {gap:.1f} dia(s))")
+    for gap, name, artists in [r for r in in_rotation if r not in violations][:5]:
+        print(f"      🔂 {name} — {artists} (há {gap:.1f} dia(s))")
+
+    cutoff = now - timedelta(days=days)
+    week = [h for h in history if when(h) >= cutoff]
+    songs: collections.Counter = collections.Counter()
+    artists_c: collections.Counter = collections.Counter()
+    slots = 0
+    for h in week:
+        for _uri, name, artists in h["tracks"]:
+            slots += 1
+            songs[_song_key(name)] += 1
+            artists_c[artists.split(",")[0].strip()] += 1
+    if slots:
+        pct = 100 * len(songs) / slots
+        print(
+            f"   últimos {days} dias: {len(week)} listas, {slots} vagas, "
+            f"{len(songs)} músicas diferentes ({pct:.0f}%), {len(artists_c)} artistas"
+        )
+        top = [f"{k} ({n}×)" for k, n in songs.most_common(5) if n > 1]
+        if top:
+            print("   mais repetidas: " + ", ".join(top))
+    if violations and os.environ.get("GITHUB_ACTIONS"):
+        print(
+            f"::warning title=Fiscal da diária::{len(violations)} música(s) repetida(s) "
+            f"com menos de {spec.min_gap_days} dias em '{pdef.name}'"
+        )
+    out.update(
+        violations=len(violations), repeats=len(in_rotation), unique=len(songs),
+        slots=slots, lists=len(week),
+    )
+    return out
 
 
 def describe_taste(sp: Spotify, top_n: int = 20) -> None:

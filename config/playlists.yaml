@@ -208,15 +208,30 @@ playlists:
     seasons: [always]
     daily: true            # entra no fluxo diário (sync --daily), não no sazonal
     # ---- REGRAS (definidas com você) ----
-    sing_along: true       # maioria de músicas que você conhece (top tracks + curtidas)
-    new_tracks: 4          # 4 novas por dia (o resto é do que você já ouve), sempre dentro do seu escopo
+    sing_along: true       # base = músicas que você conhece (top tracks + curtidas)
+    new_tracks: 4          # PELO MENOS 4 novas (nunca ouvidas) dos seus artistas por lista
     max_per_artist: 1      # nunca repete artista
     portuguese_only: true  # só português; inglês apenas se JÁ estiver nas curtidas
     learn_removals: true   # o que você tira vira "não gosto" (com guarda anti-bug)
     # Artista que você tirou pelo menos N vezes sai da lista (0 desliga).
-    # 1 vez pode ser a música; 2 já é o artista. Chay Suede está em 3.
+    # 1 vez pode ser a música; 2 já é o artista. Artista de fora (tendência) sai na 1ª.
     dislike_artist_threshold: 2
-    rotation_days: 7       # nenhuma música repete por 7 dias (2 listas/dia = ~350 músicas)
+    # ---- VARIAÇÃO (out/2026: a lista repetia as mesmas ~170 músicas a cada 3-4 dias) ----
+    rotation_days: 7       # meta: nenhuma música repete em 7 dias (2 listas/dia = ~350 músicas)
+    min_gap_days: 3        # REGRA DURA: nada que tocou há menos de 3 dias entra, nem pra completar
+    fill_with_catalog: true  # acabou conhecida fresca? completa com catálogo NÃO ouvido antes de repetir
+    trend_tracks: 2        # até 2 "tendências" por lista (artistas de fora, do explorador; 0 desliga)
+    # O explorador semanal (domingo) busca isto, aplica os mesmos vetos da lista
+    # (nome, palavra, funk, inglês) e guarda em data/catalog.json. Lista viva.
+    trend_queries:
+      - "pagode year:2025-2026"
+      - "samba year:2025-2026"
+      - "sertanejo year:2025-2026"
+      - "mpb year:2025-2026"
+      - "pagode lançamento"
+      - "roda de samba"
+      - "sertanejo romântico"
+      - "axé year:2025-2026"
     seed_from_taste: true  # as novas saem dos SEUS artistas (não de gente aleatória)
     mode: discovery
     # Melódico e contagiante — o que funciona pra segunda voz (terças):

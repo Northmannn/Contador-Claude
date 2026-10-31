@@ -224,7 +224,8 @@ def test_slots():
 
 
 def test_new_tracks_cap_reuses_oldest_known():
-    """Conhecidas frescas acabaram: reusa a mais antiga, sem estourar new_tracks."""
+    """Modo antigo (fill_with_catalog: false): conhecidas frescas acabaram → reusa
+    a mais antiga, sem estourar new_tracks."""
     curator._GENRE_CACHE.clear()
     known = [Track(f"u{i}", f"Música {i}", f"Artista {chr(65 + i)}", []) for i in range(6)]
     # 0 e 1 frescas; 2 é a mais antiga entre as tocadas; 5 a mais recente
@@ -250,7 +251,7 @@ def test_new_tracks_cap_reuses_oldest_known():
             return {"items": [], "next": None}
 
     spec = _spec(
-        size=6, new_tracks=2,
+        size=6, new_tracks=2, fill_with_catalog=False,
         match_artists=[t.artists for t in known] + [f"Artista {chr(71 + i)}" for i in range(6)],
     )
     chosen = curator.curate(Sp(), spec, recent=recent, catalog=catalog)
@@ -261,6 +262,160 @@ def test_new_tracks_cap_reuses_oldest_known():
     assert {"Música 0", "Música 1", "Música 2", "Música 3"} <= names, names
     assert "Música 5" not in names, names  # a tocada há menos tempo fica de fora
     assert "Nova Z" not in names
+
+
+def _known_and_catalog():
+    """6 conhecidas (0 e 1 frescas; 2..5 tocaram) e 7 novas de artistas distintos."""
+    known = [Track(f"u{i}", f"Música {i}", f"Artista {chr(65 + i)}", []) for i in range(6)]
+    catalog = [
+        Track(f"c{i}", f"Nova {i}", f"Artista {chr(71 + i)}", []) for i in range(7)
+    ]
+
+    class Sp(FakeSpotify):
+        def current_user_top_tracks(self, limit, time_range):
+            if time_range != "long_term":
+                return {"items": []}
+            return {"items": [_item(t.uri, t.name, t.artists) for t in known]}
+
+        def current_user_saved_tracks(self, limit):
+            return {"items": [], "next": None}
+
+    artists = [t.artists for t in known] + [t.artists for t in catalog]
+    return known, catalog, Sp, artists
+
+
+def test_varies_with_catalog_before_repeating():
+    """Política nova (padrão): acabou conhecida fresca → entra catálogo não ouvido,
+    e só repete quando o catálogo também acabar."""
+    curator._GENRE_CACHE.clear()
+    known, catalog, Sp, artists = _known_and_catalog()
+    now = datetime(2026, 9, 25, tzinfo=timezone.utc)
+    recent = {f"música {i}": (now - timedelta(days=i)).isoformat(timespec="seconds") for i in range(2, 6)}
+    spec = _spec(size=6, new_tracks=2, match_artists=artists)
+    chosen = curator.curate(Sp(), spec, recent=recent, catalog=catalog, now=now)
+    names = {t.name for t in chosen}
+    assert len(chosen) == 6, names
+    assert {"Música 0", "Música 1"} <= names, names            # conhecidas frescas entram
+    assert not any(curator._last_played(t, recent) for t in chosen), names  # nada repetido
+    assert sum(n.startswith("Nova") for n in names) == 4, names  # 2 garantidas + 2 pra variar
+
+
+def test_min_gap_is_a_hard_rule():
+    """Sem catálogo e só conhecidas recentes: quem tocou há menos de min_gap_days
+    NÃO entra, mesmo que a lista fique curta."""
+    curator._GENRE_CACHE.clear()
+    known, _catalog, Sp, artists = _known_and_catalog()
+    now = datetime(2026, 9, 25, tzinfo=timezone.utc)
+    # 0..5 tocaram há 1, 2, 3, 4, 5, 6 dias
+    recent = {f"música {i}": (now - timedelta(days=i + 1)).isoformat(timespec="seconds") for i in range(6)}
+    spec = _spec(size=6, new_tracks=0, min_gap_days=3, match_artists=artists)
+    chosen = curator.curate(Sp(), spec, recent=recent, catalog=[], now=now)
+    names = {t.name for t in chosen}
+    assert names == {"Música 2", "Música 3", "Música 4", "Música 5"}, names  # 1 e 2 dias: fora
+    assert len(chosen) == 4  # curta, mas sem violar a regra
+
+
+def test_min_gap_reuses_oldest_first_when_forced():
+    """Quando precisa repetir, repete a mais antiga e respeita o gap mínimo."""
+    curator._GENRE_CACHE.clear()
+    known, _catalog, Sp, artists = _known_and_catalog()
+    now = datetime(2026, 9, 25, tzinfo=timezone.utc)
+    recent = {f"música {i}": (now - timedelta(days=i + 1)).isoformat(timespec="seconds") for i in range(6)}
+    spec = _spec(size=2, new_tracks=0, min_gap_days=3, match_artists=artists)
+    chosen = curator.curate(Sp(), spec, recent=recent, catalog=[], now=now)
+    assert {t.name for t in chosen} == {"Música 5", "Música 4"}, [t.name for t in chosen]
+
+
+def test_trend_quota_and_filters():
+    """Tendências entram até o teto, com os vetos (inglês, funk, artista vetado)."""
+    curator._GENRE_CACHE.clear()
+    known, catalog, Sp, artists = _known_and_catalog()
+    trends = [
+        Track("t1", "Coração Valente", "Fulano de Tal", []),
+        Track("t2", "Saudade Boa", "Beltrano", []),
+        Track("t3", "Dance With Me", "Sicrano", []),        # inglês: fora
+        Track("t4", "Tropa", "MC Qualquer", []),             # funk: fora
+        Track("t5", "Linda Flor", "Banda Vetada", []),       # exclude_artists: fora
+    ]
+    spec = _spec(size=6, new_tracks=1, trend_tracks=1, match_artists=artists,
+                 exclude_artists=["Banda Vetada"], portuguese_only=True)
+    chosen = curator.curate(Sp(), spec, recent={}, catalog=catalog, trends=trends)
+    picked = {t.name for t in chosen if t.uri.startswith("t")}
+    assert len(picked) == 1 and picked <= {"Coração Valente", "Saudade Boa"}, [str(t) for t in chosen]
+    spec0 = _spec(size=6, new_tracks=1, trend_tracks=0, match_artists=artists)
+    chosen0 = curator.curate(Sp(), spec0, recent={}, catalog=catalog, trends=trends)
+    assert not any(t.uri.startswith("t") for t in chosen0)
+
+
+def test_history_audit_and_run_guard():
+    """Histórico guarda as listas; o fiscal conta repetições; a trava de 2h segura
+    execuções atrasadas do cron que chegam juntas."""
+    from spotify_playlists.config import Config
+
+    with tempfile.TemporaryDirectory() as d:
+        t0 = datetime(2026, 10, 20, 9, 0, tzinfo=timezone.utc)
+        a = Track("a", "Alfa", "Artista A", [])
+        b = Track("b", "Beta", "Artista B", [])
+        c = Track("c", "Gama", "Artista C", [])
+        e = Track("e", "Delta", "Artista D", [])
+        manager._save_generated(d, "T", [a, b, c], now=t0)
+        manager._save_generated(d, "T", [e, c], now=t0 + timedelta(days=1))
+        manager._save_generated(d, "T", [a, e, b], now=t0 + timedelta(days=4), record_rotation=False)
+        state = manager._load_state(d, "T")
+        assert len(state["history"]) == 3 and state["generated_at"].startswith("2026-10-24")
+        pdef = PlaylistDef(name="T", daily=True, spec=_spec(size=3, rotation_days=7, min_gap_days=3))
+        rep = manager.audit_playlist(pdef, data_dir=d, days=7, now=t0 + timedelta(days=4))
+        # Alfa e Beta: 4 dias (ok, mas dentro dos 7); Delta: 3 dias (no limite, ok)
+        assert rep["repeats"] == 3 and rep["violations"] == 0, rep
+        manager._save_generated(d, "T", [e], now=t0 + timedelta(days=5))
+        rep2 = manager.audit_playlist(pdef, data_dir=d, days=7, now=t0 + timedelta(days=5))
+        assert rep2["violations"] == 1, rep2  # Delta tocou há 1 dia
+        assert rep2["unique"] == 4 and rep2["slots"] == 9, rep2
+
+        cfg = Config(hemisphere="southern", market="BR", playlists=[pdef])
+        assert manager.recently_generated(cfg, base=d, now=t0 + timedelta(days=5, hours=1)) == "T"
+        assert manager.recently_generated(cfg, base=d, now=t0 + timedelta(days=5, hours=3)) is None
+
+
+def test_explore_releases_and_trends():
+    """Explorador: lançamentos entram em `releases` (crédito principal) e as
+    tendências passam pelos vetos; o catálogo da diária enxerga os dois."""
+    curator.CATALOG_PAUSE_S = 0
+
+    class Sp(FakeSpotify):
+        def search(self, q, type, market="BR", limit=10, offset=0):
+            self.search_calls += 1
+            if "year:" in q and q.startswith("artist:"):
+                name = q.split('"')[1]
+                return {"tracks": {"items": [
+                    _item(f"r-{name}-1", f"Lançamento de {name}", name),
+                    {"uri": f"r-{name}-2", "name": "Feat", "artists": [
+                        {"id": "x", "name": "Outro"}, {"id": name.lower(), "name": name}]},
+                ]}}
+            if "pagode" in q:
+                return {"tracks": {"items": [] if offset else [
+                    _item("tr1", "Coração de Samba", "Grupo Novo"),
+                    _item("tr2", "Love Song", "Grupo Novo"),       # inglês: fora
+                    _item("tr3", "Baile Proibido", "MC Novo"),     # funk pelo nome: fora
+                    _item("tr4", "Já Conhecida", "Grupo Velho"),   # skip_uris (não gosto): fora
+                    _item("tr5", "Nosso Samba", "Grupo Novo"),     # sem marca de PT: fora (rigor p/ artista de fora)
+                ]}}
+            return {"tracks": {"items": []}}
+
+    cache = {"artists": {"artista a": {"name": "Artista A", "fetched": None,
+                                       "tracks": [{"uri": "k0", "name": "Hit", "artists": "Artista A"}]}}}
+    found = curator.explore_releases(Sp(), cache, ["Artista A", "Artista B"], "BR")
+    assert {k for k in found} == {"Artista A", "Artista B"}
+    assert [t.name for t in found["Artista A"]] == ["Lançamento de Artista A"]  # feat fora
+    assert len(cache["artists"]["artista b"]["releases"]) == 1
+    names = {t.name for t in curator.catalog_tracks(cache, ["Artista A", "Artista B"])}
+    assert {"Hit", "Lançamento de Artista A", "Lançamento de Artista B"} <= names
+
+    spec = _spec(trend_queries=["pagode year:2025-2026"], portuguese_only=True, trend_tracks=2)
+    new = curator.explore_trends(Sp(), cache, spec, skip_uris={"tr4"})
+    assert [t.name for t in new] == ["Coração de Samba"], [str(t) for t in new]
+    assert [t.name for t in curator.catalog_trends(cache)] == ["Coração de Samba"]
+    assert curator.explore_trends(Sp(), cache, spec, skip_uris={"tr4"}) == []  # já guardada
 
 
 def test_new_account_without_library_fills_from_catalog():
@@ -546,8 +701,9 @@ def _fill_legado(known, extra, recent, spec):
 
 
 def test_offline_simulated_list_respects_new_tracks():
-    """Com o estado e o catálogo reais, a lista nova não estoura new_tracks
-    e não traz participação, homônimo nem artista banido."""
+    """Com o estado e o catálogo reais: pelo menos new_tracks novas, nada abaixo do
+    gap mínimo, nenhuma repetição enquanto houver catálogo, e sem participação,
+    homônimo ou artista banido."""
     import random as pyrandom
     from spotify_playlists.config import load_config
 
@@ -601,21 +757,23 @@ def test_offline_simulated_list_respects_new_tracks():
 
     known = list(known_by_uri.values())
     pyrandom.seed(0)
-    chosen = curator._fill_sing_along(known, extra, recent, spec)
+    chosen = curator._fill_sing_along(known, extra, recent, spec, now=now)
     extra_uris = {t.uri for t in extra}
     novas = [t for t in chosen if t.uri in extra_uris]
-    assert len(novas) <= spec.new_tracks, len(novas)
+    fresh_extra = [t for t in extra if curator._last_played(t, recent) is None]
+    fresh_known = [t for t in known if curator._last_played(t, recent) is None]
+    assert len(novas) >= min(spec.new_tracks, len(fresh_extra)), len(novas)
     assert len(chosen) <= spec.size
     for t in chosen:
         assert curator._is_allowlisted_main(t, spec.match_artists), t
         assert "chay suede" not in t.artists.lower(), t
         assert t.uri not in _BAD_CATALOG_URIS
-    # Se as conhecidas frescas não bastam, tem de reusar conhecida em vez de
-    # catálogo (depende do estado real do rodízio no dia do teste).
-    fresh_known = [t for t in known if curator._last_played(t, recent) is None]
-    if len(fresh_known) < spec.size - spec.new_tracks:
-        assert any(curator._last_played(t, recent) is not None for t in chosen), "não reusou conhecida"
-    assert len(known) > spec.size  # senão o teste não exercita o teto de verdade
+        gap = curator._days_since(t, recent, now)
+        assert gap is None or gap >= spec.min_gap_days, (str(t), gap)  # regra dura
+    # Com catálogo fresco sobrando, não pode haver repetição nenhuma.
+    if len(fresh_known) + len(fresh_extra) >= spec.size + 10:
+        assert not any(curator._last_played(t, recent) for t in chosen), "repetiu com catálogo sobrando"
+    assert len(known) > spec.size  # senão o teste não exercita o rodízio de verdade
 
 
 def test_played_log_pruned():

@@ -245,54 +245,58 @@ playlists:
                      "bossa nova", "lo-fi", ambient, jazz]
     # A API (2026) não devolve mais gênero dos artistas, então a regra "de manhã
     # só melódico" é garantida por LISTA DE PERMITIDOS — montada dos SEUS artistas
-    # reais (python main.py taste). Só entram músicas destes; as 3 novas também
+    # reais (python main.py taste). Só entram músicas destes; as novas também
     # vêm só deles. Lista viva: me passe nomes pra entrar/sair.
-    match_artists:
-      # pagode / samba (seu núcleo)
-      - "Só Pra Contrariar"
-      - "Grupo Menos É Mais"
-      - "Péricles"
-      - "Thiaguinho"
-      - "Sorriso Maroto"
-      - "Ferrugem"
-      - "Vitinho"
-      - "Dilsinho"
-      - "Alexandre Pires"
-      - "Os Travessos"
-      - "Zeca Pagodinho"
-      - "Pixote"
-      - "Vou Zuar"
-      - "Belo"
-      - "Xande de Pilares"
-      - "Fundo de Quintal"
-      - "Arlindinho"
-      - "Katinguelê"
-      - "Soweto"
-      - "Dudu Nobre"
-      - "Casuarina"
-      - "Exaltasamba"
-      # sertanejo / duplas (terça maior e menor de fábrica — ideal p/ segunda voz)
-      - "Zezé Di Camargo"
-      - "Chico Rey"
-      - "Matheus & Kauan"
-      - "Jorge & Mateus"
-      - "Marcos & Belutti"
-      - "Bruno & Barretto"
-      - "Wesley Safadão"
-      # MPB / samba-pop melódico
-      - "Seu Jorge"
-      - "Armandinho"
-      - "Chay Suede"
-      - "ANAVITÓRIA"
-      - "Alcione"
-      - "Adoniran Barbosa"
-      - "Reginaldo Rossi"
-      - "Gabriel Leone"
-      - "Melly"
-      # internacionais que você curte (as que você já ouve entram mesmo em inglês;
-      # nova em inglês continua bloqueada)
-      - "Michael Bublé"
-      - "Boyce Avenue"
+    #
+    # Em BLOCOS: a lista toca nesta ordem (pagode → sertanejo → MPB → internacional),
+    # com as novas espalhadas entre as conhecidas de cada bloco. Mude a ordem dos
+    # blocos pra mudar o arco da lista.
+    max_new_tracks: 7      # NO MÁXIMO 7 novas por lista — o resto é do que você já canta
+    artist_groups:
+      "pagode & samba":    # seu núcleo — abre a lista em casa
+        - "Só Pra Contrariar"
+        - "Grupo Menos É Mais"
+        - "Péricles"
+        - "Thiaguinho"
+        - "Sorriso Maroto"
+        - "Ferrugem"
+        - "Vitinho"
+        - "Dilsinho"
+        - "Alexandre Pires"
+        - "Os Travessos"
+        - "Zeca Pagodinho"
+        - "Pixote"
+        - "Vou Zuar"
+        - "Belo"
+        - "Xande de Pilares"
+        - "Fundo de Quintal"
+        - "Arlindinho"
+        - "Katinguelê"
+        - "Soweto"
+        - "Dudu Nobre"
+        - "Casuarina"
+        - "Exaltasamba"
+      "sertanejo":         # duplas (terça maior e menor de fábrica — ideal p/ segunda voz)
+        - "Zezé Di Camargo"
+        - "Chico Rey"
+        - "Matheus & Kauan"
+        - "Jorge & Mateus"
+        - "Marcos & Belutti"
+        - "Bruno & Barretto"
+        - "Wesley Safadão"
+      "mpb & samba-pop":   # melódico
+        - "Seu Jorge"
+        - "Armandinho"
+        - "Chay Suede"
+        - "ANAVITÓRIA"
+        - "Alcione"
+        - "Adoniran Barbosa"
+        - "Reginaldo Rossi"
+        - "Gabriel Leone"
+        - "Melly"
+      "internacional":     # as que você já ouve entram mesmo em inglês; nova em inglês, nunca
+        - "Michael Bublé"
+        - "Boyce Avenue"
     # Estrangeiros da lista: só o que você JÁ ouve/curte; nova em inglês, nunca.
     foreign_artists: ["Michael Bublé", "Boyce Avenue"]
     # Veto por palavra no título/artista (versões que não são pra manhã):

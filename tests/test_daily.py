@@ -418,6 +418,66 @@ def test_explore_releases_and_trends():
     assert curator.explore_trends(Sp(), cache, spec, skip_uris={"tr4"}) == []  # já guardada
 
 
+def test_max_new_tracks_keeps_list_singable():
+    """Teto de novas: sem conhecida fresca, a lista repete conhecidas antigas
+    (≥ gap mínimo) em vez de virar uma lista de desconhecidas."""
+    curator._GENRE_CACHE.clear()
+    now = datetime(2026, 10, 31, tzinfo=timezone.utc)
+    known = [Track(f"u{i}", f"Música {i}", f"Artista {chr(65 + i)}", []) for i in range(12)]
+    recent = {f"música {i}": (now - timedelta(days=4 + i % 3)).isoformat(timespec="seconds") for i in range(12)}
+    catalog = [Track(f"c{i}", f"Nova {i}", f"Artista {chr(77 + i)}", []) for i in range(12)]
+
+    class Sp(FakeSpotify):
+        def current_user_top_tracks(self, limit, time_range):
+            if time_range != "long_term":
+                return {"items": []}
+            return {"items": [_item(t.uri, t.name, t.artists) for t in known]}
+
+        def current_user_saved_tracks(self, limit):
+            return {"items": [], "next": None}
+
+    artists = [t.artists for t in known] + [t.artists for t in catalog]
+    spec = _spec(size=10, new_tracks=2, max_new_tracks=4, min_gap_days=3, match_artists=artists)
+    chosen = curator.curate(Sp(), spec, recent=recent, catalog=catalog, now=now)
+    novas = [t for t in chosen if t.name.startswith("Nova")]
+    assert len(chosen) == 10 and len(novas) == 4, [t.name for t in chosen]
+    # sem teto, a mesma situação viraria 10 novas
+    spec2 = _spec(size=10, new_tracks=2, max_new_tracks=0, min_gap_days=3, match_artists=artists)
+    chosen2 = curator.curate(Sp(), spec2, recent=recent, catalog=catalog, now=now)
+    assert sum(t.name.startswith("Nova") for t in chosen2) == 10
+
+
+def test_sequence_blocks_and_spread():
+    """Blocos na ordem da config; tendência (fora dos blocos) no fim; novas
+    espalhadas, não aglomeradas."""
+    spec = _spec(artist_groups=[("pagode", ["Artista A", "Artista B"]),
+                                ("sertanejo", ["Artista C", "Dupla & Tal"])])
+    tracks = [
+        Track("s1", "S1", "Artista C", []), Track("p1", "P1", "Artista A", []),
+        Track("t1", "T1", "Fulano", []), Track("pn", "PN", "Artista B", []),
+        Track("s2", "S2", "Dupla & Tal", []), Track("p2", "P2", "Artista A", []),
+        Track("p3", "P3", "Artista B", []), Track("sn", "SN", "Artista C", []),
+    ]
+    random.seed(3)
+    out = curator.sequence_tracks(tracks, spec, new_uris={"pn", "sn", "t1"})
+    names = [t.uri for t in out]
+    assert names[-1] == "t1", names                              # tendência fecha
+    assert set(names[:4]) == {"p1", "p2", "p3", "pn"}, names      # bloco pagode primeiro
+    assert set(names[4:7]) == {"s1", "s2", "sn"}, names           # depois sertanejo
+    assert names[0] != "pn" and names[4] != "sn", names           # nova não abre o bloco
+    assert curator.sequence_tracks(tracks, _spec(), new_uris=set()) == tracks  # sem blocos: como veio
+
+
+def test_config_artist_groups_feed_match_artists():
+    from spotify_playlists.config import load_config
+    cfg = load_config(os.path.join(os.path.dirname(__file__), "..", "config", "playlists.yaml"))
+    bom = next(p for p in cfg.playlists if "Bom Dia" in p.name).spec
+    assert [n for n, _ in bom.artist_groups][:2] == ["pagode & samba", "sertanejo"]
+    assert "Só Pra Contrariar" in bom.match_artists and "Michael Bublé" in bom.match_artists
+    assert len(bom.match_artists) == sum(len(a) for _, a in bom.artist_groups)
+    assert bom.max_new_tracks >= bom.new_tracks > 0
+
+
 def test_new_account_without_library_fills_from_catalog():
     """Conta nova (sem curtidas nem histórico): não há conhecida pra reusar e a
     lista sairia com só ``new_tracks`` músicas. Só nesse caso o catálogo completa

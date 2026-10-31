@@ -15,6 +15,7 @@ mesma cena via busca, e tiramos tudo que já está nas suas top tracks / curtida
 
 from __future__ import annotations
 
+import collections
 import random
 import re
 import time
@@ -80,6 +81,9 @@ class CurationSpec:
     fill_with_catalog: bool = True  # acabou conhecida fresca? completa com catálogo NÃO ouvido antes de repetir
     trend_tracks: int = 0  # até N "tendências" por lista (artistas de fora, do explorador semanal); 0 desliga
     trend_queries: list[str] = field(default_factory=list)  # buscas do explorador semanal
+    max_new_tracks: int = 0  # TETO de novas (catálogo) por lista: o resto é conhecida (0 = sem teto)
+    # Blocos de estilo, na ordem em que a lista deve tocar (sequência, não bagunça).
+    artist_groups: list[tuple[str, list[str]]] = field(default_factory=list)
 
 
 def _track_from_item(item: dict) -> Track | None:
@@ -1084,29 +1088,80 @@ def _fill_sing_along(
             counts[n] = counts.get(n, 0) + 1
         return True
 
-    def take(pool: list[Track], limit: int | None = None) -> int:
+    # Teto de novas: a lista tem de continuar "cantável" (maioria conhecida).
+    cap_new = max(spec.max_new_tracks, spec.new_tracks) if spec.max_new_tracks > 0 else None
+    used_new = 0
+
+    def take(pool: list[Track], limit: int | None = None, new: bool = False) -> int:
+        nonlocal used_new
         n = 0
         for t in pool:
             if len(chosen) >= spec.size or (limit is not None and n >= limit):
                 break
+            if new and cap_new is not None and used_new >= cap_new:
+                break
             if add(t):
                 n += 1
+                if new:
+                    used_new += 1
         return n
 
     fresh_extra = fresh(extra)
     take(fresh(trends), max(0, spec.trend_tracks))      # 1) tendências (cota)
-    take(fresh_extra, max(0, spec.new_tracks))          # 2) novas garantidas
+    take(fresh_extra, max(0, spec.new_tracks), new=True)  # 2) novas garantidas
     take(fresh(known))                                  # 3) conhecidas frescas
     if spec.fill_with_catalog:
-        take(fresh_extra)                               # 4) variar antes de repetir
-    take(stale(known))                                  # 5) repete a mais antiga
+        take(fresh_extra, new=True)                     # 4) variar antes de repetir (até o teto)
+    take(stale(known))                                  # 5) repete a mais antiga (≥ gap mínimo)
     if spec.fill_with_catalog:
-        take(stale(extra))
-    if len(chosen) < spec.size:                         # último recurso (acervo vazio)
+        take(stale(extra), new=True)
+    if len(chosen) < spec.size:                         # último recurso: passa do teto a ficar curta
         take(fresh_extra)
 
     random.shuffle(chosen)
     return chosen[: spec.size]
+
+
+def _group_index(track: Track, spec: CurationSpec) -> int:
+    """Bloco de estilo da faixa (ordem dos ``artist_groups``); fora deles = último."""
+    for i, (_name, artists) in enumerate(spec.artist_groups):
+        if _name_matches(track.artists, artists):
+            return i
+    return len(spec.artist_groups)
+
+
+def _spread(base: list[Track], inserts: list[Track]) -> list[Track]:
+    """Espalha ``inserts`` ao longo de ``base`` (novas entre conhecidas, sem aglomerar)."""
+    if not base:
+        return list(inserts)
+    out = list(base)
+    step = (len(base) + len(inserts)) / (len(inserts) + 1)
+    for k, t in enumerate(inserts, 1):
+        out.insert(min(len(out), int(round(k * step))), t)
+    return out
+
+
+def sequence_tracks(
+    chosen: list[Track], spec: CurationSpec, new_uris=frozenset()
+) -> list[Track]:
+    """Dá sequência à lista: blocos por estilo na ordem de ``artist_groups``
+    (ex.: pagode → sertanejo → MPB → internacional); dentro de cada bloco as
+    conhecidas vêm embaralhadas e as novas espalhadas entre elas. Tendências
+    (artistas de fora dos blocos) fecham a lista. Sem ``artist_groups``,
+    devolve como veio (ordem aleatória)."""
+    if not spec.artist_groups:
+        return chosen
+    blocks: dict[int, list[Track]] = {}
+    for t in chosen:
+        blocks.setdefault(_group_index(t, spec), []).append(t)
+    out: list[Track] = []
+    for i in sorted(blocks):
+        known = [t for t in blocks[i] if t.uri not in new_uris]
+        new = [t for t in blocks[i] if t.uri in new_uris]
+        random.shuffle(known)
+        random.shuffle(new)
+        out.extend(_spread(known, new))
+    return out
 
 
 def _curate_sing_along(
@@ -1210,14 +1265,26 @@ def _curate_sing_along(
     )
 
     chosen = _fill_sing_along(known, extra, recent, spec, now=now, trends=trend_pool)
+    chosen = sequence_tracks(chosen, spec, extra_uris | trend_uris)
     n_new = sum(1 for t in chosen if t.uri in extra_uris)
     n_trend = sum(1 for t in chosen if t.uri in trend_uris)
     gaps = [g for g in (_days_since(t, recent, now) for t in chosen) if g is not None]
+    teto = f", teto {spec.max_new_tracks}" if spec.max_new_tracks > 0 else ""
     print(
         f"   ✨ nesta lista: {len(chosen) - n_new - n_trend} conhecidas · {n_new} novas dos "
-        f"seus artistas (mínimo {max(0, spec.new_tracks)}) · {n_trend} tendências "
+        f"seus artistas (mínimo {max(0, spec.new_tracks)}{teto}) · {n_trend} tendências "
         f"(teto {max(0, spec.trend_tracks)})"
     )
+    if spec.max_new_tracks > 0 and n_new > spec.max_new_tracks:
+        print(
+            f"   ⚠️ passei do teto de novas ({n_new} > {spec.max_new_tracks}): faltou conhecida "
+            "que respeitasse o gap mínimo. Curtir mais músicas dos seus artistas resolve."
+        )
+    if spec.artist_groups:
+        names = [n for n, _ in spec.artist_groups] + ["fora dos blocos"]
+        counts = collections.Counter(_group_index(t, spec) for t in chosen)
+        seq = " → ".join(f"{names[i]} {counts[i]}" for i in sorted(counts))
+        print(f"   🎼 sequência: {seq}")
     if gaps:
         print(
             f"   🔂 repetidas do rodízio: {len(gaps)} (a mais recente tocou há "

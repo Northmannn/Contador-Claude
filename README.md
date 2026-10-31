@@ -71,13 +71,14 @@ python main.py sync --daily --no-record-rotation  # diária sem queimar o rodíz
 python main.py sync --force          # atualiza TODAS (cuidado: muitas chamadas de API)
 ```
 
-A diária (`🌅 Bom Dia, Motivação`) monta cada lista nesta ordem: até
+A diária (`🌅 Bom Dia, Motivação`) monta cada lista assim: até
 `trend_tracks` tendências (artistas de fora, achadas pelo explorador semanal),
-pelo menos `new_tracks` músicas novas dos seus artistas, as conhecidas que não
-tocaram nos últimos `rotation_days` dias e, se faltar, mais catálogo não ouvido
-— **variar antes de repetir**. Só repete quando não sobra nada, começando pela
-que tocou há mais tempo, e nunca algo que tocou há menos de `min_gap_days`
-dias (regra dura). O catálogo só traz música em que o artista permitido é o
+entre `new_tracks` e `max_new_tracks` músicas novas dos seus artistas, e o
+resto do que você já canta — primeiro o que não tocou nos últimos
+`rotation_days` dias, depois o que tocou há mais tempo, nunca algo com menos de
+`min_gap_days` dias (regra dura). A ordem segue os blocos de `artist_groups`
+(pagode → sertanejo → MPB → internacional), com as novas espalhadas entre as
+conhecidas. O catálogo só traz música em que o artista permitido é o
 principal (não participação nem homônimo). Artista que você removeu pelo menos
 `dislike_artist_threshold` vezes (padrão 2) sai da seleção; artista de fora
 (tendência) sai na primeira remoção. Depois de cada geração, o **fiscal**

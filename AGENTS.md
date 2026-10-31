@@ -144,6 +144,17 @@ suposições antigas. O que JÁ pegamos aqui:
   `min_gap_days` (Bom Dia: 3): música que tocou há menos disso **não entra em
   passo nenhum**, nem que a lista fique curta. `fill_with_catalog: false`
   volta ao comportamento antigo (teto de novas + repetir).
+  **Teto `max_new_tracks`** (Bom Dia: 7): a 1ª lista da política nova saiu
+  com 22 desconhecidas de 25 e o usuário achou "chata, espalhada"; a lista
+  tem de continuar cantável, então o catálogo para no teto e o resto vem de
+  conhecidas que respeitam o gap (só passa do teto pra não sair curta, com
+  aviso).
+- **Sequência (`artist_groups`)**: os artistas da Bom Dia ficam em blocos
+  nomeados no YAML (pagode & samba → sertanejo → mpb & samba-pop →
+  internacional); `config` monta `match_artists` da união. `sequence_tracks`
+  ordena a lista por bloco, nessa ordem, com as novas espalhadas entre as
+  conhecidas de cada bloco e tendências no fim. Sem blocos = ordem aleatória
+  (era o que o usuário chamou de "não segue uma sequência").
 - **Acervo conhecido** = top tracks + ~600 curtidas ∩ `match_artists`
   (≈170 músicas em out/2026 — menos da metade do que uma semana precisa).
 - **Catálogo** (hits via busca `artist:"Nome"`, até 30 por artista, mais os

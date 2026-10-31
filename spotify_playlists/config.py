@@ -70,6 +70,20 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
                 f"Use uma de: {sorted(VALID_SEASONS)}"
             )
 
+        # Blocos de estilo (ordem = sequência da lista). Também alimentam a lista
+        # de permitidos, pra não repetir 40 nomes em dois lugares.
+        groups_raw = raw.get("artist_groups") or {}
+        if isinstance(groups_raw, dict):
+            groups = [(str(k), list(v or [])) for k, v in groups_raw.items()]
+        else:
+            groups = [
+                (str(g.get("name") or f"bloco {i + 1}"), list(g.get("artists") or []))
+                for i, g in enumerate(groups_raw)
+            ]
+        match_artists = list(raw.get("match_artists", []) or [])
+        for _name, arts in groups:
+            match_artists += [a for a in arts if a not in match_artists]
+
         spec = CurationSpec(
             queries=raw.get("queries", []),
             genres=raw.get("genres", []),
@@ -91,7 +105,9 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             sing_along=bool(raw.get("sing_along", False)),
             learn_removals=bool(raw.get("learn_removals", False)),
             portuguese_only=bool(raw.get("portuguese_only", False)),
-            match_artists=raw.get("match_artists", []),
+            match_artists=match_artists,
+            artist_groups=groups,
+            max_new_tracks=int(raw.get("max_new_tracks", 0)),
             foreign_artists=raw.get("foreign_artists", []),
             exclude_keywords=raw.get("exclude_keywords", []),
             rotation_days=int(raw.get("rotation_days", 0)),

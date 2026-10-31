@@ -650,11 +650,14 @@ def test_removal_weight_by_source():
             return {"items": [{"name": "T", "id": "pl", "owner": {"id": "eu"}}], "next": None}
 
         def playlist_items(self, pid, limit):
-            return {"items": [{"item": {"uri": "fica"}}], "next": None}  # só 'fica' sobrou
+            # 3 de 7 sobraram (4 removidas = 57%, abaixo da guarda de 80% = erro de leitura)
+            return {"items": [{"item": {"uri": u}} for u in ("fica", "fica2", "fica3")], "next": None}
 
     with tempfile.TemporaryDirectory() as d:
         tracks = [
             Track("fica", "Fica", "Artista A", [], source="known"),
+            Track("fica2", "Fica 2", "Artista E", [], source="known"),
+            Track("fica3", "Fica 3", "Artista F", [], source="new"),
             Track("k", "Conhecida", "Artista B", [], source="known"),
             Track("n", "Lado B", "Artista C", [], source="new"),
             Track("t", "Moda", "Fulano", [], source="trend"),
@@ -662,7 +665,8 @@ def test_removal_weight_by_source():
         ]
         manager._save_generated(d, "T", tracks, now=datetime(2026, 10, 31, tzinfo=timezone.utc))
         pdef = PlaylistDef(name="T", daily=True, spec=_spec(
-            size=5, match_artists=["Artista A", "Artista B", "Artista C", "Artista D"],
+            size=7, match_artists=["Artista A", "Artista B", "Artista C", "Artista D",
+                                   "Artista E", "Artista F"],
             dislike_artist_threshold=2))
         feedback = manager._load_feedback(d)
         assert manager._learn_from_removals(Sp(), pdef, feedback, d) == 4

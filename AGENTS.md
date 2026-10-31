@@ -144,11 +144,13 @@ suposições antigas. O que JÁ pegamos aqui:
   `min_gap_days` (Bom Dia: 3): música que tocou há menos disso **não entra em
   passo nenhum**, nem que a lista fique curta. `fill_with_catalog: false`
   volta ao comportamento antigo (teto de novas + repetir).
-  **Teto `max_new_tracks`** (Bom Dia: 7): a 1ª lista da política nova saiu
+  **Teto `max_new_tracks`** (Bom Dia: 10): a 1ª lista da política nova saiu
   com 22 desconhecidas de 25 e o usuário achou "chata, espalhada"; a lista
   tem de continuar cantável, então o catálogo para no teto e o resto vem de
   conhecidas que respeitam o gap (só passa do teto pra não sair curta, com
-  aviso).
+  aviso). Simulado com os pools reais (142 conhecidas): gap 3 + teto 7
+  estoura em 6 de 14 listas; gap 3 + teto 10 só na transição; gap 2 + teto 7
+  cabe, mas com ~38 repetições/semana abaixo de 3 dias. Ficou gap 3 + teto 10.
 - **Sequência (`artist_groups`)**: os artistas da Bom Dia ficam em blocos
   nomeados no YAML (pagode & samba → sertanejo → mpb & samba-pop →
   internacional); `config` monta `match_artists` da união. `sequence_tracks`
@@ -167,7 +169,10 @@ suposições antigas. O que JÁ pegamos aqui:
   `foreign_artists` nunca vêm do catálogo — deles só o que ele já ouve.
 - **Artista removido demais** (`disliked_artists` no `feedback.json`) sai da
   seleção quando a contagem chega em `dislike_artist_threshold` (padrão 2;
-  0 desliga). Uma música tirada não bane o artista; a segunda vez, sim.
+  0 desliga). Peso da remoção pelo `source` gravado em `generated` (31/10):
+  música **conhecida** = 1 ponto; música **nova** do seu artista = 0 (só a
+  música sai — Seu Jorge foi banido por um lado B e tivemos de desfazer);
+  **tendência**/artista de fora = o limiar inteiro (sai na 1ª).
 - Uma semana = 14 listas × 25 ≈ 350 músicas: ~170 conhecidas + o que faltar
   do catálogo (~370 não ouvidas). Conta sem acervo (trocou de conta) cai no
   mesmo mecanismo: a lista sai inteira do catálogo e o log avisa.

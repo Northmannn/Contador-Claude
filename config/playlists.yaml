@@ -214,7 +214,8 @@ playlists:
     portuguese_only: true  # só português; inglês apenas se JÁ estiver nas curtidas
     learn_removals: true   # o que você tira vira "não gosto" (com guarda anti-bug)
     # Artista que você tirou pelo menos N vezes sai da lista (0 desliga).
-    # 1 vez pode ser a música; 2 já é o artista. Artista de fora (tendência) sai na 1ª.
+    # Conta só remoção de música CONHECIDA (1 ponto); música NOVA removida tira
+    # só a música; artista de fora (tendência) sai na 1ª remoção.
     dislike_artist_threshold: 2
     # ---- VARIAÇÃO (out/2026: a lista repetia as mesmas ~170 músicas a cada 3-4 dias) ----
     rotation_days: 7       # meta: nenhuma música repete em 7 dias (2 listas/dia = ~350 músicas)
@@ -251,7 +252,10 @@ playlists:
     # Em BLOCOS: a lista toca nesta ordem (pagode → sertanejo → MPB → internacional),
     # com as novas espalhadas entre as conhecidas de cada bloco. Mude a ordem dos
     # blocos pra mudar o arco da lista.
-    max_new_tracks: 7      # NO MÁXIMO 7 novas por lista — o resto é do que você já canta
+    # Teto de novas: com ~140 conhecidas, "nada repete em 3 dias" + "só 7 novas"
+    # não cabem juntos (simulado: 6 de 14 listas estouravam). 10 = 60% conhecida.
+    # Suba pra descobrir mais, desça (7) se preferir repetir mais conhecida.
+    max_new_tracks: 10     # NO MÁXIMO 10 novas por lista — o resto é do que você já canta
     artist_groups:
       "pagode & samba":    # seu núcleo — abre a lista em casa
         - "Só Pra Contrariar"

@@ -37,6 +37,7 @@ class Track:
     name: str
     artists: str
     artist_ids: list[str] = field(default_factory=list)  # p/ consultar gêneros em lote
+    source: str = ""  # na diária: "known" (acervo) | "new" (catálogo) | "trend" (explorador)
 
     def __str__(self) -> str:  # pragma: no cover - só exibição
         return f"{self.name} — {self.artists}"
@@ -1266,6 +1267,8 @@ def _curate_sing_along(
 
     chosen = _fill_sing_along(known, extra, recent, spec, now=now, trends=trend_pool)
     chosen = sequence_tracks(chosen, spec, extra_uris | trend_uris)
+    for t in chosen:  # o manager grava isto: remoção de música NOVA não pune o artista
+        t.source = "trend" if t.uri in trend_uris else "new" if t.uri in extra_uris else "known"
     n_new = sum(1 for t in chosen if t.uri in extra_uris)
     n_trend = sum(1 for t in chosen if t.uri in trend_uris)
     gaps = [g for g in (_days_since(t, recent, now) for t in chosen) if g is not None]

@@ -639,6 +639,37 @@ def test_disliked_artist_threshold():
     assert any(t.name == "Saudade Nova" for t in chosen)
 
 
+def test_removal_weight_by_source():
+    """Remoção: música NOVA do seu artista tira só a música; conhecida dá 1 ponto
+    ao artista; artista de fora (tendência) sai na 1ª."""
+    class Sp:
+        def me(self):
+            return {"id": "eu"}
+
+        def current_user_playlists(self, limit, offset):
+            return {"items": [{"name": "T", "id": "pl", "owner": {"id": "eu"}}], "next": None}
+
+        def playlist_items(self, pid, limit):
+            return {"items": [{"item": {"uri": "fica"}}], "next": None}  # só 'fica' sobrou
+
+    with tempfile.TemporaryDirectory() as d:
+        tracks = [
+            Track("fica", "Fica", "Artista A", [], source="known"),
+            Track("k", "Conhecida", "Artista B", [], source="known"),
+            Track("n", "Lado B", "Artista C", [], source="new"),
+            Track("t", "Moda", "Fulano", [], source="trend"),
+            Track("v", "Velha", "Artista D", []),  # geração antiga, sem marca
+        ]
+        manager._save_generated(d, "T", tracks, now=datetime(2026, 10, 31, tzinfo=timezone.utc))
+        pdef = PlaylistDef(name="T", daily=True, spec=_spec(
+            size=5, match_artists=["Artista A", "Artista B", "Artista C", "Artista D"],
+            dislike_artist_threshold=2))
+        feedback = manager._load_feedback(d)
+        assert manager._learn_from_removals(Sp(), pdef, feedback, d) == 4
+        assert set(feedback["disliked_uris"]) == {"k", "n", "t", "v"}
+        assert feedback["disliked_artists"] == {"artista b": 1, "fulano": 2, "artista d": 1}, feedback
+
+
 def test_manual_run_counts_in_rotation_but_not_in_long_log():
     """Geração manual sem gravar: fica fora do log longo `played`, mas o que foi
     pra playlist conta no rodízio (via histórico) — lista manual não volta inteira

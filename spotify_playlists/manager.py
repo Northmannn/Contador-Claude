@@ -168,7 +168,10 @@ def _save_generated(
     })
     payload = {
         "generated_at": stamp,
-        "generated": [{"uri": t.uri, "name": t.name, "artists": t.artists} for t in tracks],
+        "generated": [
+            {"uri": t.uri, "name": t.name, "artists": t.artists, "source": getattr(t, "source", "")}
+            for t in tracks
+        ],
         "played": played,
         "history": history,
     }
@@ -345,14 +348,25 @@ def _learn_from_removals(sp: Spotify, pdef: PlaylistDef, feedback: dict, base: s
             feedback["disliked_uris"].append(t["uri"])
             disliked.add(t["uri"])
         artist = (t.get("artists", "").split(",")[0].strip().lower())
-        if artist:
-            # Artista de FORA da lista (tendência do explorador) removido uma vez
-            # já sai: conta direto como o limiar. Dos seus artistas, 1 por vez.
-            spec = pdef.spec
-            outsider = bool(spec.match_artists) and not _name_matches(
-                t.get("artists", ""), spec.match_artists
-            )
-            step = max(1, spec.dislike_artist_threshold) if outsider else 1
+        if not artist:
+            continue
+        # Quanto a remoção pesa contra o ARTISTA:
+        # - tendência / artista de fora da lista: sai na 1ª (conta o limiar inteiro);
+        # - música NOVA de um artista seu (catálogo): só a música sai — tirar um
+        #   lado B do Seu Jorge não é "não gosto do Seu Jorge";
+        # - música conhecida (acervo) ou geração antiga sem a marca: 1 ponto.
+        spec = pdef.spec
+        source = t.get("source") or ""
+        outsider = bool(spec.match_artists) and not _name_matches(
+            t.get("artists", ""), spec.match_artists
+        )
+        if outsider or source == "trend":
+            step = max(1, spec.dislike_artist_threshold)
+        elif source == "new":
+            step = 0
+        else:
+            step = 1
+        if step:
             feedback["disliked_artists"][artist] = (
                 feedback["disliked_artists"].get(artist, 0) + step
             )

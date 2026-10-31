@@ -1,109 +1,14 @@
 {
   "generated": [
     {
-      "uri": "spotify:track:4aWvRjHweMAoB1RzUcXUUu",
-      "name": "Farol Das Estrelas",
-      "artists": "Soweto"
-    },
-    {
-      "uri": "spotify:track:4T6HLdP6OcAtqC6tGnQelG",
-      "name": "Everything",
-      "artists": "Michael Bublé"
-    },
-    {
-      "uri": "spotify:track:4cR4nao0hqqBtklQmGVqbe",
-      "name": "Thinking out Loud",
-      "artists": "Boyce Avenue"
-    },
-    {
-      "uri": "spotify:track:0vXKKHxzwndf65d8E10oND",
-      "name": "Me Amar Amanhã - Na Praia / Ao Vivo",
-      "artists": "Matheus & Kauan"
-    },
-    {
-      "uri": "spotify:track:3ADuEIn09NAZIBgpYY3IsE",
-      "name": "Deixa A Vida Me Levar - Ao Vivo",
-      "artists": "Zeca Pagodinho"
-    },
-    {
-      "uri": "spotify:track:3lrrVGK9r2d1AN6Iw6sEev",
-      "name": "Quem Dera - Ao Vivo",
-      "artists": "Só Pra Contrariar"
-    },
-    {
-      "uri": "spotify:track:5kunnyRXn1uwU3h1H2MYpI",
-      "name": "Disritmia",
-      "artists": "Casuarina"
-    },
-    {
-      "uri": "spotify:track:6XOsXDAtgNGOPzyalU4zcT",
-      "name": "Livre Pra Voar (Quando A Gente Se Encontrar)",
-      "artists": "Exaltasamba"
-    },
-    {
-      "uri": "spotify:track:4Evg4nShfksCiQSnigvw5c",
-      "name": "Meu Parceiro - Live",
-      "artists": "Seu Jorge"
-    },
-    {
-      "uri": "spotify:track:6LQQGxRzNLsWQtwgLe5fAm",
-      "name": "Insegurança - Ao Vivo",
-      "artists": "Pixote"
-    },
-    {
-      "uri": "spotify:track:0Irmfs9y37hrHDl88DlWHV",
-      "name": "Página de Amigos / Inevitável / Flor - Ao Vivo",
-      "artists": "Grupo Menos É Mais"
-    },
-    {
-      "uri": "spotify:track:5nnKdN5H0YcmtG1DiH1NCH",
-      "name": "Direito de Te Amar",
-      "artists": "Belo"
-    },
-    {
-      "uri": "spotify:track:7L4UpDj9CRPIJWkIRNG6q2",
-      "name": "Abrigo De Vagabundo",
-      "artists": "Adoniran Barbosa"
-    },
-    {
-      "uri": "spotify:track:5xyVTYGlRwh4XQT8RNJAsy",
-      "name": "Vem Meu Amor",
-      "artists": "ANAVITÓRIA"
-    },
-    {
-      "uri": "spotify:track:5e51nvrsLrXYWvKoCzwBJR",
-      "name": "Quer me machucar",
-      "artists": "Os Travessos"
-    },
-    {
-      "uri": "spotify:track:24nnH0sODD5P2eq5agxJmv",
-      "name": "Sá Marina - Ao Vivo",
-      "artists": "Alexandre Pires"
-    },
-    {
-      "uri": "spotify:track:0Fhm0Eo9N3mrRl8iimUioa",
-      "name": "Energia Surreal - Ao Vivo",
-      "artists": "Sandra Sá, Thiaguinho"
-    },
-    {
       "uri": "spotify:track:4guiihOYsq8ry9oY2Fj10X",
       "name": "Rosa Norte",
       "artists": "Armandinho"
     },
     {
-      "uri": "spotify:track:0CR7xCXgBdErtTS68LtW5e",
-      "name": "Tortura - Ao Vivo",
-      "artists": "Dilsinho"
-    },
-    {
-      "uri": "spotify:track:4NSmJoSBSWpb9crI6wA5gT",
-      "name": "Coração Machucado - Ao Vivo",
-      "artists": "Wesley Safadão"
-    },
-    {
-      "uri": "spotify:track:6GglEvEfa8bRE74QS8XQuF",
-      "name": "Volta Pra Mim - Ao Vivo",
-      "artists": "Chico Rey & Paraná"
+      "uri": "spotify:track:174S4zGFfw7tCzXni3x4qm",
+      "name": "Loucura do Seu Coração",
+      "artists": "Sorriso Maroto"
     },
     {
       "uri": "spotify:track:37PVa5ZwK1aWtk477Gz16G",
@@ -111,9 +16,29 @@
       "artists": "Jorge & Mateus"
     },
     {
-      "uri": "spotify:track:4DiVs7MeNuSds1qiSEBVpg",
-      "name": "As Quatro Estações",
-      "artists": "Reginaldo Rossi"
+      "uri": "spotify:track:4aWvRjHweMAoB1RzUcXUUu",
+      "name": "Farol Das Estrelas",
+      "artists": "Soweto"
+    },
+    {
+      "uri": "spotify:track:6769YQ7Lhb0OCbRTUr309y",
+      "name": "Tiro ao Álvaro",
+      "artists": "Adoniran Barbosa, Elis Regina"
+    },
+    {
+      "uri": "spotify:track:6GglEvEfa8bRE74QS8XQuF",
+      "name": "Volta Pra Mim - Ao Vivo",
+      "artists": "Chico Rey & Paraná"
+    },
+    {
+      "uri": "spotify:track:3ADuEIn09NAZIBgpYY3IsE",
+      "name": "Deixa A Vida Me Levar - Ao Vivo",
+      "artists": "Zeca Pagodinho"
+    },
+    {
+      "uri": "spotify:track:7sVg4RBtbPqVaRC0X63xAj",
+      "name": "Quem Não Quer Sou Eu",
+      "artists": "Seu Jorge"
     },
     {
       "uri": "spotify:track:2bWiY47WIbAXfCe0pFgrMB",
@@ -121,9 +46,84 @@
       "artists": "Vitinho"
     },
     {
-      "uri": "spotify:track:6ZXA3cg83xY4It7mQqil8w",
-      "name": "Brigas Por Nada / 1 Metro e 65 - Ao Vivo",
-      "artists": "Sorriso Maroto, Péricles, Ferrugem"
+      "uri": "spotify:track:4Mnfug0sgaMw7g3wyZD4ss",
+      "name": "Calma Amor - Ao Vivo Na Ilha Da Magia,Brasil/2008",
+      "artists": "Exaltasamba"
+    },
+    {
+      "uri": "spotify:track:34TOZVEDoy6C66oCKArIIm",
+      "name": "Minha Fantasia (It Ain't OverTil It's Over) - Ao Vivo",
+      "artists": "Só Pra Contrariar"
+    },
+    {
+      "uri": "spotify:track:0bE9HzpDqguoiYOPuoPyeQ",
+      "name": "Graveto - Ao Vivo",
+      "artists": "Péricles"
+    },
+    {
+      "uri": "spotify:track:4NSmJoSBSWpb9crI6wA5gT",
+      "name": "Coração Machucado - Ao Vivo",
+      "artists": "Wesley Safadão"
+    },
+    {
+      "uri": "spotify:track:4cR4nao0hqqBtklQmGVqbe",
+      "name": "Thinking out Loud",
+      "artists": "Boyce Avenue"
+    },
+    {
+      "uri": "spotify:track:0Irmfs9y37hrHDl88DlWHV",
+      "name": "Página de Amigos / Inevitável / Flor - Ao Vivo",
+      "artists": "Grupo Menos É Mais"
+    },
+    {
+      "uri": "spotify:track:3Bn5vG7vienkREO35aoaKK",
+      "name": "Ilusão De Ótica - Ao Vivo",
+      "artists": "Matheus & Kauan, Ana Castela"
+    },
+    {
+      "uri": "spotify:track:5hkjlU7sUcZb9wOYd1eRBE",
+      "name": "Eu Era",
+      "artists": "Marcos & Belutti"
+    },
+    {
+      "uri": "spotify:track:4T6HLdP6OcAtqC6tGnQelG",
+      "name": "Everything",
+      "artists": "Michael Bublé"
+    },
+    {
+      "uri": "spotify:track:5e51nvrsLrXYWvKoCzwBJR",
+      "name": "Quer me machucar",
+      "artists": "Os Travessos"
+    },
+    {
+      "uri": "spotify:track:0NMVRsqVoYEa7g6VZWcJg7",
+      "name": "Reinventar",
+      "artists": "Belo"
+    },
+    {
+      "uri": "spotify:track:24nnH0sODD5P2eq5agxJmv",
+      "name": "Sá Marina - Ao Vivo",
+      "artists": "Alexandre Pires"
+    },
+    {
+      "uri": "spotify:track:0vT797IpZpF5o1XLCnWCUL",
+      "name": "É natural (Participação especial de Bruno Cardoso) - Ao vivo",
+      "artists": "Ferrugem, Bruno Cardoso"
+    },
+    {
+      "uri": "spotify:track:0Fhm0Eo9N3mrRl8iimUioa",
+      "name": "Energia Surreal - Ao Vivo",
+      "artists": "Sandra Sá, Thiaguinho"
+    },
+    {
+      "uri": "spotify:track:6LQQGxRzNLsWQtwgLe5fAm",
+      "name": "Insegurança - Ao Vivo",
+      "artists": "Pixote"
+    },
+    {
+      "uri": "spotify:track:0CR7xCXgBdErtTS68LtW5e",
+      "name": "Tortura - Ao Vivo",
+      "artists": "Dilsinho"
     }
   ],
   "played": {

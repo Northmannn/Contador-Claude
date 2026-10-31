@@ -84,12 +84,26 @@ def _load_state(base: str, name: str) -> dict:
 
 
 def _recent_played(state: dict, days: int, now: datetime | None = None) -> dict[str, str]:
-    """{chave_da_música: último ISO em que tocou} dentro da janela de ``days``."""
+    """{chave_da_música: último ISO em que tocou} dentro da janela de ``days``.
+
+    Junta o log longo ``played`` com o ``history`` (listas inteiras): tudo que
+    FOI pra playlist conta no rodízio, mesmo geração manual que não gravou o
+    log longo — senão a lista manual de manhã voltava inteira à noite.
+    """
     if days <= 0:
         return {}
     now = now or datetime.now(timezone.utc)
     cutoff = (now - timedelta(days=days)).isoformat(timespec="seconds")
-    return {k: v for k, v in (state.get("played") or {}).items() if v >= cutoff}
+    recent = {k: v for k, v in (state.get("played") or {}).items() if v >= cutoff}
+    for h in state.get("history") or []:
+        at = h.get("at") or ""
+        if at < cutoff:
+            continue
+        for _uri, name, _artists in h.get("tracks") or []:
+            for k in song_keys(name):
+                if k not in recent or recent[k] < at:
+                    recent[k] = at
+    return recent
 
 
 def banned_artist_names(feedback: dict, threshold: int) -> list[str]:

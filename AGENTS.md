@@ -128,9 +128,11 @@ suposições antigas. O que JÁ pegamos aqui:
 - **2x ao dia por janelas** (`daily_slots` no YAML, hora de Brasília): manhã
   02h–12h, noite 17h–24h. O cron roda **toda hora** (o GitHub atrasa 5-6h e às
   vezes descarta execuções); `sync --daily --slot-guard` só gera se a janela
-  atual ainda não foi gerada. Disparo manual gera sempre e **marca** a janela,
-  mas **não grava o rodízio** (não queima a semana). O input `force` do workflow
-  grava o rodízio, igual ao cron. Na mão: `sync --no-record-rotation`.
+  atual ainda não foi gerada. Disparo manual gera sempre, **marca** a janela e
+  (desde 31/10) **grava o rodízio por padrão** (`force` default true). Mesmo
+  sem gravar (`sync --no-record-rotation` / `force` desmarcado), o que foi pra
+  playlist entra no `history` e **conta no rodízio** (`_recent_played` junta
+  `played` + `history`); só fica fora do log longo de 60 dias.
 - **Rodízio (`rotation_days: 7`)**: cada música gerada vai pro `played`
   (por *chave de música* — `curator.song_keys`: ignora "Ao Vivo", "(feat.)",
   e separa medleys por "/"). Ordem de preenchimento (`_fill_sing_along`,

@@ -579,7 +579,10 @@ def test_disliked_artist_threshold():
     assert any(t.name == "Saudade Nova" for t in chosen)
 
 
-def test_manual_run_does_not_burn_rotation():
+def test_manual_run_counts_in_rotation_but_not_in_long_log():
+    """Geração manual sem gravar: fica fora do log longo `played`, mas o que foi
+    pra playlist conta no rodízio (via histórico) — lista manual não volta inteira
+    na geração seguinte."""
     with tempfile.TemporaryDirectory() as d:
         now = datetime(2026, 10, 8, tzinfo=timezone.utc)
         manager._save_generated(d, "T", [Track("u", "Velha", "A", [])], now=now - timedelta(days=1))
@@ -590,7 +593,10 @@ def test_manual_run_does_not_burn_rotation():
         assert state["generated"][0]["name"] == "Nova"
         assert "velha" in state["played"] and "nova" not in state["played"]
         recent = manager._recent_played(state, 7, now=now)
-        assert recent == {"velha": state["played"]["velha"]}
+        assert set(recent) == {"velha", "nova"}, recent
+        assert recent["nova"] == now.isoformat(timespec="seconds")
+        # fora da janela do rodízio, some
+        assert manager._recent_played(state, 7, now=now + timedelta(days=8)) == {}
 
 
 def test_bom_dia_config_threshold():

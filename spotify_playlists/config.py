@@ -11,6 +11,13 @@ from .curator import CurationSpec
 
 DEFAULT_CONFIG_PATH = Path("config/playlists.yaml")
 
+
+def _iso_day(value) -> str:
+    """Data de 'segurar até' como YYYY-MM-DD (string ou date do YAML)."""
+    if hasattr(value, "isoformat"):
+        return value.isoformat()[:10]
+    return str(value)[:10]
+
 # Estações válidas + "always" (atualiza o ano todo).
 VALID_SEASONS = {"summer", "autumn", "winter", "spring", "always"}
 
@@ -96,6 +103,14 @@ def load_config(path: str | Path = DEFAULT_CONFIG_PATH) -> Config:
             exclude_keywords=raw.get("exclude_keywords", []),
             rotation_days=int(raw.get("rotation_days", 0)),
             dislike_artist_threshold=int(raw.get("dislike_artist_threshold", 2)),
+            exclude_tracks=list(raw.get("exclude_tracks") or []),
+            hold_until={
+                str(title): _iso_day(until)
+                for title, until in (raw.get("hold_until") or {}).items()
+            },
+            favorite_tracks=list(raw.get("favorite_tracks") or []),
+            weekly_cap_tracks=list(raw.get("weekly_cap_tracks") or []),
+            only_versions=list(raw.get("only_versions") or []),
         )
         playlists.append(
             PlaylistDef(

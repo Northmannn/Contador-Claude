@@ -19,7 +19,7 @@ import random
 import re
 import time
 from dataclasses import dataclass, field, replace
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from spotipy import Spotify
 from spotipy.exceptions import SpotifyException
@@ -75,6 +75,16 @@ class CurationSpec:
     rotation_days: int = 0  # não repetir a mesma MÚSICA (qualquer versão) por N dias
     # Artista sai da seleção depois de N remoções (disliked_artists). 0 desliga.
     dislike_artist_threshold: int = 2
+    # Veto por FAIXA (qualquer versão/medley que compartilhe a chave da música).
+    exclude_tracks: list[str] = field(default_factory=list)
+    # Título -> data ISO (dia em Brasília). Não toca enquanto hoje < data.
+    hold_until: dict[str, str] = field(default_factory=dict)
+    # Títulos que entram no acervo conhecido mesmo se o catálogo não os viu ouvidos.
+    favorite_tracks: list[str] = field(default_factory=list)
+    # Teto duro de 1x por janela de rotation_days: não entram no reuso do rodízio.
+    weekly_cap_tracks: list[str] = field(default_factory=list)
+    # Versão única: {title, artists?, keywords?}. Outras versões da mesma música saem.
+    only_versions: list[dict] = field(default_factory=list)
 
 
 def _track_from_item(item: dict) -> Track | None:
@@ -877,6 +887,68 @@ def catalog_tracks(cache: dict, artists: list[str]) -> list[Track]:
     return out
 
 
+_BRT = timezone(timedelta(hours=-3))
+
+
+def _local_day(now: datetime) -> str:
+    """Dia civil em Brasília, pra 'segurar até' não virar um dia antes no UTC."""
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
+    return now.astimezone(_BRT).date().isoformat()
+
+
+def _shares_song(track: Track, title: str) -> bool:
+    return bool(song_keys(track.name) & song_keys(title))
+
+
+def _matches_any_title(track: Track, titles: list[str]) -> bool:
+    """A faixa contém o título inteiro (medley favorito não vira toda música 'Verdade').
+
+    Um veto de uma música só continua pegando o medley que a inclui, porque as
+    chaves do título são subconjunto das chaves da faixa.
+    """
+    keys = song_keys(track.name)
+    for title in titles or []:
+        wanted = song_keys(str(title))
+        if wanted and wanted <= keys:
+            return True
+    return False
+
+
+def _fails_only_version(track: Track, rules: list[dict]) -> bool:
+    """True se a faixa é uma versão proibida de uma música com versão única.
+
+    A regra casa pela chave da música. Se houver ``artists``, todos precisam
+    aparecer no crédito; se houver ``keywords``, pelo menos uma no título ou
+    no artista. Sem nenhum dos dois, a regra não veta (evita banir tudo).
+    """
+    blob_name = f"{track.name} {track.artists}"
+    for rule in rules or []:
+        title = str((rule or {}).get("title") or "")
+        if not title or not _shares_song(track, title):
+            continue
+        needed = [a for a in (rule.get("artists") or []) if str(a).strip()]
+        keywords = [str(k).strip().lower() for k in (rule.get("keywords") or []) if str(k).strip()]
+        if not needed and not keywords:
+            continue
+        if needed and not all(_name_matches(track.artists, [str(a)]) for a in needed):
+            return True
+        if keywords and not any(k in blob_name.lower() for k in keywords):
+            return True
+    return False
+
+
+def _passes_track_rules(track: Track, spec: CurationSpec, now: datetime) -> bool:
+    """Veto por faixa, espera até uma data e versão única permitida."""
+    if _matches_any_title(track, spec.exclude_tracks):
+        return False
+    day = _local_day(now)
+    for title, until in (spec.hold_until or {}).items():
+        if _shares_song(track, str(title)) and day < str(until)[:10]:
+            return False
+    return not _fails_only_version(track, spec.only_versions)
+
+
 def _last_played(track: Track, recent: dict[str, str]) -> str | None:
     """Última vez (ISO) que QUALQUER versão desta música tocou; None = fresca."""
     dates = [recent[k] for k in song_keys(track.name) if k in recent]
@@ -899,6 +971,9 @@ def _fill_sing_along(
     fresh_extra = [t for t in extra if _last_played(t, recent) is None]
     random.shuffle(fresh_known)
     random.shuffle(fresh_extra)
+    # Favorita do artista entra antes das outras conhecidas dele (1 por artista).
+    if spec.favorite_tracks:
+        fresh_known.sort(key=lambda t: 0 if _matches_any_title(t, spec.favorite_tracks) else 1)
     stale_known = sorted(
         [t for t in known if _last_played(t, recent) is not None],
         key=lambda t: _last_played(t, recent) or "",
@@ -950,6 +1025,7 @@ def _curate_sing_along(
     disliked_uris=frozenset(),
     recent: dict[str, str] | None = None,
     catalog: list[Track] | None = None,
+    now: datetime | None = None,
 ) -> list[Track]:
     """Modo "cantar junto".
 
@@ -961,8 +1037,20 @@ def _curate_sing_along(
       versão/medley da mesma música). Quando o acervo conhecido fresco acaba,
       reusa a conhecida que tocou há mais tempo — não enche com mais catálogo.
     - 1 por artista, lista de permitidos, idioma, vetos e "não gosto".
+    - Veto por faixa, espera até uma data, versão única e teto semanal duro
+      (``weekly_cap_tracks``) saem antes do preenchimento. Favorita do artista
+      tem prioridade sobre as outras conhecidas dele.
     """
     recent = recent or {}
+    now = now or datetime.now(timezone.utc)
+
+    def _ok(track: Track, *, as_known: bool) -> bool:
+        return (
+            _is_allowlisted_main(track, spec.match_artists)
+            and _passes_genres(track, spec)
+            and _passes_language(track, saved_uris, spec, allow_by_list=as_known)
+            and _passes_track_rules(track, spec, now)
+        )
 
     # Conhecidas: o que você mais ouve + curtidas.
     saved = _saved_tracks(sp)
@@ -974,34 +1062,45 @@ def _curate_sing_along(
     _artist_genres_for(sp, known)
     known = [
         t for t in known
-        if _passes_genres(t, spec) and _passes_language(t, saved_uris, spec, allow_by_list=True)
+        if _passes_genres(t, spec)
+        and _passes_language(t, saved_uris, spec, allow_by_list=True)
+        and _passes_track_rules(t, spec, now)
     ]
 
     # Catálogo = só as NOVAS (teto new_tracks). Não é reserva pra encher a lista.
     if catalog:
-        extra = _drop(_dedupe(catalog), disliked_uris, spec.exclude_artists, spec.exclude_keywords)
-        extra = [
-            t for t in extra
-            if t.uri not in heard_uris
-            and _is_allowlisted_main(t, spec.match_artists)
-            and _passes_genres(t, spec)
-            and _passes_language(t, saved_uris, spec)  # estrangeira nova: não
-        ]
+        pool = _drop(_dedupe(catalog), disliked_uris, spec.exclude_artists, spec.exclude_keywords)
+        pool = [t for t in pool if _ok(t, as_known=False) or _matches_any_title(t, spec.favorite_tracks)]
     else:
         # Sem catálogo ainda (1ª execução / falha): descoberta antiga por busca.
         disc = replace(
             spec, exclude_heard=True, include_top_tracks=False, sing_along=False,
             max_per_artist=0, size=max(spec.size * 4, 40),
         )
-        extra = _curate_discovery(sp, disc, disliked_uris)
-        _artist_genres_for(sp, extra)
-        extra = [
-            t for t in extra
+        pool = _curate_discovery(sp, disc, disliked_uris)
+        _artist_genres_for(sp, pool)
+        pool = [
+            t for t in pool
             if t.uri not in saved_uris
-            and _is_allowlisted_main(t, spec.match_artists)
-            and _passes_genres(t, spec)
-            and _passes_language(t, set(), spec)
+            and _ok(t, as_known=False)
         ]
+
+    # Favorita que está no catálogo entra no acervo: não gasta vaga de faixa nova.
+    if spec.favorite_tracks:
+        known_uris_now = {t.uri for t in known}
+        known_keys_now: set[str] = set()
+        for t in known:
+            known_keys_now |= song_keys(t.name)
+        for t in pool:
+            if t.uri in known_uris_now or not _matches_any_title(t, spec.favorite_tracks):
+                continue
+            if song_keys(t.name) & known_keys_now:
+                continue
+            if not _ok(t, as_known=True):
+                continue
+            known.append(t)
+            known_uris_now.add(t.uri)
+            known_keys_now |= song_keys(t.name)
 
     known_uris = {t.uri for t in known}
     known_keys: set[str] = set()
@@ -1009,9 +1108,24 @@ def _curate_sing_along(
         known_keys |= song_keys(t.name)
     # Outra gravação de música que ele já tem no acervo não conta como nova.
     extra = [
-        t for t in _dedupe(extra)
-        if t.uri not in known_uris and not (song_keys(t.name) & known_keys)
+        t for t in _dedupe(pool)
+        if t.uri not in heard_uris
+        and t.uri not in known_uris
+        and not (song_keys(t.name) & known_keys)
+        and not _matches_any_title(t, spec.favorite_tracks)
+        and _ok(t, as_known=False)
     ]
+
+    # Teto duro (ex.: Até Que Durou, 1x por semana): se já tocou na janela do
+    # rodízio, não volta nem como reuso. O manager só manda em ``recent`` o
+    # que está dentro de rotation_days.
+    if spec.weekly_cap_tracks:
+        def _under_cap(track: Track) -> bool:
+            played = _matches_any_title(track, spec.weekly_cap_tracks) and _last_played(track, recent)
+            return not played
+
+        known = [t for t in known if _under_cap(t)]
+        extra = [t for t in extra if _under_cap(t)]
 
     fresh_known = [t for t in known if _last_played(t, recent) is None]
     fresh_extra = [t for t in extra if _last_played(t, recent) is None]
@@ -1064,6 +1178,7 @@ def curate(
     disliked_uris=frozenset(),
     recent: dict[str, str] | None = None,
     catalog: list[Track] | None = None,
+    now: datetime | None = None,
 ) -> list[Track]:
     """Monta a lista final de faixas, escolhendo o modo conforme a config.
 
@@ -1074,7 +1189,7 @@ def curate(
     if spec.fixed_tracks:
         return _curate_fixed(sp, spec)
     if spec.sing_along:
-        return _curate_sing_along(sp, spec, disliked_uris, recent, catalog)
+        return _curate_sing_along(sp, spec, disliked_uris, recent, catalog, now=now)
     if spec.mode == "discovery":
         return _curate_discovery(sp, spec, disliked_uris)
     return _curate_search(sp, spec, disliked_uris)

@@ -6,6 +6,7 @@ import collections
 import json
 import os
 import re
+import time
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 
@@ -625,6 +626,87 @@ def audit_playlist(
         slots=slots, lists=len(week),
     )
     return out
+
+
+def _playlist_tracks(sp: Spotify, playlist_id: str, max_tracks: int = 150) -> list[Track]:
+    """Faixas de uma playlist (formato novo ``item`` e antigo ``track``). Só leitura."""
+    from .curator import _track_from_item  # noqa: WPS433 (import local p/ evitar ciclo)
+
+    out: list[Track] = []
+    try:
+        page = sp.playlist_items(playlist_id, limit=100)
+        while page and len(out) < max_tracks:
+            for entry in page.get("items", []):
+                obj = entry.get("item")
+                if not isinstance(obj, dict):
+                    obj = entry.get("track")
+                if not isinstance(obj, dict):
+                    continue
+                t = _track_from_item(obj)
+                if t:
+                    out.append(t)
+            page = sp.next(page) if page.get("next") and len(out) < max_tracks else None
+            time.sleep(0.35)
+    except Exception as exc:  # playlist privada de terceiro, 403 etc.
+        print(f"   (não consegui ler: {exc})")
+    return out[:max_tracks]
+
+
+def describe_profile(
+    sp: Spotify,
+    patterns: list[str],
+    max_tracks: int = 150,
+    max_playlists: int = 10,
+    liked: int = 100,
+) -> None:
+    """Despejo SÓ LEITURA do perfil musical, pra curadoria manual/por agente:
+    mais ouvidas (3 janelas), todas as playlists da conta e o conteúdo das que
+    casam com ``patterns`` (ex.: anos, "descobertas", "pagode"), mais as curtidas
+    recentes. Não altera nada."""
+    import time as _time
+
+    me = sp.me()
+    print(f"👤 {me.get('display_name')} (id {me.get('id')})")
+    describe_taste(sp, top_n=50)
+
+    print("\n========== PLAYLISTS DA CONTA ==========")
+    playlists: list[dict] = []
+    offset = 0
+    while True:
+        page = sp.current_user_playlists(limit=50, offset=offset)
+        playlists.extend(p for p in page.get("items", []) if p)
+        if page.get("next"):
+            offset += 50
+        else:
+            break
+    for pl in playlists:
+        owner = (pl.get("owner") or {}).get("display_name") or (pl.get("owner") or {}).get("id")
+        print(f"  - {pl.get('name')}  [dono: {owner}]  id={pl.get('id')}")
+
+    wanted = [p.strip().lower() for p in patterns if p.strip()]
+    chosen = [pl for pl in playlists if any(w in (pl.get("name") or "").lower() for w in wanted)]
+    print(f"\n========== CONTEÚDO ({len(chosen)} playlists casam com {wanted}; mostro até {max_playlists}) ==========")
+    for pl in chosen[:max_playlists]:
+        tracks = _playlist_tracks(sp, pl["id"], max_tracks)
+        print(f"\n### {pl.get('name')} ({len(tracks)} faixas lidas)")
+        for t in tracks:
+            print(f"  • {t.name} — {t.artists}")
+        _time.sleep(0.5)
+
+    print(f"\n========== CURTIDAS (as {liked} mais recentes) ==========")
+    try:
+        page = sp.current_user_saved_tracks(limit=50)
+        shown = 0
+        while page and shown < liked:
+            for item in page.get("items", []):
+                obj = item.get("track") or {}
+                if obj.get("name"):
+                    who = ", ".join(a.get("name", "") for a in obj.get("artists", []))
+                    print(f"  • {obj['name']} — {who}")
+                    shown += 1
+            page = sp.next(page) if page.get("next") and shown < liked else None
+    except Exception as exc:
+        print(f"  (não consegui ler as curtidas: {exc})")
 
 
 def describe_taste(sp: Spotify, top_n: int = 20) -> None:

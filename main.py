@@ -31,6 +31,7 @@ from spotify_playlists.manager import (
     current_slot,
     describe_diagnosis,
     describe_feedback,
+    describe_profile,
     describe_taste,
     explore_all,
     mark_slot_done,
@@ -101,6 +102,13 @@ def cmd_whoami(_args: argparse.Namespace) -> int:
 
 def cmd_taste(_args: argparse.Namespace) -> int:
     describe_taste(get_client())
+    return 0
+
+
+def cmd_profile(args: argparse.Namespace) -> int:
+    """Despejo só-leitura do perfil (mais ouvidas, playlists de referência, curtidas)."""
+    patterns = [p for p in (args.playlists or "").split(",") if p.strip()]
+    describe_profile(get_client(), patterns, max_tracks=args.max_tracks, max_playlists=args.max_playlists)
     return 0
 
 
@@ -234,6 +242,16 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser(
         "feedback", help="Mostra o que aprendi do que você removeu das playlists"
     ).set_defaults(func=cmd_feedback)
+    p_prof = sub.add_parser(
+        "profile", help="Só leitura: mais ouvidas, playlists de referência e curtidas (p/ curadoria)"
+    )
+    p_prof.add_argument(
+        "--playlists", default="2022,2023,2024,2025,2026,descobertas,pagode,samba",
+        help="Trechos de nome (separados por vírgula) das playlists a despejar",
+    )
+    p_prof.add_argument("--max-tracks", type=int, default=150, help="Faixas por playlist (padrão 150)")
+    p_prof.add_argument("--max-playlists", type=int, default=10, help="Playlists despejadas (padrão 10)")
+    p_prof.set_defaults(func=cmd_profile)
     p_diag = sub.add_parser("diagnose", help="Diagnostica o detector de remoções de uma playlist")
     p_diag.add_argument("playlist", help="Nome exato da playlist")
     p_diag.set_defaults(func=cmd_diagnose)

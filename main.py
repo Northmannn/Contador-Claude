@@ -168,6 +168,8 @@ def cmd_sync(args: argparse.Namespace) -> int:
             sp, match, catalog_budget=budget, record_rotation=not args.no_record_rotation
         )
         print(f"✅ '{match.name}': {len(tracks)} faixas atualizadas")
+        for i, t in enumerate(tracks, 1):
+            print(f"   {i:2}. {t}")
         if match.daily and slot:
             mark_slot_done(slot)  # geração manual conta como a da janela
         return 0

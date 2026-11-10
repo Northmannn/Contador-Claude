@@ -19,6 +19,7 @@ import collections
 import random
 import re
 import time
+import unicodedata
 from dataclasses import dataclass, field, replace
 from datetime import datetime, timedelta, timezone
 
@@ -1303,21 +1304,69 @@ def _curate_sing_along(
     return chosen
 
 
+# Versões que não servem numa trilha curada a dedo (karaokê, tributo, remix...).
+_FIXED_BAD_WORDS = (
+    "karaok", "tribut", "cover", "instrumental", "playback", "made famous",
+    "originally performed", "remix", "sped up", "speed up", "slowed", "nightcore",
+)
+
+
+def _fold(text: str) -> str:
+    """Minúsculas, sem acento e sem pontuação — pra comparar título/artista com folga."""
+    text = unicodedata.normalize("NFKD", text or "")
+    text = "".join(c for c in text if not unicodedata.combining(c)).lower()
+    text = text.replace("'", "").replace("\u2019", "")
+    return re.sub(r"[^a-z0-9]+", " ", text).strip()
+
+
+def _fixed_match(track: Track, title: str, artist: str) -> bool:
+    """A faixa achada é MESMO a pedida? Artista confere, as palavras do título
+    aparecem no título achado e não é karaokê/tributo/remix."""
+    if _fold(artist) not in _fold(track.artists):
+        return False
+    core = re.sub(r"[\(\[].*?[\)\]]", " ", title)
+    want = {w for w in _fold(core).split() if len(w) > 1}
+    got = set(_fold(track.name).split())
+    if not want or not want <= got:
+        return False
+    blob = f"{track.name} {track.artists}".lower()
+    return not any(bad in blob for bad in _FIXED_BAD_WORDS)
+
+
+def _resolve_fixed(sp: Spotify, entry: str, market: str) -> Track | None:
+    """Resolve uma entrada da trilha fixa.
+
+    - ``"Título | Artista"`` (recomendado): busca com filtro e SÓ aceita faixa em
+      que o artista e o título conferem — nunca um karaokê, tributo ou homônimo.
+    - texto livre (formato antigo): primeiro resultado da busca.
+    """
+    if "|" not in entry:
+        found = _search_page(sp, entry, market, offset=0)
+        return found[0] if found else None
+    title, artist = (part.strip() for part in entry.split("|", 1))
+    plain = re.sub(r"[\(\[].*?[\)\]]", " ", title).strip() or title
+    for query in (f'track:"{plain}" artist:"{artist}"', f"{plain} {artist}"):
+        for t in _search_page(sp, query, market, offset=0):
+            if _fixed_match(t, title, artist):
+                return t
+        time.sleep(CATALOG_PAUSE_S)
+    return None
+
+
 def _curate_fixed(sp: Spotify, spec: CurationSpec) -> list[Track]:
     """Playlist de trilha: resolve cada entrada de ``fixed_tracks`` NA ORDEM.
 
-    Cada entrada é um texto de busca tipo "Título Artista". Pegamos o primeiro
-    resultado; se não achar, a faixa é pulada (avisamos no console) — a ordem
-    das demais é preservada, nunca embaralhada.
+    Entrada ``"Título | Artista"`` é conferida (artista + título); texto livre
+    pega o primeiro resultado. O que não achar é pulado com aviso — a ordem das
+    demais é preservada, nunca embaralhada.
     """
     tracks: list[Track] = []
     seen: set[str] = set()
     for query in spec.fixed_tracks:
-        found = _search_page(sp, query, spec.market, offset=0)
-        if not found:
+        t = _resolve_fixed(sp, query, spec.market)
+        if not t:
             print(f"   ⚠️ não achei: {query!r} — pulando")
             continue
-        t = found[0]
         if t.uri not in seen:
             seen.add(t.uri)
             tracks.append(t)

@@ -877,6 +877,40 @@ def test_offline_simulated_list_respects_new_tracks():
     assert len(known) > spec.size  # senão o teste não exercita o rodízio de verdade
 
 
+def test_fixed_track_resolution_checks_artist_and_title():
+    """Trilha fixa "Título | Artista": pula karaokê/homônimo/título errado e
+    aceita acento, pontuação e sufixo de versão diferentes."""
+    def row(uri, name, *artists):
+        return {"uri": uri, "name": name, "artists": [{"id": a, "name": a} for a in artists]}
+
+    class Sp(FakeSpotify):
+        def search(self, q, type, market="BR", limit=10, offset=0):
+            if "Menino" in q:
+                items = [row("k", "O Menino da Porteira - Karaoke Version", "Sérgio Reis"),
+                         row("x", "Menino da Porteira", "Outro Cantor"),
+                         row("ok1", "Menino da Porteira - Ao Vivo", "Sérgio Reis")]
+            elif "Feeling" in q:
+                items = [row("ok2", "CAN'T STOP THE FEELING! (from Trolls)", "Justin Timberlake")]
+            elif "Smile" in q:
+                items = [row("w", "Smile", "Lady Gaga"),
+                         row("ok3", "Die With A Smile", "Lady Gaga", "Bruno Mars")]
+            elif "Inexistente" in q:
+                items = [row("z", "Outra Coisa", "Fulano")]
+            else:
+                items = [row("livre", "Primeiro Resultado", "Qualquer")]
+            return {"tracks": {"items": items}}
+
+    curator.CATALOG_PAUSE_S = 0
+    spec = CurationSpec(fixed_tracks=[
+        "O Menino da Porteira | Sergio Reis",
+        "Can't Stop the Feeling! | Justin Timberlake",
+        "Die With A Smile | Lady Gaga",
+        "Inexistente | Fulano",
+        "texto livre antigo",
+    ])
+    assert [t.uri for t in curator.curate(Sp(), spec)] == ["ok1", "ok2", "ok3", "livre"]
+
+
 def test_played_log_pruned():
     with tempfile.TemporaryDirectory() as d:
         now = datetime(2026, 9, 24, tzinfo=timezone.utc)

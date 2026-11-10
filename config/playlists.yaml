@@ -599,6 +599,65 @@ playlists:
       - "With You Davido Omah Lay"
 
   # =====================================================================
+  # 🎧 MISTURA BOA — pedida em 10/11/2026: pagode, samba, sertanejo raiz,
+  # sertanejo e pop internacional BOM, pra cantar no carro. Sem funk, sem
+  # Anitta, sem Wesley Safadão e sem nada que tocou na diária nos últimos 30
+  # dias (conferido contra data/state na criação). Em blocos, na ordem.
+  # Formato "Título | Artista": o artista e o título são conferidos na busca.
+  # =====================================================================
+  - name: "🎧 Mistura Boa — Pagode, Sertanejo & Pop"
+    description: "Pagode, samba, sertanejo raiz, sertanejo e pop internacional pra cantar no carro. Sem funk. Em blocos."
+    public: false
+    size: 40
+    seasons: [always]
+    tracks:
+      # PAGODE
+      - "Lancinho | Turma do Pagode"
+      - "Deixa em Off | Turma do Pagode"
+      - "Cerveja de Garrafa (Fumaça Que Eu Faço) | Atitude 67"
+      - "Cigana | Raça Negra"
+      - "Pimpolho | Art Popular"
+      - "Luz do Desejo | Jeito Moleque"
+      - "Baixinha | Grupo Revelação"
+      - "Ousadia & Alegria | Thiaguinho"
+      - "Curto Circuito | Mumuzinho"
+      - "Marrom Bombom | Os Morenos"
+      # SAMBA
+      - "Samba pras Moças | Zeca Pagodinho"
+      - "Coisinha do Pai | Beth Carvalho"
+      - "Canta Canta, Minha Gente | Martinho da Vila"
+      - "Pé na Areia | Diogo Nogueira"
+      - "Malandro | Jorge Aragão"
+      - "Cara Valente | Maria Rita"
+      - "Conto de Areia | Clara Nunes"
+      - "Foi um Rio Que Passou em Minha Vida | Paulinho da Viola"
+      # SERTANEJO RAIZ
+      - "Fio de Cabelo | Chitãozinho & Xororó"
+      - "Estrada da Vida | Milionário & José Rico"
+      - "Pagode em Brasília | Tião Carreiro & Pardinho"
+      - "O Menino da Porteira | Sérgio Reis"
+      - "Tocando em Frente | Almir Sater"
+      - "Ainda Ontem Chorei de Saudade | João Mineiro & Marciano"
+      - "Pense em Mim | Leandro & Leonardo"
+      # SERTANEJO
+      - "Sosseguei | Jorge & Mateus"
+      - "Infiel | Marília Mendonça"
+      - "Largado às Traças | Zé Neto & Cristiano"
+      - "Borboletas | Victor & Leo"
+      - "Medo Bobo | Maiara & Maraisa"
+      - "Liberdade Provisória | Henrique & Juliano"
+      - "Apelido Carinhoso | Gusttavo Lima"
+      # POP INTERNACIONAL
+      - "Just the Way You Are | Bruno Mars"
+      - "Die With A Smile | Lady Gaga"
+      - "Sugar | Maroon 5"
+      - "Stay With Me | Sam Smith"
+      - "I'm Yours | Jason Mraz"
+      - "Viva La Vida | Coldplay"
+      - "Rolling in the Deep | Adele"
+      - "Can't Stop the Feeling! | Justin Timberlake"
+
+  # =====================================================================
   # 🚀 INAUGURAÇÃO — MOTIVAÇÃO MÁXIMA — dia importante, precisa vir do SEU
   # gosto real (não é curadoria manual). Puxa seus artistas/músicas mais
   # ouvidas nos estilos energéticos, prioriza hits conhecidos (confiança

@@ -859,3 +859,41 @@ playlists:
       - "música pra vencer"
       - "superação conquista"
       - "rock motivacional"
+
+  # =====================================================================
+  # 🎤 KARAOKÊ DO MEU GOSTO — trilha fixa, tirada do histórico real do
+  # usuário (mais tocadas, recentes e artistas top). Sem funk, só português.
+  # =====================================================================
+  - name: "🎤 Karaokê do Meu Gosto"
+    description: "Pra cantar: pagode, romântico, forró e brega tirados do que eu mais ouço."
+    public: false
+    size: 22
+    seasons: [always]
+    tracks:
+      # PAGODE
+      - "Loucura do Seu Coração Sorriso Maroto"
+      - "Mande um Sinal Ao Vivo Pixote"
+      - "Não Me Vejo Sem Você Ao Vivo Vitinho"
+      - "Pirata e Tesouro Ao Vivo Ferrugem"
+      - "Final de Tarde Péricles"
+      - "Graveto Ao Vivo Péricles"
+      - "Sou Pagodeiro Love Yourself Dilsinho"
+      - "Talvez Ao Vivo Xande de Pilares Alexandre Pires"
+      - "Página de Amigos Inevitável Flor Grupo Menos É Mais"
+      # ROMÂNTICO / SERTANEJO
+      - "Estou Apaixonado Duas Vozes Daniel IZA"
+      - "Adoro Amar Você Duas Vozes Daniel Vitor Kley"
+      - "Ela É Demais Rick & Renner"
+      - "Carência Ao Vivo Humberto & Ronaldo Jorge & Mateus"
+      - "Tocando em Frente Duas Vozes Daniel PRISCILLA"
+      # FORRÓ
+      - "Nosso Xote Bicho de Pé"
+      - "Coração Machucado Ao Vivo Wesley Safadão"
+      # BREGA E ZOEIRA
+      - "A Raposa e as Uvas Reginaldo Rossi"
+      - "Se Essa Culpa Fosse Minha Pedra Letícia"
+      # AS TROCAS
+      - "Não Precisa Mudar Palpite Final Feliz A Estrada Meu Erro Vou Zuar"
+      - "Vou Deixar Skank"
+      - "Que Se Chama Amor Só Pra Contrariar"
+      - "Verdade Zeca Pagodinho"
